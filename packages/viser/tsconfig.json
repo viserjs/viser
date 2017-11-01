@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": "es",
+    "outDir": "build",
     "noImplicitAny": false,
     "removeComments": true,
     "preserveConstEnums": true,
