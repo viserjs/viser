@@ -1,6 +1,7 @@
 .DS_Store
 *.log
 node_modules
+packages/**/build
 packages/**/umd
 packages/**/lib
 packages/**/es6

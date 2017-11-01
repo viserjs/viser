@@ -1,43 +1,74 @@
 const fs = require('fs');
-const execSync = require('child_process').execSync;
+const nodeExec = require('child_process').exec;
 const prettyBytes = require('pretty-bytes');
 const gzipSize = require('gzip-size');
+const ora = require('ora');
+const _ = require('lodash');
+const colors = require('colors');
 
-// ora
-const exec = (command, extraEnv) =>
-  execSync(command, {
-    stdio: 'inherit',
-    env: Object.assign({}, process.env, extraEnv),
+function exec(shell, extraEnv) {
+  return new Promise((resolve, reject) => {
+    nodeExec(shell, {
+      stdio: 'inherit',
+      env: Object.assign({}, process.env, extraEnv),
+    }, (error, stdOut) => {
+      if (error) {
+        reject(error.toString());
+      } else {
+        resolve(_.trim(stdOut.toString()));
+      }
+    });
+  });
+}
+
+async function spinner(message, fn) {
+  const oraSpinner = ora(colors.green(message)).start();
+
+  try {
+    await fn(oraSpinner);
+    oraSpinner.succeed(colors.gray.dim(message));
+  } catch (error) {
+    oraSpinner.fail(colors.red(error.toString()));
+    process.exit(0);
+  }
+}
+
+async function build() {
+  await spinner('Building TS', async () => {
+    await exec('tsc');
   });
 
-// console.log('Building CommonJS modules ...');
+  await spinner('Building CommonJS modules', async (oraSpinner) => {
+    await exec('rimraf lib && cross-env NODE_ENV=commonjs babel ./build -d lib', {
+      BABEL_ENV: 'cjs'
+    });
+  });
 
-// exec('rimraf lib && cross-env NODE_ENV=commonjs babel ./build -d lib', {
-//   BABEL_ENV: 'cjs'
-// });
+  await spinner('Building ES modules', async () => {
+    await exec('rimraf es && babel ./build -d es', {
+      BABEL_ENV: 'es'
+    });
+  });
 
-// console.log('\nBuilding ES modules ...');
+  await spinner('Building UMD Viser', async () => {
+    await exec('cross-env webpack --progress --config webpack.config.js', {
+      BABEL_ENV: 'umd',
+      NODE_ENV: 'development'
+    });
+  });
 
-// exec('rimraf es && babel ./build -d es', {
-//   BABEL_ENV: 'es'
-// });
+  await spinner('Building UMD Viser Min', async () => {
+    await exec('cross-env webpack --progress --config webpack.config.js', {
+      BABEL_ENV: 'umd',
+      NODE_ENV: 'production'
+    });
+  });
 
-// console.log('\nBuilding viser.js ...');
+  const size = gzipSize.sync(
+    fs.readFileSync('umd/viser.min.js')
+  );
 
-exec('cross-env webpack --progress --config webpack.config.js', {
-  BABEL_ENV: 'umd',
-  NODE_ENV: 'development'
-});
+  console.log(`gzipped, the UMD build is ${prettyBytes(size)}`);
+}
 
-console.log('\nBuilding viser.min.js ...');
-
-exec('cross-env webpack --progress --config webpack.config.js', {
-  BABEL_ENV: 'umd',
-  NODE_ENV: 'production'
-});
-
-const size = gzipSize.sync(
-  fs.readFileSync('umd/viser.min.js')
-);
-
-console.log('\ngzipped, the UMD build is %s', prettyBytes(size));
+build();
