@@ -1,5 +1,6 @@
 import * as setDataDefConfig from './setDataDefConfig';
 import * as setQuickType from './setQuickType';
+import * as _ from 'lodash';
 
 function validateAxis(dataDef, oriAxis) {
   if (oriAxis === true) { return true; }
@@ -75,7 +76,8 @@ export const checkChartConfig = (config) => {
 export const checkViewConfig = (config) => {
   config.dataDef = setDataDefConfig.process(config);
 
-  if (config.views && config.views.length) {
+  if (!_.isEmpty(config.views)) {
+    config.views = Array.isArray(config.views) ? config.views : [config.views];
     config.viewId = '00000';
   }
 
