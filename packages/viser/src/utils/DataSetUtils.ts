@@ -76,7 +76,6 @@ function processGeoJsonConnector(ds, data, dataPre) {
   .source(data, { type: 'GeoJSON' });
 
   let transform = dataPre.transform;
-  transform = Array.isArray(transform) ? transform : [transform];
 
   for (const item of dataPre.transform) {
     ds = dv.transform(transform);
@@ -91,7 +90,9 @@ function processGeoJsonConnector(ds, data, dataPre) {
   return dv;
 }
 
-function processHierarchyConnector(ds, data, item) {
+function processHierarchyConnector(ds, data, dataPre) {
+  const transform = dataPre.transform[0];
+
   const dv = ds.createView()
   .source(data, { type: 'hierarchy' })
   .transform({
@@ -99,15 +100,15 @@ function processHierarchyConnector(ds, data, item) {
     type: 'hierarchy.treemap',
     tile: 'treemapResquarify',
     as: ['x', 'y'],
-    ...item,
+    ...transform,
   });
 
   const res = dv.getAllNodes().map(node => {
-    if (item.nameKey) {
-      node.name = node.data[item.nameKey];
+    if (transform.nameKey) {
+      node.name = node.data[transform.nameKey];
     }
-    if (item.valueKey) {
-      node.value = node.data[item.valueKey];
+    if (transform.valueKey) {
+      node.value = node.data[transform.valueKey];
     }
     return node;
   });
@@ -116,7 +117,8 @@ function processHierarchyConnector(ds, data, item) {
 }
 
 function processGraphConnector(ds, data, dataPre) {
-  const { source, transform } = dataPre;
+  const { source } = dataPre;
+  const transform = dataPre.transform[0];
 
   if (source) {
     if (source.edgesKey) {
@@ -174,9 +176,7 @@ function processCommonConnector(dv, item) {
   return dv;
 }
 
-export const preprocessing = (config) => {
-  const { dataPre } = config;
-  let data = config.data;
+export const preprocessing = (data, dataPre) => {
   let ds = new DataSet();
 
   if (_.isEmpty(data)) { return; }
@@ -185,8 +185,11 @@ export const preprocessing = (config) => {
     return ds.createView().source(data);
   }
 
+  let { transform } = dataPre;
+  dataPre.transform = Array.isArray(transform) ? transform : [transform];
+
   if (dataPre.connector === 'hierarchy') {
-    return processHierarchyConnector(ds, data, dataPre.transform);
+    return processHierarchyConnector(ds, data, dataPre);
   } else if (dataPre.connector === 'graph') {
     return processGraphConnector(ds, data, dataPre);
   } else if (dataPre.connector === 'GeoJSON') {

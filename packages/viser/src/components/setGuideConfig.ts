@@ -54,15 +54,15 @@ export const process = (chart, config) => {
     if (res.type === 'line') {
       setGuideLine(chart, res);
     } else if (res.type === 'region') {
-      chart.guide().region(guide);
+      chart.guide().region(res);
     } else if (res.type === 'arc') {
       setGuideArc(chart, res);
     } else if (res.type === 'text') {
-      chart.guide().text(guide);
+      chart.guide().text(res);
     } else if (res.type === 'tag') {
-      chart.guide().tag(guide);
+      chart.guide().tag(res);
     } else if (res.type === 'html') {
-      chart.guide().html(guide);
+      chart.guide().html(res);
     }
   });
 

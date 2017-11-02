@@ -128,8 +128,9 @@ function setSeriesOpacity(chart, dataDef, currSeries) {
 function setSeriesLabel(chart, currSeries) {
   const label = currSeries.label;
 
-  if (label && label.show) {
-    return chart.label(label.dataKey, { ...label });
+  if (!_.isEmpty(label)) {
+    const options = _.omit(label, 'dataKey');
+    return chart.label(label.dataKey, options);
   }
 
   return chart;
@@ -152,10 +153,18 @@ function setSeriesTooltip(chart, currSeries) {
 
   if (tooltip && tooltip.dataKey) {
     if (tooltip.callback) {
-      return chart.label(tooltip.dataKey, tooltip.callback);
+      return chart.tooltip(tooltip.dataKey, tooltip.callback);
     }
 
-    return chart.label(tooltip.dataKey);
+    return chart.tooltip(tooltip.dataKey);
+  }
+
+  return chart;
+}
+
+function setSeriesSelect(chart, currSeries) {
+  if (currSeries.select) {
+    return chart.select(currSeries.select);
   }
 
   return chart;
@@ -184,8 +193,10 @@ export const process = (chart, config) => {
     chartInstance = setSeriesOpacity(chartInstance, dataDef, currSeries);
     chartInstance = setSeriesSize(chartInstance, dataDef, currSeries);
     chartInstance = setSeriesLabel(chartInstance, currSeries);
-    chartInstance = setSeriesStyle(chartInstance, currSeries);
     chartInstance = setSeriesTooltip(chartInstance, currSeries);
+    chartInstance = setSeriesStyle(chartInstance, currSeries);
+    chartInstance = setSeriesSelect(chartInstance, currSeries);
+
   });
 
   return chartInstance;
