@@ -26,7 +26,7 @@ function validateAxis(dataDef, oriAxis) {
   return newAxis;
 }
 
-function validateSeries(dataDef, oriSeries) {
+export const validateSeries = (dataDef, oriSeries) => {
   if (!oriSeries) { throw new Error('please set at least 1 series'); }
 
   const series = Array.isArray(oriSeries) ? oriSeries : [oriSeries];
@@ -74,17 +74,21 @@ export const checkChartConfig = (config) => {
 };
 
 export const checkViewConfig = (config) => {
-  config.dataDef = setDataDefConfig.process(config);
-
-  if (!_.isEmpty(config.views)) {
-    config.views = Array.isArray(config.views) ? config.views : [config.views];
-    config.viewId = '00000';
+  if (config.dataDef) {
+    config.dataDef = setDataDefConfig.process(config);
   }
 
   if (config.axis) {
     config.axis = validateAxis(config.dataDef, config.axis);
   } else {
     config.axis = false;
+  }
+
+  if (config.facet) { return config; }
+
+  if (!_.isEmpty(config.views)) {
+    config.views = Array.isArray(config.views) ? config.views : [config.views];
+    config.viewId = '00000';
   }
 
   if (config.guide) {

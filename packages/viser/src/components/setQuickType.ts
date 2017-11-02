@@ -174,6 +174,8 @@ export const process = (config) => {
   const coord = config.coord;
   const quickType = {};
 
+  if (!series || !series.length) { return config; }
+
   for (const item of QUICK_TYPE) {
     quickType[item.type] = item;
   }
