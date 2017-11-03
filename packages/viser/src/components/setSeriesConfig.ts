@@ -48,7 +48,7 @@ function setSeriesPosition(chart, currSeries) {
 function setSeriesAdjust(chart, currSeries) {
   const adjust = currSeries.adjust;
 
-  if (adjust) { return chart.adjust(adjust); }
+  if (!_.isEmpty(adjust)) { return chart.adjust(adjust); }
 
   return chart;
 }
@@ -88,19 +88,7 @@ function setSeriesSize(chart, dataDef, currSeries) {
   const size = currSeries.size;
 
   if (dim && size) {
-    let maxSize;
-    let minSize;
-
-    if (Array.isArray(size) && size.length >= 2) {
-      maxSize = size[0];
-      minSize = size[1];
-    }
-
-    if (maxSize && minSize) {
-      return chart.size(dim, maxSize, minSize);
-    } else if (size) {
-      return chart.size(dim, size);
-    }
+    return chart.size(dim, size);
   } else if (dim && !size) {
     return chart.size(dim);
   } else if (size) {
@@ -129,8 +117,14 @@ function setSeriesLabel(chart, currSeries) {
   const label = currSeries.label;
 
   if (!_.isEmpty(label)) {
-    const options = _.omit(label, 'dataKey');
-    return chart.label(label.dataKey, options);
+    if (_.isString(label)) {
+      return chart.label(label);
+    }
+
+    if (label.dataKey) {
+      const options = _.omit(label, 'dataKey');
+      return chart.label(label.dataKey, options);
+    }
   }
 
   return chart;
@@ -139,7 +133,15 @@ function setSeriesLabel(chart, currSeries) {
 function setSeriesStyle(chart, currSeries) {
   const style = currSeries.style;
 
-  if (style) { return chart.style(style); }
+  if (!_.isEmpty(style)) {
+    const options = _.omit(style, 'dataKey');
+
+    if (style.dataKey) {
+      return chart.style(style.dataKey, options);
+    } else {
+      return chart.style(options);
+    }
+  }
 
   return chart;
 }
@@ -151,20 +153,36 @@ function setSeriesTooltip(chart, currSeries) {
     return chart.tooltip(false);
   }
 
-  if (tooltip && tooltip.dataKey) {
-    if (tooltip.callback) {
+  if (!_.isEmpty(tooltip)) {
+    if (_.isString(tooltip)) {
+      return chart.tooltip(tooltip);
+    }
+
+    if (tooltip.dataKey && tooltip.callback) {
       return chart.tooltip(tooltip.dataKey, tooltip.callback);
     }
 
-    return chart.tooltip(tooltip.dataKey);
+    if (tooltip.dataKey) {
+      return chart.tooltip(tooltip.dataKey);
+    }
   }
 
   return chart;
 }
 
 function setSeriesSelect(chart, currSeries) {
-  if (currSeries.select) {
-    return chart.select(currSeries.select);
+  const select = currSeries.select;
+
+  if (select === false) {
+    return chart.select(false);
+  }
+
+  if (select) {
+    if (select === true) {
+      return chart.select(true);
+    }
+
+    return chart.select(true, select);
   }
 
   return chart;
