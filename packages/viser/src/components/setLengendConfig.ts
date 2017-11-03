@@ -26,7 +26,9 @@ export const process = (chart, config) => {
     }
 
     if (res.dataKey) {
-      const option = _.omit(res, ['dataKey']);
+      if (res.show === false) { return chart.legend(res.dataKey, false); }
+
+      const option = _.omit(res, ['dataKey', 'show']);
       return chart.legend(res.dataKey, option);
     } else {
       return chart.legend(res);
