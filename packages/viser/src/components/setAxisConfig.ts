@@ -96,7 +96,7 @@ export const process = (chart, config) => {
   const newAxis = [];
 
   for (const res of axis) {
-    if (!res.show) { return chart.axis(res.dataKey, res.show); }
+    if (res.show === false) { return chart.axis(res.dataKey, false); }
 
     if (res.label) { res.label = setCustomFormatter.supportD3Formatter(res.label); }
 
@@ -107,4 +107,6 @@ export const process = (chart, config) => {
       chart.guide().text(generateAxisNameOptions(res));
     }
   }
+
+  return chart;
 };
