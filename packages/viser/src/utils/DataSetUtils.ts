@@ -23,11 +23,11 @@ function handleToNumber(row, def) {
 //   { xy: [1, 1], z: 1 }
 //   { xy: [2, 2], z: 2 }
 // ]
-function handleMergeFields(row, item, num) {
+function handleMergeFields(row, item) {
   const fields = item.fields;
 
-  if (!Array.isArray(fields) || fields.length !== num) {
-    throw new Error(`The candle fields of DataPre must be equals ${num}.`);
+  if (!Array.isArray(fields) || fields.length === 0) {
+    throw new Error(`The candle fields of DataPre must be greater than 0.`);
   }
 
   const newItem = [];
@@ -161,7 +161,7 @@ function processCommonConnector(dv, item) {
     dv = dv.transform({
       type: 'map',
       callback(row) {
-        return handleMergeFields(row, item, item.fields.length);
+        return handleMergeFields(row, item);
       }
     });
   } else if (item.type === 'geo.centroid' || item.type === 'geo.region') {
