@@ -88,7 +88,6 @@ export const checkViewConfig = (config) => {
 
   if (!_.isEmpty(config.views)) {
     config.views = Array.isArray(config.views) ? config.views : [config.views];
-    config.viewId = '00000';
   }
 
   if (config.guide) {

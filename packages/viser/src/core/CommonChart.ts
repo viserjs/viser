@@ -147,12 +147,15 @@ class CommonChart {
     loadShapes(config);
     this.setEvents(chart, config);
 
-    if (viewsConfig && viewsConfig.length) {
+    if (config.viewId) {
       const view = this.setView(chart, config);
       this.renderSameContent(view, config);
-      this.createViews(chart, viewsConfig);
     } else {
       this.renderSameContent(chart, config);
+    }
+
+    if (viewsConfig && viewsConfig.length) {
+      this.createViews(chart, viewsConfig);
     }
 
     this.setLegend(chart, config);
@@ -269,38 +272,36 @@ class CommonChart {
     const chart = this.chartInstance;
     let hasChartChange = false;
 
-    if (viewsConfig && viewsConfig.length) {
-      if (config.viewId && _.isEqual(oriConfig.viewId, config.viewId)) {
-        const view = this.viewInstance[config.viewId];
-        this.renderDiffContent(view, oriConfig, config);
-        view.repaint();
-      } else {
-        const view = this.setView(chart, config);
-        this.renderSameContent(view, config);
-        view.repaint();
-      }
-
-      if (!_.isEqual(oriConfig.views, config.views)) {
-        for (let item of viewsConfig) {
-          item = validateConfig.checkViewConfig(item);
-          item = setQuickType.process(item);
-
-          const oriView = oriConfig.views.filter(res => (res.viewId === item.viewId));
-
-          if (oriView.length) {
-            const view = this.viewInstance[item.viewId];
-            this.renderDiffContent(view, oriView[0], item);
-            view.repaint();
-          } else {
-            const view = this.setView(chart, config);
-            this.renderSameContent(view, item);
-            view.repaint();
-          }
-        }
-      }
-    } else {
+    if (!config.viewId) {
       this.renderDiffContent(chart, oriConfig, config);
       hasChartChange = true;
+    } else if (config.viewId && !oriConfig.viewId) {
+      const view = this.setView(chart, config);
+      this.renderSameContent(view, config);
+      view.repaint();
+    } else if (config.viewId && oriConfig.viewId && _.isEqual(oriConfig.viewId, config.viewId)) {
+      const view = this.viewInstance[config.viewId];
+      this.renderDiffContent(view, oriConfig, config);
+      view.repaint();
+    }
+
+    if (Array.isArray(viewsConfig) && viewsConfig.length && !_.isEqual(oriConfig.views, config.views)) {
+      for (let item of viewsConfig) {
+        item = validateConfig.checkViewConfig(item);
+        item = setQuickType.process(item);
+
+        const oriView = oriConfig.views.filter(res => (res.viewId === item.viewId));
+
+        if (oriView.length) {
+          const view = this.viewInstance[item.viewId];
+          this.renderDiffContent(view, oriView[0], item);
+          view.repaint();
+        } else {
+          const view = this.setView(chart, config);
+          this.renderSameContent(view, item);
+          view.repaint();
+        }
+      }
     }
 
     if (config.legend && !_.isEqual(oriConfig.legend, config.legend)) {
