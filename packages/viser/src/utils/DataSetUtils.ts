@@ -177,13 +177,10 @@ function processCommonConnector(dv, item) {
 }
 
 export const preprocessing = (data, dataPre) => {
+  if (_.isEmpty(data)) { return []; }
+  if (_.isEmpty(dataPre)) { return data; }
+
   let ds = new DataSet();
-
-  if (_.isEmpty(data)) { return; }
-
-  if (_.isEmpty(dataPre) || (!dataPre.connector && !dataPre.transform)) {
-    return ds.createView().source(data);
-  }
 
   let { transform } = dataPre;
   dataPre.transform = Array.isArray(transform) ? transform : [transform];

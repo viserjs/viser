@@ -42,12 +42,13 @@ function changeDataDef(dataDef) {
 }
 
 export const process = (config) => {
-  const { dataDef, data, dataPre } = config;
+  const { dataDef, dataPre } = config;
 
-  if (!dataDef) { throw new Error('please set dataDef option firstly.'); }
+  if (!dataDef) { return; }
 
   const arrDataDef = Array.isArray(dataDef) ? dataDef : [dataDef];
   const objDataDef = changeDataDef(arrDataDef);
+  config.dataDef = objDataDef;
 
-  return objDataDef;
+  return config;
 };
