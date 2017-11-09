@@ -24,16 +24,9 @@ function renderBarPath(points) {
 }
 
 export const registerShape = (config) => {
-  const { series } = config;
-  const filterSeries = series.filter((s) => {
-    return s.shape === 'errorbar' && s.gemo === 'schema';
-  });
   let barWidth = 1;
   let hasPoint = false;
-  if (filterSeries && filterSeries.length > 0 && filterSeries[0] && filterSeries[0].style) {
-    hasPoint = !!filterSeries[0].style.hasPoint;
-    barWidth = filterSeries[0].style.barWidth || 1;
-  }
+
   ShapeRegister.regist('schema', DEFAULT_ERRORBAR_SHAPE, {
     getPoints({ x, y, y0, size }: IShapePoints) {
       // 1 -> 2
@@ -63,6 +56,7 @@ export const registerShape = (config) => {
           fill: cfg.color,
           opacity: cfg.opacity || 1,
           path: this.parsePath(renderBarPath(points)),
+          ...cfg.style,
         }
       });
       if (hasPoint) {
@@ -76,6 +70,7 @@ export const registerShape = (config) => {
             x: this.parsePoint(points[4]).x,
             y: this.parsePoint(points[4]).y,
             r: cfg.style.lineWidth + 0.5 || 1.5,
+            ...cfg.style,
           }
         });
       }

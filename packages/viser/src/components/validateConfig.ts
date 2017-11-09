@@ -1,4 +1,3 @@
-import * as setDataDefConfig from './setDataDefConfig';
 import * as setQuickType from './setQuickType';
 import * as _ from 'lodash';
 
@@ -27,8 +26,7 @@ function validateAxis(dataDef, oriAxis) {
 }
 
 export const validateSeries = (dataDef, oriSeries) => {
-  if (!oriSeries) { throw new Error('please set at least 1 series'); }
-
+  if (_.isEmpty(oriSeries)) { return; }
   const series = Array.isArray(oriSeries) ? oriSeries : [oriSeries];
 
   const colsKey = dataDef.column;
@@ -74,28 +72,25 @@ export const checkChartConfig = (config) => {
 };
 
 export const checkViewConfig = (config) => {
-  if (config.dataDef) {
-    config.dataDef = setDataDefConfig.process(config);
-  }
-
   if (config.axis) {
     config.axis = validateAxis(config.dataDef, config.axis);
   } else {
     config.axis = false;
   }
 
-  if (config.facet) { return config; }
-
   if (!_.isEmpty(config.views)) {
     config.views = Array.isArray(config.views) ? config.views : [config.views];
   }
 
   if (config.guide) {
-    const guide = config.guide;
-    config.guide = Array.isArray(guide) ? guide : [guide];
+    config.guide = Array.isArray(config.guide) ? config.guide : [config.guide];
   }
 
-  config.series = validateSeries(config.dataDef, config.series);
+  if (config.series) {
+    config.series = Array.isArray(config.series) ? config.series : [config.series];
+  }
+
+  // config.series = validateSeries(config.dataDef, config.series);
 
   return config;
 };

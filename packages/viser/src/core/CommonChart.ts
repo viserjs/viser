@@ -10,6 +10,7 @@ import * as setCoordConfig from '../components/setCoordConfig';
 import * as setAxisConfig from '../components/setAxisConfig';
 import * as setSeriesConfig from '../components/setSeriesConfig';
 import * as validateConfig from '../components/validateConfig';
+import * as setDataDefConfig from '../components/setDataDefConfig';
 import * as setCustomFormatter from '../components/setCustomFormatter';
 import * as setQuickType from '../components/setQuickType';
 import * as setLengendConfig from '../components/setLengendConfig';
@@ -17,7 +18,6 @@ import * as setGuideConfig from '../components/setGuideConfig';
 import * as setTooltipConfig from '../components/setTooltipConfig';
 
 class CommonChart {
-  dataSets: any;
   chartInstance: any;
   viewInstance: any = {};
   config: any;
@@ -29,7 +29,11 @@ class CommonChart {
     const chart = this.chartInstance = new G2.Chart(this.config.chart);
   }
 
-  public setView(chart, config) {
+  public destroy(chart) {
+    chart && chart.destroy();
+  }
+
+  public createView(chart, config) {
     const view = chart.view();
 
     if (!config.viewId) {
@@ -65,18 +69,8 @@ class CommonChart {
     });
   }
 
-  public setDataSource(chart, config) {
-    const { data, dataView } = config;
-
-    if (dataView && this.dataSets[dataView]) {
-      chart.source(this.dataSets[dataView]);
-    } else {
-      chart.source(this.dataSets);
-    }
-  }
-
-  public destroy(chart) {
-    chart && chart.destroy();
+  public setDataSource(chart, data) {
+    chart.source(data);
   }
 
   public setScale(chart, config) {
@@ -114,9 +108,8 @@ class CommonChart {
     return setGuideConfig.process(chart, config);
   }
 
-  public renderSameContent(chart, config) {
+  public setContent(chart, config) {
     this.setScale(chart, config);
-    this.setDataSource(chart, config);
     this.setCoord(chart, config.coord);
     this.setAxis(chart, config);
     this.setSeries(chart, config);
@@ -124,106 +117,149 @@ class CommonChart {
     this.setGuide(chart, config);
   }
 
-  public createViews(chart, views) {
+  public setView(item, chart, config) {
+    item = setDataDefConfig.process(item);
+    item = validateConfig.checkViewConfig(item);
+    item = setQuickType.process(item);
+
+    const view = this.createView(chart, item);
+
+    let viewData = item.data;
+    if (item.data) {
+      viewData = DataSetUtils.preprocessing(item.data, item.dataPre);
+    } else if (!item.data && !item.dataPre) {
+      viewData = config.calData;
+    } else if (!item.data && item.dataPre) {
+      viewData = DataSetUtils.preprocessing(config.data, item.dataPre);
+    }
+
+    let finalData = viewData;
+    if (item.dataView) { finalData = viewData[item.dataView]; }
+
+    this.setDataSource(view, finalData);
+    this.setContent(view, item);
+
+    return view;
+  }
+
+  public setViews(chart, config) {
+    const { views } = config;
+    if (!views || !views.length) { return; }
+
     for (let item of views) {
+      this.setView(item, chart, config);
+    }
+  }
+
+  public setFacetViews(chart, facet, config) {
+    const views = config.facet.views;
+
+    for (let item of views) {
+      if (!item.dataDef) {
+        item.dataDef = config.dataDef;
+      }
+
       item = validateConfig.checkViewConfig(item);
       item = setQuickType.process(item);
 
-      const view = this.setView(chart, item);
-
-      if (DataSetUtils.preprocessing(item.data, item.dataPre)) {
-        this.dataSets = DataSetUtils.preprocessing(item.data, item.dataPre);
+      let viewData = facet.data;
+      if (item.dataPre) {
+        item = setDataDefConfig.process(item);
+        viewData = DataSetUtils.preprocessing(facet.data, item.dataPre);
       }
 
-      this.renderSameContent(view, item);
+      this.setDataSource(chart, viewData);
+      this.setContent(chart, item);
     }
   }
 
-  public renderContent(config) {
-    const { data, dataDef, coord, scale } = config;
-    const viewsConfig = config.views;
-    const chart = this.chartInstance;
-
-    loadShapes(config);
-    this.setEvents(chart, config);
-
-    if (config.viewId) {
-      const view = this.setView(chart, config);
-      this.renderSameContent(view, config);
-    } else {
-      this.renderSameContent(chart, config);
-    }
-
-    if (viewsConfig && viewsConfig.length) {
-      this.createViews(chart, viewsConfig);
-    }
-
-    this.setLegend(chart, config);
-  }
-
-  public renderFacet(config) {
-    const chart = this.chartInstance;
-
-    this.setScale(chart, config);
-    this.setDataSource(chart, config);
-    this.setAxis(chart, config);
-    this.setTooltip(chart, config);
-
+  public setFacet(chart, config) {
     let facet = config.facet;
-    facet.views = Array.isArray(facet.views) ? facet.views : [facet.views];
 
-    const fviews = facet.views
+    if (!facet) { return; }
+
+    facet.views = Array.isArray(facet.views) ? facet.views : [facet.views];
     const options = _.omit(facet, ['type', 'views']);
 
     return chart.facet(facet.type, {
       ...options,
       eachView: (view, facet) => {
-        for (let item of fviews) {
-          if (!_.isEmpty(item.dataPre)) {
-            this.dataSets = DataSetUtils.preprocessing(facet.data, item.dataPre);
-            this.setScale(view, item);
-            this.setDataSource(view, item);
-          } else {
-            item.dataDef = config.dataDef;
-          }
-
-          item = setQuickType.process(item);
-          item.series = validateConfig.validateSeries(item.dataDef, item.series);
-
-          this.setAxis(view, item);
-          this.setSeries(view, item);
-        }
+        this.setFacetViews(view, facet, config);
       }
     });
   }
 
   public render() {
-    let config = validateConfig.checkViewConfig(this.config);
+    let config = setDataDefConfig.process(this.config);
+    config = validateConfig.checkViewConfig(config);
     config = setQuickType.process(config);
 
-    this.dataSets = DataSetUtils.preprocessing(config.data, config.dataPre);
+    const { data, dataDef, dataPre } = config;
+    const chart = this.chartInstance;
 
-    if (!config.facet) {
-      this.renderContent(config);
-    } else {
-      this.renderFacet(config);
+    loadShapes(config);
+    this.setEvents(chart, config);
+
+    config.calData = DataSetUtils.preprocessing(data, dataPre)
+
+    let finalData = config.calData;
+    if (config.dataView) {
+      finalData = finalData[config.dataView];
     }
+
+    if (config.viewId) {
+      const view = this.createView(chart, config);
+      this.setDataSource(view, finalData);
+      this.setContent(view, config);
+    } else {
+      this.setDataSource(chart, finalData);
+      this.setContent(chart, config);
+    }
+
+    this.setLegend(chart, config);
+    this.setViews(chart, config);
+    this.setFacet(chart, config);
 
     this.oriConfig = config;
-    this.chartInstance.render();
+    chart.render();
   }
 
-  public renderDiffContent(chart, oriConfig, config) {
-    if (!_.isEmpty(config.data) && !_.isEqual(oriConfig.data, config.data)) {
-      this.dataSets = DataSetUtils.preprocessing(config.data, config.dataPre);
-      const { dataView } = config;
+  public repaintWidthHeight(config) {
+    const oriConfig = this.oriConfig;
+    const chart = this.chartInstance;
 
-      if (dataView && this.dataSets[dataView]) {
-        chart.changeData(this.dataSets[dataView]);
-      } else {
-        chart.changeData(this.dataSets);
-      }
+    const width = _.get(config, 'chart.width');
+    if (width && !_.isEqual(_.get(oriConfig, 'chart.width'), width)) {
+      chart.changeWidth(width);
     }
+
+    const height = _.get(config, 'chart.height');
+    if (height && !_.isEqual(_.get(oriConfig, 'chart.height'), height)) {
+      chart.changeHeight(height);
+    }
+  }
+
+  public repaintData(chart, oriConfig, config) {
+    if (!_.isEmpty(config.data) && !_.isEqual(oriConfig.data, config.data)) {
+      config.calData = DataSetUtils.preprocessing(config.data, config.dataPre)
+
+      let finalData = config.calData;
+      if (config.dataView) {
+        finalData = finalData[config.dataView];
+      }
+
+      chart.changeData(finalData);
+    } else {
+      config.calData = oriConfig.calData;
+    }
+  }
+
+  public repaintContent(chart, oriConfig, config) {
+    config = setDataDefConfig.process(config);
+    config = validateConfig.checkViewConfig(config);
+    config = setQuickType.process(config);
+
+    this.repaintData(chart, oriConfig, config);
 
     if (config.dataDef && !_.isEqual(oriConfig.dataDef, config.dataDef)) {
       this.setScale(chart, config);
@@ -251,18 +287,22 @@ class CommonChart {
     }
   }
 
-  public renderDiffWidthHeight(config) {
-    const oriConfig = this.oriConfig;
-    const chart = this.chartInstance;
+  public repaintViews(chart, oriConfig, config) {
+    const viewsConfig = config.views;
 
-    const width = _.get(config, 'chart.width');
-    if (width && !_.isEqual(_.get(oriConfig, 'chart.width'), width)) {
-      chart.changeWidth(width);
-    }
+    if (!_.isEqual(oriConfig.views, config.views)) {
+      for (let item of viewsConfig) {
+        const oriView = oriConfig.views.filter(res => (res.viewId === item.viewId));
 
-    const height = _.get(config, 'chart.height');
-    if (height && !_.isEqual(_.get(oriConfig, 'chart.height'), height)) {
-      chart.changeHeight(height);
+        if (oriView.length) {
+          const view = this.viewInstance[item.viewId];
+          this.repaintContent(view, oriView[0], item);
+          view.repaint();
+        } else {
+          const view = this.setView(item, chart, config);
+          view.repaint();
+        }
+      }
     }
   }
 
@@ -272,40 +312,31 @@ class CommonChart {
     const chart = this.chartInstance;
     let hasChartChange = false;
 
+    config = validateConfig.checkChartConfig(config);
+
+    this.repaintWidthHeight(config);
+
     if (!config.viewId) {
-      this.renderDiffContent(chart, oriConfig, config);
+      this.repaintContent(chart, oriConfig, config);
       hasChartChange = true;
     } else if (config.viewId && !oriConfig.viewId) {
-      const view = this.setView(chart, config);
-      this.renderSameContent(view, config);
+      const view = this.setView(config, chart, config);
       view.repaint();
     } else if (config.viewId && oriConfig.viewId && _.isEqual(oriConfig.viewId, config.viewId)) {
       const view = this.viewInstance[config.viewId];
-      this.renderDiffContent(view, oriConfig, config);
+      this.repaintContent(view, oriConfig, config);
       view.repaint();
     }
 
-    if (Array.isArray(viewsConfig) && viewsConfig.length && !_.isEqual(oriConfig.views, config.views)) {
-      for (let item of viewsConfig) {
-        item = validateConfig.checkViewConfig(item);
-        item = setQuickType.process(item);
-
-        const oriView = oriConfig.views.filter(res => (res.viewId === item.viewId));
-
-        if (oriView.length) {
-          const view = this.viewInstance[item.viewId];
-          this.renderDiffContent(view, oriView[0], item);
-          view.repaint();
-        } else {
-          const view = this.setView(chart, config);
-          this.renderSameContent(view, item);
-          view.repaint();
-        }
-      }
-    }
+    this.repaintViews(chart, oriConfig, config);
 
     if (config.legend && !_.isEqual(oriConfig.legend, config.legend)) {
       this.setLegend(chart, config);
+      hasChartChange = true;
+    }
+
+    if (config.facet && !_.isEqual(oriConfig.facet, config.facet)) {
+      this.setFacet(chart, config);
       hasChartChange = true;
     }
 
@@ -314,31 +345,9 @@ class CommonChart {
     }
   }
 
-  public renderDiffFacetConfig(config) {
-    const oriConfig = this.oriConfig;
-    const chart = this.chartInstance;
-
-    if (!_.isEqual(oriConfig.facet, config.facet)) {
-      this.renderFacet(config);
-    }
-
-    chart.repaint();
-  }
-
   public repaint(config) {
     config = _.cloneDeep(config);
-    config = validateConfig.checkChartConfig(config);
-    config = validateConfig.checkViewConfig(config);
-    config = setQuickType.process(config);
-
-    this.renderDiffWidthHeight(config);
-
-    if (!config.facet) {
-      this.renderDiffConfig(config);
-    } else {
-      this.renderDiffFacetConfig(config);
-    }
-
+    this.renderDiffConfig(config);
     this.oriConfig = config;
   }
 

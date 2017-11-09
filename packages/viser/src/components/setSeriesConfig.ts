@@ -41,6 +41,18 @@ function renderGemo(chart, gemo) {
   return chart;
 }
 
+function skipPosition(dataDef, currSeries) {
+  if (!currSeries.position && dataDef.column && dataDef.row) {
+    if (currSeries.quickType === 'pie') {
+      currSeries.position = `${dataDef.row[0]}`;
+    } else {
+      currSeries.position = `${dataDef.column[0]}*${dataDef.row[0]}`;
+    }
+  }
+
+  return currSeries;
+}
+
 function setSeriesPosition(chart, currSeries) {
   return chart.position(currSeries.position);
 }
@@ -200,10 +212,8 @@ export const process = (chart, config) => {
   series = _.sortBy(series, 'index');
 
   series.forEach((currSeries: any) => {
-    const gemo = currSeries.gemo;
-
-    chartInstance = renderGemo(chart, gemo);
-
+    currSeries = skipPosition(dataDef, currSeries);
+    chartInstance = renderGemo(chart, currSeries.gemo);
     chartInstance = setSeriesPosition(chartInstance, currSeries);
     chartInstance = setSeriesAdjust(chartInstance, currSeries);
     chartInstance = setSeriesShape(chartInstance, dataDef, currSeries);
@@ -214,7 +224,6 @@ export const process = (chart, config) => {
     chartInstance = setSeriesTooltip(chartInstance, currSeries);
     chartInstance = setSeriesStyle(chartInstance, currSeries);
     chartInstance = setSeriesSelect(chartInstance, currSeries);
-
   });
 
   return chartInstance;
