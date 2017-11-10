@@ -178,15 +178,16 @@ class CommonChart {
 
     if (!facet) { return; }
 
-    facet.views = Array.isArray(facet.views) ? facet.views : [facet.views];
     const options = _.omit(facet, ['type', 'views']);
 
-    return chart.facet(facet.type, {
-      ...options,
-      eachView: (view, facet) => {
+    if (!_.isEmpty(facet.views)) {
+      facet.views = Array.isArray(facet.views) ? facet.views : [facet.views];
+      options.eachView = (view, facet) => {
         this.setFacetViews(view, facet, config);
       }
-    });
+    }
+
+    return chart.facet(facet.type, options);
   }
 
   public render() {

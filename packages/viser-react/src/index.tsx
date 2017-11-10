@@ -3,7 +3,9 @@ import * as PropTypes from 'prop-types';
 import SubComponent from './SubComponent';
 
 export { default as Chart } from './Chart';
-export { default as Views } from './Views';
+export { default as View } from './View';
+export { default as FacetView } from './FacetView';
+export { default as Facet } from './Facet';
 export class Coord extends SubComponent { displayName = 'Coord'; }
 export class Tooltip extends SubComponent { displayName = 'Tooltip'; }
 export class Legend extends SubComponent { displayName = 'Legend'; }

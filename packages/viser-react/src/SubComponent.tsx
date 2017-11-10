@@ -7,7 +7,8 @@ export default class SubComponent extends React.Component<Props, any> {
   static contextTypes = {
     centralizedUpdates: PropTypes.func,
     hasInViews: PropTypes.bool,
-    viewId: PropTypes.number,
+    viewId: PropTypes.string,
+    viewType: PropTypes.string,
   };
 
   displayName = 'SubComponent';
