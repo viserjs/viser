@@ -4,33 +4,17 @@ import * as PropTypes from 'prop-types';
 class Props {
 }
 
-export default class Views extends React.Component<Props, any> {
-  static childContextTypes = {
-    hasInViews: PropTypes.bool,
-    viewId: PropTypes.number,
-  };
-
+export default class Facet extends React.Component<Props, any> {
   static contextTypes = {
     centralizedUpdates: PropTypes.func,
     hasInViews: PropTypes.bool,
+    viewId: PropTypes.string,
   };
 
-  displayName = 'Views';
+  displayName = 'Facet';
 
   constructor(props: Props) {
     super(props);
-
-    this.state = {
-      hasInViews: true,
-      viewId: +(new Date()) + parseInt(Math.random() * 10000, 10),
-    };
-  }
-
-  getChildContext() {
-    return {
-      hasInViews: this.state.hasInViews,
-      viewId: this.state.viewId,
-    };
   }
 
   componentDidUpdate() {

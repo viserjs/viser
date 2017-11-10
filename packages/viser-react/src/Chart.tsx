@@ -34,6 +34,7 @@ export default class Chart extends React.Component<Props, any> {
   static childContextTypes = {
     centralizedUpdates: PropTypes.func,
     hasInViews: PropTypes.bool,
+    viewType: PropTypes.string,
   };
 
   chart: any;
@@ -41,6 +42,7 @@ export default class Chart extends React.Component<Props, any> {
   container: any;
   config: any = {};
   views: any = {};
+  facetviews: any = {};
 
   constructor(props: Props) {
     super(props);
@@ -50,6 +52,7 @@ export default class Chart extends React.Component<Props, any> {
     return {
       centralizedUpdates: this.centralizedUpdates,
       hasInViews: false,
+      viewType: 'view',
     };
   }
 
@@ -116,7 +119,14 @@ export default class Chart extends React.Component<Props, any> {
     const displayName = unit.displayName;
     const hasInViews = unit.context.hasInViews;
 
-    if (displayName === 'Views') {
+    if (displayName === 'Facet') {
+      const options = _.omit(props, 'children');
+      config.facet = options;
+    } else if (displayName === 'FacetView') {
+      const viewId = unit.state.viewId;
+      if (!this.facetviews[viewId]) { this.facetviews[viewId] = { viewId }; }
+      this.combineViewConfig(props, this.facetviews[viewId]);
+    } else if (displayName === 'View') {
       const viewId = unit.state.viewId;
       if (!this.views[viewId]) { this.views[viewId] = { viewId }; }
       this.combineViewConfig(props, this.views[viewId]);
@@ -124,24 +134,42 @@ export default class Chart extends React.Component<Props, any> {
       if (!hasInViews) {
         this.combineContentConfig(displayName, props, config);
       } else {
+        const viewType = unit.context.viewType;
         const viewId = unit.context.viewId;
-        if (!this.views[viewId]) { this.views[viewId] = { viewId }; }
-        this.combineContentConfig(displayName, props, this.views[viewId]);
+
+        if (viewType === 'view') {
+          if (!this.views[viewId]) { this.views[viewId] = { viewId }; }
+          this.combineContentConfig(displayName, props, this.views[viewId]);
+        } else if (viewType === 'facet') {
+          if (!this.facetviews[viewId]) { this.facetviews[viewId] = { viewId }; }
+          this.combineContentConfig(displayName, props, this.facetviews[viewId]);
+        }
       }
     }
   }
 
   changeViewConfig() {
     const views = this.views;
+    const facetviews = this.facetviews;
     const config = this.config;
 
-    if (_.isEmpty(views)) { return; }
+    if (!_.isEmpty(views)) {
+      config.views = [];
 
-    config.views = [];
+      for (const item in views) {
+        if (views.hasOwnProperty(item)) {
+          config.views.push(views[item]);
+        }
+      }
+    }
 
-    for (const item in views) {
-      if (views.hasOwnProperty(item)) {
-        config.views.push(views[item]);
+    if (!_.isEmpty(facetviews)) {
+      config.facet.views = [];
+
+      for (const item in facetviews) {
+        if (facetviews.hasOwnProperty(item)) {
+          config.facet.views.push(facetviews[item]);
+        }
       }
     }
   }
