@@ -6,7 +6,7 @@ import viser from 'viser';
 
 const isReact16 = ReactDOM.createPortal !== undefined;
 
-const createPortal = isReact16
+const createPortal: any = isReact16
   ? ReactDOM.createPortal
   : ReactDOM.unstable_renderSubtreeIntoContainer;
 
@@ -24,9 +24,11 @@ class Props {
     source?: any;
     transform?: object[] | object;
   };
+  scale?: object[];
   width?: number;
   height?: number;
   dataView?: string;
+  forceFit?: boolean;
 }
 
 export default class Chart extends React.Component<Props, any> {

@@ -20,14 +20,16 @@
   },
   "peerDependencies": {
     "react": ">15",
-    "react-dom": ">15",
-    "viser": "0.x"
+    "react-dom": ">15"
   },
   "dependencies": {
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "prop-types": "^15.6.0",
+    "viser": "^0.1.2"
   },
   "devDependencies": {
     "@types/lodash": "*",
+    "@types/prop-types": "*",
     "@types/react": "*",
     "@types/react-dom": "*",
     "babel-cli": "^6.26.0",
@@ -50,7 +52,7 @@
     "rimraf": "^2.6.2",
     "ts-loader": "^3.1.1",
     "tslint": "^5.5.0",
-    "typescript": "^2.4.1",
+    "typescript": "^2.6.1",
     "webpack": "^3.3.0",
     "webpack-bundle-analyzer": "^2.9.0"
   },
