@@ -9,13 +9,12 @@ import * as DataSetUtils from '../utils/DataSetUtils';
 import * as setCoordConfig from '../components/setCoordConfig';
 import * as setAxisConfig from '../components/setAxisConfig';
 import * as setSeriesConfig from '../components/setSeriesConfig';
-import * as validateConfig from '../components/validateConfig';
 import * as setDataDefConfig from '../components/setDataDefConfig';
 import * as setCustomFormatter from '../components/setCustomFormatter';
-import * as setQuickType from '../components/setQuickType';
 import * as setLengendConfig from '../components/setLengendConfig';
 import * as setGuideConfig from '../components/setGuideConfig';
 import * as setTooltipConfig from '../components/setTooltipConfig';
+import * as setScaleConfig from '../components/setScaleConfig';
 
 class CommonChart {
   chartInstance: any;
@@ -25,9 +24,18 @@ class CommonChart {
 
   constructor(config: any) {
     this.config = _.cloneDeep(config);
-    this.config = validateConfig.checkChartConfig(this.config);
+    this.config = this.checkChartConfig(this.config);
     const chart = this.chartInstance = new G2.Chart(this.config.chart);
   }
+
+  public checkChartConfig(config) {
+    const chart = config.chart;
+    if (!chart || !chart.height) {
+      throw new Error('please set correct chart option');
+    }
+
+    return config;
+  };
 
   public destroy(chart) {
     chart && chart.destroy();
@@ -74,14 +82,7 @@ class CommonChart {
   }
 
   public setScale(chart, config) {
-    const { dataDef } = config;
-
-    if (!dataDef.scale) { return; }
-
-    let option = dataDef.scale;
-    option = setCustomFormatter.supportD3Formatter(option);
-
-    return chart.scale(option);
+    return setScaleConfig.process(chart, config);
   }
 
   public setCoord(chart, coord) {
@@ -110,17 +111,15 @@ class CommonChart {
 
   public setContent(chart, config) {
     this.setScale(chart, config);
-    this.setCoord(chart, config.coord);
     this.setAxis(chart, config);
     this.setSeries(chart, config);
+    this.setCoord(chart, config.coord);
     this.setTooltip(chart, config);
     this.setGuide(chart, config);
   }
 
   public setView(item, chart, config) {
     item = setDataDefConfig.process(item);
-    item = validateConfig.checkViewConfig(item);
-    item = setQuickType.process(item);
 
     const view = this.createView(chart, item);
 
@@ -143,47 +142,56 @@ class CommonChart {
   }
 
   public setViews(chart, config) {
-    const { views } = config;
-    if (!views || !views.length) { return; }
+    let views = config.views;
+
+    if (_.isEmpty(views)) { return; }
+
+    views = Array.isArray(views) ? views : [views];
 
     for (let item of views) {
       this.setView(item, chart, config);
     }
   }
 
-  public setFacetViews(chart, facet, config) {
-    const views = config.facet.views;
+  public setFacetViews(chart, facet, views, dataDef) {
+    let viewData = facet.data;
 
-    for (let item of views) {
-      if (!item.dataDef) {
-        item.dataDef = config.dataDef;
-      }
-
-      item = validateConfig.checkViewConfig(item);
-      item = setQuickType.process(item);
-
-      let viewData = facet.data;
-      if (item.dataPre) {
-        item = setDataDefConfig.process(item);
-        viewData = DataSetUtils.preprocessing(facet.data, item.dataPre);
-      }
-
-      this.setDataSource(chart, viewData);
-      this.setContent(chart, item);
+    if (!views.dataDef) {
+      views.dataDef = dataDef;
+    } else {
+      views = setDataDefConfig.process(views);
     }
+
+    if (views.dataPre) {
+      viewData = DataSetUtils.preprocessing(viewData, views.dataPre);
+    }
+
+    this.setDataSource(chart, viewData);
+    this.setContent(chart, views);
   }
 
   public setFacet(chart, config) {
     let facet = config.facet;
+    const dataDef = config.dataDef;
 
     if (!facet) { return; }
 
     const options = _.omit(facet, ['type', 'views']);
 
-    if (!_.isEmpty(facet.views)) {
+    if (_.isEmpty(facet.views) && !_.isFunction(facet.views)) {
+      return chart.facet(facet.type, options);
+    }
+
+    if (_.isFunction(facet.views)) {
+      options.eachView = (v, f) => {
+        const options = facet.views(v, f);
+        this.setFacetViews(v, f, options, dataDef);
+      }
+    } else {
       facet.views = Array.isArray(facet.views) ? facet.views : [facet.views];
-      options.eachView = (view, facet) => {
-        this.setFacetViews(view, facet, config);
+
+      options.eachView = (v, f) => {
+        this.setFacetViews(v, f, facet.views[0], dataDef);
       }
     }
 
@@ -192,8 +200,6 @@ class CommonChart {
 
   public render() {
     let config = setDataDefConfig.process(this.config);
-    config = validateConfig.checkViewConfig(config);
-    config = setQuickType.process(config);
 
     const { data, dataDef, dataPre } = config;
     const chart = this.chartInstance;
@@ -216,7 +222,6 @@ class CommonChart {
       this.setDataSource(chart, finalData);
       this.setContent(chart, config);
     }
-
     this.setLegend(chart, config);
     this.setViews(chart, config);
     this.setFacet(chart, config);
@@ -257,8 +262,6 @@ class CommonChart {
 
   public repaintContent(chart, oriConfig, config) {
     config = setDataDefConfig.process(config);
-    config = validateConfig.checkViewConfig(config);
-    config = setQuickType.process(config);
 
     this.repaintData(chart, oriConfig, config);
 
@@ -313,7 +316,7 @@ class CommonChart {
     const chart = this.chartInstance;
     let hasChartChange = false;
 
-    config = validateConfig.checkChartConfig(config);
+    config = this.checkChartConfig(config);
 
     this.repaintWidthHeight(config);
 

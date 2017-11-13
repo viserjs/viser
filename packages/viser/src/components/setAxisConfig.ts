@@ -1,6 +1,30 @@
 import * as setCustomFormatter from './setCustomFormatter';
 import * as _ from 'lodash';
 
+function validateAxis(dataDef, oriAxis) {
+  if (oriAxis === true) { return true; }
+  const axis = Array.isArray(oriAxis) ? oriAxis : [oriAxis];
+
+  const seriesKey = [];
+  const newAxis = [];
+
+  for (const citem of dataDef.column) {
+    seriesKey.push(citem);
+  }
+
+  for (const ritem of dataDef.row) {
+    seriesKey.push(ritem);
+  }
+
+  for (const item of axis) {
+    if (item && item.dataKey && seriesKey.indexOf(item.dataKey) >= 0) {
+      newAxis.push(item);
+    }
+  }
+
+  return newAxis;
+}
+
 function setRotatePolarAxis(chart, config) {
   const { coord, data, dataDef, axis } = config;
 
@@ -83,6 +107,13 @@ function generateAxisNameOptions(config: any) {
 
 export const process = (chart, config) => {
   const { coord, axis, series, dataDef } = config;
+
+  if (config.axis) {
+    config.axis = validateAxis(config.dataDef, config.axis);
+  } else {
+    config.axis = false;
+  }
+
   const isArr = Array.isArray(axis);
 
   if (!axis || (isArr && axis.length === 0)) { return chart.axis(false); }

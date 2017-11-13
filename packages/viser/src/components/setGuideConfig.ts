@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 // add two type of guide line
 // parallel and normal
 function setGuideLine(chart, item) {
@@ -43,14 +45,14 @@ function setGuideArc(chart, item) {
 }
 
 export const process = (chart, config) => {
-  const guide = config.guide;
+  let guide = config.guide;
   const isArr = Array.isArray(guide);
 
-  if (!guide || (isArr && guide.length === 0)) { return; }
+  if (_.isEmpty(guide)) { return chart; }
 
-  const arrGuide = isArr ? guide : [guide];
+  guide = Array.isArray(guide) ? guide : [guide];
 
-  arrGuide.forEach((res: any) => {
+  guide.forEach((res: any) => {
     if (res.type === 'line') {
       setGuideLine(chart, res);
     } else if (res.type === 'region') {

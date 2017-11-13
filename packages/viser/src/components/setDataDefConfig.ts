@@ -8,7 +8,6 @@ function changeDataDef(dataDef) {
     size: '',
     shape: '',
     opacity: '',
-    scale: {},
   };
 
   for (const item of dataDef) {
@@ -18,24 +17,20 @@ function changeDataDef(dataDef) {
 
     const mark = Array.isArray(item.mark) ? item.mark : [item.mark];
 
-    if (mark.indexOf('row') >= 0) { dataDefObj.row.push(item.key); }
-    if (mark.indexOf('column') >= 0) { dataDefObj.column.push(item.key); }
-    if (mark.indexOf('color') >= 0) { dataDefObj.color = item.key; }
-    if (mark.indexOf('shape') >= 0) { dataDefObj.shape = item.key; }
-    if (mark.indexOf('size') >= 0) { dataDefObj.size = item.key; }
-    if (mark.indexOf('opacity') >= 0) { dataDefObj.opacity = item.key; }
-
-    if (item.scale && !_.isEmpty(item.scale)) {
-      dataDefObj.scale[item.key] = item.scale;
-    }
+    if (mark.indexOf('row') >= 0) { dataDefObj.row.push(item.dataKey); }
+    if (mark.indexOf('column') >= 0) { dataDefObj.column.push(item.dataKey); }
+    if (mark.indexOf('color') >= 0) { dataDefObj.color = item.dataKey; }
+    if (mark.indexOf('shape') >= 0) { dataDefObj.shape = item.dataKey; }
+    if (mark.indexOf('size') >= 0) { dataDefObj.size = item.dataKey; }
+    if (mark.indexOf('opacity') >= 0) { dataDefObj.opacity = item.dataKey; }
   }
 
   if (!dataDefObj.row.length) {
-    throw new Error('please set at least 1 row key in dataDef.');
+    throw new Error('please set at least 1 row dataKey in dataDef.');
   }
 
   if (!dataDefObj.column.length) {
-    throw new Error('please set at least 1 column key in dataDef.');
+    throw new Error('please set at least 1 column dataKey in dataDef.');
   }
 
   return dataDefObj;
@@ -44,7 +39,7 @@ function changeDataDef(dataDef) {
 export const process = (config) => {
   const { dataDef, dataPre } = config;
 
-  if (!dataDef) { return; }
+  if (!dataDef || _.isPlainObject(dataDef)) { return config; }
 
   const arrDataDef = Array.isArray(dataDef) ? dataDef : [dataDef];
   const objDataDef = changeDataDef(arrDataDef);

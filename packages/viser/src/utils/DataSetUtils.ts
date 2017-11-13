@@ -180,7 +180,12 @@ export const preprocessing = (data, dataPre) => {
   if (_.isEmpty(data)) { return []; }
   if (_.isEmpty(dataPre)) { return data; }
 
-  let ds = new DataSet();
+  let ds;
+  if (dataPre.useDataView) {
+    ds = new DataSet.DataView();
+  } else {
+    ds = new DataSet();
+  }
 
   let { transform } = dataPre;
   dataPre.transform = Array.isArray(transform) ? transform : [transform];
@@ -198,7 +203,12 @@ export const preprocessing = (data, dataPre) => {
     data = processExchangeColumnToRow(data, dataPre.transform[0]);
   }
 
-  const dv = ds.createView().source(data);
+  let dv;
+  if (dataPre.useDataView) {
+    dv = ds.source(data);
+  } else {
+    dv = ds.createView().source(data);
+  }
 
   for (const item of dataPre.transform) {
     ds = processCommonConnector(dv, item);
