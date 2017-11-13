@@ -2,7 +2,7 @@
   "name": "viser-react",
   "version": "0.1.0",
   "description": "viser-react is react of viser.",
-  "repository": "viserjs/viser",
+  "repository": "viserjs/viser-react",
   "license": "MIT",
   "authors": "DT-FE",
   "files": [
@@ -27,7 +27,6 @@
     "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "@types/d3-format": "*",
     "@types/lodash": "*",
     "@types/react": "*",
     "@types/react-dom": "*",
