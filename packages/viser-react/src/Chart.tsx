@@ -57,7 +57,7 @@ export default class Chart extends React.Component<Props, any> {
   }
 
   combineChartConfig(props, config) {
-    const chartOmit = ['data', 'dataDef', 'dataView', 'dataPre', 'children', 'container', 'id'];
+    const chartOmit = ['data', 'dataDef', 'dataView', 'dataPre', 'children', 'container', 'id', 'scale'];
     config.chart = _.omit(props, chartOmit);
   }
 
@@ -76,6 +76,10 @@ export default class Chart extends React.Component<Props, any> {
 
     if (props.dataView) {
       config.dataView = props.dataView;
+    }
+
+    if (props.scale) {
+      config.scale = props.scale;
     }
   }
 

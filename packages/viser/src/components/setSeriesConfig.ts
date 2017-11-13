@@ -1,4 +1,5 @@
 import * as _ from 'lodash';
+import * as setQuickType from './setQuickType';
 
 function isFunction(fn) {
   return Object.prototype.toString.call(fn) === '[object Function]';
@@ -201,16 +202,18 @@ function setSeriesSelect(chart, currSeries) {
 }
 
 export const process = (chart, config) => {
+  if (_.isEmpty(config.series)) { return chart; }
+
+  config.series = Array.isArray(config.series) ? config.series : [config.series];
+  config = setQuickType.process(config);
+
   const { dataDef } = config;
   let series = config.series;
-
-  let chartInstance;
-
-  if (!series) { return; }
 
   // add `index` to comfirm overlay index
   series = _.sortBy(series, 'index');
 
+  let chartInstance;
   series.forEach((currSeries: any) => {
     currSeries = skipPosition(dataDef, currSeries);
     chartInstance = renderGemo(chart, currSeries.gemo);
