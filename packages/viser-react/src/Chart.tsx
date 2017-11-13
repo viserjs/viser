@@ -2,8 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as PropTypes from 'prop-types';
 import * as _ from 'lodash';
-// import viser from 'viser';
-import viser from '../../viser/src/index';
+import viser from 'viser';
 
 const isReact16 = ReactDOM.createPortal !== undefined;
 
