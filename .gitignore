@@ -4,7 +4,7 @@ node_modules
 packages/**/build
 packages/**/umd
 packages/**/lib
-packages/**/es6
+packages/**/es
 coverage
 npm-debug.log
 *.orig

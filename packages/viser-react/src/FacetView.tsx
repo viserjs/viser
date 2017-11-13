@@ -5,7 +5,7 @@ class Props {
 }
 
 function generateRandomNum() {
-  return (+(new Date()) + parseInt(Math.random() * 10000, 10)).toString();
+  return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
 }
 
 export default class FacetView extends React.Component<Props, any> {

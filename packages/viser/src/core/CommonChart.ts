@@ -350,6 +350,8 @@ class CommonChart {
   }
 
   public repaint(config) {
+    if (_.isEmpty(config)) { return; }
+
     config = _.cloneDeep(config);
     this.renderDiffConfig(config);
     this.oriConfig = config;

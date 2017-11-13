@@ -35,7 +35,7 @@ async function spinner(message, fn) {
 
 async function build() {
   await spinner('Building TS', async () => {
-    await exec('tsc');
+    await exec('tsc --jsx react');
   });
 
   await spinner('Building CommonJS modules', async (oraSpinner) => {
