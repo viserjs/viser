@@ -26,9 +26,6 @@ let config = {
     loaders: [{
       test: /\.tsx?$/,
       exclude: /node_modules/,
-      // include: [
-      //   path.resolve(__dirname, 'src'),
-      // ],
       loaders: [{
         loader: 'ts-loader'
       }],

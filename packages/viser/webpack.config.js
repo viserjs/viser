@@ -25,11 +25,6 @@ let config = {
         path.resolve(__dirname, 'src'),
       ],
       loaders: [{
-        loader: 'babel-loader',
-        query: {
-          plugins: ['lodash'],
-        },
-      }, {
         loader: 'ts-loader'
       }],
     }]

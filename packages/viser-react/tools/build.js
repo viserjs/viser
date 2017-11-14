@@ -35,37 +35,23 @@ async function spinner(message, fn) {
 
 async function build() {
   await spinner('Building TS', async () => {
-    await exec('tsc --jsx react');
+    await exec('tsc');
   });
 
-  // await spinner('Building CommonJS modules', async (oraSpinner) => {
-  //   await exec('rimraf lib && cross-env NODE_ENV=commonjs babel ./build -d lib', {
-  //     BABEL_ENV: 'cjs'
-  //   });
-  // });
-
-  // await spinner('Building ES modules', async () => {
-  //   await exec('rimraf es && babel ./build -d es', {
-  //     BABEL_ENV: 'es'
-  //   });
-  // });
-
-  await spinner('Building UMD Viser', async () => {
+  await spinner('Building UMD Viser React', async () => {
     await exec('cross-env webpack --progress --config webpack.config.js', {
-      BABEL_ENV: 'umd',
       NODE_ENV: 'development'
     });
   });
 
-  await spinner('Building UMD Viser Min', async () => {
+  await spinner('Building UMD Viser React Min', async () => {
     await exec('cross-env webpack --progress --config webpack.config.js', {
-      BABEL_ENV: 'umd',
       NODE_ENV: 'production'
     });
   });
 
   const size = gzipSize.sync(
-    fs.readFileSync('umd/viser.min.js')
+    fs.readFileSync('umd/viser-react.min.js')
   );
 
   console.log(`gzipped, the UMD build is ${prettyBytes(size)}`);

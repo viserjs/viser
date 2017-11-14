@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": "build",
+    "outDir": "lib",
     "target": "es5",
     "noImplicitAny": false,
     "removeComments": true,

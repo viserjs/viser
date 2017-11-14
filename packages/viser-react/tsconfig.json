@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": "build",
+    "outDir": "lib",
     "jsx": "react",
     "target": "es5",
     "noImplicitAny": false,

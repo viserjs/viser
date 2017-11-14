@@ -38,28 +38,14 @@ async function build() {
     await exec('tsc');
   });
 
-  await spinner('Building CommonJS modules', async (oraSpinner) => {
-    await exec('rimraf lib && cross-env NODE_ENV=commonjs babel ./build -d lib', {
-      BABEL_ENV: 'cjs'
-    });
-  });
-
-  await spinner('Building ES modules', async () => {
-    await exec('rimraf es && babel ./build -d es', {
-      BABEL_ENV: 'es'
-    });
-  });
-
   await spinner('Building UMD Viser', async () => {
     await exec('cross-env webpack --progress --config webpack.config.js', {
-      BABEL_ENV: 'umd',
       NODE_ENV: 'development'
     });
   });
 
   await spinner('Building UMD Viser Min', async () => {
     await exec('cross-env webpack --progress --config webpack.config.js', {
-      BABEL_ENV: 'umd',
       NODE_ENV: 'production'
     });
   });
