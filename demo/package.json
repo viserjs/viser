@@ -6,7 +6,8 @@
     "start": "node run.js"
   },
   "dependencies": {
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "vue": "^2.5.3"
   },
   "devDependencies": {
     "@types/lodash": "*",
