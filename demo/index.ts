@@ -22,9 +22,9 @@ function loadEvents() {
   document.addEventListener('click', (e) => {
     e.preventDefault();
 
-    if (e.target && e.target.nodeName.toUpperCase() === 'A') {
+    if (e.target && (e.target as any).nodeName.toUpperCase() === 'A') {
       const el = e.target;
-      const state = el.dataset;
+      const state = (el as any).dataset;
       fetchData(state);
     }
   });
@@ -40,7 +40,7 @@ function init() {
     });
 
     temp +=
-    `<div>
+      `<div>
       <a>${item.type}</a>
       <div className="example-container">${linkTemp}</div>
     </div>`;

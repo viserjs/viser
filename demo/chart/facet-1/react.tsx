@@ -44,7 +44,6 @@ class App extends React.Component {
           </Facet>
         </Chart>
       </div>
-
     );
   }
 }
