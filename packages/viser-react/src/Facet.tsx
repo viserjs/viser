@@ -2,6 +2,8 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
 class Props {
+  type?: string
+  fields?: string[]
 }
 
 export default class Facet extends React.Component<Props, any> {

@@ -1,7 +1,11 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
-class Props {}
+class Props {
+  opacity?: number
+  size?: number
+  style?: object
+}
 
 export default class SubComponent extends React.Component<Props, any> {
   static contextTypes = {

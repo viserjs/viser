@@ -3,13 +3,16 @@
   "version": "0.1.0",
   "description": "viser demo",
   "scripts": {
-    "demo": "node run.js"
+    "start": "node run.js"
   },
   "dependencies": {
     "lodash": "^4.17.4"
   },
   "devDependencies": {
     "@types/lodash": "*",
+    "@types/node": "^8.0.51",
+    "@types/react": "^16.0.22",
+    "@types/react-dom": "^16.0.3",
     "colors": "^1.1.2",
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.7",
