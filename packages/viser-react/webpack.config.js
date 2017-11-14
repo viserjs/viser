@@ -26,15 +26,10 @@ let config = {
     loaders: [{
       test: /\.tsx?$/,
       exclude: /node_modules/,
-      include: [
-        path.resolve(__dirname, 'src'),
-      ],
+      // include: [
+      //   path.resolve(__dirname, 'src'),
+      // ],
       loaders: [{
-        loader: 'babel-loader',
-        query: {
-          plugins: ['lodash'],
-        },
-      }, {
         loader: 'ts-loader'
       }],
     }]
