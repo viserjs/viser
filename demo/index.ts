@@ -7,14 +7,9 @@ function fetchData(state) {
   const mount = document.getElementById('mount');
   mount.innerHTML = '';
 
-  if (fileName === 'json') {
-    delete require.cache[`./chart/${type}/${fileName}.ts`];
-    require(`./chart/${type}/${fileName}.ts`);
-  }
-
-  if (fileName === 'react') {
-    delete require.cache[`./chart/${type}/${fileName}.tsx`];
-    require(`./chart/${type}/${fileName}.tsx`);
+  if (['json', 'react', 'vue'].indexOf(fileName) > -1) {
+    delete require.cache[`./chart/${type}/${fileName}`];
+    require(`./chart/${type}/${fileName}`);
   }
 }
 
