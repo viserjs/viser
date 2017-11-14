@@ -5,11 +5,11 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 let config = {
-  entry: './src/index.tsx',
+  entry: './src/index',
 
   output: {
-    filename: './umd/viser-react.js',
-    library: 'ViserReact',
+    filename: './umd/viser-vue.js',
+    library: 'ViserVue',
     libraryTarget: 'umd',
   },
 
@@ -18,8 +18,7 @@ let config = {
   },
 
   externals: {
-    'react': 'React',
-    'react-dom': 'ReactDOM',
+    'vue': 'Vue',
   },
 
   module: {
@@ -62,7 +61,7 @@ if (env === 'production') {
     })
   );
 
-  config.output.filename = './umd/viser-react.min.js';
+  config.output.filename = './umd/viser-vue.min.js';
 }
 
 if (env === 'analyse') {

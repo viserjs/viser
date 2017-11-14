@@ -2,7 +2,6 @@
   "compilerOptions": {
     "module": "commonjs",
     "outDir": "build",
-    "jsx": "react",
     "target": "es5",
     "noImplicitAny": false,
     "removeComments": true,

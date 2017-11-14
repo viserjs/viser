@@ -1,8 +1,8 @@
 import viser from '../../../packages/viser/src/index';
-import * as data from './data';
+import { chartData } from './data'
 
 viser({
-  data: data.default,
+  data: chartData,
   dataDef: [{
     dataKey: 'carat',
     mark: 'column',
