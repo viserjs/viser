@@ -8,8 +8,8 @@ let config = {
   entry: './src/index',
 
   output: {
-    filename: './umd/viser-react.js',
-    library: 'ViserReact',
+    filename: './umd/viser-vue.js',
+    library: 'ViserVue',
     libraryTarget: 'umd',
   },
 
@@ -25,15 +25,10 @@ let config = {
     loaders: [{
       test: /\.tsx?$/,
       exclude: /node_modules/,
-      include: [
-        path.resolve(__dirname, 'src'),
-      ],
+      // include: [
+      //   path.resolve(__dirname, 'src'),
+      // ],
       loaders: [{
-        loader: 'babel-loader',
-        query: {
-          plugins: ['lodash'],
-        },
-      }, {
         loader: 'ts-loader'
       }],
     }]
