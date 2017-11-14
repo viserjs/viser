@@ -14,7 +14,7 @@ container.innerHTML = `
     </v-chart>
   </div>
 `;
-document.body.appendChild(container)
+document.getElementById('mount').appendChild(container)
 
 new Vue({
   el: container,

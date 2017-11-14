@@ -19,27 +19,11 @@ const camelCase: any = (() => {
 
 const baseChartComponent = {
   data() {
-    if (this.$options._componentTag === 'v-chart') { // root: chart
-      return {
-        isViser: true,
-        jsonForD2: {
-
-        }
-      };
-    }
-
-    if (this.$options._componentTag === 'v-views') { // root: views
-      return {
-        isViser: true,
-        jsonForD2: {
-
-        }
-      };
-    }
-
-    // tool chart
     return {
       isViser: true,
+      jsonForD2: {
+
+      }
     };
   },
   // Why use null? See https://github.com/vuejs/vue/issues/4792.
@@ -62,14 +46,15 @@ const baseChartComponent = {
     gemo: null,
     type: null,
     scale: null,
-    forceFit: null
+    forceFit: null,
+    fields: null
   },
   methods: {
     /**
      * find nearest parent rechart component
      */
     findNearestRootComponent(componentInstance) {
-      if (componentInstance.isViser && ['v-chart', 'v-views'].indexOf(componentInstance.$options._componentTag) > -1) {
+      if (componentInstance.isViser && ['v-chart', 'v-views', 'v-facet', 'v-facet-view'].indexOf(componentInstance.$options._componentTag) > -1) {
         return componentInstance;
       }
       if (componentInstance.$parent) {
@@ -102,12 +87,23 @@ const baseChartComponent = {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
         nearestRootComponent.jsonForD2.views = {
-          ...cleanUndefined({
-            data: this.data,
-            dataDef: this.dataDef,
-            dataPre: this.dataPre,
-            dataView: this.dataView
-          }),
+          ...cleanUndefined(normalizeProps(this._props)),
+          ...this.jsonForD2
+        };
+      } else if (this.$options._componentTag === 'v-facet-view') {
+        const nearestRootComponent = this.findNearestRootComponent(this.$parent);
+
+        nearestRootComponent.jsonForD2.views = {
+          ...cleanUndefined(normalizeProps(this._props)),
+          ...this.jsonForD2
+        };
+      } else if (this.$options._componentTag === 'v-facet') {
+        const nearestRootComponent = this.findNearestRootComponent(this.$parent);
+
+        console.log(666, this)
+
+        nearestRootComponent.jsonForD2.facet = {
+          ...cleanUndefined(normalizeProps(this._props)),
           ...this.jsonForD2
         };
       } else {
@@ -165,6 +161,8 @@ export default {
     Vue.component('v-edge', baseChartComponent);
     Vue.component('v-series', baseChartComponent);
     Vue.component('v-stack-bar', baseChartComponent)
+    Vue.component('v-facet', baseChartComponent)
+    Vue.component('v-facet-view', baseChartComponent)
   }
 };
 

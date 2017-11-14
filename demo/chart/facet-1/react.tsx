@@ -1,34 +1,7 @@
 import { Chart, Facet, View, Tooltip, Legend, Axis, Point, FacetView } from '../../../packages/viser-react/src/index';
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
-import * as data from './data';
-
-const chartData = data.default;
-
-const dataDef = [
-  {
-    dataKey: 'carat',
-    mark: 'column',
-  }, {
-    dataKey: 'price',
-    mark: 'row',
-  }, {
-    dataKey: 'cut',
-    mark: 'color',
-  }
-];
-
-const scale = [{
-  dataKey: 'carat',
-  sync: true
-}, {
-  dataKey: 'price',
-  sync: true,
-  tickCount: 3
-}, {
-  dataKey: 'cut',
-  sync: true,
-}];
+import { chartData, dataDef, scale } from './data'
 
 class App extends React.Component {
   render() {
