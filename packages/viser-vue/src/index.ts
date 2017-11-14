@@ -100,8 +100,6 @@ const baseChartComponent = {
       } else if (this.$options._componentTag === 'v-facet') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
-        console.log(666, this)
-
         nearestRootComponent.jsonForD2.facet = {
           ...cleanUndefined(normalizeProps(this._props)),
           ...this.jsonForD2
