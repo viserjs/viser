@@ -3,7 +3,6 @@
  * @description instantiation of chart, include base functions
  */
 import loadShapes from '../shapes/loadShapes';
-import * as G2 from '@antv/g2';
 import * as _ from 'lodash';
 import * as DataSetUtils from '../utils/DataSetUtils';
 import * as setCoordConfig from '../components/setCoordConfig';
@@ -15,6 +14,8 @@ import * as setLengendConfig from '../components/setLengendConfig';
 import * as setGuideConfig from '../components/setGuideConfig';
 import * as setTooltipConfig from '../components/setTooltipConfig';
 import * as setScaleConfig from '../components/setScaleConfig';
+
+const G2 = require('@antv/g2');
 
 class CommonChart {
   chartInstance: any;

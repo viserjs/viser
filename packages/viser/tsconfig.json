@@ -1,18 +1,11 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "outDir": "lib",
-    "target": "es5",
+    "module": "es2015",
+    "outDir": "build",
     "noImplicitAny": false,
     "removeComments": true,
     "preserveConstEnums": true,
-    "sourceMap": true,
-    "lib": [
-      "dom",
-      "es5",
-      "es6",
-      "scripthost"
-    ]
+    "sourceMap": true
   },
   "include": [
     "src/**/*"

@@ -1,6 +1,7 @@
-import * as G2 from '@antv/g2';
 import * as _ from 'lodash';
 import ShapeRegister from '../utils/ShapeRegister';
+
+const G2 = require('@antv/g2');
 
 const DEFAULT_WATERFALL_SHAPE = 'waterfall';
 

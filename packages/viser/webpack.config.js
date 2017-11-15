@@ -2,10 +2,9 @@ const path = require('path');
 const webpack = require('webpack');
 const env = process.env.NODE_ENV;
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const createLodashAliases = require('lodash-loader').createLodashAliases;
 
 let config = {
-  entry: './src/index.ts',
+  entry: './lib/index.js',
 
   output: {
     filename: './umd/viser.js',
@@ -14,18 +13,14 @@ let config = {
   },
 
   resolve: {
-    alias: createLodashAliases(),
-    extensions: ['.ts', '.tsx', '.js', '.json'],
+    extensions: ['.js', '.json'],
   },
 
   module: {
     loaders: [{
-      test: /\.tsx?$/,
+      test: /\.js?$/,
       exclude: /node_modules/,
-      include: [
-        path.resolve(__dirname, 'src'),
-      ],
-      loader: 'ts-loader!lodash-loader',
+      loader: 'babel-loader',
     }]
   },
 
