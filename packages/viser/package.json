@@ -30,7 +30,7 @@
     "colors": "^1.1.2",
     "cross-env": "^5.1.1",
     "gzip-size": "^4.0.0",
-    "lodash-webpack-plugin": "^0.11.4",
+    "lodash-loader": "^1.2.0",
     "ora": "^1.3.0",
     "pretty-bytes": "^4.0.2",
     "rimraf": "^2.6.2",

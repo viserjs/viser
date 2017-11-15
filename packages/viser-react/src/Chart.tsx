@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as PropTypes from 'prop-types';
-import * as _ from 'lodash';
 import viser from 'viser';
 
 const isReact16 = ReactDOM.createPortal !== undefined;
@@ -14,6 +13,34 @@ function firstLowerCase(str) {
   return str.replace(/^\S/, (s: any) => {
     return s.toLowerCase();
   });
+}
+
+function omit(obj, attr) {
+  const newObj = {};
+
+  for (const item in obj) {
+    if (obj.hasOwnProperty(item)) {
+      const arrAttr = Array.isArray(attr) ? attr : [attr];
+
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < arrAttr.length; i++) {
+        if (arrAttr[i] !== item) {
+          newObj[item] = obj[item];
+        }
+      }
+    }
+  }
+
+  return newObj;
+}
+
+function isOwnEmpty(obj) {
+  for (const name in obj) {
+    if (obj.hasOwnProperty(name)) {
+      return false;
+    }
+  }
+  return true;
 }
 
 class Props {
@@ -59,7 +86,7 @@ export default class Chart extends React.Component<Props, any> {
 
   combineChartConfig(props, config) {
     const chartOmit = ['data', 'dataDef', 'dataView', 'dataPre', 'children', 'container', 'id', 'scale'];
-    config.chart = _.omit(props, chartOmit);
+    config.chart = omit(props, chartOmit);
   }
 
   combineViewConfig(props, config) {
@@ -92,7 +119,7 @@ export default class Chart extends React.Component<Props, any> {
     'funnel', 'pyramid', 'radialbar', 'schema', 'box', 'candle', 'polygon', 'contour',
     'heatmap', 'edge'];
 
-    if (_.isEmpty(props)) {
+    if (isOwnEmpty(props)) {
       config[nameLowerCase] = true;
     } else if (regSeries.indexOf(nameLowerCase) >= 0) {
       if (!config.series) { config.series = []; }
@@ -125,7 +152,7 @@ export default class Chart extends React.Component<Props, any> {
     const hasInViews = unit.context.hasInViews;
 
     if (displayName === 'Facet') {
-      const options = _.omit(props, 'children');
+      const options = omit(props, 'children');
       config.facet = options;
     } else if (displayName === 'FacetView') {
       const viewId = unit.state.viewId;
@@ -158,7 +185,7 @@ export default class Chart extends React.Component<Props, any> {
     const facetviews = this.facetviews;
     const config = this.config;
 
-    if (!_.isEmpty(views)) {
+    if (!isOwnEmpty(views)) {
       config.views = [];
 
       for (const item in views) {
@@ -168,7 +195,7 @@ export default class Chart extends React.Component<Props, any> {
       }
     }
 
-    if (!_.isEmpty(facetviews)) {
+    if (!isOwnEmpty(facetviews)) {
       config.facet.views = [];
 
       for (const item in facetviews) {

@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const env = process.env.NODE_ENV;
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 let config = {
   entry: './src/index.tsx',
@@ -26,17 +25,11 @@ let config = {
     loaders: [{
       test: /\.tsx?$/,
       exclude: /node_modules/,
-      loaders: [{
-        loader: 'ts-loader'
-      }],
+      loader: 'ts-loader',
     }]
   },
 
   plugins: [
-    new LodashModuleReplacementPlugin({
-      collections: true,
-      shorthands: true,
-    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env),
     }),

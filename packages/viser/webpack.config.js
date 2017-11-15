@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const env = process.env.NODE_ENV;
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const createLodashAliases = require('lodash-loader').createLodashAliases;
 
 let config = {
   entry: './src/index.ts',
@@ -14,6 +14,7 @@ let config = {
   },
 
   resolve: {
+    alias: createLodashAliases(),
     extensions: ['.ts', '.tsx', '.js', '.json'],
   },
 
@@ -24,17 +25,11 @@ let config = {
       include: [
         path.resolve(__dirname, 'src'),
       ],
-      loaders: [{
-        loader: 'ts-loader'
-      }],
+      loader: 'ts-loader!lodash-loader',
     }]
   },
 
   plugins: [
-    new LodashModuleReplacementPlugin({
-      collections: true,
-      shorthands: true,
-    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env),
     }),
