@@ -21,7 +21,6 @@ module.exports = {
       modules: building ? false : 'commonjs'
     } ],
     'stage-1',
-    'react',
   ],
   plugins: plugins,
 };

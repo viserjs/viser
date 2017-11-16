@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "module": "es6",
-    "outDir": "build",
+    "module": "es2015",
+    "outDir": "es",
     "jsx": "react",
     "noImplicitAny": false,
     "removeComments": true,

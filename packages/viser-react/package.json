@@ -8,11 +8,12 @@
   "files": [
     "umd",
     "es",
-    "lib"
+    "lib",
+    "src"
   ],
   "main": "lib/index.js",
   "module": "es/index.js",
-  "types": "src/index.ts",
+  "types": "src/index.tsx",
   "scripts": {
     "build": "node ./tools/build.js",
     "clean": "git clean -fdX .",
@@ -24,7 +25,8 @@
     "react-dom": ">15"
   },
   "dependencies": {
-    "viser": "^0.1.8"
+    "viser": "^0.1.9",
+    "prop-types": "^15.6.0"
   },
   "devDependencies": {
     "@types/prop-types": "*",
@@ -43,7 +45,6 @@
     "gzip-size": "^4.0.0",
     "ora": "^1.3.0",
     "pretty-bytes": "^4.0.2",
-    "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "rimraf": "^2.6.2",
