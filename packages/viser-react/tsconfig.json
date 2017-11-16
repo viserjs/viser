@@ -1,19 +1,12 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "outDir": "lib",
+    "module": "es6",
+    "outDir": "build",
     "jsx": "react",
-    "target": "es5",
     "noImplicitAny": false,
     "removeComments": true,
     "preserveConstEnums": true,
-    "sourceMap": true,
-    "lib": [
-      "dom",
-      "es5",
-      "es6",
-      "scripthost"
-    ]
+    "sourceMap": true
   },
   "include": [
     "src/**/*"

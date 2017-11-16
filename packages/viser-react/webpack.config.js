@@ -4,7 +4,7 @@ const env = process.env.NODE_ENV;
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 let config = {
-  entry: './src/index.tsx',
+  entry: './lib/index.js',
 
   output: {
     filename: './umd/viser-react.js',
@@ -25,7 +25,7 @@ let config = {
     loaders: [{
       test: /\.tsx?$/,
       exclude: /node_modules/,
-      loader: 'ts-loader',
+      loader: 'babel-loader',
     }]
   },
 
