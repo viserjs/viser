@@ -1,6 +1,6 @@
 {
   "name": "viser",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "viser is a toolkit fit for data vis engineer.",
   "repository": "viserjs/viser",
   "license": "MIT",
@@ -8,7 +8,8 @@
   "files": [
     "lib",
     "es",
-    "umd"
+    "umd",
+    "src"
   ],
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -17,7 +18,7 @@
     "build": "node ./tools/build.js",
     "clean": "git clean -fdX .",
     "lint": "tslint src",
-    "analyse": "cross-env NODE_ENV=analyse webpack --progress --config webpack.config.js"
+    "analyse": "NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "dependencies": {
     "@antv/data-set": "^0.5.0",
@@ -37,7 +38,6 @@
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-stage-1": "^6.5.0",
     "colors": "^1.1.2",
-    "cross-env": "^5.1.1",
     "gzip-size": "^4.0.0",
     "ora": "^1.3.0",
     "pretty-bytes": "^4.0.2",
