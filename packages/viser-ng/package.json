@@ -15,7 +15,9 @@
     "analyse": "cross-env NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "peerDependencies": {
-    "@angular/core": ">=2.0.0"
+    "@angular/core": "^4.0.1",
+    "@angular/compiler": "^4.0.1",
+    "@angular/compiler-cli": "^4.0.1"
   },
   "dependencies": {
     "viser": "^0.1.3"

@@ -7,7 +7,7 @@ function fetchData(state) {
   const mount = document.getElementById('mount');
   mount.innerHTML = '';
 
-  if (['json', 'react', 'vue'].indexOf(fileName) > -1) {
+  if (['json', 'react', 'vue', 'angular'].indexOf(fileName) > -1) {
     if (fileName === 'react') {
       delete require.cache[`./chart/${type}/${fileName}.tsx`];
     } else {
