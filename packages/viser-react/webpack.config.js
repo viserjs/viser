@@ -2,10 +2,9 @@ const path = require('path');
 const webpack = require('webpack');
 const env = process.env.NODE_ENV;
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 let config = {
-  entry: './src/index.tsx',
+  entry: './lib/index.js',
 
   output: {
     filename: './umd/viser-react.js',
@@ -24,22 +23,13 @@ let config = {
 
   module: {
     loaders: [{
-      test: /\.tsx?$/,
+      test: /\.js?$/,
       exclude: /node_modules/,
-      // include: [
-      //   path.resolve(__dirname, 'src'),
-      // ],
-      loaders: [{
-        loader: 'ts-loader'
-      }],
+      loader: 'babel-loader',
     }]
   },
 
   plugins: [
-    new LodashModuleReplacementPlugin({
-      collections: true,
-      shorthands: true,
-    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env),
     }),

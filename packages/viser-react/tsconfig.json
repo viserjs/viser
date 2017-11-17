@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "outDir": "build",
+    "module": "es2015",
+    "outDir": "es",
     "jsx": "react",
-    "target": "es5",
     "noImplicitAny": false,
     "removeComments": true,
     "preserveConstEnums": true,

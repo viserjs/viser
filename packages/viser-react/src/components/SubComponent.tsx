@@ -1,21 +1,19 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
-class Props {
-  type?: string
-  fields?: string[]
-}
+class Props {}
 
-export default class Facet extends React.Component<Props, any> {
+export default class SubComponent<T = {}> extends React.Component<Props & T, any> {
   static contextTypes = {
     centralizedUpdates: PropTypes.func,
     hasInViews: PropTypes.bool,
     viewId: PropTypes.string,
+    viewType: PropTypes.string,
   };
 
-  displayName = 'Facet';
+  displayName = 'SubComponent';
 
-  constructor(props: Props) {
+  constructor(props) {
     super(props);
   }
 
@@ -28,6 +26,6 @@ export default class Facet extends React.Component<Props, any> {
   }
 
   render() {
-    return <div>{this.props.children}</div>;
+    return null;
   }
 }

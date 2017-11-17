@@ -1,5 +1,5 @@
 import Vue from 'vue/dist/vue.esm.js';
-import chartBuilder from '../../viser/src';
+import viser from 'viser';
 
 const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area',
   'stackarea', 'smootharea', 'bar', 'stackbar', 'dodgebar', 'point', 'waterfall',
@@ -79,7 +79,7 @@ const baseChartComponent = {
         };
 
         if (!isUpdate) {
-          this.chart = chartBuilder(d2Json);
+          this.chart = viser(d2Json);
         } else {
           this.chart.repaint(d2Json);
         }
@@ -99,8 +99,6 @@ const baseChartComponent = {
         };
       } else if (this.$options._componentTag === 'v-facet') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
-
-        console.log(666, this)
 
         nearestRootComponent.jsonForD2.facet = {
           ...cleanUndefined(normalizeProps(this._props)),

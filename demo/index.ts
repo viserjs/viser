@@ -8,7 +8,11 @@ function fetchData(state) {
   mount.innerHTML = '';
 
   if (['json', 'react', 'vue'].indexOf(fileName) > -1) {
-    delete require.cache[`./chart/${type}/${fileName}`];
+    if (fileName === 'react') {
+      delete require.cache[`./chart/${type}/${fileName}.tsx`];
+    } else {
+      delete require.cache[`./chart/${type}/${fileName}.ts`];
+    }
     require(`./chart/${type}/${fileName}`);
   }
 }

@@ -1,5 +1,6 @@
-import * as DataSet from '@antv/data-set';
 import * as _ from 'lodash';
+
+const DataSet = require('@antv/data-set');
 
 const GEO_DATA = {};
 

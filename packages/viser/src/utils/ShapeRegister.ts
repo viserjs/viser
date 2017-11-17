@@ -1,4 +1,4 @@
-import * as G2 from '@antv/g2';
+const G2 = require('@antv/g2');
 
 export default {
   regist: (geoName: string, shapeName: string, {
