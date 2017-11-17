@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import viser from '../../../packages/viser/src/index';
+import { chartData } from '../facet-1/data'
+import { Object } from 'core-js/library/web/timers';
 
 function firstLowerCase(str) {
   return str.replace(/^\S/, (s: any) => {
@@ -181,18 +183,48 @@ export class Chart implements AfterViewInit, OnChanges {
     this.initChart();
   }
 
-  getProps() {
-    return this;
+  getProps(allProps) {
+    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId', 'views', "constructor", "combineViewConfig", "combineChartConfig", "combineContentConfig", "ngAfterViewInit", "getProps", "getViewChartConfig", "initChart", "ngOnChanges", "renderChart"];
+    if (allProps) {
+      const properties = {};
+      for (const key in allProps) {
+        if (strippingProperties.indexOf(key) === -1) {
+          properties[key] = allProps[key];
+        }
+      }
+      return properties;
+    }
+    return allProps;
+  }
+
+  getViewChartConfig(config) {
+    const chartProperties = ['forceFit', 'height', 'width', 'container'];
+    const chart = {};
+    if (config.chart) {
+      for (const key in config.chart) {
+        if (chartProperties.indexOf(key) > -1) {
+          chart[key] = config.chart[key];
+        }
+      }
+    }
+    return chart;
   }
 
   initChart(rerender?) {
     const name = this.constructor.name;
-    const props = this.getProps();
-    this.combineContentConfig(name, this, this.context.config);
-    this.combineChartConfig(this, this.context.config);
-    this.combineViewConfig(this, this.context.config);
+    const props = this.getProps(this);
+    this.combineContentConfig(name, props, this.context.config);
+    this.combineChartConfig(props, this.context.config);
+    this.combineViewConfig(props, this.context.config);
+    this.context.config.chart = this.getViewChartConfig(this.context.config);
     if (this.constructor.name === 'Chart') {
       this.renderChart(rerender);
+    } else if (this.constructor.name === 'Facet') {
+      this.context.config.facet.views = {
+        ...this.context.config.facet.views,
+        ...this.context.config,
+        series: this.context.config.series && this.context.config.series[0]
+      };
     }
   }
 
@@ -208,20 +240,7 @@ export class Chart implements AfterViewInit, OnChanges {
    */
   renderChart(rerender?) {
     this.context.config.chart.container = this.chartDiv.nativeElement;
-    this.context.config.facet = {
-      type: 'rect',
-      fields: ['cut', 'clarity'],
-      views: {
-        axis: true,
-        tooltip: true,
-        series: {
-          quickType: 'point',
-          opacity: 0.3,
-          size: 3,
-        }
-      }
-    };
-    console.log(this.context.config, 'this.context.config');
+
     if (rerender) {
       this.chart.repaint(this.context.config);
     } else {
