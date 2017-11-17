@@ -7,13 +7,12 @@ Vue.use(ViserVue)
 const container = document.createElement('div')
 container.innerHTML = `
   <div>
-    <v-chart :force-fit="true" :height="300" :height="400" :data="data" :data-pre="dataPre" :data-def="dataDef" :scale="scale">
+    <v-chart :height="300" :height="400" :data="data" :data-def="dataDef">
+      <v-coord :radius="1" :inner-radius="0.6" />
+      <v-pie :label="true" />
       <v-tooltip />
-      <v-coord :radius=1 :inner-raidus=0.6 type="theta"/>
-      <v-pie />
-      <v-series adjust="stack" geom="interval" lable="true" position="profit" quick-type="pie"/>
       <v-legend />
-      <v-tooltip />
+      <v-axis />
     </v-chart>
   </div>
 `;
