@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as PropTypes from 'prop-types';
-// import viser from 'viser';
-const viser = require('viser');
+import { default as ChartProps } from '../types/Chart';
+import viser from 'viser';
 
 const isReact16 = ReactDOM.createPortal !== undefined;
 
@@ -44,22 +44,7 @@ function isOwnEmpty(obj) {
   return true;
 }
 
-class Props {
-  data: any;
-  dataDef: object[];
-  dataPre?: {
-    connector?: string;
-    source?: any;
-    transform?: object[] | object;
-  };
-  scale?: object[];
-  width?: number;
-  height?: number;
-  dataView?: string;
-  forceFit?: boolean;
-}
-
-export default class Chart extends React.Component<Props, any> {
+export default class Chart extends React.Component<ChartProps, any> {
   static childContextTypes = {
     centralizedUpdates: PropTypes.func,
     hasInViews: PropTypes.bool,
@@ -73,7 +58,7 @@ export default class Chart extends React.Component<Props, any> {
   views: any = {};
   facetviews: any = {};
 
-  constructor(props: Props) {
+  constructor(props) {
     super(props);
   }
 
