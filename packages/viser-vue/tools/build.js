@@ -34,18 +34,27 @@ async function spinner(message, fn) {
 }
 
 async function build() {
-  await spinner('Building TS', async () => {
+  await spinner('Building TSC', async () => {
     await exec('tsc');
   });
 
-  await spinner('Building UMD Viser Vue', async () => {
-    await exec('cross-env webpack --progress --config webpack.config.js', {
+  await spinner('Building CommonJS modules', async (oraSpinner) => {
+    await exec('rimraf lib && babel ./es -d lib', {
+      NODE_ENV: 'commonjs',
+      BABEL_ENV: 'cjs'
+    });
+  });
+
+  await spinner('Building UMD modules', async () => {
+    await exec('webpack --progress --config webpack.config.js', {
+      BABEL_ENV: 'umd',
       NODE_ENV: 'development'
     });
   });
 
-  await spinner('Building UMD Viser Vue Min', async () => {
-    await exec('cross-env webpack --progress --config webpack.config.js', {
+  await spinner('Building UMD Min modules', async () => {
+    await exec('webpack --progress --config webpack.config.js', {
+      BABEL_ENV: 'umd',
       NODE_ENV: 'production'
     });
   });

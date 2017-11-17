@@ -4,7 +4,7 @@ const env = process.env.NODE_ENV;
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 let config = {
-  entry: './src/index',
+  entry: './lib/index',
 
   output: {
     filename: './umd/viser-vue.js',
@@ -22,11 +22,9 @@ let config = {
 
   module: {
     loaders: [{
-      test: /\.tsx?$/,
+      test: /\.js?$/,
       exclude: /node_modules/,
-      loaders: [{
-        loader: 'ts-loader'
-      }],
+      loader: 'babel-loader',
     }]
   },
 

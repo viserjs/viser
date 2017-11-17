@@ -7,26 +7,34 @@
   "authors": "DT-FE",
   "files": [
     "umd",
-    "lib"
+    "es",
+    "lib",
+    "src"
   ],
   "main": "lib/index.js",
-  "module": "lib/index.js",
+  "module": "es/index.js",
+  "types": "src/index.tsx",
   "scripts": {
     "build": "node ./tools/build.js",
     "clean": "git clean -fdX .",
     "lint": "tslint src",
-    "analyse": "cross-env NODE_ENV=analyse webpack --progress --config webpack.config.js"
+    "analyse": "NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "peerDependencies": {
     "vue": ">2"
   },
   "dependencies": {
-    "viser": "^0.1.3",
+    "viser": "^0.2.0",
     "vue": "^2.5.3"
   },
   "devDependencies": {
+    "@types/node": "*",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-dev-expression": "^0.2.1",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
     "colors": "^1.1.2",
-    "cross-env": "^5.1.1",
     "gzip-size": "^4.0.0",
     "ora": "^1.3.0",
     "pretty-bytes": "^4.0.2",
