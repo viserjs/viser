@@ -48,7 +48,7 @@ export default class Chart extends React.Component<ChartProps, any> {
   static childContextTypes = {
     centralizedUpdates: PropTypes.func,
     hasInViews: PropTypes.bool,
-    viewType: PropTypes.string,
+    viewType: PropTypes.string
   };
 
   chart: any;
@@ -66,12 +66,21 @@ export default class Chart extends React.Component<ChartProps, any> {
     return {
       centralizedUpdates: this.centralizedUpdates,
       hasInViews: false,
-      viewType: 'view',
+      viewType: 'view'
     };
   }
 
   combineChartConfig(props, config) {
-    const chartOmit = ['data', 'dataDef', 'dataView', 'dataPre', 'children', 'container', 'id', 'scale'];
+    const chartOmit = [
+      'data',
+      'dataDef',
+      'dataView',
+      'dataPre',
+      'children',
+      'container',
+      'id',
+      'scale'
+    ];
     config.chart = omit(props, chartOmit);
   }
 
@@ -100,28 +109,57 @@ export default class Chart extends React.Component<ChartProps, any> {
   combineContentConfig(displayName, props, config) {
     const nameLowerCase = displayName.toLowerCase();
 
-    const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area',
-    'stackarea', 'smootharea', 'bar', 'stackbar', 'dodgebar', 'point', 'waterfall',
-    'funnel', 'pyramid', 'radialbar', 'schema', 'box', 'candle', 'polygon', 'contour',
-    'heatmap', 'edge'];
+    const regSeries = [
+      'pie',
+      'sector',
+      'line',
+      'smoothline',
+      'dashline',
+      'area',
+      'stackarea',
+      'smootharea',
+      'bar',
+      'stackbar',
+      'dodgebar',
+      'point',
+      'waterfall',
+      'funnel',
+      'pyramid',
+      'radialbar',
+      'schema',
+      'box',
+      'candle',
+      'polygon',
+      'contour',
+      'heatmap',
+      'edge'
+    ];
 
     if (isOwnEmpty(props)) {
       config[nameLowerCase] = true;
     } else if (regSeries.indexOf(nameLowerCase) >= 0) {
-      if (!config.series) { config.series = []; }
+      if (!config.series) {
+        config.series = [];
+      }
 
       config.series.push({
         quickType: firstLowerCase(displayName),
-        ...props,
+        ...props
       });
     } else if (nameLowerCase === 'axis') {
-      if (!config.axis) { config.axis = []; }
+      if (!config.axis) {
+        config.axis = [];
+      }
       config.axis.push(props);
     } else if (nameLowerCase === 'series') {
-      if (!config.series) { config.series = []; }
+      if (!config.series) {
+        config.series = [];
+      }
       config.series.push(props);
     } else if (nameLowerCase === 'guide') {
-      if (!config.guide) { config.guide = []; }
+      if (!config.guide) {
+        config.guide = [];
+      }
       config.guide.push(props);
     } else {
       config[nameLowerCase] = props;
@@ -130,7 +168,7 @@ export default class Chart extends React.Component<ChartProps, any> {
     return config;
   }
 
-  centralizedUpdates = (unit) => {
+  centralizedUpdates = unit => {
     const config = this.config;
     const views = this.views;
     const props = unit.props;
@@ -142,11 +180,15 @@ export default class Chart extends React.Component<ChartProps, any> {
       config.facet = options;
     } else if (displayName === 'FacetView') {
       const viewId = unit.state.viewId;
-      if (!this.facetviews[viewId]) { this.facetviews[viewId] = { viewId }; }
+      if (!this.facetviews[viewId]) {
+        this.facetviews[viewId] = { viewId };
+      }
       this.combineViewConfig(props, this.facetviews[viewId]);
     } else if (displayName === 'View') {
       const viewId = unit.state.viewId;
-      if (!this.views[viewId]) { this.views[viewId] = { viewId }; }
+      if (!this.views[viewId]) {
+        this.views[viewId] = { viewId };
+      }
       this.combineViewConfig(props, this.views[viewId]);
     } else {
       if (!hasInViews) {
@@ -156,15 +198,23 @@ export default class Chart extends React.Component<ChartProps, any> {
         const viewId = unit.context.viewId;
 
         if (viewType === 'view') {
-          if (!this.views[viewId]) { this.views[viewId] = { viewId }; }
+          if (!this.views[viewId]) {
+            this.views[viewId] = { viewId };
+          }
           this.combineContentConfig(displayName, props, this.views[viewId]);
         } else if (viewType === 'facet') {
-          if (!this.facetviews[viewId]) { this.facetviews[viewId] = { viewId }; }
-          this.combineContentConfig(displayName, props, this.facetviews[viewId]);
+          if (!this.facetviews[viewId]) {
+            this.facetviews[viewId] = { viewId };
+          }
+          this.combineContentConfig(
+            displayName,
+            props,
+            this.facetviews[viewId]
+          );
         }
       }
     }
-  }
+  };
 
   changeViewConfig() {
     const views = this.views;
@@ -195,8 +245,12 @@ export default class Chart extends React.Component<ChartProps, any> {
   createChartInstance(config) {
     let elm = this.elm;
 
-    if (elm) { ReactDOM.unmountComponentAtNode(elm); }
-    if (this.chart) { this.chart.destroy(); }
+    if (elm) {
+      ReactDOM.unmountComponentAtNode(elm);
+    }
+    if (this.chart) {
+      this.chart.destroy();
+    }
 
     this.combineChartConfig(this.props, this.config);
     this.combineViewConfig(this.props, this.config);
@@ -216,6 +270,7 @@ export default class Chart extends React.Component<ChartProps, any> {
     }
 
     this.changeViewConfig();
+    console.log(config, 'config');
     this.chart = viser(config);
   }
 
@@ -255,11 +310,11 @@ export default class Chart extends React.Component<ChartProps, any> {
     this.elm = this.container = null;
   }
 
-  portalRef = (container) => {
+  portalRef = container => {
     if (!this.container) {
       this.container = container;
     }
-  }
+  };
 
   render() {
     return <div ref={this.portalRef}>{this.props.children}</div>;

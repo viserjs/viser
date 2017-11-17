@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "lib",
+    "target": "es5",
+    "noImplicitAny": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "lib": ["dom", "es5", "es6", "scripthost"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
