@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import * as PropTypes from 'prop-types';
 import { default as ChartProps } from '../types/Chart';
 import viser from 'viser';
-
+console.log(viser);
 const isReact16 = ReactDOM.createPortal !== undefined;
 
 const createPortal: any = isReact16
@@ -216,7 +216,7 @@ export default class Chart extends React.Component<ChartProps, any> {
     }
 
     this.changeViewConfig();
-    this.chart = viser(config);
+    // this.chart = viser(config);
   }
 
   repaintChartInstance(config) {
