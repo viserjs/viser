@@ -1,6 +1,5 @@
 import Vue from 'vue/dist/vue.esm.js';
 import viser from 'viser';
-console.log(viser);
 
 const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area',
   'stackarea', 'smootharea', 'bar', 'stackbar', 'dodgebar', 'point', 'waterfall',
