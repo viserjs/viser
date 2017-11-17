@@ -140,9 +140,7 @@ export class Chart implements AfterViewInit, OnChanges {
       'edge'
     ];
 
-    if (isOwnEmpty(props)) {
-      config[nameLowerCase] = true;
-    } else if (regSeries.indexOf(nameLowerCase) >= 0) {
+    if (regSeries.indexOf(nameLowerCase) >= 0) {
       if (!config.series) {
         config.series = [];
       }
@@ -151,6 +149,8 @@ export class Chart implements AfterViewInit, OnChanges {
         quickType: firstLowerCase(displayName),
         ...props
       });
+    } else if (isOwnEmpty(props)) {
+      config[nameLowerCase] = true;
     } else if (nameLowerCase === 'axis') {
       if (!config.axis) {
         config.axis = [];
@@ -238,7 +238,7 @@ export class Chart implements AfterViewInit, OnChanges {
    */
   renderChart(rerender?) {
     this.context.config.chart.container = this.chartDiv.nativeElement;
-
+    console.log(this.context.config, 'this.context.config');
     if (rerender) {
       this.chart.repaint(this.context.config);
     } else {
