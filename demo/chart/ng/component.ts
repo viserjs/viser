@@ -1,7 +1,5 @@
 import { AfterViewInit, Component, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import viser from '../../../packages/viser/src/index';
-import { chartData } from '../facet-1/data'
-import { Object } from 'core-js/library/web/timers';
 
 function firstLowerCase(str) {
   return str.replace(/^\S/, (s: any) => {
