@@ -25,8 +25,8 @@
     "react-dom": ">15"
   },
   "dependencies": {
-    "viser": "^0.2.0",
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.6.0",
+    "viser": "^0.2.0"
   },
   "devDependencies": {
     "@types/prop-types": "*",
