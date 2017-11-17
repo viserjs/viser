@@ -101,9 +101,9 @@ export default class Chart extends React.Component<ChartProps, any> {
     const nameLowerCase = displayName.toLowerCase();
 
     const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area',
-    'stackarea', 'smootharea', 'bar', 'stackbar', 'dodgebar', 'point', 'waterfall',
-    'funnel', 'pyramid', 'radialbar', 'schema', 'box', 'candle', 'polygon', 'contour',
-    'heatmap', 'edge'];
+      'stackarea', 'smootharea', 'bar', 'stackbar', 'dodgebar', 'point', 'waterfall',
+      'funnel', 'pyramid', 'radialbar', 'schema', 'box', 'candle', 'polygon', 'contour',
+      'heatmap', 'edge'];
 
     if (isOwnEmpty(props)) {
       config[nameLowerCase] = true;
