@@ -4,26 +4,32 @@ import { Component, enableProdMode, NgModule } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserModule } from '@angular/platform-browser';
 import { ViserModule } from '../ng';
-import { data, dataDef, dataPre, scale } from './data'
+import { chartData, dataDef, scale } from './data'
 
 @Component({
   selector: '#mount',
   template: `
-  <Chart [forceFit]="forceFit" [height]="height" [data]="data" [dataPre]="dataPre" [dataDef]="dataDef" [scale]="scale">
-    <Tooltip></Tooltip>
-    <Axis></Axis>
-    <StackBar [ngStyle]="{ stroke: '#fff', lineWidth: 1 }" ></StackBar>
-  </Chart>
+  <div>
+    <Chart [forceFit]="forceFit" [height]="600" [data]="chartData" [dataDef]="dataDef" [scale]="scale">
+      <Facet type="rect" [fields]="fields">
+        <FacetView>
+          <Axis></Axis>
+          <Tooltip></Tooltip>
+          <Point opacity="0.3" size="3"></Point>
+        </FacetView>
+      </Facet>
+    </Chart>
+  </div>
   `
 })
 
 export class AppComponent {
   forceFit: boolean= true;
-  height: number = 400;
-  data = data;
+  height: number = 600;
+  chartData = chartData;
   dataDef = dataDef;
-  dataPre = dataPre;
   scale = scale;
+  fields = ['cut', 'clarity'];
 }
 
 

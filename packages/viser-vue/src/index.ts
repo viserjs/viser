@@ -79,6 +79,7 @@ const baseChartComponent = {
         };
 
         if (!isUpdate) {
+          console.log(d2Json, 'd2Json');
           this.chart = viser(d2Json);
         } else {
           this.chart.repaint(d2Json);

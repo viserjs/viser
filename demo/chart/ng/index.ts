@@ -28,7 +28,9 @@ const subComponents = ['Coord',
  'Polygon',
  'Contour',
  'Heatmap',
- 'Edge'
+ 'Edge',
+ 'Facet',
+ 'FacetView'
 ];
 
 @Component({
@@ -66,6 +68,33 @@ class Legend extends Chart {
 class Axis extends Chart {
 }
 
+@Component({
+  selector: 'StackBar',
+  template: `<div #chartDom></div>`
+})
+class StackBar extends Chart {
+}
+
+@Component({
+  selector: 'Facet',
+  template: `<div #chartDom></div>`
+})
+class Facet extends Chart {
+}
+
+@Component({
+  selector: 'FacetView',
+  template: `<div #chartDom></div>`
+})
+class FacetView extends Chart {
+}
+
+@Component({
+  selector: 'Point',
+  template: `<div #chartDom></div>`
+})
+class Point extends Chart {
+}
 
 @NgModule({
   declarations: [
@@ -73,16 +102,24 @@ class Axis extends Chart {
     Coord,
     Pie,
     Tooltip,
+    StackBar,
     Legend,
-    Axis
+    Axis,
+    Facet,
+    Point,
+    FacetView
   ],
   exports: [
     Chart,
     Coord,
     Pie,
+    StackBar,
     Tooltip,
     Legend,
-    Axis
+    Axis,
+    Facet,
+    Point,
+    FacetView
   ]
 })
 export class ViserModule {

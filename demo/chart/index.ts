@@ -5,6 +5,6 @@ export default [
   },
   {
     type: 'facet-1',
-    case: ['json', 'react', 'vue']
+    case: ['json', 'react', 'vue', 'angular']
   }
 ];
