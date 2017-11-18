@@ -29,6 +29,7 @@
     "prop-types": "^15.6.0"
   },
   "devDependencies": {
+    "@types/node": "^8.0.53",
     "@types/prop-types": "*",
     "@types/react": "*",
     "@types/react-dom": "*",
