@@ -4,8 +4,11 @@ function fetchData(state) {
   const type = state.type;
   const fileName = state.filename;
 
-  const mount = document.getElementById('mount');
-  mount.innerHTML = '';
+  // TODO: Vue Angular add unmount
+  if (fileName !== 'react') {
+    const mount = document.getElementById('mount');
+    mount.innerHTML = '';
+  }
 
   if (['json', 'react', 'vue', 'angular'].indexOf(fileName) > -1) {
     if (fileName === 'react') {
