@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import { Component, enableProdMode, NgModule } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserModule } from '@angular/platform-browser';
-import { ViserModule } from '../ng';
+import { ViserModule } from '../../../packages/viser-ng/src/index';
 import { data, dataDef, dataPre, scale } from './data'
 
 @Component({
@@ -17,15 +17,14 @@ import { data, dataDef, dataPre, scale } from './data'
   `
 })
 
-export class AppComponent {
+class AppComponent {
   forceFit: boolean= true;
   height: number = 400;
   data = data;
   dataDef = dataDef;
-  dataPre = dataPre;
   scale = scale;
+  fields = ['cut', 'clarity'];
 }
-
 
 @NgModule({
   declarations: [
@@ -36,8 +35,9 @@ export class AppComponent {
     ViserModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
-
 export class AppModule { }
 platformBrowserDynamic().bootstrapModule(AppModule);

@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import { Component, enableProdMode, NgModule } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserModule } from '@angular/platform-browser';
-import { ViserModule } from '../ng';
+import { ViserModule } from '../../../packages/viser-ng/src/index';
 import { chartData, dataDef, scale } from './data'
 
 @Component({

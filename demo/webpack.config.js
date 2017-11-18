@@ -11,13 +11,14 @@ module.exports = {
     publicPath: 'http://localhost:3000/build/'
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json', '.scss'],
+    extensions: ['.ts', '.tsx', '.js', '.json', '.css'],
     alias: {
-      viser: '../../viser/src/index',
-      'viser-react': '../../viser-react/src/index',
-      'viser-ng': '../../viser-ng/src/index'
+      // viser: '../../viser/src/index',
+      // 'viser-react': '../../viser-react/src/index',
+      // 'viser-vue': '../../viser-vue/src/index',
+      // 'viser-ng': '../../viser-ng/src/index',
     },
-    symlinks: false
+    // symlinks: false
   },
   module: {
     loaders: [
@@ -25,5 +26,7 @@ module.exports = {
       { test: /\.tsx?$/, loader: 'ts-loader' }
     ]
   },
-  plugins: [new webpack.NamedModulesPlugin()]
+  plugins: [
+    new webpack.NamedModulesPlugin(),
+  ]
 };
