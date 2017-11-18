@@ -11,14 +11,13 @@ module.exports = {
     publicPath: 'http://localhost:3000/build/'
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json', '.css'],
+    extensions: ['.ts', '.tsx', '.js', '.json'],
     alias: {
-      // viser: '../../viser/src/index',
-      // 'viser-react': '../../viser-react/src/index',
-      // 'viser-vue': '../../viser-vue/src/index',
-      // 'viser-ng': '../../viser-ng/src/index',
+      viser: path.resolve(__dirname, '../packages/viser/src/index'),
+      'viser-react': path.resolve(__dirname, '../packages/viser-react/src/index'),
+      'viser-vue': path.resolve(__dirname, '../packages/viser-vue/src/index'),
+      'viser-ng': path.resolve(__dirname, '../packages/viser-ng/src/index'),
     },
-    // symlinks: false
   },
   module: {
     loaders: [
