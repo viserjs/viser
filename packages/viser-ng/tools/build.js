@@ -8,20 +8,16 @@ const colors = require('colors');
 
 function exec(shell, extraEnv) {
   return new Promise((resolve, reject) => {
-    nodeExec(
-      shell,
-      {
-        stdio: 'inherit',
-        env: Object.assign({}, process.env, extraEnv)
-      },
-      (error, stdOut) => {
-        if (error) {
-          reject(error.toString());
-        } else {
-          resolve(_.trim(stdOut.toString()));
-        }
+    nodeExec(shell, {
+      stdio: 'inherit',
+      env: Object.assign({}, process.env, extraEnv),
+    }, (error, stdOut) => {
+      if (error) {
+        reject(error.toString());
+      } else {
+        resolve(_.trim(stdOut.toString()));
       }
-    );
+    });
   });
 }
 
@@ -38,18 +34,25 @@ async function spinner(message, fn) {
 }
 
 async function build() {
-  await spinner('Building TS', async () => {
+  await spinner('Building TSC', async () => {
     await exec('tsc');
   });
 
+  await spinner('Building CommonJS modules', async (oraSpinner) => {
+    await exec('rimraf lib && babel ./es -d lib', {
+      NODE_ENV: 'commonjs',
+      BABEL_ENV: 'cjs'
+    });
+  });
+
   await spinner('Building UMD Viser Angular', async () => {
-    await exec('cross-env webpack --progress --config webpack.config.js', {
+    await exec('webpack --progress --config webpack.config.js', {
       NODE_ENV: 'development'
     });
   });
 
   await spinner('Building UMD Viser Angular Min', async () => {
-    await exec('cross-env webpack --progress --config webpack.config.js', {
+    await exec('webpack --progress --config webpack.config.js', {
       NODE_ENV: 'production'
     });
   });

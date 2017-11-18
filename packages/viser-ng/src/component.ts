@@ -40,7 +40,7 @@ function omit(obj, attr) {
 }
 
 /**
- * 组件内的全局 Context
+ * Global Context
  */
 class Context {
   public viewId: string;
@@ -50,9 +50,6 @@ class Context {
   }
 }
 
-/**
- * Chart 组件
- */
 @Component({
   providers: [Context],
   selector: 'Chart',
@@ -77,15 +74,18 @@ export class Chart implements AfterViewInit, OnChanges {
   @Input() opacity?: any;
   @Input() size?: any;
   @ViewChild('chartDom') chartDiv;
+
   config: any = {};
   views: any = {};
   chart: any = null;
   viewId: string;
   context: any;
+
   constructor(context: Context) {
     this.viewId = context.viewId;
     this.context = context;
   }
+
   combineViewConfig(props, config) {
     if (props.data) {
       config.data = props.data;
@@ -106,6 +106,7 @@ export class Chart implements AfterViewInit, OnChanges {
       config.scale = props.scale;
     }
   }
+
   combineChartConfig(props, config) {
     const chartOmit = ['data', 'dataDef', 'dataView', 'dataPre', 'children', 'container', 'id', 'scale'];
     config.chart = omit(props, chartOmit);
@@ -174,7 +175,6 @@ export class Chart implements AfterViewInit, OnChanges {
   }
 
   ngAfterViewInit() {
-
     if (this.chart) {
       this.chart.destroy();
     }
@@ -182,7 +182,10 @@ export class Chart implements AfterViewInit, OnChanges {
   }
 
   getProps(allProps) {
-    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId', 'views', "constructor", "combineViewConfig", "combineChartConfig", "combineContentConfig", "ngAfterViewInit", "getProps", "getViewChartConfig", "initChart", "ngOnChanges", "renderChart"];
+    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId', 'views',
+      'constructor', 'combineViewConfig', 'combineChartConfig', 'combineContentConfig',
+      'ngAfterViewInit', 'getProps', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
+
     if (allProps) {
       const properties = {};
       for (const key in allProps) {
@@ -233,9 +236,6 @@ export class Chart implements AfterViewInit, OnChanges {
     this.initChart(true);
   }
 
-  /**
-   * 渲染图表
-   */
   renderChart(rerender?) {
     this.context.config.chart.container = this.chartDiv.nativeElement;
 
