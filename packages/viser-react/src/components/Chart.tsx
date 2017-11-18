@@ -248,6 +248,7 @@ export default class Chart extends React.Component<ChartProps, any> {
     if (elm) {
       ReactDOM.unmountComponentAtNode(elm);
     }
+
     if (this.chart) {
       this.chart.destroy();
     }
@@ -270,7 +271,6 @@ export default class Chart extends React.Component<ChartProps, any> {
     }
 
     this.changeViewConfig();
-    console.log(config, 'config');
     this.chart = viser(config);
   }
 
