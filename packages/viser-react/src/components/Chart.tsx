@@ -73,7 +73,7 @@ export default class Chart extends React.Component<ChartProps, any> {
   combineChartConfig(props, config) {
     const chartOmit = [
       'data',
-      'dataDef',
+      'dataMapping',
       'dataView',
       'dataPre',
       'children',
@@ -89,8 +89,8 @@ export default class Chart extends React.Component<ChartProps, any> {
       config.data = props.data;
     }
 
-    if (props.dataDef) {
-      config.dataDef = props.dataDef;
+    if (props.dataMapping) {
+      config.dataMapping = props.dataMapping;
     }
 
     if (props.dataPre) {

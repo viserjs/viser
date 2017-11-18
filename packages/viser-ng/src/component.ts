@@ -58,7 +58,7 @@ class Context {
 
 export class Chart implements AfterViewInit, OnChanges {
   @Input() data: any;
-  @Input() dataDef?: any;
+  @Input() dataMapping?: any;
   @Input() dataPre?: any;
   @Input() width?: number;
   @Input() height?: number;
@@ -90,8 +90,8 @@ export class Chart implements AfterViewInit, OnChanges {
     if (props.data) {
       config.data = props.data;
     }
-    if (props.dataDef) {
-      config.dataDef = props.dataDef;
+    if (props.dataMapping) {
+      config.dataMapping = props.dataMapping;
     }
 
     if (props.dataPre) {
@@ -108,7 +108,7 @@ export class Chart implements AfterViewInit, OnChanges {
   }
 
   combineChartConfig(props, config) {
-    const chartOmit = ['data', 'dataDef', 'dataView', 'dataPre', 'children', 'container', 'id', 'scale'];
+    const chartOmit = ['data', 'dataMapping', 'dataView', 'dataPre', 'children', 'container', 'id', 'scale'];
     config.chart = omit(props, chartOmit);
   }
 

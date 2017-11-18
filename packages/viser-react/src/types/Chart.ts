@@ -9,7 +9,7 @@ interface IBackground {
 
 interface Chart {
   data: any;
-  dataDef: object[];
+  dataMapping: object[];
   dataPre?: {
     connector?: string;
     source?: any;

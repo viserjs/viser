@@ -28,7 +28,7 @@ viser({
       as: 'percent'
     }
   },
-  dataDef: [{
+  dataMapping: [{
     dataKey: 'year',
     mark: 'column',
   }, {

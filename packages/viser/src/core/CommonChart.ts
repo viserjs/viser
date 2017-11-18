@@ -8,7 +8,7 @@ import * as DataSetUtils from '../utils/DataSetUtils';
 import * as setCoordConfig from '../components/setCoordConfig';
 import * as setAxisConfig from '../components/setAxisConfig';
 import * as setSeriesConfig from '../components/setSeriesConfig';
-import * as setDataDefConfig from '../components/setDataDefConfig';
+import * as setDataMappingConfig from '../components/setDataMappingConfig';
 import * as setCustomFormatter from '../components/setCustomFormatter';
 import * as setLengendConfig from '../components/setLengendConfig';
 import * as setGuideConfig from '../components/setGuideConfig';
@@ -120,7 +120,7 @@ class CommonChart {
   }
 
   public setView(item, chart, config) {
-    item = setDataDefConfig.process(item);
+    item = setDataMappingConfig.process(item);
 
     const view = this.createView(chart, item);
 
@@ -154,13 +154,13 @@ class CommonChart {
     }
   }
 
-  public setFacetViews(chart, facet, views, dataDef) {
+  public setFacetViews(chart, facet, views, dataMapping) {
     let viewData = facet.data;
 
-    if (!views.dataDef) {
-      views.dataDef = dataDef;
+    if (!views.dataMapping) {
+      views.dataMapping = dataMapping;
     } else {
-      views = setDataDefConfig.process(views);
+      views = setDataMappingConfig.process(views);
     }
 
     if (views.dataPre) {
@@ -173,7 +173,7 @@ class CommonChart {
 
   public setFacet(chart, config) {
     let facet = config.facet;
-    const dataDef = config.dataDef;
+    const dataMapping = config.dataMapping;
 
     if (!facet) { return; }
 
@@ -186,13 +186,13 @@ class CommonChart {
     if (_.isFunction(facet.views)) {
       options.eachView = (v, f) => {
         const options = facet.views(v, f);
-        this.setFacetViews(v, f, options, dataDef);
+        this.setFacetViews(v, f, options, dataMapping);
       }
     } else {
       facet.views = Array.isArray(facet.views) ? facet.views : [facet.views];
 
       options.eachView = (v, f) => {
-        this.setFacetViews(v, f, facet.views[0], dataDef);
+        this.setFacetViews(v, f, facet.views[0], dataMapping);
       }
     }
 
@@ -200,9 +200,9 @@ class CommonChart {
   }
 
   public render() {
-    let config = setDataDefConfig.process(this.config);
+    let config = setDataMappingConfig.process(this.config);
 
-    const { data, dataDef, dataPre } = config;
+    const { data, dataMapping, dataPre } = config;
     const chart = this.chartInstance;
 
     loadShapes(config);
@@ -262,11 +262,11 @@ class CommonChart {
   }
 
   public repaintContent(chart, oriConfig, config) {
-    config = setDataDefConfig.process(config);
+    config = setDataMappingConfig.process(config);
 
     this.repaintData(chart, oriConfig, config);
 
-    if (config.dataDef && !_.isEqual(oriConfig.dataDef, config.dataDef)) {
+    if (config.dataMapping && !_.isEqual(oriConfig.dataMapping, config.dataMapping)) {
       this.setScale(chart, config);
     }
 
@@ -278,7 +278,7 @@ class CommonChart {
       this.setAxis(chart, config);
     }
 
-    if ((config.dataDef && !_.isEqual(oriConfig.dataDef, config.dataDef)) ||
+    if ((config.dataMapping && !_.isEqual(oriConfig.DataMapping, config.DataMapping)) ||
         (config.series && !_.isEqual(oriConfig.series, config.series))) {
       this.setSeries(chart, config);
     }
