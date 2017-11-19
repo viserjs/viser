@@ -53,7 +53,7 @@ function handleMergeFields(row, item) {
 //   { x: 2, y: 2 }
 //   { x: 3, y: 3 }
 // ]
-function processExchangeColumnToRow(data, item) {
+function processExchangeColumnToRowOne(data, item) {
   const itemArr = Array.isArray(item.fields) ? item.fields : [item.fields];
   const finalData = [];
 
@@ -64,6 +64,66 @@ function processExchangeColumnToRow(data, item) {
         if (data[res][i]) { finalData[i][res] = data[res][i]; }
       }
     }
+  }
+
+  return finalData;
+}
+
+// exchage column to row
+// fields appointed the key of exchange
+// [
+//   ['x', 1, 2, 3],
+//   ['y', 1, 2, 3],
+// ]
+// to
+// [
+//   { x: 1, y: 1 }
+//   { x: 2, y: 2 }
+//   { x: 3, y: 3 }
+// ]
+function processExchangeColumnToRowTwo(data, item) {
+  const itemArr = Array.isArray(item.fields) ? item.fields : [item.fields];
+  const finalData = [];
+
+  for (const res of data) {
+    const key = res[0];
+
+    if (itemArr.indexOf(key) >= 0) {
+      for (let i = 1; i < res.length; i++) {
+        if (!finalData[i - 1]) { finalData[i - 1] = {}; }
+        if (res[i]) { finalData[i - 1][key] = res[i]; }
+      }
+    }
+  }
+
+  return finalData;
+}
+
+// exchage column to row
+// fields appointed the key of exchange
+// [
+//   [1, 2, 3],
+//   [1, 2, 3],
+// ]
+// to
+// [
+//   { x: 1, y: 1 }
+//   { x: 2, y: 2 }
+//   { x: 3, y: 3 }
+// ]
+function processExchangeColumnToRowThree(data, item) {
+  const itemArr = Array.isArray(item.fields) ? item.fields : [item.fields];
+  const finalData = [];
+  let i = 0;
+
+  for (const res of data) {
+    const key = itemArr[i];
+
+    for (let i = 0; i < res.length; i++) {
+      if (!finalData[i]) { finalData[i] = {}; }
+      if (res[i]) { finalData[i][key] = res[i]; }
+    }
+    i++;
   }
 
   return finalData;
@@ -151,14 +211,14 @@ function processGraphConnector(ds, data, dataPre) {
 }
 
 function processCommonConnector(dv, item) {
-  if (item.quickType === 'toNumber') {
+  if (item.type === 'toNumber') {
     dv = dv.transform({
       type: 'map',
       callback(row) {
         return handleToNumber(row, item);
       }
     });
-  } else if (item.quickType === 'merge') {
+  } else if (item.type === 'merge') {
     dv = dv.transform({
       type: 'map',
       callback(row) {
@@ -199,9 +259,16 @@ export const preprocessing = (data, dataPre) => {
     return processGeoJsonConnector(ds, data, dataPre);
   }
 
-  if (dataPre.transform && dataPre.transform.length &&
-      dataPre.transform[0].quickType === 'exchange') {
-    data = processExchangeColumnToRow(data, dataPre.transform[0]);
+  // basic exchange row and colmun
+  if (dataPre.transform && dataPre.transform.length) {
+    const exchangeType = dataPre.transform[0].exchangeType;
+    if (exchangeType === 'type-1') {
+      data = processExchangeColumnToRowOne(data, dataPre.transform[0]);
+    } else if (exchangeType === 'type-2') {
+      data = processExchangeColumnToRowTwo(data, dataPre.transform[0]);
+    } else if (exchangeType === 'type-3') {
+      data = processExchangeColumnToRowThree(data, dataPre.transform[0]);
+    }
   }
 
   let dv;

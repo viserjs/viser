@@ -42,12 +42,12 @@ function renderGemo(chart, gemo) {
   return chart;
 }
 
-function skipPosition(dataDef, currSeries) {
-  if (!currSeries.position && dataDef.column && dataDef.row) {
+function skipPosition(dataMapping, currSeries) {
+  if (!currSeries.position && dataMapping.column && dataMapping.row) {
     if (currSeries.quickType === 'pie') {
-      currSeries.position = `${dataDef.row[0]}`;
+      currSeries.position = `${dataMapping.row[0]}`;
     } else {
-      currSeries.position = `${dataDef.column[0]}*${dataDef.row[0]}`;
+      currSeries.position = `${dataMapping.column[0]}*${dataMapping.row[0]}`;
     }
   }
 
@@ -66,8 +66,8 @@ function setSeriesAdjust(chart, currSeries) {
   return chart;
 }
 
-function setSeriesShape(chart, dataDef, currSeries) {
-  const dim = dataDef.shape;
+function setSeriesShape(chart, dataMapping, currSeries) {
+  const dim = dataMapping.shape;
   const shape = currSeries.shape;
 
   if (dim && shape) {
@@ -81,9 +81,9 @@ function setSeriesShape(chart, dataDef, currSeries) {
   return chart;
 }
 
-function setSeriesColor(chart, dataDef, currSeries) {
+function setSeriesColor(chart, dataMapping, currSeries) {
   const color = _.get(currSeries, 'color');
-  const dim = dataDef.color;
+  const dim = dataMapping.color;
 
   if (dim && color) {
     return chart.color(dim, color);
@@ -96,8 +96,8 @@ function setSeriesColor(chart, dataDef, currSeries) {
   return chart;
 }
 
-function setSeriesSize(chart, dataDef, currSeries) {
-  const dim = dataDef.size;
+function setSeriesSize(chart, dataMapping, currSeries) {
+  const dim = dataMapping.size;
   const size = currSeries.size;
 
   if (dim && size) {
@@ -111,8 +111,8 @@ function setSeriesSize(chart, dataDef, currSeries) {
   return chart;
 }
 
-function setSeriesOpacity(chart, dataDef, currSeries) {
-  const dim = dataDef.opacity;
+function setSeriesOpacity(chart, dataMapping, currSeries) {
+  const dim = dataMapping.opacity;
   const opacity = currSeries.opacity;
 
   if (dim && opacity) {
@@ -207,7 +207,7 @@ export const process = (chart, config) => {
   config.series = Array.isArray(config.series) ? config.series : [config.series];
   config = setQuickType.process(config);
 
-  const { dataDef } = config;
+  const { dataMapping } = config;
   let series = config.series;
 
   // add `index` to comfirm overlay index
@@ -215,14 +215,14 @@ export const process = (chart, config) => {
 
   let chartInstance;
   series.forEach((currSeries: any) => {
-    currSeries = skipPosition(dataDef, currSeries);
+    currSeries = skipPosition(dataMapping, currSeries);
     chartInstance = renderGemo(chart, currSeries.gemo);
     chartInstance = setSeriesPosition(chartInstance, currSeries);
     chartInstance = setSeriesAdjust(chartInstance, currSeries);
-    chartInstance = setSeriesShape(chartInstance, dataDef, currSeries);
-    chartInstance = setSeriesColor(chartInstance, dataDef, currSeries);
-    chartInstance = setSeriesOpacity(chartInstance, dataDef, currSeries);
-    chartInstance = setSeriesSize(chartInstance, dataDef, currSeries);
+    chartInstance = setSeriesShape(chartInstance, dataMapping, currSeries);
+    chartInstance = setSeriesColor(chartInstance, dataMapping, currSeries);
+    chartInstance = setSeriesOpacity(chartInstance, dataMapping, currSeries);
+    chartInstance = setSeriesSize(chartInstance, dataMapping, currSeries);
     chartInstance = setSeriesLabel(chartInstance, currSeries);
     chartInstance = setSeriesTooltip(chartInstance, currSeries);
     chartInstance = setSeriesStyle(chartInstance, currSeries);

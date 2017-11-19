@@ -3,7 +3,7 @@ import { chartData } from './data'
 
 viser({
   data: chartData,
-  dataDef: [{
+  dataMapping: [{
     dataKey: 'carat',
     mark: 'column',
   }, {

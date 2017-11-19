@@ -1,18 +1,18 @@
 import * as setCustomFormatter from './setCustomFormatter';
 import * as _ from 'lodash';
 
-function validateAxis(dataDef, oriAxis) {
+function validateAxis(dataMapping, oriAxis) {
   if (oriAxis === true) { return true; }
   const axis = Array.isArray(oriAxis) ? oriAxis : [oriAxis];
 
   const seriesKey = [];
   const newAxis = [];
 
-  for (const citem of dataDef.column) {
+  for (const citem of dataMapping.column) {
     seriesKey.push(citem);
   }
 
-  for (const ritem of dataDef.row) {
+  for (const ritem of dataMapping.row) {
     seriesKey.push(ritem);
   }
 
@@ -26,10 +26,10 @@ function validateAxis(dataDef, oriAxis) {
 }
 
 function setRotatePolarAxis(chart, config) {
-  const { coord, data, dataDef, axis } = config;
+  const { coord, data, dataMapping, axis } = config;
 
-  const colsKey = dataDef.column[0];
-  const axisTick = dataDef.scale[colsKey];
+  const colsKey = dataMapping.column[0];
+  const axisTick = dataMapping.scale[colsKey];
 
   if (!axisTick || !_.get(axisTick, 'tick.rotate')) { return; }
 
@@ -106,10 +106,10 @@ function generateAxisNameOptions(config: any) {
 }
 
 export const process = (chart, config) => {
-  const { coord, axis, series, dataDef } = config;
+  const { coord, axis, series, dataMapping } = config;
 
   if (config.axis) {
-    config.axis = validateAxis(config.dataDef, config.axis);
+    config.axis = validateAxis(config.dataMapping, config.axis);
   } else {
     config.axis = false;
   }

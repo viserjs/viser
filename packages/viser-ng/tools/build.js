@@ -45,23 +45,19 @@ async function build() {
     });
   });
 
-  await spinner('Building UMD modules', async () => {
+  await spinner('Building UMD Viser Angular', async () => {
     await exec('webpack --progress --config webpack.config.js', {
-      BABEL_ENV: 'umd',
       NODE_ENV: 'development'
     });
   });
 
-  await spinner('Building UMD Min modules', async () => {
+  await spinner('Building UMD Viser Angular Min', async () => {
     await exec('webpack --progress --config webpack.config.js', {
-      BABEL_ENV: 'umd',
       NODE_ENV: 'production'
     });
   });
 
-  const size = gzipSize.sync(
-    fs.readFileSync('umd/viser-vue.min.js')
-  );
+  const size = gzipSize.sync(fs.readFileSync('umd/viser-ng.min.js'));
 
   console.log(`gzipped, the UMD build is ${prettyBytes(size)}`);
 }
