@@ -1,7 +1,9 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
-class Props {}
+class Props {
+
+}
 
 export default class SubComponent<T = {}> extends React.Component<Props & T, any> {
   static contextTypes = {
