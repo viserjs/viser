@@ -17,6 +17,24 @@ export const data = [
   { country: 'Asia', year: '2100', value: 7268 }
 ];
 
+export const data1 = {
+  'country': ['Europe', 'Europe', 'Europe', 'Asia', 'Asia', 'Asia'],
+  'year': ['1750', '1800', '1850', '1750', '1800', '1850'],
+  'value': [163, 203, 276, 502, 635, 809],
+};
+
+export const data2 = [
+  ['country', 'Europe', 'Europe', 'Europe', 'Asia', 'Asia', 'Asia'],
+  ['year', '1750', '1800', '1850', '1750', '1800', '1850'],
+  ['value', 163, 203, 276, 502, 635, 809],
+];
+
+export const data3 = [
+  ['Europe', 'Europe', 'Europe', 'Asia', 'Asia', 'Asia'],
+  ['1750', '1800', '1850', '1750', '1800', '1850'],
+  [163, 203, 276, 502, 635, 809],
+];
+
 export const dataPre = {
   transform: {
     type: 'percent',
@@ -27,7 +45,7 @@ export const dataPre = {
   }
 };
 
-export const dataDef = [{
+export const dataMapping = [{
   dataKey: 'year',
   mark: 'column',
 }, {

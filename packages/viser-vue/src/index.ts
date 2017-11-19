@@ -31,7 +31,7 @@ const baseChartComponent = {
     width: null,
     height: null,
     data: null,
-    dataDef: null,
+    dataMapping: null,
     dataPre: null,
     crosshairs: null,
     dataKey: null,
@@ -67,13 +67,13 @@ const baseChartComponent = {
         const d2Json = {
           ...cleanUndefined({
             data: this.data,
-            dataDef: this.dataDef,
+            dataMapping: this.dataMapping,
             dataPre: this.dataPre,
             scale: this.scale
           }),
           chart: {
             container: this.$el,
-            ...cleanUndefined(normalizeProps(this._props, ['data', 'dataDef', 'dataPre', 'scale']))
+            ...cleanUndefined(normalizeProps(this._props, ['data', 'dataMapping', 'dataPre', 'scale']))
           },
           ...this.jsonForD2
         };

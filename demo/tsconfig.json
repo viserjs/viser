@@ -1,24 +1,26 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "noImplicitAny": false,
     "target": "es5",
+    "jsx": "react",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
     "removeComments": true,
     "preserveConstEnums": true,
-    "jsx": "react",
     "allowJs": true,
     "sourceMap": true,
-    "outDir": "umd",
-    "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
-    "baseUrl": "../node_modules",
-    "lib": ["es2015", "es2017", "dom"]
+    "lib": [
+      "es2015",
+      "es2017",
+      "dom"
+    ]
   },
-  "exclude": [
-    "node_modules",
-    "build"
-  ]
+  "include": [
+    "./index.ts"
+  ],
+  "exclude": ["node_modules", "build"]
 }

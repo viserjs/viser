@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "es2015",
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "outDir": "es",
     "jsx": "react",
     "noImplicitAny": false,

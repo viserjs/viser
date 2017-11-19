@@ -7,32 +7,36 @@ let config = {
   entry: './lib/index',
 
   output: {
-    filename: './umd/viser-vue.js',
-    library: 'ViserVue',
-    libraryTarget: 'umd',
+    filename: './umd/viser-ng.js',
+    library: 'ViserNg',
+    libraryTarget: 'umd'
   },
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json'],
+    extensions: ['.ts', '.tsx', '.js', '.json']
   },
 
-  externals: {
-    'vue': 'Vue',
-  },
+  externals: {},
 
   module: {
-    loaders: [{
-      test: /\.js?$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader',
-    }]
+    loaders: [
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        loaders: [
+          {
+            loader: 'ts-loader'
+          }
+        ]
+      }
+    ]
   },
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(env),
-    }),
-  ],
+      'process.env.NODE_ENV': JSON.stringify(env)
+    })
+  ]
 };
 
 if (env === 'production') {
@@ -42,22 +46,20 @@ if (env === 'production') {
         pure_getters: true,
         unsafe: true,
         unsafe_comps: true,
-        warnings: false,
+        warnings: false
       },
       output: {
-        comments: false,
+        comments: false
       },
-      sourceMap: false,
+      sourceMap: false
     })
   );
 
-  config.output.filename = './umd/viser-vue.min.js';
+  config.output.filename = './umd/viser-ng.min.js';
 }
 
 if (env === 'analyse') {
-  config.plugins.push(
-    new BundleAnalyzerPlugin()
-  );
+  config.plugins.push(new BundleAnalyzerPlugin());
 }
 
 module.exports = config;

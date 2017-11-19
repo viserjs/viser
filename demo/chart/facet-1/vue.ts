@@ -1,13 +1,13 @@
 import Vue from 'vue/dist/vue.esm.js'
 import ViserVue from '../../../packages/viser-vue/src'
-import { chartData, dataDef, scale } from './data'
+import { chartData, dataMapping, scale } from './data'
 
 Vue.use(ViserVue)
 
 const container = document.createElement('div')
 container.innerHTML = `
   <div>
-    <v-chart :force-fit="true" :height="600" :data="chartData" :data-def="dataDef" :scale="scale">
+    <v-chart :force-fit="true" :height="600" :data="chartData" :data-mapping="dataMapping" :scale="scale">
       <v-facet :type="'rect'" :fields="['cut', 'clarity']">
         <v-facet-view>
           <v-axis />
@@ -24,7 +24,7 @@ new Vue({
   el: container,
   data: {
     chartData,
-    dataDef,
+    dataMapping,
     scale,
   },
   methods: {
