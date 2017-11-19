@@ -42,6 +42,10 @@ class CommonChart {
     chart && chart.destroy();
   }
 
+  public clear(chart) {
+    chart && chart.clear();
+  }
+
   public createView(chart, config) {
     const view = chart.view();
 
