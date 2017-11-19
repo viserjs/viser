@@ -295,11 +295,16 @@ export default class Chart extends React.Component<ChartProps, any> {
 
   componentDidMount() {
     this.createChartInstance(this.config);
+    this.clearConfigData();
   }
 
-  componentDidUpdate() {
-    this.clearConfigData();
+  componentDidUpdate(props) {
     this.repaintChartInstance(this.config);
+    this.clearConfigData();
+  }
+
+  componentWillReceiveProps() {
+
   }
 
   componentWillUnmount() {
