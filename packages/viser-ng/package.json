@@ -33,7 +33,7 @@
     "@angular/compiler-cli": "^4.0.1",
     "@angular/core": "^4.0.1",
     "@types/core-js": "*",
-    "@types/node": "7.0.7",
+    "@types/node": "*",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-dev-expression": "^0.2.1",

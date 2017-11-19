@@ -7,10 +7,11 @@ Vue.use(ViserVue)
 const container = document.createElement('div')
 container.innerHTML = `
   <div>
-    <v-chart :force-fit="true" :height="400" :data="data" :data-pre="dataPre" :data-mapping="dataMapping" :scale="scale">
+    <button v-on:click="handleClick">Click</button>
+    <v-chart :force-fit="true" :height="height" :data="data" :data-pre="dataPre" :data-mapping="dataMapping" :scale="scale">
       <v-tooltip />
       <v-axis />
-      <v-stack-bar :v-style="{ stroke: '#fff', lineWidth: 1 }" />
+      <v-stack-bar :v-style="stackBarStyle" />
     </v-chart>
   </div>
 `;
@@ -23,8 +24,16 @@ new Vue({
     dataMapping,
     dataPre,
     scale,
+    height: 400,
+    stackBarStyle: {
+      stroke: '#fff',
+      lineWidth: 1
+    }
   },
   methods: {
-
+    handleClick: function () {
+      this.height = 600
+      this.stackBarStyle.lineWidth = 10
+    }
   }
 });

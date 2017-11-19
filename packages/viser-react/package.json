@@ -29,7 +29,7 @@
     "viser": "^0.2.0"
   },
   "devDependencies": {
-    "@types/node": "^8.0.53",
+    "@types/node": "*",
     "@types/prop-types": "*",
     "@types/react": "*",
     "@types/react-dom": "*",
