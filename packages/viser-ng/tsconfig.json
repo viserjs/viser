@@ -3,10 +3,11 @@
     "module": "es2015",
     "moduleResolution": "node",
     "outDir": "es",
-    "jsx": "react",
     "noImplicitAny": false,
     "removeComments": true,
     "preserveConstEnums": true,
+    "experimentalDecorators": true,
+    "allowJs": true,
     "sourceMap": true
   },
   "include": [

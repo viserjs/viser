@@ -1,17 +1,20 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import SubComponent from './components/SubComponent';
+
 import { default as SeriesProps } from './types/Series';
 import { default as AxisProps } from './types/Axis';
 import { default as CoordProps } from './types/Coord';
 import { default as TooltipProps } from './types/Tooltip';
 import { default as LegendProps } from './types/Legend';
 import { default as GuideProps } from './types/Guide';
+import { default as LiteProps } from './types/Lite';
 
 export { default as Chart } from './components/Chart';
 export { default as View } from './components/View';
 export { default as FacetView } from './components/FacetView';
 export { default as Facet } from './components/Facet';
+export { default as LiteChart } from './components/LiteChart';
 
 export class Coord extends SubComponent<CoordProps> { displayName = 'Coord'; }
 export class Tooltip extends SubComponent<TooltipProps> { displayName = 'Tooltip'; }

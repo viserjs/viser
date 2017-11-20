@@ -1,3 +1,10 @@
+import Coord from './Coord';
+import Tooltip from './Tooltip';
+import Legend from './Legend';
+import Axis from './Axis';
+import Guide from './Guide';
+import Series from './Series';
+
 interface IBackground {
   stroke: string;
   strokeOpacity: number;
@@ -7,9 +14,10 @@ interface IBackground {
   radius: number
 }
 
-interface Chart {
+interface Lite {
   data: any;
   dataMapping: object[];
+  gemo: string;
   dataPre?: {
     connector?: string;
     source?: any;
@@ -23,7 +31,12 @@ interface Chart {
   plotBackground?: IBackground;
   padding?: number | object | number[];
   scale?: object[];
-  dataView?: string;
+  coord?: Coord;
+  tooltip?: boolean | Tooltip;
+  legend?: boolean | Legend;
+  axis?: boolean | Axis;
+  guide?: Guide;
+  series?: Series;
 }
 
-export default Chart;
+export default Lite;
