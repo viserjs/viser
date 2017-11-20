@@ -2,7 +2,7 @@ import { NgModule, Component } from '@angular/core';
 import { Chart } from './component';
 
 const subComponents = [
-  'Coord',
+ 'Coord',
  'Tooltip',
  'Legend',
  'Guide',
