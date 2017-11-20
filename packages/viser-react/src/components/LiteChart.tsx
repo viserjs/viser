@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as PropTypes from 'prop-types';
+import { default as LiteProps } from '../types/Lite';
 import viser from 'viser';
 
 const isReact16 = ReactDOM.createPortal !== undefined;
@@ -8,12 +9,6 @@ const isReact16 = ReactDOM.createPortal !== undefined;
 const createPortal: any = isReact16
   ? ReactDOM.createPortal
   : ReactDOM.unstable_renderSubtreeIntoContainer;
-
-function firstLowerCase(str) {
-  return str.replace(/^\S/, (s: any) => {
-    return s.toLowerCase();
-  });
-}
 
 function omit(obj, attr) {
   const newObj = {};
@@ -36,7 +31,7 @@ function omit(obj, attr) {
 
 class Props {}
 
-export default class LiteChart<T = {}> extends React.Component<Props & T, any> {
+export default class LiteChart extends React.Component<LiteProps, any> {
   chart: any;
   elm: any;
   container: any;
@@ -85,14 +80,20 @@ export default class LiteChart<T = {}> extends React.Component<Props & T, any> {
 
     if (props.tooltip) {
       config.tooltip = props.tooltip;
+    } else {
+      config.tooltip = true;
     }
 
     if (props.legend) {
       config.legend = props.legend;
+    } else {
+      config.legend = true;
     }
 
     if (props.axis) {
       config.axis = props.axis;
+    } else {
+      config.axis = true;
     }
 
     if (props.guide) {
@@ -101,13 +102,19 @@ export default class LiteChart<T = {}> extends React.Component<Props & T, any> {
 
     const displayName = this.displayName;
 
-    if (!config.series) {
-      config.series = [];
+    if (props.gemo) {
+      config.series = {
+        quickType: props.gemo,
+      };
     }
 
-    config.series.push({
-      quickType: firstLowerCase(displayName),
-    });
+    if (props.series) {
+      const series = Array.isArray(props.series) ? props.series[0] : props.series;
+      config.series = {
+        ...config.series,
+        ...series,
+      };
+    }
 
     return config;
   }
