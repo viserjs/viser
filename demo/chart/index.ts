@@ -19,4 +19,19 @@ export default [{
 }, {
   type: 'scatter-1',
   case: ['json', 'react', 'vue'],
+}, {
+  type: 'rose-1',
+  case: ['json', 'react', 'vue'],
+}, {
+  type: 'funnel-1',
+  case: ['json', 'react', 'vue'],
+}, {
+  type: 'sankey-1',
+  case: ['json', 'react', 'vue'],
+}, {
+  type: 'treemap-1',
+  case: ['json', 'react', 'vue'],
+}, {
+  type: 'radialBar-1',
+  case: ['json', 'react', 'vue'],
 }];
