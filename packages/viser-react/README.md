@@ -65,10 +65,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Chart width={800} height={400} data={data} dataPre={dataPre} dataDef={dataDef}>
-          <SmoothLine />
-          <Point size={4} style={{ stroke: '#fff', lineWidth: 1 }} />
-          <Tooltip crosshairs={{ type: 'line' }} />
+        <Chart forceFit height={400} data={data} dataPre={dataPre} dataMapping={dataMapping} scale={scale}>
+          <StackBar style={{ stroke: '#fff', lineWidth: 1 }} />
+          <Tooltip />
           <Legend />
           <Axis />
         </Chart>
