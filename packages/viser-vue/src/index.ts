@@ -63,6 +63,10 @@ const baseChartComponent = {
      */
     findNearestRootComponent(componentInstance) {
       if (componentInstance.isViser && rootCharts.concat(['v-views', 'v-facet', 'v-facet-view']).indexOf(componentInstance.$options._componentTag) > -1) {
+        if (componentInstance.$options._componentTag === 'v-lite-chart') {
+          throw Error('v-lite-chart should be no child elements.')
+        }
+
         return componentInstance;
       }
       if (componentInstance.$parent) {
