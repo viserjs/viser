@@ -1,4 +1,6 @@
 import list from './chart/index';
+import Vue from 'vue';
+import ViserVue from '../packages/viser-vue/src'
 
 function fetchData(state) {
   const type = state.type;
@@ -13,10 +15,23 @@ function fetchData(state) {
   if (['json', 'react', 'vue', 'angular'].indexOf(fileName) > -1) {
     if (fileName === 'react') {
       delete require.cache[`./chart/${type}/${fileName}.tsx`];
+      require(`./chart/${type}/${fileName}`);
     } else {
       delete require.cache[`./chart/${type}/${fileName}.ts`];
+      require(`./chart/${type}/${fileName}`);
     }
-    require(`./chart/${type}/${fileName}`);
+
+    if (fileName === 'vue') {
+      const App = require(`./chart/${type}/${fileName}.vue`).default;
+      const container = document.createElement('div')
+      document.getElementById('mount').appendChild(container)
+      Vue.use(ViserVue)
+      new Vue({
+        el: container,
+        template: '<App />',
+        components: { App }
+      });
+    }
   }
 }
 

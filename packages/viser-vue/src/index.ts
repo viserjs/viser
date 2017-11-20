@@ -6,6 +6,12 @@ const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area',
   'funnel', 'pyramid', 'radialbar', 'schema', 'box', 'candle', 'polygon', 'contour',
   'heatmap', 'edge'];
 
+const rootCharts = ['v-chart', 'v-lite-chart']
+
+const rootChartProps = ['data', 'dataMapping', 'dataPre', 'scale']
+
+const seriesProps = ['position', 'quickType', 'gemo', 'adjust', 'color', 'shape', 'size', 'opacity', 'label', 'tooltip', 'style']
+
 const camelCase: any = (() => {
   const DEFAULT_REGEX = /[-_]+(.)?/g;
 
@@ -47,14 +53,20 @@ const baseChartComponent = {
     type: null,
     scale: null,
     forceFit: null,
-    fields: null
+    fields: null,
+
+    stackBar: null
   },
   methods: {
     /**
      * find nearest parent rechart component
      */
     findNearestRootComponent(componentInstance) {
-      if (componentInstance.isViser && ['v-chart', 'v-views', 'v-facet', 'v-facet-view'].indexOf(componentInstance.$options._componentTag) > -1) {
+      if (componentInstance.isViser && rootCharts.concat(['v-views', 'v-facet', 'v-facet-view']).indexOf(componentInstance.$options._componentTag) > -1) {
+        if (componentInstance.$options._componentTag === 'v-lite-chart') {
+          throw Error('v-lite-chart should be no child elements.')
+        }
+
         return componentInstance;
       }
       if (componentInstance.$parent) {
@@ -63,7 +75,7 @@ const baseChartComponent = {
       return null;
     },
     freshChart(isUpdate: boolean) {
-      if (this.$options._componentTag === 'v-chart') { // hit top
+      if (rootCharts.indexOf(this.$options._componentTag) > -1) { // hit top
         const d2Json = {
           ...cleanUndefined({
             data: this.data,
@@ -73,10 +85,27 @@ const baseChartComponent = {
           }),
           chart: {
             container: this.$el,
-            ...cleanUndefined(normalizeProps(this._props, ['data', 'dataMapping', 'dataPre', 'scale']))
+            ...cleanUndefined(normalizeProps(this._props, null, rootChartProps))
           },
           ...this.jsonForD2
         };
+
+        // liteChart handle tag-props
+        if (this.$options._componentTag === 'v-lite-chart') {
+          const existProps = cleanUndefined(this._props)
+          Object.keys(existProps).forEach(propsKey => {
+            const lowerCasePropsKey = propsKey.toLowerCase()
+            if (regSeries.indexOf(lowerCasePropsKey) > -1) {
+              safePush(d2Json, 'series', {
+                quickType: propsKey,
+                ...normalizeProps(existProps, seriesProps)
+              });
+            }
+          })
+          setIfNotExist(d2Json, 'axis', true)
+          setIfNotExist(d2Json, 'legend', true)
+          setIfNotExist(d2Json, 'tooltip', true)
+        }
 
         if (!isUpdate) {
           this.chart = viser(d2Json);
@@ -161,6 +190,7 @@ export default {
     Vue.component('v-stack-bar', baseChartComponent)
     Vue.component('v-facet', baseChartComponent)
     Vue.component('v-facet-view', baseChartComponent)
+    Vue.component('v-lite-chart', baseChartComponent)
   }
 };
 
@@ -188,14 +218,16 @@ function oneObjectMoreArray(obj, key, value) {
 }
 
 function cleanUndefined(value) {
+  const newValue = { ...value };
+
   // delete value's undefined key
-  for (const key in value) {
-    if (value[key] === undefined) {
-      delete value[key];
+  for (const key in newValue) {
+    if (newValue[key] === undefined) {
+      delete newValue[key];
     }
   }
 
-  return value;
+  return newValue;
 }
 
 function isAllUndefined(value) {
@@ -211,7 +243,7 @@ function camelize(str) {
 /**
  * special props for vue
  */
-function normalizeProps(props, expect: string[] = []) {
+function normalizeProps(props, include: string[] = null, expect: string[] = null) {
   const newProps = { ...props };
 
   if (newProps.vStyle) {
@@ -219,9 +251,25 @@ function normalizeProps(props, expect: string[] = []) {
     delete newProps.vStyle;
   }
 
-  expect.forEach(each => {
-    delete newProps[each]
-  })
+  if (expect !== null) {
+    expect.forEach(propsKey => {
+      delete newProps[propsKey]
+    })
+  }
+
+  if (include !== null) {
+    Object.keys(newProps).forEach(propsKey => {
+      if (include.indexOf(propsKey) === -1) {
+        delete newProps[propsKey]
+      }
+    })
+  }
 
   return newProps;
+}
+
+function setIfNotExist(obj: any, key: string, value: any) {
+  if (!obj[key]) {
+    obj[key] = value
+  }
 }
