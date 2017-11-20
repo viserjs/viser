@@ -1,16 +1,10 @@
 import viser from '../../../packages/viser/src/index';
 
-import { data, dataDef } from './data';
+import { data, dataMapping } from './data';
 
 viser({
-  chart: {
-    id: 'mount',
-    width: 300,
-    height: 300,
-    type: 'commonChart',
-  },
   data,
-  dataDef,
+  dataMapping,
   coord: {
     // type: 'theta',
     radius: 1, // 外半径
@@ -29,4 +23,10 @@ viser({
     quickType: 'pie',
     label: true,
   }],
+  chart: {
+    id: 'mount',
+    width: 300,
+    height: 300,
+    type: 'commonChart',
+  },
 });

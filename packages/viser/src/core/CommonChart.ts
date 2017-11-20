@@ -232,7 +232,6 @@ class CommonChart {
     this.setFacet(chart, config);
 
     this.oriConfig = config;
-    console.log(config);
     chart.render();
   }
 

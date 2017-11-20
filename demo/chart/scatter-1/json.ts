@@ -1,10 +1,10 @@
 import viser from '../../../packages/viser/src/index';
 
-import { data, dataDef } from './data'
+import { data, dataMapping } from './data'
 
 viser({
   data,
-  dataDef,
+  dataMapping,
   tooltip: true,
   legend: {
     dataKey: 'gender',

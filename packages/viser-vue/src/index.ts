@@ -47,9 +47,7 @@ const baseChartComponent = {
     type: null,
     scale: null,
     forceFit: null,
-    fields: null,
-    radius: null,
-    innerRadius: null,
+    fields: null
   },
   methods: {
     /**

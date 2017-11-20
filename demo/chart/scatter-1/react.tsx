@@ -1,7 +1,7 @@
 import { Chart, Tooltip, Axis, Legend, Point, Series } from '../../../packages/viser-react/src/index';
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
-import { data, dataDef } from './data'
+import { data, dataMapping } from './data'
 
 class App extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Chart forceFit height={400} data={data} dataDef={dataDef}>
+        <Chart forceFit height={400} data={data} dataMapping={dataMapping}>
           <Tooltip />
           <Axis dataKey={'weight'} show={true} position={'left'}/>
           <Axis dataKey={'height'} show={true} position={'bottom'}/>

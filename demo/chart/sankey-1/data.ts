@@ -133,16 +133,16 @@ export const dataPre = {
   },
 };
 
-export const dataDef = [
+export const dataMapping = [
   {
-    key: 'x',
+    dataKey: 'x',
     mark: 'column',
     scale: {
       sync: true
     }
   },
   {
-    key: 'y',
+    dataKey: 'y',
     mark: 'row',
     scale: {
       sync: true

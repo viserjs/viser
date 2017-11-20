@@ -1,10 +1,10 @@
 import viser from '../../../packages/viser/src/index';
 
-import { data, dataDef, dataPre } from './data';
+import { data, dataMapping, dataPre } from './data';
 viser({
   data,
   dataPre,
-  dataDef,
+  dataMapping,
   dataView: 'edges',
   series: [{
     position: 'x*y',
@@ -18,25 +18,19 @@ viser({
     tooltip: 'value',
   }],
   views: [{
-    viewId: 1,
+    viewId: 3,
     dataView: 'nodes',
-    dataDef: [
+    dataMapping: [
       {
-        key: 'x',
+        dataKey: 'x',
         mark: 'column',
-        scale: {
-          sync: true
-        }
       },
       {
-        key: 'y',
+        dataKey: 'y',
         mark: 'row',
-        scale: {
-          sync: true
-        }
       },
       {
-        key: 'name',
+        dataKey: 'name',
         mark: 'color',
       },
     ],
@@ -54,8 +48,8 @@ viser({
           textAlign: 'left'
         },
         offset: 0,
-      },
-    }]
+      }
+    }],
   }],
   chart: {
     id: 'mount',

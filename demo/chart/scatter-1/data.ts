@@ -10,7 +10,7 @@ export const data = [
   {gender: 'male', height: 188.2, weight: 72.3, value: 2},
 ];
 
-export const dataDef = [
+export const dataMapping = [
   {
     dataKey: 'gender',
     mark: 'color',

@@ -27,7 +27,7 @@ export const dataPre = {
   }
 };
 
-export const dataDef = [{
+export const dataMapping = [{
   dataKey: 'year',
   mark: 'column',
 }, {

@@ -7,14 +7,12 @@ export const data = [
   { area: '北美', profit: 7860 * 0.265 },
 ];
 
-export const dataDef = [
+export const dataMapping = [
   {
     dataKey: 'area',
     mark: ['column', 'color'],
-    scale: {},
   }, {
     dataKey: 'profit',
     mark: 'row',
-    scale: {},
   }
 ];

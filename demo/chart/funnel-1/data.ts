@@ -6,7 +6,7 @@ export const data = [
   { value: 20, name: '订单'}
 ];
 
-export const dataDef = [
+export const dataMapping = [
   {
     dataKey: 'name',
     mark: ['color', 'column'],

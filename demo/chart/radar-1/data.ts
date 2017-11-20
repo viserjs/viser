@@ -20,7 +20,7 @@ export const dataPre = {
   }]
 };
 
-export const dataDef = [
+export const dataMapping = [
   {
     dataKey: 'item',
     mark: 'column',

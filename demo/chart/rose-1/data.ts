@@ -13,7 +13,7 @@ export const dataPre= {
   ],
 };
 
-export const dataDef = [
+export const dataMapping = [
   {
     dataKey: 'area',
     mark: ['column', 'color'],

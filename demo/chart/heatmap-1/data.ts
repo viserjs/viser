@@ -16,7 +16,7 @@ function handleRawData() {
 
 export const data = handleRawData();
 
-export const dataDef = [
+export const dataMapping = [
   {
     dataKey: 'name',
     mark: 'column',

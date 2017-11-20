@@ -226,7 +226,6 @@ export class Chart implements AfterViewInit, OnChanges {
         ...this.context.config,
         series: this.context.config.series && this.context.config.series[0]
       };
-      delete this.context.config.series;
     }
   }
 

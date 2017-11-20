@@ -1,9 +1,8 @@
 import { NgModule, Component } from '@angular/core';
 import { Chart } from './component';
-import { LiteChart } from './LiteChart';
 
 const subComponents = [
- 'Coord',
+  'Coord',
  'Tooltip',
  'Legend',
  'Guide',
@@ -111,7 +110,6 @@ class Point extends Chart {
     Facet,
     Point,
     FacetView,
-    LiteChart
   ],
   exports: [
     Chart,
@@ -124,7 +122,6 @@ class Point extends Chart {
     Facet,
     Point,
     FacetView,
-    LiteChart
   ]
 })
 export class ViserModule {

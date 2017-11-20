@@ -1,11 +1,11 @@
 import viser from '../../../packages/viser/src/index';
 
-import { data, dataDef, dataPre } from './data';
+import { data, dataMapping, dataPre } from './data';
 
 export default viser({
   data,
   dataPre,
-  dataDef,
+  dataMapping,
   coord: {
     type: 'polar',
     direction: 'rotate',

@@ -1,11 +1,11 @@
 import viser from '../../../packages/viser/src/index';
 
-import { data, dataDef, dataPre } from './data';
+import { data, dataMapping, dataPre } from './data';
 
 
 viser({
   data,
-  dataDef,
+  dataMapping,
   dataPre,
   coord: {
     type: 'polar',

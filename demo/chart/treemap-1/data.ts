@@ -31,7 +31,7 @@ export const dataPre = {
   },
 };
 
-export const dataDef = [
+export const dataMapping = [
   {
     dataKey: 'x',
     mark: 'column',
