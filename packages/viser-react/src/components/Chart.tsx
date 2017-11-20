@@ -16,18 +16,31 @@ function firstLowerCase(str) {
   });
 }
 
-function omit(obj, attr) {
-  const newObj = {};
+function retain(obj, attr) {
+  const newObj = Object.create(null);
 
   for (const item in obj) {
     if (obj.hasOwnProperty(item)) {
       const arrAttr = Array.isArray(attr) ? attr : [attr];
 
-      // tslint:disable-next-line:prefer-for-of
-      for (let i = 0; i < arrAttr.length; i++) {
-        if (arrAttr[i] !== item) {
-          newObj[item] = obj[item];
-        }
+      if (arrAttr.indexOf(item) >= 0) {
+        newObj[item] = obj[item];
+      }
+    }
+  }
+
+  return newObj;
+}
+
+function omit(obj, attr) {
+  const newObj = Object.create(null);
+
+  for (const item in obj) {
+    if (obj.hasOwnProperty(item)) {
+      const arrAttr = Array.isArray(attr) ? attr : [attr];
+
+      if (arrAttr.indexOf(item) < 0) {
+        newObj[item] = obj[item];
       }
     }
   }
@@ -66,22 +79,16 @@ export default class Chart extends React.Component<ChartProps, any> {
     return {
       centralizedUpdates: this.centralizedUpdates,
       hasInViews: false,
-      viewType: 'view'
+      viewType: 'view',
     };
   }
 
   combineChartConfig(props, config) {
-    const chartOmit = [
-      'data',
-      'dataMapping',
-      'dataView',
-      'dataPre',
-      'children',
-      'container',
-      'id',
-      'scale'
+    const chartRetain = [
+      'height', 'width', 'animate', 'forceFit',
+      'background', 'plotBackground', 'padding',
     ];
-    config.chart = omit(props, chartOmit);
+    config.chart = retain(props, chartRetain);
   }
 
   combineViewConfig(props, config) {
