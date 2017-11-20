@@ -18,6 +18,7 @@ module.exports = {
       'viser-vue': path.resolve(__dirname, '../packages/viser-vue/src/index'),
       'viser-ng': path.resolve(__dirname, '../packages/viser-ng/src/index'),
     },
+    modules: [path.resolve(__dirname, '../packages/viser-ng/node_modules'), 'node_modules']
   },
   module: {
     loaders: [
