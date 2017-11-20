@@ -1,4 +1,6 @@
 import list from './chart/index';
+import Vue from 'vue';
+import ViserVue from '../packages/viser-vue/src'
 
 function fetchData(state) {
   const type = state.type;
@@ -16,7 +18,18 @@ function fetchData(state) {
     } else {
       delete require.cache[`./chart/${type}/${fileName}.ts`];
     }
-    require(`./chart/${type}/${fileName}`);
+
+    if (fileName === 'vue') {
+      const App = require(`./chart/${type}/${fileName}.vue`).default;
+      const container = document.createElement('div')
+      document.getElementById('mount').appendChild(container)
+      Vue.use(ViserVue)
+      new Vue({
+        el: container,
+        template: '<App />',
+        components: { App }
+      });
+    }
   }
 }
 
