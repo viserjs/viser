@@ -20,6 +20,7 @@ module.exports = {
       'viser-ng': path.resolve(__dirname, '../packages/viser-ng/src/index'),
       'vue$': 'vue/dist/vue.esm.js'
     },
+    modules: [path.resolve(__dirname, '../packages/viser-ng/node_modules'), 'node_modules']
   },
   module: {
     loaders: [
