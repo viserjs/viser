@@ -169,11 +169,12 @@ export default class LiteChart extends React.Component<LiteProps, any> {
 
   componentDidMount() {
     this.createChartInstance(this.config);
+    this.clearConfigData();
   }
 
   componentDidUpdate() {
-    this.clearConfigData();
     this.repaintChartInstance(this.config);
+    this.clearConfigData();
   }
 
   componentWillUnmount() {
