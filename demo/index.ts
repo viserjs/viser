@@ -15,8 +15,10 @@ function fetchData(state) {
   if (['json', 'react', 'vue', 'angular'].indexOf(fileName) > -1) {
     if (fileName === 'react') {
       delete require.cache[`./chart/${type}/${fileName}.tsx`];
+      require(`./chart/${type}/${fileName}`);
     } else {
       delete require.cache[`./chart/${type}/${fileName}.ts`];
+      require(`./chart/${type}/${fileName}`);
     }
 
     if (fileName === 'vue') {

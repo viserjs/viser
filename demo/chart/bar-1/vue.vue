@@ -6,6 +6,7 @@
       <v-axis />
       <v-stack-bar :v-style="stackBarStyle" />
     </v-chart>
+    <v-lite-chart :stack-bar="true" :height="400" :data="data" :data-pre="dataPre" :dataMapping="dataMapping" :forceFit="true" />
   </div>
 </template>
 
