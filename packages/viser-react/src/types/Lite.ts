@@ -17,7 +17,6 @@ interface IBackground {
 interface Lite {
   data: any;
   dataMapping: object[];
-  gemo: string;
   dataPre?: {
     connector?: string;
     source?: any;
@@ -37,6 +36,29 @@ interface Lite {
   axis?: boolean | Axis;
   guide?: Guide;
   series?: Series;
+  pie?: boolean;
+  sector?: boolean;
+  line?: boolean;
+  smoothLine?: boolean;
+  dashLine?: boolean;
+  area?: boolean;
+  stackArea?: boolean;
+  smoothArea?: boolean;
+  bar?: boolean;
+  stackBar?: boolean;
+  dodgeBar?: boolean;
+  point?: boolean;
+  waterfall?: boolean;
+  funnel?: boolean;
+  pyramid?: boolean;
+  radialBar?: boolean;
+  schema?: boolean;
+  box?: boolean;
+  candle?: boolean;
+  polygon?: boolean;
+  contour?: boolean;
+  heatmap?: boolean;
+  edge?: boolean;
 }
 
 export default Lite;

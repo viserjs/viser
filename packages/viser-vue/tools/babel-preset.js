@@ -15,12 +15,12 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   presets: [
-    [ 'env', {
+    ['env', {
       modules: building ? false : 'commonjs',
       targets: {
         browsers: ['last 2 versions']
       }
-    } ],
+    }],
   ],
   plugins: plugins,
 };
