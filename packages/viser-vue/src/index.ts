@@ -98,6 +98,9 @@ const baseChartComponent = {
               });
             }
           })
+          setIfNotExist(d2Json, 'axis', true)
+          setIfNotExist(d2Json, 'legend', true)
+          setIfNotExist(d2Json, 'tooltip', true)
         }
 
         if (!isUpdate) {
@@ -259,4 +262,10 @@ function normalizeProps(props, include: string[] = null, expect: string[] = null
   }
 
   return newProps;
+}
+
+function setIfNotExist(obj: any, key: string, value: any) {
+  if (!obj[key]) {
+    obj[key] = value
+  }
 }
