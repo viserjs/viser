@@ -107,25 +107,26 @@ export default class Chart extends React.Component<ChartProps, any> {
   }
 
   combineContentConfig(displayName, props, config) {
+    const realName = firstLowerCase(displayName);
     const nameLowerCase = displayName.toLowerCase();
 
     const regSeries = [
       'pie',
       'sector',
       'line',
-      'smoothline',
-      'dashline',
+      'smoothLine',
+      'dashLine',
       'area',
-      'stackarea',
-      'smootharea',
+      'stackArea',
+      'smoothArea',
       'bar',
-      'stackbar',
-      'dodgebar',
+      'stackBar',
+      'dodgeBar',
       'point',
       'waterfall',
       'funnel',
       'pyramid',
-      'radialbar',
+      'radialBar',
       'schema',
       'box',
       'candle',
@@ -135,16 +136,16 @@ export default class Chart extends React.Component<ChartProps, any> {
       'edge'
     ];
 
-    if (isOwnEmpty(props)) {
+    if (regSeries.indexOf(realName) < 0 && isOwnEmpty(props)) {
       config[nameLowerCase] = true;
-    } else if (regSeries.indexOf(nameLowerCase) >= 0) {
+    } else if (regSeries.indexOf(realName) >= 0) {
       if (!config.series) {
         config.series = [];
       }
 
       config.series.push({
-        quickType: firstLowerCase(displayName),
-        ...props
+        quickType: realName,
+        ...props,
       });
     } else if (nameLowerCase === 'axis') {
       if (!config.axis) {

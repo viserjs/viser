@@ -10,18 +10,15 @@ const createPortal: any = isReact16
   ? ReactDOM.createPortal
   : ReactDOM.unstable_renderSubtreeIntoContainer;
 
-function omit(obj, attr) {
-  const newObj = {};
+function retain(obj, attr) {
+  const newObj = Object.create(null);
 
   for (const item in obj) {
     if (obj.hasOwnProperty(item)) {
       const arrAttr = Array.isArray(attr) ? attr : [attr];
 
-      // tslint:disable-next-line:prefer-for-of
-      for (let i = 0; i < arrAttr.length; i++) {
-        if (arrAttr[i] !== item) {
-          newObj[item] = obj[item];
-        }
+      if (arrAttr.indexOf(item) >= 0) {
+        newObj[item] = obj[item];
       }
     }
   }
@@ -43,22 +40,14 @@ export default class LiteChart extends React.Component<LiteProps, any> {
   }
 
   combineChartConfig(props, config) {
-    const chartOmit = [
-      'data',
-      'dataMapping',
-      'dataView',
-      'dataPre',
-      'children',
-      'container',
-      'id',
-      'scale',
-      'legend',
-      'tooltip',
-      'axis',
-      'guide',
+    const chartRetain = [
+      'height', 'width', 'animate', 'forceFit',
+      'background', 'plotBackground', 'padding',
     ];
 
-    config.chart = omit(props, chartOmit);
+    config.chart = retain(props, chartRetain);
+
+    return config;
   }
 
   combineViewConfig(props, config) {
@@ -100,20 +89,44 @@ export default class LiteChart extends React.Component<LiteProps, any> {
       config.guide = props.guide;
     }
 
-    const displayName = this.displayName;
+    return config;
+  }
 
-    if (props.gemo) {
-      config.series = {
-        quickType: props.gemo,
-      };
-    }
+  combineSeriesConfig(props, config) {
+    const regSeries = [
+      'pie',
+      'sector',
+      'line',
+      'smoothLine',
+      'dashLine',
+      'area',
+      'stackArea',
+      'smoothArea',
+      'bar',
+      'stackBar',
+      'dodgeBar',
+      'point',
+      'waterfall',
+      'funnel',
+      'pyramid',
+      'radialBar',
+      'schema',
+      'box',
+      'candle',
+      'polygon',
+      'contour',
+      'heatmap',
+      'edge'
+    ];
 
-    if (props.series) {
-      const series = Array.isArray(props.series) ? props.series[0] : props.series;
-      config.series = {
-        ...config.series,
-        ...series,
-      };
+    for (const res of regSeries) {
+      if (props[res]) {
+        config.series = {
+          ...config.series,
+          quickType: res,
+        };
+        break;
+      }
     }
 
     return config;
@@ -132,6 +145,7 @@ export default class LiteChart extends React.Component<LiteProps, any> {
 
     this.combineChartConfig(this.props, this.config);
     this.combineViewConfig(this.props, this.config);
+    this.combineSeriesConfig(this.props, this.config);
 
     const root = document.createElement('div');
     this.container.appendChild(root);
@@ -153,6 +167,7 @@ export default class LiteChart extends React.Component<LiteProps, any> {
   repaintChartInstance(config) {
     this.combineChartConfig(this.props, this.config);
     this.combineViewConfig(this.props, this.config);
+    this.combineSeriesConfig(this.props, this.config);
 
     if (!isReact16) {
       createPortal(this, <div>{this.props.children}</div>, this.elm);
@@ -160,7 +175,7 @@ export default class LiteChart extends React.Component<LiteProps, any> {
       createPortal(this.props.children, this.elm);
     }
 
-    this.chart.repaint(this.config);
+    this.chart.repaint(config);
   }
 
   clearConfigData() {
