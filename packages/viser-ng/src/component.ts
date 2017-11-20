@@ -20,18 +20,31 @@ function isOwnEmpty(obj) {
   return true;
 }
 
-function omit(obj, attr) {
-  const newObj = {};
+function retain(obj, attr) {
+  const newObj = Object.create(null);
 
   for (const item in obj) {
     if (obj.hasOwnProperty(item)) {
       const arrAttr = Array.isArray(attr) ? attr : [attr];
 
-      // tslint:disable-next-line:prefer-for-of
-      for (let i = 0; i < arrAttr.length; i++) {
-        if (arrAttr[i] !== item) {
-          newObj[item] = obj[item];
-        }
+      if (arrAttr.indexOf(item) >= 0) {
+        newObj[item] = obj[item];
+      }
+    }
+  }
+
+  return newObj;
+}
+
+function omit(obj, attr) {
+  const newObj = Object.create(null);
+
+  for (const item in obj) {
+    if (obj.hasOwnProperty(item)) {
+      const arrAttr = Array.isArray(attr) ? attr : [attr];
+
+      if (arrAttr.indexOf(item) < 0) {
+        newObj[item] = obj[item];
       }
     }
   }
@@ -108,8 +121,11 @@ export class Chart implements AfterViewInit, OnChanges {
   }
 
   combineChartConfig(props, config) {
-    const chartOmit = ['data', 'dataMapping', 'dataView', 'dataPre', 'children', 'container', 'id', 'scale'];
-    config.chart = omit(props, chartOmit);
+    const chartRetain = [
+      'height', 'width', 'animate', 'forceFit',
+      'background', 'plotBackground', 'padding',
+    ];
+    config.chart = retain(props, chartRetain);
   }
 
   combineContentConfig(displayName, props, config) {
