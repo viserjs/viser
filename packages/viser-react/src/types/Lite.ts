@@ -3,6 +3,7 @@ import Tooltip from './Tooltip';
 import Legend from './Legend';
 import Axis from './Axis';
 import Guide from './Guide';
+import Series from './Series';
 
 interface IBackground {
   stroke: string;
@@ -16,6 +17,7 @@ interface IBackground {
 interface Lite {
   data: any;
   dataMapping: object[];
+  gemo: string;
   dataPre?: {
     connector?: string;
     source?: any;
@@ -34,6 +36,7 @@ interface Lite {
   legend?: boolean | Legend;
   axis?: boolean | Axis;
   guide?: Guide;
+  series?: Series;
 }
 
 export default Lite;
