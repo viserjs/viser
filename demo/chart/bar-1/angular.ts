@@ -9,11 +9,14 @@ import { data, dataMapping, dataPre, scale } from './data'
 @Component({
   selector: '#mount',
   template: `
-  <Chart [forceFit]="forceFit" [height]="height" [data]="data" [dataPre]="dataPre" [dataMapping]="dataMapping" [scale]="scale">
-    <Tooltip></Tooltip>
-    <Axis></Axis>
-    <StackBar [ngStyle]="{ stroke: '#fff', lineWidth: 1 }" ></StackBar>
-  </Chart>
+  <div>
+    <Chart [forceFit]="forceFit" [height]="height" [data]="data" [dataPre]="dataPre" [dataMapping]="dataMapping" [scale]="scale">
+      <Tooltip></Tooltip>
+      <Axis></Axis>
+      <StackBar [ngStyle]="{ stroke: '#fff', lineWidth: 1 }" ></StackBar>
+    </Chart>
+    <LiteChart gemo="stackBar" [height]="height" [data]="data" [dataMapping]="dataMapping" [forceFit]="forceFit"></LiteChart>
+  </div>
   `
 })
 
@@ -21,6 +24,7 @@ class AppComponent {
   forceFit: boolean= true;
   height: number = 400;
   data = data;
+  dataPre = dataPre;
   dataMapping = dataMapping;
   scale = scale;
   fields = ['cut', 'clarity'];
