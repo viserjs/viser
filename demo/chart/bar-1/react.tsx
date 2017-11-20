@@ -29,8 +29,7 @@ class App extends React.Component {
           <Axis />
           <StackBar style={{ stroke: '#fff', lineWidth: this.state.lineWidth }} />
         </Chart>
-        {/* <StackBarChart height={400} data={data} dataPre={dataPre} dataMapping={dataMapping} forceFit scale={scale} tooltip axis legend /> */}
-        <LiteChart gemo="stackBar" height={400} data={data} dataMapping={dataMapping} forceFit />
+        {/* <LiteChart height={400} data={data} dataPre={dataPre} dataMapping={dataMapping} forceFit stackBar /> */}
       </div>
     );
   }
