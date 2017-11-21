@@ -3,6 +3,6 @@ export interface IDataMapping {
   mark: string;
 }
 
-type IDataMappingConfig = IDataMapping & IDataMapping[];
+type IDataMappingConfig = IDataMapping | IDataMapping[];
 
 export default IDataMappingConfig;

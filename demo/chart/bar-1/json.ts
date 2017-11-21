@@ -1,13 +1,15 @@
 import viser from '../../../packages/viser/src/index';
-import { data3, dataMapping, dataPre, scale } from './data'
+import { data, dataMapping, dataPre, scale } from './data'
 
 viser({
-  data: data3,
+  data: data,
   dataPre: {
-    transform: [{
-      exchangeType: 'type-3',
-      fields: ['country', 'year', 'value'],
-    },{
+    transform: [
+    // {
+    //   exchangeType: 'type-3',
+    //   fields: ['country', 'year', 'value'],
+    // },
+    {
       type: 'percent',
       field: 'value',
       dimension: 'country',

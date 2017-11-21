@@ -29,6 +29,6 @@ export interface ISeries {
   select?: boolean;
 }
 
-type ISeriesConfig = ISeries & ISeries[];
+type ISeriesConfig = ISeries | ISeries[];
 
 export default ISeriesConfig;

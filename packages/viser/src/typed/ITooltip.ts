@@ -17,6 +17,6 @@ export interface ITooltip {
   position?: 'left' | 'right' | 'top' | 'bottom';
 }
 
-type ITooltipConfig = boolean & ITooltip;
+type ITooltipConfig = boolean | ITooltip;
 
 export default ITooltipConfig;

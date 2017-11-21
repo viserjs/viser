@@ -23,7 +23,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleClick}>Click</button>
+        {/* <button onClick={this.handleClick}>Click</button> */}
         <Chart forceFit height={this.state.height} data={data} dataPre={dataPre} dataMapping={dataMapping} scale={scale}>
           <Tooltip />
           <Axis />

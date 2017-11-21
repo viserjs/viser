@@ -81,6 +81,6 @@ export interface IArcGuide {
 }
 
 export type IGuide = ILineGuide | ITextGuide | IImageGuide | IRegionGuide | IArcGuide;
-type IGuideConfig = IGuide & IGuide[];
+type IGuideConfig = IGuide | IGuide[];
 
 export default IGuideConfig;

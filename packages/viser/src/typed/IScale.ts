@@ -54,6 +54,6 @@ export type ITimeCatScale = ILinearCommonScale &  ISTimeCatScale;
 
 export type IScale = ILinearScale | ICatScale | ILogScale | IPowScale | ITimeScale | ITimeCatScale;
 
-type IScaleConfig = IScale & IScale[];
+type IScaleConfig = IScale | IScale[];
 
 export default IScaleConfig;

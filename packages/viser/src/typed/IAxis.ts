@@ -42,6 +42,6 @@ export interface IAxis {
   tickLine?: IStyle.ILineStyle;
 }
 
-type IAxisConfig = boolean & IAxis & IAxis[];
+type IAxisConfig = boolean | IAxis | IAxis[];
 
 export default IAxisConfig;
