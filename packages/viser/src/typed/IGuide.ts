@@ -1,12 +1,12 @@
 
-import * as Style from './Style';
+import * as IStyle from './IStyle';
 
 type func = () => void;
 
 interface ILineText {
   position?: string | number | 'start' | 'center' | 'end';
   autoRotate?: number;
-  style?: Style.ILineStyle;
+  style?: IStyle.ILineStyle;
   content?: string;
   offsetX?: number;
   offsetY?: number;
@@ -18,7 +18,7 @@ export interface ILineGuide {
   zIndex?: number;
   start?: object | number[] | func;
   end?: object | number[] | func;
-  lineStyle: Style.ILineStyle;
+  lineStyle: IStyle.ILineStyle;
   text: ILineText;
 }
 
@@ -28,7 +28,7 @@ export interface ITextGuide {
   zIndex?: number;
   position: object | number[] | func;
   content?: string;
-  style?: Style.ITextStyle;
+  style?: IStyle.ITextStyle;
   offsetX?: number;
   offsetY?: number;
 }
@@ -81,6 +81,6 @@ export interface IArcGuide {
 }
 
 export type IGuide = ILineGuide | ITextGuide | IImageGuide | IRegionGuide | IArcGuide;
-type IGuideProps = IGuide & IGuide[];
+type IGuideConfig = IGuide & IGuide[];
 
-export default IGuideProps;
+export default IGuideConfig;

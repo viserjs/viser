@@ -6,6 +6,4 @@ export interface IDataPre {
   geoKey?: string;
 }
 
-type IDataPreProps = IDataPre;
-
-export default IDataPreProps;
+export default IDataPre;

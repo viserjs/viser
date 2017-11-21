@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import ShapeRegister from '../utils/ShapeRegister';
-import IShapePoints from '../typed/ShapePoints';
+import IShapePoints from '../typed/IShapePoints';
 
 const G2 = require('@antv/g2');
 

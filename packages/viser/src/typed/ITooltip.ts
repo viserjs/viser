@@ -1,8 +1,8 @@
-import * as Style from './Style';
+import * as IStyle from './IStyle';
 
 interface ICrosshairs {
   type?: 'rect' | 'x' | 'y' | 'cross',
-  style?: Style.ILineStyle;
+  style?: IStyle.ILineStyle;
 }
 
 export interface ITooltip {
@@ -17,6 +17,6 @@ export interface ITooltip {
   position?: 'left' | 'right' | 'top' | 'bottom';
 }
 
-type ITooltipProps = boolean & ITooltip;
+type ITooltipConfig = boolean & ITooltip;
 
-export default ITooltipProps;
+export default ITooltipConfig;

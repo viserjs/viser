@@ -1,16 +1,16 @@
-import * as Style from './Style';
+import * as IStyle from './IStyle';
 
 interface IColTitleProps {
   offsetY?: number;
-  style?: Style.ITextStyle;
+  style?: IStyle.ITextStyle;
 }
 
 interface IRowTitleProps {
   offsetX?: number;
-  style?: Style.ITextStyle;
+  style?: IStyle.ITextStyle;
 }
 
-export interface IFacet {
+interface IFacet {
   type: string;
   fields?: string[];
   showTitle?: boolean;
@@ -21,6 +21,4 @@ export interface IFacet {
   eachView?: (views: any, facet: any) => void;
 }
 
-type IFacetProps = IFacet;
-
-export default IFacetProps;
+export default IFacet;

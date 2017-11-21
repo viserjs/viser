@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import ShapeRegister from '../utils/ShapeRegister';
-import IShapePoints from '../typed/ShapePoints';
+import IShapePoints from '../typed/IShapePoints';
 
 const DEFAULT_RADIALBAR_SHAPE = 'radialBar';
 

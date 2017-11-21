@@ -8,6 +8,8 @@ interface IBackground {
 }
 
 export interface IChart {
+  id?: any;
+  container?: any;
   height: number;
   width?: number;
   animate?: boolean;
@@ -17,6 +19,4 @@ export interface IChart {
   padding?: number | object | number[];
 }
 
-type IChartProps = IChart;
-
-export default IChartProps;
+export default IChart;

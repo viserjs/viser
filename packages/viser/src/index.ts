@@ -1,44 +1,46 @@
 import CommonChart from './core/CommonChart';
-import IAxisProps, { IAxis } from './typed/Axis';
-import IChartProps from './typed/Chart';
-import ICoordProps, { IPolarCoord, IRectCoord } from './typed/Coord';
-import IDataMappingProps, { IDataMapping } from './typed/DataMapping';
-import IDataPreProps from './typed/DataPre';
-import IFacetProps from './typed/Facet';
-import IGuideProps, { IGuide, ILineGuide, ITextGuide, IImageGuide, IRegionGuide, IArcGuide } from './typed/Guide';
-import ILegendProps, { ILegend } from './typed/Legend';
-import ISeriesProps, { ISeries } from './typed/Series';
-import ITooltipProps, { ITooltip } from './typed/Tooltip';
-import IViewProps, { IView } from './typed/View';
-import IMainProps  from './typed/Main';
+import IAxisConfig, { IAxis } from './typed/IAxis';
+import IChart from './typed/IChart';
+import ICoord, { IPolarCoord, IRectCoord } from './typed/ICoord';
+import IDataMappingConfig, { IDataMapping } from './typed/IDataMapping';
+import IDataPre from './typed/IDataPre';
+import IFacet from './typed/IFacet';
+import IGuideConfig, { IGuide, ILineGuide, ITextGuide, IImageGuide, IRegionGuide, IArcGuide } from './typed/IGuide';
+import ILegendConfig, { ILegend } from './typed/ILegend';
+import ISeriesConfig, { ISeries } from './typed/ISeries';
+import ITooltipConfig, { ITooltip } from './typed/ITooltip';
+import IViewConfig, { IView } from './typed/IView';
+import IScale from './typed/IScale';
+import IMain from './typed/IMain';
 
 export {
   IAxis,
-  IAxisProps,
-  IChartProps,
-  ICoordProps,
+  IAxisConfig,
+  IChart,
+  ICoord,
   IRectCoord,
   IPolarCoord,
   IDataMapping,
-  IDataMappingProps,
-  IDataPreProps,
-  IFacetProps,
+  IDataMappingConfig,
+  IDataPre,
+  IFacet,
   IGuide,
-  IGuideProps,
+  IGuideConfig,
   ILineGuide,
   ITextGuide,
   IImageGuide,
   IRegionGuide,
   IArcGuide,
   ILegend,
-  ILegendProps,
+  ILegendConfig,
   ISeries,
-  ISeriesProps,
+  ISeriesConfig,
   ITooltip,
-  ITooltipProps,
+  ITooltipConfig,
   IView,
-  IViewProps,
-  IMainProps,
+  IViewConfig,
+  IScale,
+  IMain,
 };
 
 export default function(config: any) {

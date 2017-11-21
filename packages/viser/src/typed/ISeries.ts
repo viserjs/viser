@@ -1,11 +1,11 @@
-import * as Style from './Style';
+import * as IStyle from './IStyle';
 
 type func = () => void;
 
 interface ILabelSeries {
   dataKey?: string;
   offset?: number;
-  textStyle?: Style.ITextStyle;
+  textStyle?: IStyle.ITextStyle;
   callback?: func;
 }
 
@@ -29,6 +29,6 @@ export interface ISeries {
   select?: boolean;
 }
 
-type ISeriesProps = ISeries & ISeries[];
+type ISeriesConfig = ISeries & ISeries[];
 
-export default ISeriesProps;
+export default ISeriesConfig;

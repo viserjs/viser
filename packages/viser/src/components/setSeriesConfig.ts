@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import * as setQuickType from './setQuickType';
-import { ISeries } from '../typed/Series';
-import IMainProps from '../typed/Main';
+import { ISeries } from '../typed/ISeries';
+import IMainConfig from '../typed/IMain';
 
 function renderGemo(chart: any, gemo: string) {
   switch (gemo) {
@@ -199,7 +199,7 @@ function setSeriesSelect(chart: any, currSeries: ISeries) {
   return chart;
 }
 
-export const process = (chart: any, config: IMainProps) => {
+export const process = (chart: any, config: IMainConfig) => {
   if (_.isEmpty(config.series)) { return chart; }
 
   config.series = Array.isArray(config.series) ? config.series : [config.series];

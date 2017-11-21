@@ -1,5 +1,5 @@
 import ShapeRegister from '../utils/ShapeRegister';
-import IShapePoints from '../typed/ShapePoints';
+import IShapePoints from '../typed/IShapePoints';
 
 const DEFAULT_SANKEY_SHAPE = 'sankey';
 

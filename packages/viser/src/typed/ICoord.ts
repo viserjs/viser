@@ -12,6 +12,6 @@ export interface IPolarCoord {
   endAngle?: number;
 }
 
-type ICoordProps = IRectCoord | IPolarCoord;
+type ICoord = IRectCoord | IPolarCoord;
 
-export default ICoordProps;
+export default ICoord;

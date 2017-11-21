@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import IDataPreProps from '../typed/DataPre';
+import IDataPreConfig from '../typed/IDataPre';
 
 const DataSet = require('@antv/data-set');
 
@@ -238,7 +238,7 @@ function processCommonConnector(dv: any, item: any) {
   return dv;
 }
 
-export const preprocessing = (data: any, dataPre: IDataPreProps) => {
+export const preprocessing = (data: any, dataPre: IDataPreConfig) => {
   if (_.isEmpty(data)) { return []; }
   if (_.isEmpty(dataPre)) { return data; }
 
