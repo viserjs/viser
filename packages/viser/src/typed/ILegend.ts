@@ -25,6 +25,6 @@ export interface ILegend {
   onClick?: func;
 }
 
-type ILegendConfig = boolean & ILegend;
+type ILegendConfig = boolean | ILegend;
 
 export default ILegendConfig;

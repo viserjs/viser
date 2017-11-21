@@ -15,7 +15,7 @@ export default class SubComponent<T = {}> extends React.Component<Props & T, any
 
   displayName = 'SubComponent';
 
-  constructor(props) {
+  constructor(props: Props & T) {
     super(props);
   }
 
@@ -28,6 +28,6 @@ export default class SubComponent<T = {}> extends React.Component<Props & T, any
   }
 
   render() {
-    return null;
+    return null as React.ReactElement<any>;
   }
 }

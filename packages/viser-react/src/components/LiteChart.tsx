@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as PropTypes from 'prop-types';
-import { default as LiteProps } from '../types/Lite';
+import IRLiteChart from '../typed/IRLiteChart';
 import viser from 'viser';
 
 const isReact16 = ReactDOM.createPortal !== undefined;
@@ -10,7 +10,7 @@ const createPortal: any = isReact16
   ? ReactDOM.createPortal
   : ReactDOM.unstable_renderSubtreeIntoContainer;
 
-function retain(obj, attr) {
+function retain(obj: any, attr: any) {
   const newObj = Object.create(null);
 
   for (const item in obj) {
@@ -26,20 +26,18 @@ function retain(obj, attr) {
   return newObj;
 }
 
-class Props {}
-
-export default class LiteChart extends React.Component<LiteProps, any> {
+export default class LiteChart extends React.Component<IRLiteChart, any> {
   chart: any;
   elm: any;
   container: any;
   config: object = {};
   displayName: string = '';
 
-  constructor(props) {
+  constructor(props: IRLiteChart) {
     super(props);
   }
 
-  combineChartConfig(props, config) {
+  combineChartConfig(props: IRLiteChart, config: any) {
     const chartRetain = [
       'height', 'width', 'animate', 'forceFit',
       'background', 'plotBackground', 'padding',
@@ -50,7 +48,7 @@ export default class LiteChart extends React.Component<LiteProps, any> {
     return config;
   }
 
-  combineViewConfig(props, config) {
+  combineViewConfig(props: IRLiteChart, config: any) {
     if (props.data) {
       config.data = props.data;
     }
@@ -92,7 +90,7 @@ export default class LiteChart extends React.Component<LiteProps, any> {
     return config;
   }
 
-  combineSeriesConfig(props, config) {
+  combineSeriesConfig(props: IRLiteChart, config: any) {
     const regSeries = [
       'pie',
       'sector',
@@ -132,7 +130,7 @@ export default class LiteChart extends React.Component<LiteProps, any> {
     return config;
   }
 
-  createChartInstance(config) {
+  createChartInstance(config: any) {
     let elm = this.elm;
 
     if (elm) {
@@ -164,7 +162,7 @@ export default class LiteChart extends React.Component<LiteProps, any> {
     this.chart = viser(config);
   }
 
-  repaintChartInstance(config) {
+  repaintChartInstance(config: any) {
     this.combineChartConfig(this.props, this.config);
     this.combineViewConfig(this.props, this.config);
     this.combineSeriesConfig(this.props, this.config);
@@ -200,7 +198,7 @@ export default class LiteChart extends React.Component<LiteProps, any> {
     this.elm = this.container = null;
   }
 
-  portalRef = container => {
+  portalRef = (container: any) => {
     if (!this.container) {
       this.container = container;
     }
