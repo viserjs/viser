@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 
-function setHighlight(item) {
-  item.onHover = (ev) => {
+function setHighlight(item: any) {
+  item.onHover = (ev: any) => {
     const shapes = ev.shapes;
     const geom = ev.geom;
     geom.highlightShapes(shapes);
@@ -10,7 +10,7 @@ function setHighlight(item) {
   return item;
 }
 
-export const process = (chart, config) => {
+export const process = (chart: any, config: any) => {
   const legend = config.legend;
   const isArr = Array.isArray(legend);
 

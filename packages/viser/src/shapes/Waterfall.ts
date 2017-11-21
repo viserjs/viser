@@ -1,11 +1,12 @@
 import * as _ from 'lodash';
 import ShapeRegister from '../utils/ShapeRegister';
+import IShapePoints from '../typed/ShapePoints';
 
 const G2 = require('@antv/g2');
 
 const DEFAULT_WATERFALL_SHAPE = 'waterfall';
 
-function getRectPath(points) {
+function getRectPath(points: IShapePoints[]) {
   const path = [];
   for (let i = 0; i < points.length; i++) {
     const point = points[i];
@@ -21,7 +22,7 @@ function getRectPath(points) {
   return path;
 }
 
-function getFillAttrs(cfg) {
+function getFillAttrs(cfg: any) {
   const defaultAttrs = G2.Global.shape.interval;
   const attrs = G2.Util.mix({}, defaultAttrs, {
     fill: cfg.color,
@@ -31,9 +32,9 @@ function getFillAttrs(cfg) {
   return attrs;
 }
 
-export const registerShape = (config) => {
+export const registerShape = () => {
   ShapeRegister.regist('interval', DEFAULT_WATERFALL_SHAPE, {
-    drawShape(cfg, group) {
+    drawShape(cfg: any, group: any) {
       const attrs = getFillAttrs(cfg);
       let rectPath = getRectPath(cfg.points);
       rectPath = this.parsePath(rectPath);

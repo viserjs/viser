@@ -3,6 +3,8 @@
  * @description instantiation of chart, include base functions
  */
 import loadShapes from '../shapes/loadShapes';
+import IMainProps from '../typed/Main';
+import IDataMappingProps from '../typed/DataMapping';
 import * as _ from 'lodash';
 import * as DataSetUtils from '../utils/DataSetUtils';
 import * as setCoordConfig from '../components/setCoordConfig';
@@ -23,13 +25,13 @@ class CommonChart {
   config: any;
   oriConfig: any;
 
-  constructor(config: any) {
+  constructor(config: IMainProps) {
     this.config = _.cloneDeep(config);
     this.config = this.checkChartConfig(this.config);
-    const chart = this.chartInstance = new G2.Chart(this.config.chart);
+    const chart: any = this.chartInstance = new G2.Chart(this.config.chart);
   }
 
-  public checkChartConfig(config) {
+  public checkChartConfig(config: any) {
     const chart = config.chart;
     if (!chart || !chart.height) {
       throw new Error('please set correct chart option');
@@ -38,15 +40,15 @@ class CommonChart {
     return config;
   };
 
-  public destroy(chart) {
+  public destroy(chart: any) {
     chart && chart.destroy();
   }
 
-  public clear(chart) {
+  public clear(chart: any) {
     chart && chart.clear();
   }
 
-  public createView(chart, config) {
+  public createView(chart: any, config: IMainProps) {
     const view = chart.view();
 
     if (!config.viewId) {
@@ -59,8 +61,8 @@ class CommonChart {
 
   // plotenter, plotmove, plotleave, plotclick, plotdblclick
   // onClick: { 'guide-line': func, 'guide-arc': func ]
-  public setEvents(chart, config) {
-    const chartConfig = config.chart;
+  public setEvents(chart: any, config: IMainProps) {
+    const chartConfig: any = config.chart;
 
     const events = Object.keys(chartConfig).filter((entry) => /^on/.test(entry));
     const eventsRes = {};
@@ -82,48 +84,48 @@ class CommonChart {
     });
   }
 
-  public setDataSource(chart, data) {
+  public setDataSource(chart: any, data: any) {
     chart.source(data);
   }
 
-  public setScale(chart, config) {
+  public setScale(chart: any, config: IMainProps) {
     return setScaleConfig.process(chart, config);
   }
 
-  public setCoord(chart, coord) {
-    return setCoordConfig.process(chart, coord);
+  public setCoord(chart: any, config: IMainProps) {
+    return setCoordConfig.process(chart, config.coord);
   }
 
-  public setSeries(chart, config) {
+  public setSeries(chart: any, config: IMainProps) {
     return setSeriesConfig.process(chart, config);
   }
 
-  public setAxis(chart, config) {
+  public setAxis(chart: any, config: IMainProps) {
     return setAxisConfig.process(chart, config);
   }
 
-  public setLegend(chart, config) {
-    return setLengendConfig.process(chart, config);
-  }
-
-  public setTooltip(chart, config) {
+  public setTooltip(chart: any, config: IMainProps) {
     return setTooltipConfig.process(chart, config);
   }
 
-  public setGuide(chart, config) {
+  public setGuide(chart: any, config: IMainProps) {
     return setGuideConfig.process(chart, config);
   }
 
-  public setContent(chart, config) {
+  public setLegend(chart: any, config: IMainProps) {
+    return setLengendConfig.process(chart, config);
+  }
+
+  public setContent(chart: any, config: IMainProps) {
     this.setScale(chart, config);
     this.setAxis(chart, config);
     this.setSeries(chart, config);
-    this.setCoord(chart, config.coord);
+    this.setCoord(chart, config);
     this.setTooltip(chart, config);
     this.setGuide(chart, config);
   }
 
-  public setView(item, chart, config) {
+  public setView(item: any, chart: any, config: IMainProps) {
     item = setDataMappingConfig.process(item);
 
     const view = this.createView(chart, item);
@@ -146,7 +148,7 @@ class CommonChart {
     return view;
   }
 
-  public setViews(chart, config) {
+  public setViews(chart: any, config: IMainProps) {
     let views = config.views;
 
     if (_.isEmpty(views)) { return; }
@@ -158,7 +160,7 @@ class CommonChart {
     }
   }
 
-  public setFacetViews(chart, facet, views, dataMapping) {
+  public setFacetViews(chart: any, facet: any, views: IMainProps, dataMapping: IDataMappingProps) {
     let viewData = facet.data;
 
     if (!views.dataMapping) {
@@ -175,8 +177,8 @@ class CommonChart {
     this.setContent(chart, views);
   }
 
-  public setFacet(chart, config) {
-    let facet = config.facet;
+  public setFacet(chart: any, config: IMainProps) {
+    let facet: any = config.facet;
     const dataMapping = config.dataMapping;
 
     if (!facet) { return; }
@@ -188,14 +190,14 @@ class CommonChart {
     }
 
     if (_.isFunction(facet.views)) {
-      options.eachView = (v, f) => {
+      options.eachView = (v: any, f: any) => {
         const options = facet.views(v, f);
         this.setFacetViews(v, f, options, dataMapping);
       }
     } else {
       facet.views = Array.isArray(facet.views) ? facet.views : [facet.views];
 
-      options.eachView = (v, f) => {
+      options.eachView = (v: any, f: any) => {
         this.setFacetViews(v, f, facet.views[0], dataMapping);
       }
     }
@@ -209,7 +211,7 @@ class CommonChart {
     const { data, dataMapping, dataPre } = config;
     const chart = this.chartInstance;
 
-    loadShapes(config);
+    loadShapes();
     this.setEvents(chart, config);
 
     config.calData = DataSetUtils.preprocessing(data, dataPre)
@@ -235,7 +237,7 @@ class CommonChart {
     chart.render();
   }
 
-  public repaintWidthHeight(config) {
+  public repaintWidthHeight(config: IMainProps) {
     const oriConfig = this.oriConfig;
     const chart = this.chartInstance;
 
@@ -250,11 +252,11 @@ class CommonChart {
     }
   }
 
-  public repaintData(chart, oriConfig, config) {
+  public repaintData(chart: any, oriConfig: IMainProps, config: IMainProps) {
     if (!_.isEmpty(config.data) && !_.isEqual(oriConfig.data, config.data)) {
       config.calData = DataSetUtils.preprocessing(config.data, config.dataPre)
 
-      let finalData = config.calData;
+      let finalData: any = config.calData;
       if (config.dataView) {
         finalData = finalData[config.dataView];
       }
@@ -265,7 +267,7 @@ class CommonChart {
     }
   }
 
-  public repaintContent(chart, oriConfig, config) {
+  public repaintContent(chart: any, oriConfig: IMainProps, config: IMainProps) {
     config = setDataMappingConfig.process(config);
 
     this.repaintData(chart, oriConfig, config);
@@ -282,7 +284,7 @@ class CommonChart {
       this.setAxis(chart, config);
     }
 
-    if ((config.dataMapping && !_.isEqual(oriConfig.DataMapping, config.DataMapping)) ||
+    if ((config.dataMapping && !_.isEqual(oriConfig.dataMapping, config.dataMapping)) ||
         (config.series && !_.isEqual(oriConfig.series, config.series))) {
       this.setSeries(chart, config);
     }
@@ -296,12 +298,13 @@ class CommonChart {
     }
   }
 
-  public repaintViews(chart, oriConfig, config) {
-    const viewsConfig = config.views;
+  public repaintViews(chart: any, oriConfig: IMainProps, config: IMainProps) {
+    const viewsConfig: any = config.views;
+    const oViewsConfig: any = oriConfig.views
 
     if (!_.isEqual(oriConfig.views, config.views)) {
       for (let item of viewsConfig) {
-        const oriView = oriConfig.views.filter(res => (res.viewId === item.viewId));
+        const oriView = oViewsConfig.filter((res: any) => (res.viewId === item.viewId));
 
         if (oriView.length) {
           const view = this.viewInstance[item.viewId];
@@ -315,7 +318,7 @@ class CommonChart {
     }
   }
 
-  public renderDiffConfig(config) {
+  public renderDiffConfig(config: IMainProps) {
     const oriConfig = this.oriConfig;
     const viewsConfig = config.views;
     const chart = this.chartInstance;
@@ -354,7 +357,7 @@ class CommonChart {
     }
   }
 
-  public repaint(config) {
+  public repaint(config: IMainProps) {
     if (_.isEmpty(config)) { return; }
 
     config = _.cloneDeep(config);

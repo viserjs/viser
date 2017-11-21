@@ -169,10 +169,10 @@ const QUICK_TYPE = [
   },
 ];
 
-export const process = (config) => {
+export const process = (config: any) => {
   const series = config.series;
   const coord = config.coord;
-  const quickType = {};
+  const quickType: any = {};
 
   for (const item of QUICK_TYPE) {
     quickType[item.type] = item;

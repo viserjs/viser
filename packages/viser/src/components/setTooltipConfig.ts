@@ -1,4 +1,4 @@
-export const process = (chart, config) => {
+export const process = (chart: any, config: any) => {
   const tooltip = config.tooltip;
 
   if (!tooltip || tooltip === false) {

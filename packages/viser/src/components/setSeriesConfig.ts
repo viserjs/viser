@@ -1,11 +1,9 @@
 import * as _ from 'lodash';
 import * as setQuickType from './setQuickType';
+import { ISeries } from '../typed/Series';
+import IMainProps from '../typed/Main';
 
-function isFunction(fn) {
-  return Object.prototype.toString.call(fn) === '[object Function]';
-}
-
-function renderGemo(chart, gemo) {
+function renderGemo(chart: any, gemo: string) {
   switch (gemo) {
     case 'line':
       chart = chart.line();
@@ -42,7 +40,7 @@ function renderGemo(chart, gemo) {
   return chart;
 }
 
-function skipPosition(dataMapping, currSeries) {
+function skipPosition(dataMapping: any, currSeries: ISeries) {
   if (!currSeries.position && dataMapping.column && dataMapping.row) {
     if (currSeries.quickType === 'pie') {
       currSeries.position = `${dataMapping.row[0]}`;
@@ -54,11 +52,11 @@ function skipPosition(dataMapping, currSeries) {
   return currSeries;
 }
 
-function setSeriesPosition(chart, currSeries) {
+function setSeriesPosition(chart: any, currSeries: ISeries) {
   return chart.position(currSeries.position);
 }
 
-function setSeriesAdjust(chart, currSeries) {
+function setSeriesAdjust(chart: any, currSeries: ISeries) {
   const adjust = currSeries.adjust;
 
   if (!_.isEmpty(adjust)) { return chart.adjust(adjust); }
@@ -66,7 +64,7 @@ function setSeriesAdjust(chart, currSeries) {
   return chart;
 }
 
-function setSeriesShape(chart, dataMapping, currSeries) {
+function setSeriesShape(chart: any, dataMapping: any, currSeries: ISeries) {
   const dim = dataMapping.shape;
   const shape = currSeries.shape;
 
@@ -81,7 +79,7 @@ function setSeriesShape(chart, dataMapping, currSeries) {
   return chart;
 }
 
-function setSeriesColor(chart, dataMapping, currSeries) {
+function setSeriesColor(chart: any, dataMapping: any, currSeries: ISeries) {
   const color = _.get(currSeries, 'color');
   const dim = dataMapping.color;
 
@@ -96,7 +94,7 @@ function setSeriesColor(chart, dataMapping, currSeries) {
   return chart;
 }
 
-function setSeriesSize(chart, dataMapping, currSeries) {
+function setSeriesSize(chart: any, dataMapping: any, currSeries: ISeries) {
   const dim = dataMapping.size;
   const size = currSeries.size;
 
@@ -111,7 +109,7 @@ function setSeriesSize(chart, dataMapping, currSeries) {
   return chart;
 }
 
-function setSeriesOpacity(chart, dataMapping, currSeries) {
+function setSeriesOpacity(chart: any, dataMapping: any, currSeries: ISeries) {
   const dim = dataMapping.opacity;
   const opacity = currSeries.opacity;
 
@@ -126,7 +124,7 @@ function setSeriesOpacity(chart, dataMapping, currSeries) {
   return chart;
 }
 
-function setSeriesLabel(chart, currSeries) {
+function setSeriesLabel(chart: any, currSeries: ISeries) {
   const label = currSeries.label;
 
   if (!_.isEmpty(label)) {
@@ -143,7 +141,7 @@ function setSeriesLabel(chart, currSeries) {
   return chart;
 }
 
-function setSeriesStyle(chart, currSeries) {
+function setSeriesStyle(chart: any, currSeries: ISeries) {
   const style = currSeries.style;
 
   if (!_.isEmpty(style)) {
@@ -159,10 +157,10 @@ function setSeriesStyle(chart, currSeries) {
   return chart;
 }
 
-function setSeriesTooltip(chart, currSeries) {
+function setSeriesTooltip(chart: any, currSeries: ISeries) {
   const tooltip = currSeries.tooltip;
 
-  if (tooltip === false) {
+  if (typeof tooltip === 'boolean') {
     return chart.tooltip(false);
   }
 
@@ -183,7 +181,7 @@ function setSeriesTooltip(chart, currSeries) {
   return chart;
 }
 
-function setSeriesSelect(chart, currSeries) {
+function setSeriesSelect(chart: any, currSeries: ISeries) {
   const select = currSeries.select;
 
   if (select === false) {
@@ -201,7 +199,7 @@ function setSeriesSelect(chart, currSeries) {
   return chart;
 }
 
-export const process = (chart, config) => {
+export const process = (chart: any, config: IMainProps) => {
   if (_.isEmpty(config.series)) { return chart; }
 
   config.series = Array.isArray(config.series) ? config.series : [config.series];
