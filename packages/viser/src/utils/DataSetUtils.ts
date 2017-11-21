@@ -251,7 +251,7 @@ export const preprocessing = (data: any, dataPre: IDataPreConfig) => {
 
   let transform = dataPre.transform as any;
 
-  dataPre.transform  = Array.isArray(transform) ? transform : [transform];
+  transform  = Array.isArray(transform) ? transform : [transform];
 
   if (dataPre.connector === 'hierarchy') {
     return processHierarchyConnector(ds, data, dataPre);
