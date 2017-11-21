@@ -1,6 +1,6 @@
 {
   "name": "viser",
-  "version": "0.2.4",
+  "version": "1.0.0",
   "description": "viser is a toolkit fit for data vis engineer.",
   "repository": "viserjs/viser",
   "license": "MIT",
@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@antv/data-set": "^0.5.0",
-    "@antv/g2": "^3.0.0-rc5.12",
+    "@antv/g2": "^3.0.0",
     "d3-format": "^1.2.0",
     "lodash": "^4.17.4"
   },
