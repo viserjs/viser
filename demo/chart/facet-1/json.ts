@@ -3,6 +3,7 @@ import { chartData } from './data'
 
 viser({
   data: chartData,
+  tooltip: true,
   dataMapping: [{
     dataKey: 'carat',
     mark: 'column',

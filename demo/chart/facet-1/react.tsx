@@ -8,10 +8,11 @@ class App extends React.Component {
     return (
       <div>
         <Chart forceFit={true} height={600} data={chartData} dataMapping={dataMapping} scale={scale}>
+          <Tooltip />
           <Facet type="rect" fields={['cut', 'clarity']}>
             <FacetView>
-              <Axis />
               <Tooltip />
+              <Axis />
               <Point opacity={0.3} size={3} />
             </FacetView>
           </Facet>

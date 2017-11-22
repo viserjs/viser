@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-chart :force-fit="true" :height="600" :data="chartData" :data-mapping="dataMapping" :scale="scale">
+      <v-tooltip />
       <v-facet :type="'rect'" :fields="['cut', 'clarity']">
         <v-facet-view>
           <v-axis />
