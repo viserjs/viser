@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 
-function changeDataMapping(dataMapping) {
-  const dataMappingObj = {
+function changeDataMapping(dataMapping: any) {
+  const dataMappingObj: any = {
     row: [],
     column: [],
     color: '',
@@ -36,7 +36,7 @@ function changeDataMapping(dataMapping) {
   return dataMappingObj;
 }
 
-export const process = (config) => {
+export const process = (config: any) => {
   const { dataMapping, dataPre } = config;
 
   if (!dataMapping || _.isPlainObject(dataMapping)) { return config; }

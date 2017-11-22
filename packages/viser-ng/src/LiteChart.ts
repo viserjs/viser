@@ -1,23 +1,8 @@
 import { AfterViewInit, Component, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import viser from 'viser';
 
-function firstLowerCase(str) {
-  return str.replace(/^\S/, (s: any) => {
-    return s.toLowerCase();
-  });
-}
-
 function generateRandomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
-}
-
-function isOwnEmpty(obj) {
-  for (const name in obj) {
-    if (obj.hasOwnProperty(name)) {
-      return false;
-    }
-  }
-  return true;
 }
 
 function retain(obj, attr) {
@@ -36,46 +21,20 @@ function retain(obj, attr) {
   return newObj;
 }
 
-function omit(obj, attr) {
-  const newObj = Object.create(null);
-
-  for (const item in obj) {
-    if (obj.hasOwnProperty(item)) {
-      const arrAttr = Array.isArray(attr) ? attr : [attr];
-
-      if (arrAttr.indexOf(item) < 0) {
-        newObj[item] = obj[item];
-      }
-    }
-  }
-
-  return newObj;
-}
-
-/**
- * Global Context
- */
-class Context {
-  public viewId: string;
-  public config: any = {};
-  constructor() {
-    this.viewId = generateRandomNum();
-  }
-}
-
 @Component({
-  providers: [Context],
-  selector: 'Chart',
+  providers: [],
+  selector: 'LiteChart',
   template: `<div #chartDom></div>`
 })
 
-export class Chart implements AfterViewInit, OnChanges {
+export class LiteChart implements AfterViewInit, OnChanges {
   @Input() data: any;
   @Input() dataMapping?: any;
   @Input() dataPre?: any;
   @Input() width?: number;
   @Input() height?: number;
   @Input() dataView?: string;
+  @Input() gemo?: string;
   @Input() color?: any[];
   @Input() label?: boolean;
   @Input() radius?: number;
@@ -86,23 +45,45 @@ export class Chart implements AfterViewInit, OnChanges {
   @Input() type?: any;
   @Input() opacity?: any;
   @Input() size?: any;
+  @Input() pie?: any;
+  @Input() sector?: any;
+  @Input() line?: any;
+  @Input() smoothLine?: any;
+  @Input() dashLine?: any;
+  @Input() area?: any;
+  @Input() stackArea?: any;
+  @Input() smoothArea?: any;
+  @Input() bar?: any;
+  @Input() stackBar?: any;
+  @Input() dodgeBar?: any;
+  @Input() point?: any;
+  @Input() waterfall?: any;
+  @Input() funnel?: any;
+  @Input() pyramid?: any;
+  @Input() radialBar?: any;
+  @Input() schema?: any;
+  @Input() box?: any;
+  @Input() candle?: any;
+  @Input() polygon?: any;
+  @Input() contour?: any;
+  @Input() heatmap?: any;
+  @Input() edge?: any;
   @ViewChild('chartDom') chartDiv;
 
   config: any = {};
   views: any = {};
   chart: any = null;
   viewId: string;
-  context: any;
 
-  constructor(context: Context) {
-    this.viewId = context.viewId;
-    this.context = context;
+  constructor() {
+    this.viewId = generateRandomNum();
   }
 
   combineViewConfig(props, config) {
     if (props.data) {
       config.data = props.data;
     }
+
     if (props.dataMapping) {
       config.dataMapping = props.dataMapping;
     }
@@ -111,13 +92,33 @@ export class Chart implements AfterViewInit, OnChanges {
       config.dataPre = props.dataPre;
     }
 
-    if (props.dataView) {
-      config.dataView = props.dataView;
-    }
-
     if (props.scale) {
       config.scale = props.scale;
     }
+
+    if (props.tooltip) {
+      config.tooltip = props.tooltip;
+    } else {
+      config.tooltip = true;
+    }
+
+    if (props.legend) {
+      config.legend = props.legend;
+    } else {
+      config.legend = true;
+    }
+
+    if (props.axis) {
+      config.axis = props.axis;
+    } else {
+      config.axis = true;
+    }
+
+    if (props.guide) {
+      config.guide = props.guide;
+    }
+
+    return config;
   }
 
   combineChartConfig(props, config) {
@@ -125,29 +126,30 @@ export class Chart implements AfterViewInit, OnChanges {
       'height', 'width', 'animate', 'forceFit',
       'background', 'plotBackground', 'padding',
     ];
+
     config.chart = retain(props, chartRetain);
+
+    return config;
   }
 
-  combineContentConfig(displayName, props, config) {
-    const nameLowerCase = displayName.toLowerCase();
-
+  combineSeriesConfig(props, config) {
     const regSeries = [
       'pie',
       'sector',
       'line',
-      'smoothline',
-      'dashline',
+      'smoothLine',
+      'dashLine',
       'area',
-      'stackarea',
-      'smootharea',
+      'stackArea',
+      'smoothArea',
       'bar',
-      'stackbar',
-      'dodgebar',
+      'stackBar',
+      'dodgeBar',
       'point',
       'waterfall',
       'funnel',
       'pyramid',
-      'radialbar',
+      'radialBar',
       'schema',
       'box',
       'candle',
@@ -157,34 +159,14 @@ export class Chart implements AfterViewInit, OnChanges {
       'edge'
     ];
 
-    if (regSeries.indexOf(nameLowerCase) >= 0) {
-      if (!config.series) {
-        config.series = [];
+    for (const res of regSeries) {
+      if (props[res]) {
+        config.series = {
+          ...config.series,
+          quickType: res,
+        };
+        break;
       }
-
-      config.series.push({
-        quickType: firstLowerCase(displayName),
-        ...props
-      });
-    } else if (isOwnEmpty(props)) {
-      config[nameLowerCase] = true;
-    } else if (nameLowerCase === 'axis') {
-      if (!config.axis) {
-        config.axis = [];
-      }
-      config.axis.push(props);
-    } else if (nameLowerCase === 'series') {
-      if (!config.series) {
-        config.series = [];
-      }
-      config.series.push(props);
-    } else if (nameLowerCase === 'guide') {
-      if (!config.guide) {
-        config.guide = [];
-      }
-      config.guide.push(props);
-    } else {
-      config[nameLowerCase] = props;
     }
 
     return config;
@@ -200,7 +182,7 @@ export class Chart implements AfterViewInit, OnChanges {
   getProps(allProps) {
     const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId', 'views',
       'constructor', 'combineViewConfig', 'combineChartConfig', 'combineContentConfig',
-      'ngAfterViewInit', 'getProps', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
+      'ngAfterViewInit', 'getProps', 'combineSeriesConfig', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
 
     if (allProps) {
       const properties = {};
@@ -230,20 +212,11 @@ export class Chart implements AfterViewInit, OnChanges {
   initChart(rerender?) {
     const name = this.constructor.name;
     const props = this.getProps(this);
-    this.combineContentConfig(name, props, this.context.config);
-    this.combineChartConfig(props, this.context.config);
-    this.combineViewConfig(props, this.context.config);
-    this.context.config.chart = this.getViewChartConfig(this.context.config);
-    if (this.constructor.name === 'Chart') {
-      this.renderChart(rerender);
-    } else if (this.constructor.name === 'Facet') {
-      this.context.config.facet.views = {
-        ...this.context.config.facet.views,
-        ...this.context.config,
-        series: this.context.config.series && this.context.config.series[0]
-      };
-      delete this.context.config.series;
-    }
+    this.combineChartConfig(props, this.config);
+    this.combineViewConfig(props, this.config);
+    this.combineSeriesConfig(props, this.config);
+    this.config.chart = this.getViewChartConfig(this.config);
+    this.renderChart(rerender);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -254,12 +227,11 @@ export class Chart implements AfterViewInit, OnChanges {
   }
 
   renderChart(rerender?) {
-    this.context.config.chart.container = this.chartDiv.nativeElement;
-
+    this.config.chart.container = this.chartDiv.nativeElement;
     if (rerender) {
-      this.chart.repaint(this.context.config);
+      this.chart.repaint(this.config);
     } else {
-      this.chart = viser(this.context.config);
+      this.chart = viser(this.config);
     }
   }
 }

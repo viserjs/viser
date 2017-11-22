@@ -1,39 +1,39 @@
 
-import * as Style from './Style';
+import * as IStyle from './IStyle';
 
 type func = () => void;
 
 interface ILineText {
   position?: string | number | 'start' | 'center' | 'end';
   autoRotate?: number;
-  style?: Style.ILineStyle;
+  style?: IStyle.ILineStyle;
   content?: string;
   offsetX?: number;
   offsetY?: number;
 }
 
-interface ILineGuideProps {
+export interface ILineGuide {
   type?: 'line';
   top?: boolean;
   zIndex?: number;
   start?: object | number[] | func;
   end?: object | number[] | func;
-  lineStyle: Style.ILineStyle;
+  lineStyle: IStyle.ILineStyle;
   text: ILineText;
 }
 
-interface ITextGuideProps {
+export interface ITextGuide {
   type?: 'text';
   top?: boolean;
   zIndex?: number;
   position: object | number[] | func;
   content?: string;
-  style?: Style.ITextStyle;
+  style?: IStyle.ITextStyle;
   offsetX?: number;
   offsetY?: number;
 }
 
-interface IImageGuideProps {
+export interface IImageGuide {
   type?: 'image';
   top?: boolean;
   zIndex?: number;
@@ -53,7 +53,7 @@ interface IRegionStyle {
   stroke?: string;
 }
 
-interface IRegionGuideProps {
+export interface IRegionGuide {
   type?: 'region';
   top?: boolean;
   start?: object | number[] | func;
@@ -61,7 +61,7 @@ interface IRegionGuideProps {
   style?: IRegionStyle;
 }
 
-interface IHtmlGuideProps {
+export interface IHtmlGuide {
   type?: 'html';
   position: object | number[] | func;
   alignX?: 'left' | 'middle' | 'right';
@@ -72,7 +72,7 @@ interface IHtmlGuideProps {
   zIndex?: number;
 }
 
-interface IArcGuideProps {
+export interface IArcGuide {
   type?: 'arc';
   top?: boolean;
   start?: object | number[] | func;
@@ -80,6 +80,7 @@ interface IArcGuideProps {
   style?: object;
 }
 
-type Guide = ILineGuideProps | ITextGuideProps | IImageGuideProps | IRegionGuideProps | IArcGuideProps;
+export type IGuide = ILineGuide | ITextGuide | IImageGuide | IRegionGuide | IArcGuide;
+type IGuideConfig = IGuide | IGuide[];
 
-export default Guide;
+export default IGuideConfig;

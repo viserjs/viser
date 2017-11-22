@@ -1,4 +1,4 @@
-import * as Style from './Style';
+import * as IStyle from './IStyle';
 
 type formatterFunc = (val: number) => string | number;
 
@@ -6,7 +6,7 @@ interface ITitle {
   autoRotate: boolean;
   offset: number;
   position: 'start' | 'center' | 'end';
-  TextStyle: Style.ITextStyle;
+  TextStyle: IStyle.ITextStyle;
 }
 
 interface IAxisTick {
@@ -18,7 +18,7 @@ interface IAxisTick {
 interface IAxisGrid {
   align: string;
   type: 'line' | 'polygon';
-  lineStyle: Style.ILineStyle;
+  lineStyle: IStyle.ILineStyle;
   alternateColor: string | string[];
 }
 
@@ -26,20 +26,22 @@ interface IAxisLabels {
   offset: number;
   formatter: string | formatterFunc;
   autoRotate: boolean;
-  rotate: number | 'normal' | 'parallel';
-  textStyle: Style.ITextStyle;
+  rotate: number | string;
+  textStyle: IStyle.ITextStyle;
 }
 
-interface Axis {
+export interface IAxis {
   dataKey?: string;
   position?: string | 'start' | 'center' | 'end';
-  title?: null | ITitle;
-  tick?: null | IAxisTick;
-  subTick?: null | IAxisTick;
-  grid?: null | IAxisGrid;
-  labels?: null | IAxisLabels;
-  line?: null | Style.ILineStyle;
-  tickLine?: null | Style.ILineStyle;
+  title?: ITitle;
+  tick?: IAxisTick;
+  subTick?: IAxisTick;
+  grid?: IAxisGrid;
+  labels?: IAxisLabels;
+  line?: IStyle.ILineStyle;
+  tickLine?: IStyle.ILineStyle;
 }
 
-export default Axis;
+type IAxisConfig = boolean | IAxis | IAxis[];
+
+export default IAxisConfig;

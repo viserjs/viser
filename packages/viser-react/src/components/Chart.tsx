@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as PropTypes from 'prop-types';
-import { default as ChartProps } from '../types/Chart';
 import viser from 'viser';
+import IRChart from '../typed/IRChart';
 
 const isReact16 = ReactDOM.createPortal !== undefined;
 
@@ -10,24 +10,21 @@ const createPortal: any = isReact16
   ? ReactDOM.createPortal
   : ReactDOM.unstable_renderSubtreeIntoContainer;
 
-function firstLowerCase(str) {
+function firstLowerCase(str: string) {
   return str.replace(/^\S/, (s: any) => {
     return s.toLowerCase();
   });
 }
 
-function omit(obj, attr) {
-  const newObj = {};
+function retain(obj: any, attr: any) {
+  const newObj = Object.create(null);
 
   for (const item in obj) {
     if (obj.hasOwnProperty(item)) {
       const arrAttr = Array.isArray(attr) ? attr : [attr];
 
-      // tslint:disable-next-line:prefer-for-of
-      for (let i = 0; i < arrAttr.length; i++) {
-        if (arrAttr[i] !== item) {
-          newObj[item] = obj[item];
-        }
+      if (arrAttr.indexOf(item) >= 0) {
+        newObj[item] = obj[item];
       }
     }
   }
@@ -35,7 +32,23 @@ function omit(obj, attr) {
   return newObj;
 }
 
-function isOwnEmpty(obj) {
+function omit(obj: any, attr: any) {
+  const newObj = Object.create(null);
+
+  for (const item in obj) {
+    if (obj.hasOwnProperty(item)) {
+      const arrAttr = Array.isArray(attr) ? attr : [attr];
+
+      if (arrAttr.indexOf(item) < 0) {
+        newObj[item] = obj[item];
+      }
+    }
+  }
+
+  return newObj;
+}
+
+function isOwnEmpty(obj: object) {
   for (const name in obj) {
     if (obj.hasOwnProperty(name)) {
       return false;
@@ -44,7 +57,7 @@ function isOwnEmpty(obj) {
   return true;
 }
 
-export default class Chart extends React.Component<ChartProps, any> {
+export default class Chart extends React.Component<IRChart, any> {
   static childContextTypes = {
     centralizedUpdates: PropTypes.func,
     hasInViews: PropTypes.bool,
@@ -58,7 +71,7 @@ export default class Chart extends React.Component<ChartProps, any> {
   views: any = {};
   facetviews: any = {};
 
-  constructor(props) {
+  constructor(props: IRChart) {
     super(props);
   }
 
@@ -66,25 +79,19 @@ export default class Chart extends React.Component<ChartProps, any> {
     return {
       centralizedUpdates: this.centralizedUpdates,
       hasInViews: false,
-      viewType: 'view'
+      viewType: 'view',
     };
   }
 
-  combineChartConfig(props, config) {
-    const chartOmit = [
-      'data',
-      'dataMapping',
-      'dataView',
-      'dataPre',
-      'children',
-      'container',
-      'id',
-      'scale'
+  combineChartConfig(props: IRChart, config: any) {
+    const chartRetain = [
+      'height', 'width', 'animate', 'forceFit',
+      'background', 'plotBackground', 'padding',
     ];
-    config.chart = omit(props, chartOmit);
+    config.chart = retain(props, chartRetain);
   }
 
-  combineViewConfig(props, config) {
+  combineViewConfig(props: IRChart, config: any) {
     if (props.data) {
       config.data = props.data;
     }
@@ -106,26 +113,27 @@ export default class Chart extends React.Component<ChartProps, any> {
     }
   }
 
-  combineContentConfig(displayName, props, config) {
+  combineContentConfig(displayName: string, props: IRChart, config: any) {
+    const realName = firstLowerCase(displayName);
     const nameLowerCase = displayName.toLowerCase();
 
     const regSeries = [
       'pie',
       'sector',
       'line',
-      'smoothline',
-      'dashline',
+      'smoothLine',
+      'dashLine',
       'area',
-      'stackarea',
-      'smootharea',
+      'stackArea',
+      'smoothArea',
       'bar',
-      'stackbar',
-      'dodgebar',
+      'stackBar',
+      'dodgeBar',
       'point',
       'waterfall',
       'funnel',
       'pyramid',
-      'radialbar',
+      'radialBar',
       'schema',
       'box',
       'candle',
@@ -135,16 +143,16 @@ export default class Chart extends React.Component<ChartProps, any> {
       'edge'
     ];
 
-    if (isOwnEmpty(props)) {
+    if (regSeries.indexOf(realName) < 0 && isOwnEmpty(props)) {
       config[nameLowerCase] = true;
-    } else if (regSeries.indexOf(nameLowerCase) >= 0) {
+    } else if (regSeries.indexOf(realName) >= 0) {
       if (!config.series) {
         config.series = [];
       }
 
       config.series.push({
-        quickType: firstLowerCase(displayName),
-        ...props
+        quickType: realName,
+        ...props,
       });
     } else if (nameLowerCase === 'axis') {
       if (!config.axis) {
@@ -168,7 +176,7 @@ export default class Chart extends React.Component<ChartProps, any> {
     return config;
   }
 
-  centralizedUpdates = unit => {
+  centralizedUpdates = (unit: any) => {
     const config = this.config;
     const views = this.views;
     const props = unit.props;
@@ -242,7 +250,7 @@ export default class Chart extends React.Component<ChartProps, any> {
     }
   }
 
-  createChartInstance(config) {
+  createChartInstance(config: any) {
     let elm = this.elm;
 
     if (elm) {
@@ -274,7 +282,7 @@ export default class Chart extends React.Component<ChartProps, any> {
     this.chart = viser(config);
   }
 
-  repaintChartInstance(config) {
+  repaintChartInstance(config: any) {
     this.combineChartConfig(this.props, this.config);
     this.combineViewConfig(this.props, this.config);
 
@@ -298,7 +306,7 @@ export default class Chart extends React.Component<ChartProps, any> {
     this.clearConfigData();
   }
 
-  componentDidUpdate(props) {
+  componentDidUpdate(props: IRChart) {
     this.repaintChartInstance(this.config);
     this.clearConfigData();
   }
@@ -315,7 +323,7 @@ export default class Chart extends React.Component<ChartProps, any> {
     this.elm = this.container = null;
   }
 
-  portalRef = container => {
+  portalRef = (container: any) => {
     if (!this.container) {
       this.container = container;
     }

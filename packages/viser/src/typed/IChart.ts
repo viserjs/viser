@@ -7,14 +7,9 @@ interface IBackground {
   radius: number
 }
 
-interface Chart {
-  data: any;
-  dataMapping: object[];
-  dataPre?: {
-    connector?: string;
-    source?: any;
-    transform?: object[] | object;
-  };
+export interface IChart {
+  id?: any;
+  container?: any;
   height: number;
   width?: number;
   animate?: boolean;
@@ -22,8 +17,6 @@ interface Chart {
   background?: IBackground;
   plotBackground?: IBackground;
   padding?: number | object | number[];
-  scale?: object[];
-  dataView?: string;
 }
 
-export default Chart;
+export default IChart;

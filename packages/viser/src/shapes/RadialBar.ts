@@ -1,16 +1,10 @@
 import * as _ from 'lodash';
 import ShapeRegister from '../utils/ShapeRegister';
+import IShapePoints from '../typed/IShapePoints';
 
 const DEFAULT_RADIALBAR_SHAPE = 'radialBar';
 
-interface IShapePoints {
-  x: number;
-  y: number;
-  y0: number;
-  size: number;
-}
-
-function getPath(points: any) {
+function getPath(points: IShapePoints[]) {
   const path = [['M', points[0].x, points[0].y]];
 
   for (let i = 1; i < points.length; i++) {
@@ -24,7 +18,7 @@ function getPath(points: any) {
   return path;
 }
 
-export const registerShape = (config) => {
+export const registerShape = () => {
   ShapeRegister.regist('interval', DEFAULT_RADIALBAR_SHAPE, {
     getPoints({x, y, y0, size}: IShapePoints) {
       return [

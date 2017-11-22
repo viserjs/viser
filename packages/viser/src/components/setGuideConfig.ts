@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 
 // add two type of guide line
 // parallel and normal
-function setGuideLine(chart, item) {
+function setGuideLine(chart: any, item: any) {
   if (item.quickType === 'parallel') {
     const data = item.data;
     chart.guide().line({
@@ -22,7 +22,7 @@ function setGuideLine(chart, item) {
 
 // add two type of guide line
 // parallel and normal
-function setGuideArc(chart, item) {
+function setGuideArc(chart: any, item: any) {
   if (item.quickType === 'parallel') {
     const data = item.data;
     chart.guide().arc({
@@ -44,7 +44,7 @@ function setGuideArc(chart, item) {
   }
 }
 
-export const process = (chart, config) => {
+export const process = (chart: any, config: any) => {
   let guide = config.guide;
   const isArr = Array.isArray(guide);
 

@@ -1,10 +1,11 @@
 import * as _ from 'lodash';
+import IDataPreConfig from '../typed/IDataPre';
 
 const DataSet = require('@antv/data-set');
 
-const GEO_DATA = {};
+const GEO_DATA: any = {};
 
-function handleToNumber(row, def) {
+function handleToNumber(row: any, def: any) {
   const fields = Array.isArray(def.fields) ? def.fields : [def.fields];
 
   for (const item of fields) {
@@ -24,7 +25,7 @@ function handleToNumber(row, def) {
 //   { xy: [1, 1], z: 1 }
 //   { xy: [2, 2], z: 2 }
 // ]
-function handleMergeFields(row, item) {
+function handleMergeFields(row: any, item: any) {
   const fields = item.fields;
 
   if (!Array.isArray(fields) || fields.length === 0) {
@@ -53,9 +54,9 @@ function handleMergeFields(row, item) {
 //   { x: 2, y: 2 }
 //   { x: 3, y: 3 }
 // ]
-function processExchangeColumnToRowOne(data, item) {
+function processExchangeColumnToRowOne(data: any, item: any) {
   const itemArr = Array.isArray(item.fields) ? item.fields : [item.fields];
-  const finalData = [];
+  const finalData: any = [];
 
   for (const res in data) {
     if (data.hasOwnProperty(res) && itemArr.indexOf(res) >= 0) {
@@ -81,9 +82,9 @@ function processExchangeColumnToRowOne(data, item) {
 //   { x: 2, y: 2 }
 //   { x: 3, y: 3 }
 // ]
-function processExchangeColumnToRowTwo(data, item) {
+function processExchangeColumnToRowTwo(data: any, item: any) {
   const itemArr = Array.isArray(item.fields) ? item.fields : [item.fields];
-  const finalData = [];
+  const finalData: any = [];
 
   for (const res of data) {
     const key = res[0];
@@ -111,9 +112,9 @@ function processExchangeColumnToRowTwo(data, item) {
 //   { x: 2, y: 2 }
 //   { x: 3, y: 3 }
 // ]
-function processExchangeColumnToRowThree(data, item) {
+function processExchangeColumnToRowThree(data: any, item: any) {
   const itemArr = Array.isArray(item.fields) ? item.fields : [item.fields];
-  const finalData = [];
+  const finalData: any = [];
   let i = 0;
 
   for (const res of data) {
@@ -130,7 +131,7 @@ function processExchangeColumnToRowThree(data, item) {
 }
 
 // store the geo data to GEO_DATA
-function processGeoJsonConnector(ds, data, dataPre) {
+function processGeoJsonConnector(ds: any, data: any, dataPre: any) {
   const { source, geoKey } = dataPre;
 
   const dv = ds.createView()
@@ -151,7 +152,7 @@ function processGeoJsonConnector(ds, data, dataPre) {
   return dv;
 }
 
-function processHierarchyConnector(ds, data, dataPre) {
+function processHierarchyConnector(ds: any, data: any, dataPre: any) {
   const transform = dataPre.transform[0];
 
   const dv = ds.createView()
@@ -164,7 +165,7 @@ function processHierarchyConnector(ds, data, dataPre) {
     ...transform,
   });
 
-  const res = dv.getAllNodes().map(node => {
+  const res = dv.getAllNodes().map((node: any) => {
     if (transform.nameKey) {
       node.name = node.data[transform.nameKey];
     }
@@ -177,26 +178,26 @@ function processHierarchyConnector(ds, data, dataPre) {
   return res;
 }
 
-function processGraphConnector(ds, data, dataPre) {
+function processGraphConnector(ds: any, data: any, dataPre: any) {
   const { source } = dataPre;
   const transform = dataPre.transform[0];
 
   if (source) {
     if (source.edgesKey) {
-      source.edges = d => d[source.edgesKey];
+      source.edges = (d: any) => d[source.edgesKey];
     }
     if (source.nodesKey) {
-      source.nodes = d => d[source.nodesKey];
+      source.nodes = (d: any) => d[source.nodesKey];
     }
   }
 
   if (transform) {
     if (transform.sourceWeightKey) {
-      transform.sourceWeight = d => d[source.sourceWeightKey];
+      transform.sourceWeight = (d: any) => d[source.sourceWeightKey];
     }
 
     if (transform.targetWeightKey) {
-      transform.targetWeightKey = d => d[transform.targetWeightKey];
+      transform.targetWeightKey = (d: any) => d[transform.targetWeightKey];
     }
   }
 
@@ -210,18 +211,18 @@ function processGraphConnector(ds, data, dataPre) {
   return dv;
 }
 
-function processCommonConnector(dv, item) {
+function processCommonConnector(dv: any, item: any) {
   if (item.type === 'toNumber') {
     dv = dv.transform({
       type: 'map',
-      callback(row) {
+      callback(row: any) {
         return handleToNumber(row, item);
       }
     });
   } else if (item.type === 'merge') {
     dv = dv.transform({
       type: 'map',
-      callback(row) {
+      callback(row: any) {
         return handleMergeFields(row, item);
       }
     });
@@ -237,7 +238,7 @@ function processCommonConnector(dv, item) {
   return dv;
 }
 
-export const preprocessing = (data, dataPre) => {
+export const preprocessing = (data: any, dataPre: IDataPreConfig) => {
   if (_.isEmpty(data)) { return []; }
   if (_.isEmpty(dataPre)) { return data; }
 
@@ -248,8 +249,9 @@ export const preprocessing = (data, dataPre) => {
     ds = new DataSet();
   }
 
-  let { transform } = dataPre;
-  dataPre.transform = Array.isArray(transform) ? transform : [transform];
+  let transform = dataPre.transform as any;
+
+  transform  = Array.isArray(transform) ? transform : [transform];
 
   if (dataPre.connector === 'hierarchy') {
     return processHierarchyConnector(ds, data, dataPre);
@@ -260,14 +262,14 @@ export const preprocessing = (data, dataPre) => {
   }
 
   // basic exchange row and colmun
-  if (dataPre.transform && dataPre.transform.length) {
-    const exchangeType = dataPre.transform[0].exchangeType;
+  if (transform && transform.length) {
+    const exchangeType = transform[0].exchangeType;
     if (exchangeType === 'type-1') {
-      data = processExchangeColumnToRowOne(data, dataPre.transform[0]);
+      data = processExchangeColumnToRowOne(data, transform[0]);
     } else if (exchangeType === 'type-2') {
-      data = processExchangeColumnToRowTwo(data, dataPre.transform[0]);
+      data = processExchangeColumnToRowTwo(data, transform[0]);
     } else if (exchangeType === 'type-3') {
-      data = processExchangeColumnToRowThree(data, dataPre.transform[0]);
+      data = processExchangeColumnToRowThree(data, transform[0]);
     }
   }
 
@@ -278,7 +280,7 @@ export const preprocessing = (data, dataPre) => {
     dv = ds.createView().source(data);
   }
 
-  for (const item of dataPre.transform) {
+  for (const item of transform) {
     ds = processCommonConnector(dv, item);
   }
 

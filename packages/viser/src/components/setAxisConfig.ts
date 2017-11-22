@@ -1,7 +1,7 @@
 import * as setCustomFormatter from './setCustomFormatter';
 import * as _ from 'lodash';
 
-function validateAxis(dataMapping, oriAxis) {
+function validateAxis(dataMapping: any, oriAxis: any) {
   if (oriAxis === true) { return true; }
   const axis = Array.isArray(oriAxis) ? oriAxis : [oriAxis];
 
@@ -25,7 +25,7 @@ function validateAxis(dataMapping, oriAxis) {
   return newAxis;
 }
 
-function setRotatePolarAxis(chart, config) {
+function setRotatePolarAxis(chart: any, config: any) {
   const { coord, data, dataMapping, axis } = config;
 
   const colsKey = dataMapping.column[0];
@@ -105,7 +105,7 @@ function generateAxisNameOptions(config: any) {
   };
 }
 
-export const process = (chart, config) => {
+export const process = (chart: any, config: any) => {
   const { coord, axis, series, dataMapping } = config;
 
   if (config.axis) {
