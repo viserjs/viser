@@ -8,7 +8,11 @@
     "preserveConstEnums": true,
     "experimentalDecorators": true,
     "allowJs": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "lib": [
+      "es2017",
+      "dom"
+    ]
   },
   "include": [
     "src/**/*"
