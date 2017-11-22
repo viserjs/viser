@@ -21,6 +21,6 @@ export interface IView {
   tooltip?: ITooltip;
 }
 
-type IViewConfig = IView & IView[];
+type IViewConfig = IView | IView[];
 
 export default IViewConfig;
