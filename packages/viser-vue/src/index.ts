@@ -1,4 +1,4 @@
-import Vue from 'vue/dist/vue.esm.js';
+import Vue from 'vue';
 import viser from 'viser';
 
 const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area',
@@ -15,10 +15,10 @@ const seriesProps = ['position', 'quickType', 'gemo', 'adjust', 'color', 'shape'
 const camelCase: any = (() => {
   const DEFAULT_REGEX = /[-_]+(.)?/g;
 
-  function toUpper(match, group1) {
+  function toUpper(match: string, group1: string) {
     return group1 ? group1.toUpperCase() : '';
   }
-  return (str, delimiters?: string) => {
+  return (str: string, delimiters?: string) => {
     return str.replace(delimiters ? new RegExp('[' + delimiters + ']+(.)?', 'g') : DEFAULT_REGEX, toUpper);
   };
 })();
@@ -56,14 +56,14 @@ const baseChartComponent = {
     fields: null,
 
     stackBar: null
-  },
+  } as any,
   methods: {
     /**
      * find nearest parent rechart component
      */
-    findNearestRootComponent(componentInstance) {
-      if (componentInstance.isViser && rootCharts.concat(['v-views', 'v-facet', 'v-facet-view']).indexOf(componentInstance.$options._componentTag) > -1) {
-        if (componentInstance.$options._componentTag === 'v-lite-chart') {
+    findNearestRootComponent(componentInstance: Vue) {
+      if ((componentInstance as any).isViser && rootCharts.concat(['v-views', 'v-facet', 'v-facet-view']).indexOf(((componentInstance as any).$options as any)._componentTag) > -1) {
+        if ((componentInstance.$options as any)._componentTag === 'v-lite-chart') {
           throw Error('v-lite-chart should be no child elements.')
         }
 
@@ -165,14 +165,14 @@ const baseChartComponent = {
   updated() { // bubble from child to parent
     this.freshChart(true);
   },
-  render(h) {
+  render(h: any) {
     return h('div', null, this.$slots.default);
   }
 };
 
 export default {
   // tslint:disable-next-line:no-shadowed-variable
-  install: (Vue, options) => {
+  install: (Vue: any, options: any) => {
     Vue.component('v-chart', baseChartComponent);
     Vue.component('v-smooth-line', baseChartComponent);
     Vue.component('v-point', baseChartComponent);
@@ -194,7 +194,7 @@ export default {
   }
 };
 
-function safePush(obj, key, value) {
+function safePush(obj: any, key: string, value: any) {
   if (!obj[key]) {
     obj[key] = [];
   }
@@ -204,7 +204,7 @@ function safePush(obj, key, value) {
   obj[key].push(value);
 }
 
-function oneObjectMoreArray(obj, key, value) {
+function oneObjectMoreArray(obj: any, key: string, value: any) {
   if (!obj[key]) {
     obj[key] = value;
     return;
@@ -217,7 +217,7 @@ function oneObjectMoreArray(obj, key, value) {
   obj[key].push(value);
 }
 
-function cleanUndefined(value) {
+function cleanUndefined(value: any) {
   const newValue = { ...value };
 
   // delete value's undefined key
@@ -230,11 +230,11 @@ function cleanUndefined(value) {
   return newValue;
 }
 
-function isAllUndefined(value) {
+function isAllUndefined(value: any) {
   return Object.keys(value).every(key => value[key] === undefined);
 }
 
-function camelize(str) {
+function camelize(str: string) {
   return str.replace(/(?:^\w|[A-Z]|\b\w)/g, (letter, index) => {
     return index === 0 ? letter.toLowerCase() : letter.toUpperCase();
   }).replace(/\s+/g, '');
@@ -243,7 +243,7 @@ function camelize(str) {
 /**
  * special props for vue
  */
-function normalizeProps(props, include: string[] = null, expect: string[] = null) {
+function normalizeProps(props: any, include: string[] = null, expect: string[] = null) {
   const newProps = { ...props };
 
   if (newProps.vStyle) {

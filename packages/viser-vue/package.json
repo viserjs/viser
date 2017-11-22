@@ -24,7 +24,7 @@
     "vue": ">2"
   },
   "dependencies": {
-    "viser": "^1.0.0",
+    "viser": "^1.0.3",
     "vue": "^2.5.3"
   },
   "devDependencies": {

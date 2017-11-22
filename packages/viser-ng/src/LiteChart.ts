@@ -5,7 +5,7 @@ function generateRandomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
 }
 
-function retain(obj, attr) {
+function retain(obj: any, attr: string[]) {
   const newObj = Object.create(null);
 
   for (const item in obj) {
@@ -68,7 +68,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
   @Input() contour?: any;
   @Input() heatmap?: any;
   @Input() edge?: any;
-  @ViewChild('chartDom') chartDiv;
+  @ViewChild('chartDom') chartDiv?: any;
 
   config: any = {};
   views: any = {};
@@ -79,7 +79,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
     this.viewId = generateRandomNum();
   }
 
-  combineViewConfig(props, config) {
+  combineViewConfig(props: any, config: any) {
     if (props.data) {
       config.data = props.data;
     }
@@ -121,7 +121,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
     return config;
   }
 
-  combineChartConfig(props, config) {
+  combineChartConfig(props: any, config: any) {
     const chartRetain = [
       'height', 'width', 'animate', 'forceFit',
       'background', 'plotBackground', 'padding',
@@ -132,7 +132,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
     return config;
   }
 
-  combineSeriesConfig(props, config) {
+  combineSeriesConfig(props: any, config: any) {
     const regSeries = [
       'pie',
       'sector',
@@ -179,13 +179,15 @@ export class LiteChart implements AfterViewInit, OnChanges {
     this.initChart();
   }
 
-  getProps(allProps) {
+  getProps(allProps: any) {
     const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId', 'views',
       'constructor', 'combineViewConfig', 'combineChartConfig', 'combineContentConfig',
       'ngAfterViewInit', 'getProps', 'combineSeriesConfig', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
 
     if (allProps) {
-      const properties = {};
+      const properties: {
+        [key: string]: any
+      } = {};
       for (const key in allProps) {
         if (strippingProperties.indexOf(key) === -1) {
           properties[key] = allProps[key];
@@ -196,9 +198,11 @@ export class LiteChart implements AfterViewInit, OnChanges {
     return allProps;
   }
 
-  getViewChartConfig(config) {
+  getViewChartConfig(config: any) {
     const chartProperties = ['forceFit', 'height', 'width', 'container'];
-    const chart = {};
+    const chart: {
+      [key: string]: any
+    } = {};
     if (config.chart) {
       for (const key in config.chart) {
         if (chartProperties.indexOf(key) > -1) {
@@ -209,7 +213,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
     return chart;
   }
 
-  initChart(rerender?) {
+  initChart(rerender?: any) {
     const name = this.constructor.name;
     const props = this.getProps(this);
     this.combineChartConfig(props, this.config);
@@ -226,7 +230,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
     this.initChart(true);
   }
 
-  renderChart(rerender?) {
+  renderChart(rerender?: any) {
     this.config.chart.container = this.chartDiv.nativeElement;
     if (rerender) {
       this.chart.repaint(this.config);

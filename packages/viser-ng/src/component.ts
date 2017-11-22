@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import viser from 'viser';
 
-function firstLowerCase(str) {
+function firstLowerCase(str: string) {
   return str.replace(/^\S/, (s: any) => {
     return s.toLowerCase();
   });
@@ -11,7 +11,7 @@ function generateRandomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
 }
 
-function isOwnEmpty(obj) {
+function isOwnEmpty(obj: any) {
   for (const name in obj) {
     if (obj.hasOwnProperty(name)) {
       return false;
@@ -20,7 +20,7 @@ function isOwnEmpty(obj) {
   return true;
 }
 
-function retain(obj, attr) {
+function retain(obj: any, attr: string[]) {
   const newObj = Object.create(null);
 
   for (const item in obj) {
@@ -36,7 +36,7 @@ function retain(obj, attr) {
   return newObj;
 }
 
-function omit(obj, attr) {
+function omit(obj: any, attr: string) {
   const newObj = Object.create(null);
 
   for (const item in obj) {
@@ -86,7 +86,7 @@ export class Chart implements AfterViewInit, OnChanges {
   @Input() type?: any;
   @Input() opacity?: any;
   @Input() size?: any;
-  @ViewChild('chartDom') chartDiv;
+  @ViewChild('chartDom') chartDiv?: any;
 
   config: any = {};
   views: any = {};
@@ -99,7 +99,7 @@ export class Chart implements AfterViewInit, OnChanges {
     this.context = context;
   }
 
-  combineViewConfig(props, config) {
+  combineViewConfig(props: any, config: any) {
     if (props.data) {
       config.data = props.data;
     }
@@ -120,7 +120,7 @@ export class Chart implements AfterViewInit, OnChanges {
     }
   }
 
-  combineChartConfig(props, config) {
+  combineChartConfig(props: any, config: any) {
     const chartRetain = [
       'height', 'width', 'animate', 'forceFit',
       'background', 'plotBackground', 'padding',
@@ -128,7 +128,7 @@ export class Chart implements AfterViewInit, OnChanges {
     config.chart = retain(props, chartRetain);
   }
 
-  combineContentConfig(displayName, props, config) {
+  combineContentConfig(displayName: string, props: any, config: any) {
     const nameLowerCase = displayName.toLowerCase();
 
     const regSeries = [
@@ -197,13 +197,15 @@ export class Chart implements AfterViewInit, OnChanges {
     this.initChart();
   }
 
-  getProps(allProps) {
+  getProps(allProps: any) {
     const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId', 'views',
       'constructor', 'combineViewConfig', 'combineChartConfig', 'combineContentConfig',
       'ngAfterViewInit', 'getProps', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
 
     if (allProps) {
-      const properties = {};
+      const properties: {
+        [key: string]: string
+      } = {};
       for (const key in allProps) {
         if (strippingProperties.indexOf(key) === -1) {
           properties[key] = allProps[key];
@@ -214,9 +216,11 @@ export class Chart implements AfterViewInit, OnChanges {
     return allProps;
   }
 
-  getViewChartConfig(config) {
+  getViewChartConfig(config: any) {
     const chartProperties = ['forceFit', 'height', 'width', 'container'];
-    const chart = {};
+    const chart: {
+      [key: string]: string
+    } = {};
     if (config.chart) {
       for (const key in config.chart) {
         if (chartProperties.indexOf(key) > -1) {
@@ -227,7 +231,7 @@ export class Chart implements AfterViewInit, OnChanges {
     return chart;
   }
 
-  initChart(rerender?) {
+  initChart(rerender?: any) {
     const name = this.constructor.name;
     const props = this.getProps(this);
     this.combineContentConfig(name, props, this.context.config);
@@ -253,7 +257,7 @@ export class Chart implements AfterViewInit, OnChanges {
     this.initChart(true);
   }
 
-  renderChart(rerender?) {
+  renderChart(rerender?: any) {
     this.context.config.chart.container = this.chartDiv.nativeElement;
 
     if (rerender) {
