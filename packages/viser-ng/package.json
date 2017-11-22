@@ -26,7 +26,7 @@
     "@angular/compiler-cli": ">4"
   },
   "dependencies": {
-    "viser": "^1.0.0"
+    "viser": "^1.0.3"
   },
   "devDependencies": {
     "@angular/compiler": "^4.0.1",
