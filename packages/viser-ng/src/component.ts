@@ -63,29 +63,37 @@ class Context {
   }
 }
 
+interface IBackground {
+  stroke: string;
+  strokeOpacity: number;
+  lineWidth: number;
+  fill: string;
+  fillOpactiy: number;
+  radius: number
+}
+
 @Component({
   providers: [Context],
   selector: 'Chart',
   template: `<div #chartDom></div>`
 })
-
 export class Chart implements AfterViewInit, OnChanges {
-  @Input() data: any;
-  @Input() dataMapping?: any;
-  @Input() dataPre?: any;
-  @Input() width?: number;
+  @Input() data?: any;
+  @Input() dataMapping?: object[];
+  @Input() dataPre?: {
+    connector?: string;
+    source?: any;
+    transform?: object[] | object;
+  };
   @Input() height?: number;
-  @Input() dataView?: string;
-  @Input() color?: any[];
-  @Input() label?: boolean;
-  @Input() radius?: number;
-  @Input() scale?: any;
-  @Input() innerRadius?: number;
+  @Input() width?: number;
+  @Input() animate?: boolean;
   @Input() forceFit?: boolean;
-  @Input() fields?: any;
-  @Input() type?: any;
-  @Input() opacity?: any;
-  @Input() size?: any;
+  @Input() background?: IBackground;
+  @Input() plotBackground?: IBackground;
+  @Input() padding?: number | object | number[];
+  @Input() scale?: object[];
+  @Input() dataView?: string;
   @ViewChild('chartDom') chartDiv?: any;
 
   config: any = {};
