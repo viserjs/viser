@@ -9,12 +9,18 @@
   "main": "dist/bundles/index.umd.js",
   "module": "dist/index.js",
   "scripts": {
-    "cleanup": "rimraf dist/bundles dist/src dist/index.d.ts dist/index.metadata.json dist/index.js dist/index.js.map dist/LICENSE dist/README.md",
+    "cleanup": "rimraf dist/bundles dist/src dist/index.d.ts dist/index.metadata.json dist/index.js dist/index.js.map dist/LICENSE dist/README.md dist/package.json",
     "bundling": "rollup -c",
     "minify": "uglifyjs dist/bundles/index.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/angular-module-starter.umd.min.js",
-    "copy": "copyfiles LICENSE README.md dist",
+    "copy": "copyfiles package.json LICENSE README.md dist",
     "build": "npm run cleanup && tsc && npm run bundling && npm run minify && npm run copy",
     "publish-to-npm": "cd dist && npm publish"
+  },
+  "peerDependencies": {
+    "@angular/core": "^2.4.0",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "^5.0.3",
+    "zone.js": "^0.7.2"
   },
   "dependencies": {
     "@angular/core": "^2.4.0",
