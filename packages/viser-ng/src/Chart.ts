@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import viser from 'viser';
+import { ChartContext } from './chartService';
 
 function firstLowerCase(str: string) {
   return str.replace(/^\S/, (s: any) => {
@@ -52,17 +53,6 @@ function omit(obj: any, attr: string) {
   return newObj;
 }
 
-/**
- * Global Context
- */
-class Context {
-  public viewId: string;
-  public config: any = {};
-  constructor() {
-    this.viewId = generateRandomNum();
-  }
-}
-
 interface IBackground {
   stroke: string;
   strokeOpacity: number;
@@ -73,7 +63,7 @@ interface IBackground {
 }
 
 @Component({
-  providers: [Context],
+  providers: [ChartContext],
   selector: 'Chart',
   template: `<div #chartDom></div>`
 })
@@ -89,8 +79,8 @@ export class Chart implements AfterViewInit, OnChanges {
   @Input() width?: number;
   @Input() animate?: boolean;
   @Input() forceFit?: boolean;
-  @Input() background?: IBackground;
-  @Input() plotBackground?: IBackground;
+  @Input() background?: any;
+  @Input() plotBackground?: any;
   @Input() padding?: number | object | number[];
   @Input() scale?: object[];
   @Input() dataView?: string;
@@ -100,9 +90,8 @@ export class Chart implements AfterViewInit, OnChanges {
   views: any = {};
   chart: any = null;
   viewId: string;
-  context: any;
 
-  constructor(context: Context) {
+  constructor(private context: ChartContext) {
     this.viewId = context.viewId;
     this.context = context;
   }

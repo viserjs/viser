@@ -6,6 +6,7 @@ import Legend from './Legend';
 import Series from './Series';
 import Tooltip from './Tooltip';
 import View from './View';
+import { Pie, StackBar, FacetView, Point } from './assit';
 
 export {
   Axis,
@@ -15,5 +16,9 @@ export {
   Legend,
   Series,
   Tooltip,
-  View
+  View,
+  Pie,
+  StackBar,
+  FacetView,
+  Point
 }

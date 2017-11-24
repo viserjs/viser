@@ -1,23 +1,27 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "module": "es2015",
-    "moduleResolution": "node",
-    "outDir": "es",
-    "noImplicitAny": true,
-    "removeComments": true,
-    "preserveConstEnums": true,
+    "declaration": false,
+    "stripInternal": true,
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "allowJs": true,
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "paths": {
+      "@angular/core": ["node_modules/@angular/core"]
+    },
+    "typeRoots": ["node_modules/@types"],
+    "rootDir": ".",
+    "outDir": "dist",
     "sourceMap": true,
-    "lib": [
-      "es2017",
-      "dom"
-    ]
+    "inlineSources": true,
+    "target": "es5",
+    "skipLibCheck": true,
+    "lib": ["es2017", "dom"]
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["index.ts", "src/**/*"],
+  "angularCompilerOptions": {
+    "strictMetadataEmit": true
+  }
 }
