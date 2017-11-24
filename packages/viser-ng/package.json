@@ -1,6 +1,6 @@
 {
   "name": "viser-ng",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "viser-ng is angular of viser.",
   "repository": "viserjs/viser-ng",
   "license": "MIT",
@@ -23,15 +23,13 @@
     "zone.js": "^0.7.2"
   },
   "dependencies": {
-    "@angular/core": "^2.4.0",
-    "reflect-metadata": "^0.1.8",
-    "rxjs": "^5.0.3",
-    "viser": "^1.0.0",
-    "zone.js": "^0.7.2"
+    "viser": "^1.0.0"
   },
   "devDependencies": {
-    "@angular/compiler": "^2.4.0",
-    "@angular/compiler-cli": "^2.4.0",
+    "@angular/core": "^4.0.1",
+    "@angular/compiler": "^4.0.1",
+    "@angular/compiler-cli": "^4.0.1",
+    "rxjs": "^5.0.1",
     "copyfiles": "^1.0.0",
     "rimraf": "^2.5.4",
     "rollup": "^0.37.0",
