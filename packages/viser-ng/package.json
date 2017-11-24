@@ -10,7 +10,7 @@
   "module": "dist/index.js",
   "scripts": {
     "cleanup": "rimraf dist/bundles dist/src dist/index.d.ts dist/index.metadata.json dist/index.js dist/index.js.map dist/LICENSE dist/README.md dist/package.json",
-    "bundling": "rollup -c",
+    "bundling": "./node_modules/rollup/bin/rollup -c",
     "minify": "uglifyjs dist/bundles/index.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/angular-module-starter.umd.min.js",
     "copy": "copyfiles package.json LICENSE README.md dist",
     "build": "npm run cleanup && tsc && npm run bundling && npm run minify && npm run copy",
@@ -26,13 +26,14 @@
     "viser": "^1.0.0"
   },
   "devDependencies": {
-    "@angular/core": "^4.0.1",
     "@angular/compiler": "^4.0.1",
     "@angular/compiler-cli": "^4.0.1",
-    "rxjs": "^5.0.1",
+    "@angular/core": "^4.0.1",
+    "@types/node": "^8.0.53",
     "copyfiles": "^1.0.0",
     "rimraf": "^2.5.4",
     "rollup": "^0.37.0",
+    "rxjs": "^5.0.1",
     "typescript": "~2.4.2",
     "uglify-js": "^2.7.5"
   },

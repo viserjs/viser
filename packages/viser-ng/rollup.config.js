@@ -1,10 +1,10 @@
 export default {
   entry: 'dist/index.js',
-  dest: 'dist/bundles/angular-module-starter.umd.js',
+  dest: 'dist/bundles/index.umd.js',
   sourceMap: false,
   format: 'umd',
-  moduleName: 'ng.moduleStarter',
+  moduleName: 'ViserModule',
   globals: {
     '@angular/core': 'ng.core'
   }
-}
+};

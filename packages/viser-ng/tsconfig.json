@@ -7,11 +7,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noImplicitAny": false,
+    "removeComments": true,
     "moduleResolution": "node",
-    "paths": {
-      "@angular/core": ["node_modules/@angular/core"]
-    },
-    "typeRoots": ["node_modules/@types"],
     "rootDir": ".",
     "outDir": "dist",
     "sourceMap": true,
@@ -20,7 +17,7 @@
     "skipLibCheck": true,
     "lib": ["es2017", "dom"]
   },
-  "include": ["index.ts", "src/**/*"],
+  "include": ["index.ts"],
   "angularCompilerOptions": {
     "strictMetadataEmit": true
   }

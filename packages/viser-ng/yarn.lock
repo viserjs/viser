@@ -2,27 +2,31 @@
 # yarn lockfile v1
 
 
-"@angular/compiler-cli@^2.4.0":
-  version "2.4.10"
-  resolved "https://registry.npmjs.org/@angular/compiler-cli/-/compiler-cli-2.4.10.tgz#c21143bfaab45231c8d2eaa82456bed3d39f91a3"
+"@angular/compiler-cli@^4.0.1":
+  version "4.4.6"
+  resolved "https://registry.npmjs.org/@angular/compiler-cli/-/compiler-cli-4.4.6.tgz#bafd3d1e260e99087eb9a8cf7532dbd603abb9b1"
   dependencies:
-    "@angular/tsc-wrapped" "0.5.2"
+    "@angular/tsc-wrapped" "4.4.6"
     minimist "^1.2.0"
     reflect-metadata "^0.1.2"
 
-"@angular/compiler@^2.4.0":
-  version "2.4.10"
-  resolved "https://registry.npmjs.org/@angular/compiler/-/compiler-2.4.10.tgz#f51fd34820b2a02c7cb61fbcf49873c58056fb0c"
-
-"@angular/core@^2.4.0":
-  version "2.4.10"
-  resolved "https://registry.npmjs.org/@angular/core/-/core-2.4.10.tgz#0b8320a65065965d998645b1f5cd3cf769b441ea"
-
-"@angular/tsc-wrapped@0.5.2":
-  version "0.5.2"
-  resolved "https://registry.npmjs.org/@angular/tsc-wrapped/-/tsc-wrapped-0.5.2.tgz#2eddf472c467fcb334ea94deddaaa71990c5a482"
+"@angular/compiler@^4.0.1":
+  version "4.4.6"
+  resolved "https://registry.npmjs.org/@angular/compiler/-/compiler-4.4.6.tgz#2ee1faf25b757e1d128979074be7fae529b3bc20"
   dependencies:
-    tsickle "^0.2"
+    tslib "^1.7.1"
+
+"@angular/core@^4.0.1":
+  version "4.4.6"
+  resolved "https://registry.npmjs.org/@angular/core/-/core-4.4.6.tgz#13031fd10dcfe438875419b38f21120958bc2354"
+  dependencies:
+    tslib "^1.7.1"
+
+"@angular/tsc-wrapped@4.4.6":
+  version "4.4.6"
+  resolved "https://registry.npmjs.org/@angular/tsc-wrapped/-/tsc-wrapped-4.4.6.tgz#16787cbbf50bdc7e738123b19c32527f244e178d"
+  dependencies:
+    tsickle "^0.21.0"
 
 "@antv/data-set@^0.5.0":
   version "0.5.4"
@@ -71,6 +75,10 @@
 "@types/lodash@*":
   version "4.14.85"
   resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.85.tgz#a16fbf942422f6eca5622b6910492c496c35069b"
+
+"@types/node@^8.0.53":
+  version "8.0.53"
+  resolved "https://registry.npmjs.org/@types/node/-/node-8.0.53.tgz#396b35af826fa66aad472c8cb7b8d5e277f4e6d8"
 
 abs-svg-path@~0.1.1:
   version "0.1.1"
@@ -378,7 +386,7 @@ readable-stream@~1.0.31:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-reflect-metadata@^0.1.2, reflect-metadata@^0.1.8:
+reflect-metadata@^0.1.2:
   version "0.1.10"
   resolved "https://registry.npmjs.org/reflect-metadata/-/reflect-metadata-0.1.10.tgz#b4f83704416acad89988c9b15635d47e03b9344a"
 
@@ -412,7 +420,7 @@ rw@1:
   version "1.3.3"
   resolved "https://registry.npmjs.org/rw/-/rw-1.3.3.tgz#3f862dfa91ab766b14885ef4d01124bfda074fb4"
 
-rxjs@^5.0.3:
+rxjs@^5.0.1:
   version "5.5.2"
   resolved "https://registry.npmjs.org/rxjs/-/rxjs-5.5.2.tgz#28d403f0071121967f18ad665563255d54236ac3"
   dependencies:
@@ -463,14 +471,18 @@ topojson-client@^3.0.0:
   dependencies:
     commander "2"
 
-tsickle@^0.2:
-  version "0.2.6"
-  resolved "https://registry.npmjs.org/tsickle/-/tsickle-0.2.6.tgz#ad4abf92e74ebdf3fb5aa187ca85b02066fe1a1b"
+tsickle@^0.21.0:
+  version "0.21.6"
+  resolved "https://registry.npmjs.org/tsickle/-/tsickle-0.21.6.tgz#53b01b979c5c13fdb13afb3fb958177e5991588d"
   dependencies:
     minimist "^1.2.0"
     mkdirp "^0.5.1"
     source-map "^0.5.6"
     source-map-support "^0.4.2"
+
+tslib@^1.7.1:
+  version "1.8.0"
+  resolved "https://registry.npmjs.org/tslib/-/tslib-1.8.0.tgz#dc604ebad64bcbf696d613da6c954aa0e7ea1eb6"
 
 typescript@~2.4.2:
   version "2.4.2"
@@ -532,7 +544,3 @@ yargs@~3.10.0:
     cliui "^2.1.0"
     decamelize "^1.0.0"
     window-size "0.1.0"
-
-zone.js@^0.7.2:
-  version "0.7.8"
-  resolved "https://registry.npmjs.org/zone.js/-/zone.js-0.7.8.tgz#4f3fe8834d44597f2639053a0fa438df34fffded"
