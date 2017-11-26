@@ -1,4 +1,7 @@
 import * as _ from 'lodash';
+import * as EventUtils from '../utils/EventUtils';
+
+const regEventName = /on(.+)(MouseEnter|MouseMove|MouseLeave|Click|DdlClick|MouseDown|MouseUp|TouchStart|TouchMove|TouchEnd)/;
 
 function setHighlight(item: any) {
   item.onHover = (ev: any) => {
@@ -23,6 +26,12 @@ export const process = (chart: any, config: any) => {
   for (let res of arrLegend) {
     if (res.highlight) {
       res = setHighlight(res);
+    }
+
+    for (const item in res) {
+      if (res.hasOwnProperty(item)) {
+        EventUtils.setSEvent(chart, 'legend', item, res[item]);
+      }
     }
 
     if (res.dataKey) {

@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 import * as setQuickType from './setQuickType';
+import * as EventUtils from '../utils/EventUtils';
 import { ISeries } from '../typed/ISeries';
 import IMainConfig from '../typed/IMain';
 
@@ -136,6 +137,8 @@ function setSeriesLabel(chart: any, currSeries: ISeries) {
       const options = _.omit(label, 'dataKey');
       return chart.label(label.dataKey, options);
     }
+
+    EventUtils.setEvent(chart, 'label', label);
   }
 
   return chart;
@@ -213,6 +216,7 @@ export const process = (chart: any, config: IMainConfig) => {
 
   let chartInstance;
   series.forEach((currSeries: any) => {
+    EventUtils.setEvent(chart, currSeries.gemo, currSeries);
     currSeries = skipPosition(dataMapping, currSeries);
     chartInstance = renderGemo(chart, currSeries.gemo);
     chartInstance = setSeriesPosition(chartInstance, currSeries);
