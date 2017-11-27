@@ -5,12 +5,7 @@
   "repository": "viserjs/viser-ng",
   "license": "MIT",
   "authors": "DT-FE",
-  "files": [
-    "lib",
-    "es",
-    "umd",
-    "src"
-  ],
+  "files": ["lib", "es", "umd", "src"],
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "src/index.ts",
@@ -21,14 +16,13 @@
     "analyse": "cross-env NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "peerDependencies": {
-    "@angular/core": ">4",
-    "@angular/compiler": ">4",
-    "@angular/compiler-cli": ">4"
+    "@angular/core": "^2.4.0",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "^5.0.3",
+    "zone.js": "^0.7.2"
   },
   "dependencies": {
-    "viser": "^1.0.3",
-    "@types/core-js": "^0.9.43",
-    "@types/node": "7.0.7"
+    "viser": "^1.0.3"
   },
   "devDependencies": {
     "@angular/compiler": "^4.0.1",
@@ -36,6 +30,8 @@
     "@angular/core": "^4.0.1",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "@types/core-js": "^0.9.43",
+    "@types/node": "7.0.7",
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.1",
@@ -52,10 +48,5 @@
     "webpack-bundle-analyzer": "^2.9.0",
     "zone.js": "^0.8.5"
   },
-  "keywords": [
-    "g2",
-    "chart",
-    "angular",
-    "datavis"
-  ]
+  "keywords": ["g2", "chart", "angular", "datavis"]
 }
