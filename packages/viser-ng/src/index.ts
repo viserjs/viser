@@ -1,7 +1,16 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule, Component, Input } from '@angular/core';
 import { Chart } from './component';
 import { LiteChart } from './LiteChart';
-
+import {
+  Axis,
+  Coord,
+  Facet,
+  Guide,
+  Legend,
+  Series,
+  Tooltip,
+  View
+} from './subChart/';
 const subComponents = [
  'Coord',
  'Tooltip',
@@ -37,13 +46,6 @@ const subComponents = [
 ];
 
 @Component({
-  selector: 'Coord',
-  template: `<div #chartDom></div>`,
-})
-class Coord extends Chart {
-}
-
-@Component({
   selector: 'Pie',
   template: `<div #chartDom></div>`,
 })
@@ -51,38 +53,10 @@ class Pie extends Chart {
 }
 
 @Component({
-  selector: 'Tooltip',
-  template: `<div #chartDom></div>`,
-})
-class Tooltip extends Chart {
-}
-
-@Component({
-  selector: 'Legend',
-  template: `<div #chartDom></div>`,
-})
-class Legend extends Chart {
-}
-
-@Component({
-  selector: 'Axis',
-  template: `<div #chartDom></div>`,
-})
-class Axis extends Chart {
-}
-
-@Component({
   selector: 'StackBar',
   template: `<div #chartDom></div>`,
 })
 class StackBar extends Chart {
-}
-
-@Component({
-  selector: 'Facet',
-  template: `<div #chartDom></div>`,
-})
-class Facet extends Chart {
 }
 
 @Component({
@@ -97,31 +71,39 @@ class FacetView extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Point extends Chart {
+  @Input() opacity?: any;
+  @Input() size?: any;
 }
 
 @NgModule({
   declarations: [
-    Chart,
-    Coord,
-    Pie,
-    Tooltip,
-    StackBar,
-    Legend,
     Axis,
+    Coord,
     Facet,
+    Guide,
+    Legend,
+    Series,
+    Tooltip,
+    View,
+    Chart,
+    Pie,
+    StackBar,
     Point,
     FacetView,
     LiteChart
   ],
   exports: [
-    Chart,
+    Axis,
     Coord,
+    Facet,
+    Guide,
+    Legend,
+    Series,
+    Tooltip,
+    View,
+    Chart,
     Pie,
     StackBar,
-    Tooltip,
-    Legend,
-    Axis,
-    Facet,
     Point,
     FacetView,
     LiteChart

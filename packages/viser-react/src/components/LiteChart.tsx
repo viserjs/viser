@@ -39,8 +39,13 @@ export default class LiteChart extends React.Component<IRLiteChart, any> {
 
   combineChartConfig(props: IRLiteChart, config: any) {
     const chartRetain = [
-      'height', 'width', 'animate', 'forceFit',
-      'background', 'plotBackground', 'padding',
+      'height',
+      'width',
+      'animate',
+      'forceFit',
+      'background',
+      'plotBackground',
+      'padding'
     ];
 
     config.chart = retain(props, chartRetain);
@@ -121,7 +126,7 @@ export default class LiteChart extends React.Component<IRLiteChart, any> {
       if (props[res]) {
         config.series = {
           ...config.series,
-          quickType: res,
+          quickType: res
         };
         break;
       }

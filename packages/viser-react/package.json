@@ -1,6 +1,6 @@
 {
   "name": "viser-react",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "viser-react is react of viser.",
   "repository": "viserjs/viser-react",
   "license": "MIT",
@@ -26,11 +26,11 @@
   },
   "dependencies": {
     "viser": "^1.0.0",
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.6.0",
+    "@types/node": "*",
+    "@types/prop-types": "*"
   },
   "devDependencies": {
-    "@types/node": "*",
-    "@types/prop-types": "*",
     "@types/react": "*",
     "@types/react-dom": "*",
     "babel-cli": "^6.26.0",

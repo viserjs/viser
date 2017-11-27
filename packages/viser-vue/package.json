@@ -1,6 +1,6 @@
 {
   "name": "viser-vue",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "viser-vue is vue of viser.",
   "repository": "viserjs/viser-vue",
   "license": "MIT",
@@ -25,10 +25,10 @@
   },
   "dependencies": {
     "viser": "^1.0.3",
-    "vue": "^2.5.3"
+    "vue": "^2.5.3",
+    "@types/node": "*"
   },
   "devDependencies": {
-    "@types/node": "*",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-dev-expression": "^0.2.1",

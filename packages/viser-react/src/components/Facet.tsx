@@ -24,6 +24,6 @@ export default class Facet extends React.Component<IFacet, any> {
   }
 
   render() {
-    return <div>{this.props.children}</div>;
+    return this.props.children;
   }
 }

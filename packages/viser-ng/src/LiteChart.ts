@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
-import viser from 'viser';
+import viser, { IViewConfig, ICoord, IDataMapping, IDataPre, IScale, IAxis, IGuide, ISeries, ITooltip, IFacet, ILegend } from 'viser';
 
 function generateRandomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
@@ -29,8 +29,6 @@ function retain(obj: any, attr: string[]) {
 
 export class LiteChart implements AfterViewInit, OnChanges {
   @Input() data: any;
-  @Input() dataMapping?: any;
-  @Input() dataPre?: any;
   @Input() width?: number;
   @Input() height?: number;
   @Input() dataView?: string;
@@ -38,40 +36,49 @@ export class LiteChart implements AfterViewInit, OnChanges {
   @Input() color?: any[];
   @Input() label?: boolean;
   @Input() radius?: number;
-  @Input() scale?: any;
   @Input() innerRadius?: number;
   @Input() forceFit?: boolean;
   @Input() fields?: any;
   @Input() type?: any;
   @Input() opacity?: any;
   @Input() size?: any;
-  @Input() pie?: any;
-  @Input() sector?: any;
-  @Input() line?: any;
-  @Input() smoothLine?: any;
-  @Input() dashLine?: any;
-  @Input() area?: any;
-  @Input() stackArea?: any;
-  @Input() smoothArea?: any;
-  @Input() bar?: any;
-  @Input() stackBar?: any;
-  @Input() dodgeBar?: any;
-  @Input() point?: any;
-  @Input() waterfall?: any;
-  @Input() funnel?: any;
-  @Input() pyramid?: any;
-  @Input() radialBar?: any;
-  @Input() schema?: any;
-  @Input() box?: any;
-  @Input() candle?: any;
-  @Input() polygon?: any;
-  @Input() contour?: any;
-  @Input() heatmap?: any;
-  @Input() edge?: any;
+  @Input() coord?: ICoord;
+  @Input() dataMapping?: IDataMapping;
+  @Input() dataPre?: IDataPre;
+  @Input() scale?: IScale;
+  @Input() axis?: IAxis;
+  @Input() guide?: IGuide;
+  @Input() series?: ISeries;
+  @Input() tooltip?: ITooltip;
+  @Input() calData?: any;
+  @Input() facet?: IFacet;
+  @Input() legend?: ILegend;
+  @Input() pie?: boolean;
+  @Input() sector?: boolean;
+  @Input() line?: boolean;
+  @Input() smoothLine?: boolean;
+  @Input() dashLine?: boolean;
+  @Input() area?: boolean;
+  @Input() stackArea?: boolean;
+  @Input() smoothArea?: boolean;
+  @Input() bar?: boolean;
+  @Input() stackBar?: boolean;
+  @Input() dodgeBar?: boolean;
+  @Input() point?: boolean;
+  @Input() waterfall?: boolean;
+  @Input() funnel?: boolean;
+  @Input() pyramid?: boolean;
+  @Input() radialBar?: boolean;
+  @Input() schema?: boolean;
+  @Input() box?: boolean;
+  @Input() candle?: boolean;
+  @Input() polygon?: boolean;
+  @Input() contour?: boolean;
+  @Input() heatmap?: boolean;
+  @Input() edge?: boolean;
   @ViewChild('chartDom') chartDiv?: any;
-
   config: any = {};
-  views: any = {};
+  views: IViewConfig = {};
   chart: any = null;
   viewId: string;
 

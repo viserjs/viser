@@ -44,6 +44,6 @@ export default class View extends React.Component<IView, any> {
   }
 
   render() {
-    return <div>{this.props.children}</div>;
+    return this.props.children;
   }
 }

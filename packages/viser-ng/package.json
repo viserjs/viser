@@ -1,6 +1,6 @@
 {
   "name": "viser-ng",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "viser-ng is angular of viser.",
   "repository": "viserjs/viser-ng",
   "license": "MIT",
@@ -26,14 +26,14 @@
     "@angular/compiler-cli": ">4"
   },
   "dependencies": {
-    "viser": "^1.0.3"
+    "viser": "^1.0.3",
+    "@types/core-js": "^0.9.43",
+    "@types/node": "7.0.7"
   },
   "devDependencies": {
     "@angular/compiler": "^4.0.1",
     "@angular/compiler-cli": "^4.0.1",
     "@angular/core": "^4.0.1",
-    "@types/core-js": "^0.9.43",
-    "@types/node": "7.0.7",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-dev-expression": "^0.2.1",

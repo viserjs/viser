@@ -6,6 +6,7 @@ import loadShapes from '../shapes/loadShapes';
 import IMainConfig from '../typed/IMain';
 import IDataMappingConfig from '../typed/IDataMapping';
 import * as _ from 'lodash';
+import * as EventUtils from '../utils/EventUtils';
 import * as DataSetUtils from '../utils/DataSetUtils';
 import * as setCoordConfig from '../components/setCoordConfig';
 import * as setAxisConfig from '../components/setAxisConfig';
@@ -59,29 +60,8 @@ class CommonChart {
     return view;
   }
 
-  // plotenter, plotmove, plotleave, plotclick, plotdblclick
-  // onClick: { 'guide-line': func, 'guide-arc': func ]
   public setEvents(chart: any, config: IMainConfig) {
-    const chartConfig: any = config.chart;
-
-    const events = Object.keys(chartConfig).filter((entry) => /^on/.test(entry));
-    const eventsRes = {};
-
-    events.forEach(entry => {
-      const eventName = entry.slice(2, entry.length);
-      const eventLowerCase = eventName.toLowerCase();
-      const content = chartConfig[entry];
-
-      if (_.isPlainObject(content)) {
-        for (const res in content) {
-          if (content.hasOwnProperty(res)) {
-            chart.on(`${res}:${eventLowerCase}`, content[res]);
-          }
-        }
-      } else {
-        chart.on(eventLowerCase, content);
-      }
-    });
+    EventUtils.setEvent(chart, null, config.chart);
   }
 
   public setDataSource(chart: any, data: any) {

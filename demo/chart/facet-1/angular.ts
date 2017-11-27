@@ -11,6 +11,7 @@ import { chartData, dataMapping, scale } from './data'
   template: `
   <div>
     <Chart [forceFit]="forceFit" [height]="600" [data]="chartData" [dataMapping]="dataMapping" [scale]="scale">
+      <Tooltip></Tooltip>
       <Facet type="rect" [fields]="fields">
         <FacetView>
           <Axis></Axis>
