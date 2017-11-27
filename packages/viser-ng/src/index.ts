@@ -1,1 +1,1 @@
-export { ViserModule } from './module';
+export * from './module';
