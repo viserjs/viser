@@ -55,7 +55,29 @@ const baseChartComponent = {
     forceFit: null,
     fields: null,
 
-    stackBar: null
+    pie: null,
+    sector: null,
+    line: null,
+    smoothLine: null,
+    dashLine: null,
+    area: null,
+    stackArea: null,
+    smoothArea: null,
+    bar: null,
+    stackBar: null,
+    dodgeBar: null,
+    point: null,
+    waterfall: null,
+    funnel: null,
+    pyramid: null,
+    radialBar: null,
+    schema: null,
+    box: null,
+    candle: null,
+    polygon: null,
+    contour: null,
+    heatmap: null,
+    edge: null,
   } as any,
   methods: {
     /**
@@ -188,9 +210,26 @@ export default {
     Vue.component('v-edge', baseChartComponent);
     Vue.component('v-series', baseChartComponent);
     Vue.component('v-stack-bar', baseChartComponent)
+    Vue.component('v-dodge-bar', baseChartComponent)
     Vue.component('v-facet', baseChartComponent)
     Vue.component('v-facet-view', baseChartComponent)
     Vue.component('v-lite-chart', baseChartComponent)
+    Vue.component('v-guide', baseChartComponent)
+
+    Vue.component('v-sector', baseChartComponent)
+    Vue.component('v-dash-line', baseChartComponent)
+    Vue.component('v-area', baseChartComponent)
+    Vue.component('v-stack-area', baseChartComponent)
+    Vue.component('v-smooth-area', baseChartComponent)
+    Vue.component('v-water-fall', baseChartComponent)
+    Vue.component('v-funnel', baseChartComponent)
+    Vue.component('v-pyramid', baseChartComponent)
+    Vue.component('v-radial-bar', baseChartComponent)
+    Vue.component('v-box', baseChartComponent)
+    Vue.component('v-candle', baseChartComponent)
+    Vue.component('v-polygon', baseChartComponent)
+    Vue.component('v-contour', baseChartComponent)
+    Vue.component('v-heatmap', baseChartComponent)
   }
 };
 
