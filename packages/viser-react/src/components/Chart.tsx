@@ -4,12 +4,6 @@ import * as PropTypes from 'prop-types';
 import viser from 'viser';
 import IRChart from '../typed/IRChart';
 
-const isReact16 = ReactDOM.createPortal !== undefined;
-
-const createPortal: any = isReact16
-  ? ReactDOM.createPortal
-  : ReactDOM.unstable_renderSubtreeIntoContainer;
-
 function firstLowerCase(str: string) {
   return str.replace(/^\S/, (s: any) => {
     return s.toLowerCase();
@@ -65,7 +59,6 @@ export default class Chart extends React.Component<IRChart, any> {
   };
 
   chart: any;
-  elm: any;
   container: any;
   config: any = {};
   views: any = {};
@@ -251,12 +244,6 @@ export default class Chart extends React.Component<IRChart, any> {
   }
 
   createChartInstance(config: any) {
-    let elm = this.elm;
-
-    if (elm) {
-      ReactDOM.unmountComponentAtNode(elm);
-    }
-
     if (this.chart) {
       this.chart.destroy();
     }
@@ -264,19 +251,7 @@ export default class Chart extends React.Component<IRChart, any> {
     this.combineChartConfig(this.props, this.config);
     this.combineViewConfig(this.props, this.config);
 
-    const root = document.createElement('div');
-    this.container.appendChild(root);
-
-    config.chart.container = root;
-
-    // fake element for rendering children
-    this.elm = document.createElement('div');
-
-    if (!isReact16) {
-      createPortal(this, <div>{this.props.children}</div>, this.elm);
-    } else {
-      createPortal(this.props.children, this.elm);
-    }
+    config.chart.container = this.container;
 
     this.changeViewConfig();
     this.chart = viser(config);
@@ -285,12 +260,6 @@ export default class Chart extends React.Component<IRChart, any> {
   repaintChartInstance(config: any) {
     this.combineChartConfig(this.props, this.config);
     this.combineViewConfig(this.props, this.config);
-
-    if (!isReact16) {
-      createPortal(this, <div>{this.props.children}</div>, this.elm);
-    } else {
-      createPortal(this.props.children, this.elm);
-    }
 
     this.changeViewConfig();
     this.chart.repaint(this.config);
@@ -320,7 +289,7 @@ export default class Chart extends React.Component<IRChart, any> {
       this.chart.destroy();
       this.chart = null;
     }
-    this.elm = this.container = null;
+    this.container = null;
   }
 
   portalRef = (container: any) => {
