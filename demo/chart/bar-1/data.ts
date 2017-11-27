@@ -45,16 +45,11 @@ export const dataPre = {
   }
 };
 
-export const dataMapping = [{
-  dataKey: 'year',
-  mark: 'column',
-}, {
-  dataKey: 'percent',
-  mark: 'row',
-}, {
-  dataKey: 'country',
-  mark: 'color',
-}];
+export const dataMapping = {
+  column: 'year',
+  row: 'percent',
+  color: 'country'
+};
 
 export const scale = [{
   dataKey: 'percent',

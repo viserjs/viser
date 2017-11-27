@@ -1,6 +1,6 @@
 {
   "name": "viser",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "viser is a toolkit fit for data vis engineer.",
   "repository": "viserjs/viser",
   "license": "MIT",
@@ -26,10 +26,10 @@
     "d3-format": "^1.2.0",
     "lodash": "^4.17.4",
     "@types/d3-format": "*",
-    "@types/lodash": "*"
+    "@types/lodash": "*",
+    "@types/node": "^8.0.53"
   },
   "devDependencies": {
-    "@types/node": "^8.0.53",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-dev-expression": "^0.2.1",

@@ -1,5 +1,6 @@
 import * as setCustomFormatter from './setCustomFormatter';
 import * as _ from 'lodash';
+import * as EventUtils from '../utils/EventUtils';
 
 function validateAxis(dataMapping: any, oriAxis: any) {
   if (oriAxis === true) { return true; }
@@ -63,48 +64,6 @@ function setRotatePolarAxis(chart: any, config: any) {
   });
 }
 
-function generateAxisNameOptions(config: any) {
-  const axisPos = config.position;
-  const namePos = config.name.position;
-  const title = config.name.value ? config.name.value :
-    (config.name.formatter ? config.name.formatter() : '');
-
-  // position coordinate begin  left top point
-  let labelViewPos = ['0%', '0%'];
-  if (axisPos === 'bottom' && namePos === 'left') {
-    labelViewPos = ['0%', '100%'];
-  } else if (axisPos === 'bottom' && namePos === 'middle') {
-    labelViewPos = ['50%', '100%'];
-  } else if (axisPos === 'bottom' && namePos === 'right') {
-    labelViewPos = ['100%', '100%'];
-  } else if (axisPos === 'left' && namePos === 'top') {
-    labelViewPos = ['0%', '0%'];
-  } else if (axisPos === 'left' && namePos === 'middle') {
-    labelViewPos = ['0%', '50%'];
-  } else if (axisPos === 'left' && namePos === 'bottom') {
-    labelViewPos = ['0%', '100%'];
-  } else if (axisPos === 'right' && namePos === 'top') {
-    labelViewPos = ['100%', '0%'];
-  } else if (axisPos === 'right' && namePos === 'middle') {
-    labelViewPos = ['100%', '50%'];
-  } else if (axisPos === 'right' && namePos === 'bottom') {
-    labelViewPos = ['100%', '100%'];
-  } else if (axisPos === 'top' && namePos === 'left') {
-    labelViewPos = ['0%', '0%'];
-  } else if (axisPos === 'top' && namePos === 'middle') {
-    labelViewPos = ['50%', '0%'];
-  } else if (axisPos === 'top' && namePos === 'right') {
-    labelViewPos = ['100%', '0%'];
-  }
-
-  return {
-    top: true,
-    position: labelViewPos,
-    content: title,
-    style: config.label,
-  };
-}
-
 export const process = (chart: any, config: any) => {
   const { coord, axis, series, dataMapping } = config;
 
@@ -134,8 +93,15 @@ export const process = (chart: any, config: any) => {
     const options = _.omit(res, ['show', 'dataKey']);
     chart.axis(res.dataKey, options);
 
-    if (res.name) {
-      chart.guide().text(generateAxisNameOptions(res));
+    for (const item in res) {
+      if (res.hasOwnProperty(item)) {
+        let name = `axis-${item}`;
+        if (item === 'tickLine') {
+          name = 'axis-ticks';
+        }
+
+        EventUtils.setEvent(chart, name, res[item]);
+      }
     }
   }
 

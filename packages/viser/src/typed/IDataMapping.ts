@@ -1,8 +1,10 @@
 export interface IDataMapping {
-  dataKey: string;
-  mark: string;
+  column?: string | string[];
+  row?: string | string[];
+  color?: string;
+  shape?: string;
+  opacity?: string;
+  size?: string;
 }
 
-type IDataMappingConfig = IDataMapping | IDataMapping[];
-
-export default IDataMappingConfig;
+export default IDataMapping;
