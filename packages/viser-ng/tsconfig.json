@@ -1,24 +1,23 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "module": "es2015",
-    "declaration": false,
-    "stripInternal": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "noImplicitAny": false,
-    "removeComments": true,
     "moduleResolution": "node",
-    "rootDir": ".",
-    "outDir": "dist",
+    "outDir": "es",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "experimentalDecorators": true,
+    "allowJs": true,
     "sourceMap": true,
-    "inlineSources": true,
-    "target": "es5",
-    "skipLibCheck": true,
-    "lib": ["es2017", "dom"]
+    "lib": [
+      "es2017",
+      "dom"
+    ]
   },
-  "include": ["index.ts"],
-  "angularCompilerOptions": {
-    "strictMetadataEmit": true
-  }
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
