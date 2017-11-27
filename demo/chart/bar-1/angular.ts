@@ -24,7 +24,6 @@ class AppComponent {
   forceFit: boolean= true;
   height: number = 400;
   data = data;
-  dataPre = dataPre;
   dataMapping = dataMapping;
   scale = scale;
   fields = ['cut', 'clarity'];

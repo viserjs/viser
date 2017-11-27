@@ -191,6 +191,7 @@ export default {
     Vue.component('v-facet', baseChartComponent)
     Vue.component('v-facet-view', baseChartComponent)
     Vue.component('v-lite-chart', baseChartComponent)
+    Vue.component('v-area', baseChartComponent)
   }
 };
 

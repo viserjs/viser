@@ -17,7 +17,7 @@ function fetchData(state) {
       require(`./chart/${type}/${fileName}`);
     } else {
       delete require.cache[`./chart/${type}/${fileName}.ts`];
-      require(`./chart/${type}/${fileName}`);
+      // require(`./chart/${type}/${fileName}`);
     }
 
     if (fileName === 'vue') {

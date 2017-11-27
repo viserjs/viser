@@ -1,0 +1,33 @@
+<template>
+  <div>
+    <v-chart :height="300" :data="data" :data-mapping="dataMapping" :data-pre="dataPre" :scale="scale">
+      <v-coord :radius="1" :inner-radius="0.6" />
+      <v-radar :label="true" />
+      <v-tooltip />
+      <v-legend />
+      <v-axis />
+    </v-chart>
+  </div>
+</template>
+
+<script>
+import { data, dataMapping, dataPre, scale } from "./data";
+
+export default {
+  data() {
+    return {
+      data,
+      dataMapping,
+      dataPre,
+      scale,
+      height: 400,
+    };
+  },
+  methods: {
+  }
+};
+</script>
+
+<style scoped>
+
+</style>
