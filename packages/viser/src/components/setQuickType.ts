@@ -167,6 +167,13 @@ const QUICK_TYPE = [
       gemo: 'edge',
     },
   },
+  {
+    type: 'sankey',
+    series: {
+      gemo: 'edge',
+      shape: 'sankey',
+    },
+  },
 ];
 
 export const process = (config: any) => {

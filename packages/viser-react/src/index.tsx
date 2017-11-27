@@ -39,3 +39,4 @@ export class Polygon extends SubComponent<ISeries> { displayName = 'Polygon'; }
 export class Contour extends SubComponent<ISeries> { displayName = 'Contour'; }
 export class Heatmap extends SubComponent<ISeries> { displayName = 'Heatmap'; }
 export class Edge extends SubComponent<ISeries> { displayName = 'Edge'; }
+export class Sankey extends SubComponent<ISeries> { displayName = 'Sankey'; }

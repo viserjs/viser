@@ -7,7 +7,7 @@ import { Chart } from '../Chart';
 })
 class View extends Chart {
   @Input() data?: any;
-  @Input() dataDef?: object[];
+  @Input() dataMapping?: object[];
   @Input() dataPre?: {
     connector?: string;
     source?: any;
@@ -17,4 +17,17 @@ class View extends Chart {
   @Input() dataView?: string;
 }
 
-export default View;
+@Component({
+  selector: 'FacetView',
+  template: `<div #chartDom></div>`,
+})
+class FacetView extends Chart {
+  @Input() dataMapping?: object[];
+  @Input() dataPre?: {
+    connector?: string;
+    source?: any;
+    transform?: object[] | object;
+  };
+}
+
+export { View, FacetView };
