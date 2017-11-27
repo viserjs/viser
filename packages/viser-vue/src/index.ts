@@ -4,13 +4,13 @@ import viser from 'viser';
 const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area',
   'stackarea', 'smootharea', 'bar', 'stackbar', 'dodgebar', 'point', 'waterfall',
   'funnel', 'pyramid', 'radialbar', 'schema', 'box', 'candle', 'polygon', 'contour',
-  'heatmap', 'edge'];
+  'heatmap', 'edge', 'sankey'];
 
-const rootCharts = ['v-chart', 'v-lite-chart']
+const rootCharts = ['v-chart', 'v-lite-chart'];
 
-const rootChartProps = ['data', 'dataMapping', 'dataPre', 'scale']
+const rootChartProps = ['data', 'dataMapping', 'dataView', 'dataPre', 'scale', 'viewId'];
 
-const seriesProps = ['position', 'quickType', 'gemo', 'adjust', 'color', 'shape', 'size', 'opacity', 'label', 'tooltip', 'style']
+const seriesProps = ['position', 'quickType', 'gemo', 'adjust', 'color', 'shape', 'size', 'opacity', 'label', 'tooltip', 'style'];
 
 const camelCase: any = (() => {
   const DEFAULT_REGEX = /[-_]+(.)?/g;
@@ -78,13 +78,14 @@ const baseChartComponent = {
     contour: null,
     heatmap: null,
     edge: null,
+    sankey: null,
   } as any,
   methods: {
     /**
      * find nearest parent rechart component
      */
     findNearestRootComponent(componentInstance: Vue) {
-      if ((componentInstance as any).isViser && rootCharts.concat(['v-views', 'v-facet', 'v-facet-view']).indexOf(((componentInstance as any).$options as any)._componentTag) > -1) {
+      if ((componentInstance as any).isViser && rootCharts.concat(['v-view', 'v-facet', 'v-facet-view']).indexOf(((componentInstance as any).$options as any)._componentTag) > -1) {
         if ((componentInstance.$options as any)._componentTag === 'v-lite-chart') {
           throw Error('v-lite-chart should be no child elements.')
         }
@@ -130,11 +131,12 @@ const baseChartComponent = {
         }
 
         if (!isUpdate) {
+          console.log(d2Json)
           this.chart = viser(d2Json);
         } else {
           this.chart.repaint(d2Json);
         }
-      } else if (this.$options._componentTag === 'v-views') {
+      } else if (this.$options._componentTag === 'v-view') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
         nearestRootComponent.jsonForD2.views = {
@@ -196,28 +198,28 @@ export default {
   // tslint:disable-next-line:no-shadowed-variable
   install: (Vue: any, options: any) => {
     Vue.component('v-chart', baseChartComponent);
-    Vue.component('v-smooth-line', baseChartComponent);
     Vue.component('v-point', baseChartComponent);
     Vue.component('v-tooltip', baseChartComponent);
     Vue.component('v-legend', baseChartComponent);
     Vue.component('v-axis', baseChartComponent);
-    Vue.component('v-views', baseChartComponent);
-    Vue.component('v-bar', baseChartComponent);
-    Vue.component('v-schema', baseChartComponent);
-    Vue.component('v-line', baseChartComponent);
+    Vue.component('v-view', baseChartComponent);
     Vue.component('v-coord', baseChartComponent);
     Vue.component('v-pie', baseChartComponent);
     Vue.component('v-edge', baseChartComponent);
     Vue.component('v-series', baseChartComponent);
-    Vue.component('v-stack-bar', baseChartComponent)
-    Vue.component('v-dodge-bar', baseChartComponent)
     Vue.component('v-facet', baseChartComponent)
     Vue.component('v-facet-view', baseChartComponent)
     Vue.component('v-lite-chart', baseChartComponent)
     Vue.component('v-guide', baseChartComponent)
 
-    Vue.component('v-sector', baseChartComponent)
+    Vue.component('v-bar', baseChartComponent);
+    Vue.component('v-stack-bar', baseChartComponent)
+    Vue.component('v-dodge-bar', baseChartComponent)
+    Vue.component('v-schema', baseChartComponent);
+    Vue.component('v-line', baseChartComponent);
+    Vue.component('v-smooth-line', baseChartComponent);
     Vue.component('v-dash-line', baseChartComponent)
+    Vue.component('v-sector', baseChartComponent)
     Vue.component('v-area', baseChartComponent)
     Vue.component('v-stack-area', baseChartComponent)
     Vue.component('v-smooth-area', baseChartComponent)
@@ -230,6 +232,7 @@ export default {
     Vue.component('v-polygon', baseChartComponent)
     Vue.component('v-contour', baseChartComponent)
     Vue.component('v-heatmap', baseChartComponent)
+    Vue.component('v-sankey', baseChartComponent)
   }
 };
 
