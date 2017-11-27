@@ -9,7 +9,7 @@ function generateRandomNum() {
 export default class View extends React.Component<IView, any> {
   static childContextTypes = {
     hasInViews: PropTypes.bool,
-    viewId: PropTypes.number,
+    viewId: PropTypes.string,
   };
 
   static contextTypes = {
@@ -17,7 +17,7 @@ export default class View extends React.Component<IView, any> {
     hasInViews: PropTypes.bool,
   };
 
-  displayName = 'Views';
+  displayName = 'View';
 
   constructor(props: IView) {
     super(props);

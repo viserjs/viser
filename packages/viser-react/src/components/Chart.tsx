@@ -133,7 +133,8 @@ export default class Chart extends React.Component<IRChart, any> {
       'polygon',
       'contour',
       'heatmap',
-      'edge'
+      'edge',
+      'sankey',
     ];
 
     if (regSeries.indexOf(realName) < 0 && isOwnEmpty(props)) {
