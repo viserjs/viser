@@ -3,21 +3,15 @@
     "module": "es2015",
     "moduleResolution": "node",
     "outDir": "es",
+    "emitDecoratorMetadata": true,
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "experimentalDecorators": true,
     "allowJs": true,
     "sourceMap": true,
-    "lib": [
-      "es2017",
-      "dom"
-    ]
+    "lib": ["es2017", "dom"]
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
