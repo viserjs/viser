@@ -1,30 +1,11 @@
 import viser from '../../../packages/viser/src/index';
-import { chartData } from './data'
+import { chartData, dataMapping, scale } from './data';
 
 viser({
   data: chartData,
   tooltip: true,
-  dataMapping: [{
-    dataKey: 'carat',
-    mark: 'column',
-  }, {
-    dataKey: 'price',
-    mark: 'row',
-  }, {
-    dataKey: 'cut',
-    mark: 'color',
-  }],
-  scale: [{
-    dataKey: 'carat',
-    sync: true
-  }, {
-    dataKey: 'price',
-    sync: true,
-    tickCount: 3
-  }, {
-    dataKey: 'cut',
-    sync: true,
-  }],
+  dataMapping: dataMapping,
+  scale: scale,
   facet: {
     type: 'rect',
     fields: ['cut', 'clarity'],
