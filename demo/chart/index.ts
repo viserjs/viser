@@ -6,5 +6,9 @@ export default [
   {
     type: 'facet-1',
     case: ['json', 'react', 'vue', 'angular']
-  }
+  },
+  {
+    type: 'sankey-1',
+    case: ['json', 'react', 'vue', 'angular']
+  },
 ];
