@@ -27,9 +27,7 @@ const baseChartComponent = {
   data() {
     return {
       isViser: true,
-      jsonForD2: {
-
-      }
+      jsonForD2: {},
     };
   },
   // Why use null? See https://github.com/vuejs/vue/issues/4792.
@@ -101,38 +99,32 @@ const baseChartComponent = {
     freshChart(isUpdate: boolean) {
       if (rootCharts.indexOf(this.$options._componentTag) > -1) { // hit top
         const d2Json = {
-          ...cleanUndefined({
-            data: this.data,
-            dataMapping: this.dataMapping,
-            dataPre: this.dataPre,
-            scale: this.scale
-          }),
+          ...cleanUndefined(normalizeProps(this._props, rootChartProps)),
           chart: {
             container: this.$el,
             ...cleanUndefined(normalizeProps(this._props, null, rootChartProps))
           },
-          ...this.jsonForD2
+          ...this.jsonForD2,
         };
 
         // liteChart handle tag-props
         if (this.$options._componentTag === 'v-lite-chart') {
-          const existProps = cleanUndefined(this._props)
+          const existProps = cleanUndefined(this._props);
           Object.keys(existProps).forEach(propsKey => {
             const lowerCasePropsKey = propsKey.toLowerCase()
             if (regSeries.indexOf(lowerCasePropsKey) > -1) {
               safePush(d2Json, 'series', {
                 quickType: propsKey,
-                ...normalizeProps(existProps, seriesProps)
+                ...normalizeProps(existProps, seriesProps),
               });
             }
-          })
-          setIfNotExist(d2Json, 'axis', true)
-          setIfNotExist(d2Json, 'legend', true)
-          setIfNotExist(d2Json, 'tooltip', true)
+          });
+          setIfNotExist(d2Json, 'axis', true);
+          setIfNotExist(d2Json, 'legend', true);
+          setIfNotExist(d2Json, 'tooltip', true);
         }
 
         if (!isUpdate) {
-          console.log(d2Json)
           this.chart = viser(d2Json);
         } else {
           this.chart.repaint(d2Json);
@@ -142,21 +134,21 @@ const baseChartComponent = {
 
         nearestRootComponent.jsonForD2.views = {
           ...cleanUndefined(normalizeProps(this._props)),
-          ...this.jsonForD2
+          ...this.jsonForD2,
         };
       } else if (this.$options._componentTag === 'v-facet-view') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
         nearestRootComponent.jsonForD2.views = {
           ...cleanUndefined(normalizeProps(this._props)),
-          ...this.jsonForD2
+          ...this.jsonForD2,
         };
       } else if (this.$options._componentTag === 'v-facet') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
         nearestRootComponent.jsonForD2.facet = {
           ...cleanUndefined(normalizeProps(this._props)),
-          ...this.jsonForD2
+          ...this.jsonForD2,
         };
       } else {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
@@ -173,7 +165,7 @@ const baseChartComponent = {
         } else if (regSeries.indexOf(rechartName) > -1) {
           safePush(nearestRootComponent.jsonForD2, 'series', {
             quickType: rechartNameCamelCase,
-            ...cleanUndefined(normalizeProps(this._props))
+            ...cleanUndefined(normalizeProps(this._props)),
           });
         } else {
           oneObjectMoreArray(nearestRootComponent.jsonForD2, rechartName, cleanUndefined(normalizeProps(this._props)));
@@ -192,7 +184,7 @@ const baseChartComponent = {
   },
   render(h: any) {
     return h('div', null, this.$slots.default);
-  }
+  },
 };
 
 export default {
@@ -296,14 +288,14 @@ function normalizeProps(props: any, include: string[] = null, expect: string[] =
 
   if (expect !== null) {
     expect.forEach(propsKey => {
-      delete newProps[propsKey]
+      delete newProps[propsKey];
     })
   }
 
   if (include !== null) {
     Object.keys(newProps).forEach(propsKey => {
       if (include.indexOf(propsKey) === -1) {
-        delete newProps[propsKey]
+        delete newProps[propsKey];
       }
     })
   }
@@ -313,6 +305,6 @@ function normalizeProps(props: any, include: string[] = null, expect: string[] =
 
 function setIfNotExist(obj: any, key: string, value: any) {
   if (!obj[key]) {
-    obj[key] = value
+    obj[key] = value;
   }
 }
