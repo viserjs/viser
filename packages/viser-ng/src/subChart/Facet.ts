@@ -1,6 +1,6 @@
 import * as Style from './Style';
 import { Component, Input } from '@angular/core';
-import { Chart } from '../component';
+import { Chart } from '../Chart';
 
 interface IColTitleProps {
   offsetY?: number;

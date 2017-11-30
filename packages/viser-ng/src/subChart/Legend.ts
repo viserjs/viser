@@ -1,6 +1,6 @@
 import * as Style from './Style';
 import { NgModule, Component, Input } from '@angular/core';
-import { Chart } from '../component';
+import { Chart } from '../Chart';
 
 type func = () => void;
 type formatterFunc = (val: number) => string | number;
