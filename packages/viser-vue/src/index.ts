@@ -132,10 +132,10 @@ const baseChartComponent = {
       } else if (this.$options._componentTag === 'v-view') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
-        nearestRootComponent.jsonForD2.views = {
+        oneObjectMoreArray(nearestRootComponent.jsonForD2, 'views', {
           ...cleanUndefined(normalizeProps(this._props)),
           ...this.jsonForD2,
-        };
+        });
       } else if (this.$options._componentTag === 'v-facet-view') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
