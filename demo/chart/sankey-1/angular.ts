@@ -10,9 +10,11 @@ import { data, dataMapping, dataPre, scale } from './data'
   selector: '#mount',
   template: `
   <div>
-    <Chart dataView="edges" [forceFit]="forceFit" [height]="height" [data]="data" [dataPre]="dataPre" [dataMapping]="dataMapping" [scale]="scale">
-      <Sankey [ngStyle]="{ curvature: 0.5 }" color="#333" opacity="0.1" tooltip="value"></Sankey>
-      <View viewId="3" dataView="nodes" [dataMapping]="viewDataMapping">
+    <Chart [forceFit]="forceFit" [height]="height" [data]="data" [dataPre]="dataPre">
+      <View viewId="2" dataView="edges" [dataMapping]="dataMapping" [scale]="scale">
+        <Sankey [ngStyle]="{ curvature: 0.5 }" color="#333" opacity="0.1" tooltip="value"></Sankey>
+      </View>
+      <View viewId="3" dataView="nodes" [dataMapping]="viewDataMapping" [scale]="scale">
         <Polygon [ngStyle]="{ stroke: '#ccc' }" [label]="label"></Polygon>
       </View>
     </Chart>

@@ -4,20 +4,21 @@ import { data, dataMapping, dataPre, scale } from './data';
 viser({
   data,
   dataPre,
-  dataMapping,
-  scale,
-  dataView: 'edges',
-  viewId: '123',
-  series: [{
-    quickType: 'sankey',
-    style: {
-      curvature: 0.5,
-    },
-    color: '#333',
-    opacity: 0.1,
-    tooltip: 'value',
-  }],
   views: [{
+    viewId: '34',
+    dataMapping,
+    scale,
+    dataView: 'edges',
+    series: [{
+      quickType: 'sankey',
+      style: {
+        curvature: 0.5,
+      },
+      color: '#333',
+      opacity: 0.1,
+      tooltip: 'value',
+    }],
+  }, {
     viewId: '23',
     dataView: 'nodes',
     dataMapping: {
@@ -25,6 +26,7 @@ viser({
       row: 'y',
       color: 'name',
     },
+    scale,
     series: [{
       quickType: 'polygon',
       style: {

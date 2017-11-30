@@ -122,9 +122,9 @@ export const data = {
 };
 
 export const dataPre = {
-  connector: 'graph',
-  source: {
-    edgesKey: 'links',
+  connector: {
+    type: 'graph',
+    edges: d => d.links,
   },
   transform: {
     type: 'diagram.sankey',

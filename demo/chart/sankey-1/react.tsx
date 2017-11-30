@@ -19,9 +19,11 @@ class App extends React.Component {
     };
 
     return (
-      <Chart forceFit height={600} dataView='edges' data={data} dataPre={dataPre} dataMapping={dataMapping} scale={scale}>
-        <Sankey style={{ curvature: 0.5 }} color='#333' opacity={0.1} tooltip='value' />
-        <View viewId='3' dataView='nodes' dataMapping={{ column: 'x', row: 'y', color: 'name' }}>
+      <Chart forceFit height={600} data={data} dataPre={dataPre}>
+        <View viewId='2' dataView='edges' dataMapping={dataMapping} scale={scale}>
+          <Sankey style={{ curvature: 0.5 }} color='#333' opacity={0.1} tooltip='value' />
+        </View>
+        <View viewId='3' dataView='nodes' dataMapping={{ column: 'x', row: 'y', color: 'name' }} scale={scale}>
           <Polygon style={{ stroke: '#ccc' }} label={label} />
         </View>
       </Chart>
