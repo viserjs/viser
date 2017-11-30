@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Chart } from './Chart';
 import { LiteChart } from './LiteChart';
-import { Axis, Coord, Facet, Guide, Legend, Series, Tooltip, View, Pie, StackBar, FacetView, Point } from './subChart/index';
+import { Axis, Coord, Facet, Guide, Legend, Tooltip, View, FacetView, Series, Pie, Sector, Line, SmoothLine, DashLine, Area, StackArea, SmoothArea,
+ Bar, StackBar, DodgeBar, Point, Waterfall, Funnel, Pyramid, RadialBar, Schema, Box, Candle, Polygon, Contour, Heatmap, Edge, Sankey } from './subChart/index';
 
 @NgModule({
   declarations: [
@@ -12,13 +13,34 @@ import { Axis, Coord, Facet, Guide, Legend, Series, Tooltip, View, Pie, StackBar
     Facet,
     Guide,
     Legend,
-    Series,
     Tooltip,
     View,
-    Pie,
-    StackBar,
     FacetView,
-    Point
+    Series,
+    Pie,
+    Sector,
+    Line,
+    SmoothLine,
+    DashLine,
+    Area,
+    StackArea,
+    SmoothArea,
+    Bar,
+    StackBar,
+    DodgeBar,
+    Point,
+    Waterfall,
+    Funnel,
+    Pyramid,
+    RadialBar,
+    Schema,
+    Box,
+    Candle,
+    Polygon,
+    Contour,
+    Heatmap,
+    Edge,
+    Sankey,
   ],
   exports: [
     Chart,
@@ -28,15 +50,35 @@ import { Axis, Coord, Facet, Guide, Legend, Series, Tooltip, View, Pie, StackBar
     Facet,
     Guide,
     Legend,
-    Series,
     Tooltip,
     View,
-    Pie,
-    StackBar,
     FacetView,
-    Point
-  ]
+    Series,
+    Pie,
+    Sector,
+    Line,
+    SmoothLine,
+    DashLine,
+    Area,
+    StackArea,
+    SmoothArea,
+    Bar,
+    StackBar,
+    DodgeBar,
+    Point,
+    Waterfall,
+    Funnel,
+    Pyramid,
+    RadialBar,
+    Schema,
+    Box,
+    Candle,
+    Polygon,
+    Contour,
+    Heatmap,
+    Edge,
+    Sankey,
+  ],
 })
-
 export class ViserModule {
 }

@@ -151,7 +151,8 @@ export class Chart implements AfterViewInit, OnChanges {
       'polygon',
       'contour',
       'heatmap',
-      'edge'
+      'edge',
+      'sankey',
     ];
 
     if (regSeries.indexOf(nameLowerCase) >= 0) {
@@ -256,7 +257,7 @@ export class Chart implements AfterViewInit, OnChanges {
 
   renderChart(rerender?: any) {
     this.context.config.chart.container = this.chartDiv.nativeElement;
-
+console.log(this.context.config)
     if (rerender) {
       this.chart.repaint(this.context.config);
     } else {

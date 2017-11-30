@@ -3,10 +3,10 @@ import Coord from './Coord';
 import Facet from './Facet';
 import Guide from './Guide';
 import Legend from './Legend';
-import Series from './Series';
 import Tooltip from './Tooltip';
-import View from './View';
-import { Pie, StackBar, FacetView, Point } from './assit';
+import { View, FacetView } from './View';
+import { Series, Pie, Sector, Line, SmoothLine, DashLine, Area, StackArea, SmoothArea, Bar, StackBar, DodgeBar, Point,
+  Waterfall, Funnel, Pyramid, RadialBar, Schema, Box, Candle, Polygon, Contour, Heatmap, Edge, Sankey, } from './Series';
 
 export {
   Axis,
@@ -14,11 +14,32 @@ export {
   Facet,
   Guide,
   Legend,
-  Series,
   Tooltip,
   View,
-  Pie,
-  StackBar,
   FacetView,
-  Point
-}
+  Series,
+  Pie,
+  Sector,
+  Line,
+  SmoothLine,
+  DashLine,
+  Area,
+  StackArea,
+  SmoothArea,
+  Bar,
+  StackBar,
+  DodgeBar,
+  Point,
+  Waterfall,
+  Funnel,
+  Pyramid,
+  RadialBar,
+  Schema,
+  Box,
+  Candle,
+  Polygon,
+  Contour,
+  Heatmap,
+  Edge,
+  Sankey,
+};
