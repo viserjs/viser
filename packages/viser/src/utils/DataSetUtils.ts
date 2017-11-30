@@ -202,8 +202,8 @@ export const getProcessedData = (data: any, dataPre: IDataPreConfig) => {
   return ds;
 };
 
-export const getDataContent = (data: any, dataPart: string = 'rows') => {
-  if (dataPart === 'treeNodes') {
+export const getDataContent = (data: any, dataView: string = 'rows') => {
+  if (dataView === 'treeNodes') {
     return data.getAllNodes().map((node: any) => {
       node.name = node.data.name;
       node.value = node.data.value;
@@ -211,5 +211,5 @@ export const getDataContent = (data: any, dataPart: string = 'rows') => {
     });
   }
 
-  return data[dataPart];
+  return data[dataView];
 }
