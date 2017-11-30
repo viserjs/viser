@@ -76,6 +76,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
   @Input() contour?: boolean;
   @Input() heatmap?: boolean;
   @Input() edge?: boolean;
+  @Input() sankey?: boolean;
   @ViewChild('chartDom') chartDiv?: any;
   config: any = {};
   views: IViewConfig = {};
@@ -163,7 +164,8 @@ export class LiteChart implements AfterViewInit, OnChanges {
       'polygon',
       'contour',
       'heatmap',
-      'edge'
+      'edge',
+      'sankey',
     ];
 
     for (const res of regSeries) {
