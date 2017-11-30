@@ -25,6 +25,7 @@ class CommonChart {
   viewInstance: any = {};
   config: any;
   oriConfig: any;
+  mainDataSet: any = {};
 
   constructor(config: IMainConfig) {
     this.config = _.cloneDeep(config);
@@ -111,18 +112,17 @@ class CommonChart {
     const view = this.createView(chart, item);
 
     let viewData = item.data;
+
     if (item.data) {
-      viewData = DataSetUtils.preprocessing(item.data, item.dataPre);
-    } else if (!item.data && !item.dataPre) {
-      viewData = config.calData;
+      viewData = DataSetUtils.getProcessedData(item.data, item.dataPre);
     } else if (!item.data && item.dataPre) {
-      viewData = DataSetUtils.preprocessing(config.data, item.dataPre);
+      viewData = DataSetUtils.getProcessedData(config.data, item.dataPre);
+    } else if (!item.data && !item.dataPre) {
+      viewData = this.mainDataSet;
     }
 
-    let finalData = viewData;
-    if (item.dataView) { finalData = viewData[item.dataView]; }
-
-    this.setDataSource(view, finalData);
+    const calData = DataSetUtils.getDataContent(viewData, item.dataView);
+    this.setDataSource(view, calData);
     this.setContent(view, item);
 
     return view;
@@ -141,19 +141,16 @@ class CommonChart {
   }
 
   public setFacetViews(chart: any, facet: any, views: IMainConfig, dataMapping: IDataMappingConfig) {
-    let viewData = facet.data;
-
     if (!views.dataMapping) {
       views.dataMapping = dataMapping;
     } else {
       views = setDataMappingConfig.process(views);
     }
 
-    if (views.dataPre) {
-      viewData = DataSetUtils.preprocessing(viewData, views.dataPre);
-    }
+    const viewData = DataSetUtils.getProcessedData(facet.data, views.dataPre);
+    const calData = DataSetUtils.getDataContent(viewData, views.dataView);
 
-    this.setDataSource(chart, viewData);
+    this.setDataSource(chart, calData);
     this.setContent(chart, views);
   }
 
@@ -188,27 +185,19 @@ class CommonChart {
   public render() {
     let config = setDataMappingConfig.process(this.config);
 
-    const { data, dataMapping, dataPre } = config;
+    const { data, dataMapping, dataPre, dataView } = config;
     const chart = this.chartInstance;
 
     loadShapes();
     this.setEvents(chart, config);
 
-    config.calData = DataSetUtils.preprocessing(data, dataPre)
+    const chartData = this.mainDataSet = DataSetUtils.getProcessedData(data, dataPre);
 
-    let finalData = config.calData;
-    if (config.dataView) {
-      finalData = finalData[config.dataView];
+    if (config.series || config.facet) {
+      const calData = DataSetUtils.getDataContent(chartData);
+      this.setDataSource(chart, calData);
     }
-
-    if (config.viewId) {
-      const view = this.createView(chart, config);
-      this.setDataSource(view, finalData);
-      this.setContent(view, config);
-    } else {
-      this.setDataSource(chart, finalData);
-      this.setContent(chart, config);
-    }
+    this.setContent(chart, config);
     this.setLegend(chart, config);
     this.setViews(chart, config);
     this.setFacet(chart, config);
@@ -234,14 +223,10 @@ class CommonChart {
 
   public repaintData(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
     if (!_.isEmpty(config.data) && !_.isEqual(oriConfig.data, config.data)) {
-      config.calData = DataSetUtils.preprocessing(config.data, config.dataPre)
+      const viewData = DataSetUtils.getProcessedData(config.data, config.dataPre);
+      const calData = DataSetUtils.getDataContent(viewData, config.dataView);
 
-      let finalData: any = config.calData;
-      if (config.dataView) {
-        finalData = finalData[config.dataView];
-      }
-
-      chart.changeData(finalData);
+      chart.changeData(calData);
     } else {
       config.calData = oriConfig.calData;
     }

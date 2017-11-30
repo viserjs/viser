@@ -3,8 +3,6 @@ import IDataPreConfig from '../typed/IDataPre';
 
 const DataSet = require('@antv/data-set');
 
-const GEO_DATA: any = {};
-
 function handleToNumber(row: any, def: any) {
   const fields = Array.isArray(def.fields) ? def.fields : [def.fields];
 
@@ -29,7 +27,7 @@ function handleMergeFields(row: any, item: any) {
   const fields = item.fields;
 
   if (!Array.isArray(fields) || fields.length === 0) {
-    throw new Error(`The candle fields of DataPre must be greater than 0.`);
+    throw new Error(`The merge fields of DataPre must be greater than 0.`);
   }
 
   const newItem = [];
@@ -130,88 +128,7 @@ function processExchangeColumnToRowThree(data: any, item: any) {
   return finalData;
 }
 
-// store the geo data to GEO_DATA
-function processGeoJsonConnector(ds: any, data: any, dataPre: any) {
-  const { source, geoKey } = dataPre;
-
-  const dv = ds.createView()
-  .source(data, { type: 'GeoJSON' });
-
-  let transform = dataPre.transform;
-
-  for (const item of dataPre.transform) {
-    ds = dv.transform(transform);
-  }
-
-  if (geoKey) {
-    GEO_DATA[geoKey] = dv;
-  } else {
-    throw new Error('please set geoKey in transform config.');
-  }
-
-  return dv;
-}
-
-function processHierarchyConnector(ds: any, data: any, dataPre: any) {
-  const transform = dataPre.transform[0];
-
-  const dv = ds.createView()
-  .source(data, { type: 'hierarchy' })
-  .transform({
-    field: 'value',
-    type: 'hierarchy.treemap',
-    tile: 'treemapResquarify',
-    as: ['x', 'y'],
-    ...transform,
-  });
-
-  const res = dv.getAllNodes().map((node: any) => {
-    if (transform.nameKey) {
-      node.name = node.data[transform.nameKey];
-    }
-    if (transform.valueKey) {
-      node.value = node.data[transform.valueKey];
-    }
-    return node;
-  });
-
-  return res;
-}
-
-function processGraphConnector(ds: any, data: any, dataPre: any) {
-  const { source } = dataPre;
-  const transform = dataPre.transform[0];
-
-  if (source) {
-    if (source.edgesKey) {
-      source.edges = (d: any) => d[source.edgesKey];
-    }
-    if (source.nodesKey) {
-      source.nodes = (d: any) => d[source.nodesKey];
-    }
-  }
-
-  if (transform) {
-    if (transform.sourceWeightKey) {
-      transform.sourceWeight = (d: any) => d[source.sourceWeightKey];
-    }
-
-    if (transform.targetWeightKey) {
-      transform.targetWeightKey = (d: any) => d[transform.targetWeightKey];
-    }
-  }
-
-  const dv = ds.createView()
-  .source(data, {
-    type: 'graph',
-    ...source,
-  })
-  .transform(transform);
-
-  return dv;
-}
-
-function processCommonConnector(dv: any, item: any) {
+function processCommonTransform(dv: any, item: any) {
   if (item.type === 'toNumber') {
     dv = dv.transform({
       type: 'map',
@@ -227,10 +144,11 @@ function processCommonConnector(dv: any, item: any) {
       }
     });
   } else if (item.type === 'geo.centroid' || item.type === 'geo.region') {
-    dv = dv.transform({
-      geoDataView: GEO_DATA[item.useGeoView],
-      ...item,
-    });
+    // there use special dataId 'geo'
+    // dv = dv.transform({
+    //   geoDataView: item.['geo'],
+    //   ...item,
+    // });
   } else {
     dv = dv.transform(item);
   }
@@ -238,28 +156,28 @@ function processCommonConnector(dv: any, item: any) {
   return dv;
 }
 
-export const preprocessing = (data: any, dataPre: IDataPreConfig) => {
-  if (_.isEmpty(data)) { return []; }
-  if (_.isEmpty(dataPre)) { return data; }
+function createSource(data: any, dataPre: IDataPreConfig) {
+  let ds = new DataSet();
+  let dv;
 
-  let ds;
-  if (dataPre.useDataView) {
-    ds = new DataSet.DataView();
+  if (!_.get(dataPre, 'connector')) {
+    dv = ds.createView().source(data);
   } else {
-    ds = new DataSet();
+    dv = ds.createView().source(data, dataPre.connector);
   }
 
+  return dv;
+}
+
+export const getProcessedData = (data: any, dataPre: IDataPreConfig) => {
+  if (_.isEmpty(data)) { return []; }
+
+  if (_.isEmpty(dataPre) || _.isEmpty(dataPre.transform)) {
+    return createSource(data, dataPre);
+  }
+
+  dataPre.transform = Array.isArray(dataPre.transform) ? dataPre.transform : [dataPre.transform];
   let transform = dataPre.transform as any;
-
-  dataPre.transform  = Array.isArray(transform) ? transform : [transform];
-
-  if (dataPre.connector === 'hierarchy') {
-    return processHierarchyConnector(ds, data, dataPre);
-  } else if (dataPre.connector === 'graph') {
-    return processGraphConnector(ds, data, dataPre);
-  } else if (dataPre.connector === 'GeoJSON') {
-    return processGeoJsonConnector(ds, data, dataPre);
-  }
 
   // basic exchange row and colmun
   if (transform && transform.length) {
@@ -273,16 +191,25 @@ export const preprocessing = (data: any, dataPre: IDataPreConfig) => {
     }
   }
 
-  let dv;
-  if (dataPre.useDataView) {
-    dv = ds.source(data);
-  } else {
-    dv = ds.createView().source(data);
-  }
+  let dv = createSource(data, dataPre);
 
+  let ds;
   for (const item of transform) {
-    ds = processCommonConnector(dv, item);
+    if (item.exchangeType) { continue; }
+    ds = processCommonTransform(dv, item);
   }
 
-  return ds.rows;
+  return ds;
 };
+
+export const getDataContent = (data: any, dataPart: string = 'rows') => {
+  if (dataPart === 'treeNodes') {
+    return data.getAllNodes().map((node: any) => {
+      node.name = node.data.name;
+      node.value = node.data.value;
+      return node;
+    });
+  }
+
+  return data[dataPart];
+}
