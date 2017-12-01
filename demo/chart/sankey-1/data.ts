@@ -133,11 +133,6 @@ export const dataPre = {
   },
 };
 
-export const dataMapping = {
-  column: 'x',
-  row: 'y',
-};
-
 export const scale = [{
   dataKey: 'x',
   sync: true

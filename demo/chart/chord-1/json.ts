@@ -4,39 +4,40 @@ import { data, dataPre, scale } from './data';
 viser({
   data,
   dataPre,
+  scale,
   views: [{
     viewId: '34',
-    scale,
     dataView: 'edges',
+    axis: false,
+    coord: {
+      type: 'polar',
+      direction: 'yReverse',
+    },
     series: [{
-      quickType: 'sankey',
+      quickType: 'edge',
       position: 'x*y',
-      style: {
-        curvature: 0.5,
-      },
-      color: '#333',
-      opacity: 0.1,
-      tooltip: 'value',
+      color: 'source',
+      shape: 'arc',
+      opacity: 0.5,
+      tooltip: 'source*target*value',
     }],
   }, {
     viewId: '23',
     dataView: 'nodes',
-    scale,
+    axis: false,
+    coord: {
+      type: 'polar',
+      direction: 'yReverse',
+    },
     series: [{
       quickType: 'polygon',
       position: 'x*y',
-      color: 'name',
-      style: {
-        stroke: '#ccc'
-      },
-      label: [
-       'name',
-       {
+      color: 'id',
+      label: ['name', {
+        labelEmit: true,
         textStyle: {
-          fill: 'black',
-          textAlign: 'left'
+          fill: '#8c8c8c'
         },
-        offset: 0,
       }]
     }],
   }],
