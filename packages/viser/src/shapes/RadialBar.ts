@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import ShapeRegister from '../utils/ShapeRegister';
+import RegisterShape from '../utils/RegisterShape';
 import IShapePoints from '../typed/IShapePoints';
 
 const DEFAULT_RADIALBAR_SHAPE = 'radialBar';
@@ -19,7 +19,7 @@ function getPath(points: IShapePoints[]) {
 }
 
 export const registerShape = () => {
-  ShapeRegister.regist('interval', DEFAULT_RADIALBAR_SHAPE, {
+  RegisterShape('interval', DEFAULT_RADIALBAR_SHAPE, {
     getPoints({x, y, y0, size}: IShapePoints) {
       return [
         { x: x - size / 2, y: y0 },

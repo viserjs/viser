@@ -1,4 +1,4 @@
-import ShapeRegister from '../utils/ShapeRegister';
+import RegisterShape from '../utils/RegisterShape';
 import IShapePoints from '../typed/IShapePoints';
 
 const DEFAULT_ERRORBAR_SHAPE = 'errorbar';
@@ -21,7 +21,7 @@ export const registerShape = () => {
   let barWidth = 1;
   let hasPoint = false;
 
-  ShapeRegister.regist('schema', DEFAULT_ERRORBAR_SHAPE, {
+  RegisterShape('schema', DEFAULT_ERRORBAR_SHAPE, {
     getPoints({ x, y, size }: IShapePoints) {
       // 1 -> 2
       // |    |

@@ -11,6 +11,7 @@ import ITooltipConfig, { ITooltip } from './typed/ITooltip';
 import IViewConfig, { IView } from './typed/IView';
 import IScale from './typed/IScale';
 import IMain from './typed/IMain';
+import RegisterShape from './utils/RegisterShape';
 
 export {
   IAxis,
@@ -38,6 +39,7 @@ export {
   IViewConfig,
   IScale,
   IMain,
+  RegisterShape,
 };
 
 export default function(config: any) {

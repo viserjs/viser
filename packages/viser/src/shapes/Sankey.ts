@@ -1,4 +1,4 @@
-import ShapeRegister from '../utils/ShapeRegister';
+import RegisterShape from '../utils/RegisterShape';
 import IShapePoints from '../typed/IShapePoints';
 
 const DEFAULT_SANKEY_SHAPE = 'sankey';
@@ -40,7 +40,7 @@ function getEdgePath(points: IShapePoints[], curvature: number) {
 }
 
 export const registerShape = () => {
-  ShapeRegister.regist('edge', DEFAULT_SANKEY_SHAPE, {
+  RegisterShape('edge', DEFAULT_SANKEY_SHAPE, {
     drawShape(cfg: any, group: any) {
       const { points, style } = cfg;
       const curvature = style.curvature || 0.5;
