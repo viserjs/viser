@@ -89,10 +89,6 @@ export default class Chart extends React.Component<IRChart, any> {
       config.data = props.data;
     }
 
-    if (props.dataMapping) {
-      config.dataMapping = props.dataMapping;
-    }
-
     if (props.dataPre) {
       config.dataPre = props.dataPre;
     }
@@ -122,6 +118,9 @@ export default class Chart extends React.Component<IRChart, any> {
       'bar',
       'stackBar',
       'dodgeBar',
+      'interval',
+      'stackInterval',
+      'dodgeInterval',
       'point',
       'waterfall',
       'funnel',
