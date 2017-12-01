@@ -1,8 +1,9 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import SubComponent from './components/SubComponent';
-import { ICoord, ITooltip, ILegend, IGuide, IAxis, ISeries } from 'viser';
+import { RegisterShape as registerShape, ICoord, ITooltip, ILegend, IGuide, IAxis, ISeries } from 'viser';
 
+export const RegisterShape = registerShape;
 export { default as Chart } from './components/Chart';
 export { default as View } from './components/View';
 export { default as FacetView } from './components/FacetView';
