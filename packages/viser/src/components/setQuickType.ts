@@ -61,6 +61,28 @@ const QUICK_TYPE = [
     },
   },
   {
+    type: 'interval',
+    series: {
+      gemo: 'interval',
+    }
+  },
+  {
+    type: 'stackInterval',
+    series: {
+      gemo: 'interval',
+      shape: 'interval',
+      adjust: 'stack',
+    },
+  },
+  {
+    type: 'dodgeInterval',
+    series: {
+      gemo: 'interval',
+      shape: 'interval',
+      adjust: 'dodge',
+    },
+  },
+  {
     type: 'bar',
     series: {
       gemo: 'interval',

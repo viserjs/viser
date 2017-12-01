@@ -2,7 +2,6 @@ import CommonChart from './core/CommonChart';
 import IAxisConfig, { IAxis } from './typed/IAxis';
 import IChart from './typed/IChart';
 import ICoord, { IPolarCoord, IRectCoord } from './typed/ICoord';
-import IDataMappingConfig, { IDataMapping } from './typed/IDataMapping';
 import IDataPre from './typed/IDataPre';
 import IFacet from './typed/IFacet';
 import IGuideConfig, { IGuide, ILineGuide, ITextGuide, IImageGuide, IRegionGuide, IArcGuide } from './typed/IGuide';
@@ -20,8 +19,6 @@ export {
   ICoord,
   IRectCoord,
   IPolarCoord,
-  IDataMapping,
-  IDataMappingConfig,
   IDataPre,
   IFacet,
   IGuide,
