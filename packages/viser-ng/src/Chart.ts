@@ -324,7 +324,6 @@ export class Chart implements AfterViewInit, OnChanges {
   renderChart(rerender?: any) {
     this.context.config.chart.container = this.chartDiv.nativeElement;
     this.changeViewConfig();
-    console.log(this.context.config, 'this.context.config', this.context);
     if (rerender) {
       this.chart.repaint(this.context.config);
     } else {
