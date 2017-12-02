@@ -104,6 +104,14 @@ class CommonChart {
     this.setGuide(chart, config);
   }
 
+  public setFacetContent(chart: any, config: IMainConfig) {
+    this.setScale(chart, config);
+    this.setAxis(chart, config);
+    this.setSeries(chart, config);
+    this.setTooltip(chart, config);
+    this.setGuide(chart, config);
+  }
+
   public setView(item: any, chart: any, config: IMainConfig) {
     const view = this.createView(chart, item);
 
@@ -141,7 +149,7 @@ class CommonChart {
     const calData = DataSetUtils.getDataContent(viewData, views.dataView);
 
     this.setDataSource(chart, calData);
-    this.setContent(chart, views);
+    this.setFacetContent(chart, views);
   }
 
   public setFacet(chart: any, config: IMainConfig) {
