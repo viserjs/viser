@@ -183,7 +183,7 @@ class CommonChart {
     const chartData = this.mainDataSet = DataSetUtils.getProcessedData(data, dataPre);
 
     if (config.series || config.facet) {
-      const calData = DataSetUtils.getDataContent(chartData);
+      const calData = DataSetUtils.getDataContent(chartData, dataView);
       this.setDataSource(chart, calData);
     }
     this.setContent(chart, config);
