@@ -11,7 +11,8 @@ import ITooltipConfig, { ITooltip } from './typed/ITooltip';
 import IViewConfig, { IView } from './typed/IView';
 import IScale from './typed/IScale';
 import IMain from './typed/IMain';
-import RegisterShape from './utils/RegisterShape';
+import * as CustomizeUtils from './utils/CustomizeUtils';
+const G2 = require('@antv/g2');
 
 export {
   IAxis,
@@ -39,8 +40,11 @@ export {
   IViewConfig,
   IScale,
   IMain,
-  RegisterShape,
 };
+
+export const registerAnimation = CustomizeUtils.registerAnimation;
+export const registerShape = CustomizeUtils.registerShape;
+export const Global = G2.Global;
 
 export default function(config: any) {
   const commonChart = new CommonChart(config);
