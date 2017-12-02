@@ -8,6 +8,8 @@ function generateRandomNum() {
 export class ChartContext {
   public viewId: string;
   public config: any = {};
+  public views: any = {};
+  public facetviews: any = {};
   constructor() {
     this.viewId = generateRandomNum();
   }

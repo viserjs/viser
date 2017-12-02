@@ -88,10 +88,8 @@ export class Chart implements AfterViewInit, OnChanges {
   @ViewChild('chartDom') chartDiv?: any;
 
   config: any = {};
-  views: any = {};
   chart: any = null;
   viewId: string;
-  facetviews: any = {};
 
   constructor(private context: ChartContext) {
     this.viewId = context.viewId;
@@ -196,9 +194,9 @@ export class Chart implements AfterViewInit, OnChanges {
 
   // 同 React Version
   changeViewConfig() {
-    const views = this.views;
-    const facetviews = this.facetviews;
-    const config = this.config;
+    const views = this.context.views;
+    const facetviews = this.context.facetviews;
+    const config = this.context.config;
 
     if (!isOwnEmpty(views)) {
       config.views = [];
@@ -266,8 +264,8 @@ export class Chart implements AfterViewInit, OnChanges {
   initChart(rerender?: any) {
     const name = this.constructor.name;
     const props = this.getProps(this);
-    const config = this.config;
-    this.combineContentConfig(name, props, this.context.config);
+    const config = this.context.config;
+    const views = this.context.views;
     // this.context.config.chart = this.getViewChartConfig(this.context.config);
     if (name === 'Chart') {
       this.combineChartConfig(props, this.context.config);
@@ -277,17 +275,34 @@ export class Chart implements AfterViewInit, OnChanges {
       const options = omit(props, 'children');
       config.facet = options;
     } else if (name === 'FacetView') {
-      const viewId = this.viewId;
-      if (!this.facetviews[viewId]) {
-        this.facetviews[viewId] = { viewId };
+      const viewId = generateRandomNum();
+      if (!this.context.facetviews[viewId]) {
+        this.context.facetviews[viewId] = { viewId };
       }
-      this.combineViewConfig(props, this.facetviews[viewId]);
+      const facetview = this.context.facetviews[viewId];
+      this.combineContentConfig(
+        name,
+        props,
+        facetview
+      );
+      this.combineViewConfig(props, facetview);
+      // 将 FacetView 下面的子集生成的 json 赋值给 facetViews
+      this.context.facetviews[viewId] = {
+        ...config,
+        ...facetview
+      };
+      // 清理多余的 facetview 为 true
+      delete this.context.facetviews[viewId].facetview;
+      this.context.config = {};
     } else if (name === 'View') {
-      const viewId = this.viewId;
-      if (!this.views[viewId]) {
-        this.views[viewId] = { viewId };
+      const viewId = generateRandomNum();
+      if (!this.context.views[viewId]) {
+        this.context.views[viewId] = { viewId };
       }
-      this.combineViewConfig(props, this.views[viewId]);
+      this.combineContentConfig(name, props, this.context.views[viewId]);
+      this.combineViewConfig(props, this.context.views[viewId]);
+    } else {
+      this.combineContentConfig(name, props, config);
     }
   }
 
@@ -301,7 +316,7 @@ export class Chart implements AfterViewInit, OnChanges {
   renderChart(rerender?: any) {
     this.context.config.chart.container = this.chartDiv.nativeElement;
     this.changeViewConfig();
-    console.log(this.context.config, 'this.context.config');
+    console.log(this.context.config, 'this.context.config', this.context);
     if (rerender) {
       this.chart.repaint(this.context.config);
     } else {
