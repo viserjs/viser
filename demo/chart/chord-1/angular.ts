@@ -4,18 +4,20 @@ import { Component, enableProdMode, NgModule } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserModule } from '@angular/platform-browser';
 import { ViserModule } from '../../../packages/viser-ng/src/index';
-import { data, dataPre, scale } from './data'
+import { data, dataPre, scale } from './data';
 
 @Component({
   selector: '#mount',
   template: `
   <div>
-    <Chart [forceFit]="forceFit" [height]="height" [data]="data" [dataPre]="dataPre">
-      <View viewId="2" dataView="edges" [scale]="scale">
-        <Sankey position="x*y" [style]="sankeyStyle" color="#333" opacity="0.1" tooltip="value"></Sankey>
+    <Chart [forceFit]="forceFit" [height]="height" [data]="data" [dataPre]="dataPre" [scale]="scale">
+      <View viewId="2" dataView="edges">
+        <Coord type="polar" direction="yReverse"></Coord>
+        <Edge position="x*y" color="source" shape="arc" opacity="0.5" tooltip="source*target*value"></Edge>
       </View>
-      <View viewId="3" dataView="nodes" [scale]="scale">
-        <Polygon position="x*y" color="name" [style]="polygonStyle" [label]="label"></Polygon>
+      <View viewId="3" dataView="nodes">
+        <Coord type="polar" direction="yReverse" ></Coord>
+        <Polygon position="x*y" color="id" [label]="label" ></Polygon>
       </View>
     </Chart>
   </div>
@@ -27,17 +29,13 @@ class AppComponent {
   height: number = 600;
   data = data;
   dataPre = dataPre;
-  sankeyStyle = { curvature: 0.5 };
-  polygonStyle = { stroke: '#ccc' };
-  viewDataMapping = { column: 'x', row: 'y', color: 'name' };
   scale = scale;
   label = [
     'name', {
+      labelEmit: true,
       textStyle: {
-        fill: 'black',
-        textAlign: 'left'
+        fill: '#8c8c8c'
       },
-      offset: 0,
     }
   ];
 }
