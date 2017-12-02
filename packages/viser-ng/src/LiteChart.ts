@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
-import viser, { IViewConfig, ICoord, IDataMapping, IDataPre, IScale, IAxis, IGuide, ISeries, ITooltip, IFacet, ILegend } from 'viser';
+import viser, { IViewConfig, ICoord, IDataPre, IScale, IAxis, IGuide, ISeries, ITooltip, IFacet, ILegend } from 'viser';
 
 function generateRandomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
@@ -43,7 +43,6 @@ export class LiteChart implements AfterViewInit, OnChanges {
   @Input() opacity?: any;
   @Input() size?: any;
   @Input() coord?: ICoord;
-  @Input() dataMapping?: IDataMapping;
   @Input() dataPre?: IDataPre;
   @Input() scale?: IScale;
   @Input() axis?: IAxis;

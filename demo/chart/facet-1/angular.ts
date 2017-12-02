@@ -10,15 +10,15 @@ import { chartData, dataMapping, scale } from './data'
   selector: '#mount',
   template: `
   <div>
-    <Chart [forceFit]="forceFit" [height]="600" [data]="chartData" [dataMapping]="dataMapping" [scale]="scale">
-      <Tooltip></Tooltip>
+    <Chart [forceFit]="forceFit" [height]="600" [data]="chartData" [scale]="scale">
       <Facet type="rect" [fields]="fields">
         <FacetView>
           <Axis></Axis>
           <Tooltip></Tooltip>
-          <Point opacity="0.3" size="3"></Point>
+          <Point position="carat*price" color="cut" opacity="0.3" size="3"></Point>
         </FacetView>
       </Facet>
+      <Tooltip></Tooltip>
     </Chart>
   </div>
   `
