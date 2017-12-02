@@ -4,18 +4,17 @@ import { Component, enableProdMode, NgModule } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserModule } from '@angular/platform-browser';
 import { ViserModule } from '../../../packages/viser-ng/src/index';
-import { data, dataMapping, dataPre, scale } from './data'
+import { data, dataPre, scale } from './data'
 
 @Component({
   selector: '#mount',
   template: `
   <div>
-    <Chart [forceFit]="forceFit" [height]="height" [data]="data" [dataPre]="dataPre" [dataMapping]="dataMapping" [scale]="scale">
+    <Chart [forceFit]="forceFit" [height]="height" [data]="data" [dataPre]="dataPre" [scale]="scale">
       <Tooltip></Tooltip>
       <Axis></Axis>
-      <StackBar [ngStyle]="{ stroke: '#fff', lineWidth: 1 }" ></StackBar>
+      <StackBar position='year*percent' color='country' [style]="{ stroke: '#fff', lineWidth: 1 }" ></StackBar>
     </Chart>
-    <LiteChart [height]="height" [data]="data" [dataPre]="dataPre" [dataMapping]="dataMapping" [forceFit]="forceFit" stackBar="true" ></LiteChart>
   </div>
   `
 })
@@ -25,7 +24,6 @@ class AppComponent {
   height: number = 400;
   data = data;
   dataPre = dataPre;
-  dataMapping = dataMapping;
   scale = scale;
   fields = ['cut', 'clarity'];
 }

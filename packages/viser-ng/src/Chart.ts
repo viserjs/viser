@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import viser from 'viser';
 import { ChartContext } from './chartService';
+import IRChart from './typed/IRChart';
 
 function firstLowerCase(str: string) {
   return str.replace(/^\S/, (s: any) => {
@@ -90,18 +91,17 @@ export class Chart implements AfterViewInit, OnChanges {
   views: any = {};
   chart: any = null;
   viewId: string;
+  facetviews: any = {};
 
   constructor(private context: ChartContext) {
     this.viewId = context.viewId;
     this.context = context;
   }
 
-  combineViewConfig(props: any, config: any) {
+  // 同 React Version
+  combineViewConfig(props: IRChart, config: any) {
     if (props.data) {
       config.data = props.data;
-    }
-    if (props.dataMapping) {
-      config.dataMapping = props.dataMapping;
     }
 
     if (props.dataPre) {
@@ -117,6 +117,7 @@ export class Chart implements AfterViewInit, OnChanges {
     }
   }
 
+  // 同 React Version
   combineChartConfig(props: any, config: any) {
     const chartRetain = [
       'height', 'width', 'animate', 'forceFit',
@@ -125,26 +126,31 @@ export class Chart implements AfterViewInit, OnChanges {
     config.chart = retain(props, chartRetain);
   }
 
-  combineContentConfig(displayName: string, props: any, config: any) {
+  // 同 React Version
+  combineContentConfig(displayName: string, props: IRChart, config: any) {
+    const realName = firstLowerCase(displayName);
     const nameLowerCase = displayName.toLowerCase();
 
     const regSeries = [
       'pie',
       'sector',
       'line',
-      'smoothline',
-      'dashline',
+      'smoothLine',
+      'dashLine',
       'area',
-      'stackarea',
-      'smootharea',
+      'stackArea',
+      'smoothArea',
       'bar',
-      'stackbar',
-      'dodgebar',
+      'stackBar',
+      'dodgeBar',
+      'interval',
+      'stackInterval',
+      'dodgeInterval',
       'point',
       'waterfall',
       'funnel',
       'pyramid',
-      'radialbar',
+      'radialBar',
       'schema',
       'box',
       'candle',
@@ -155,17 +161,17 @@ export class Chart implements AfterViewInit, OnChanges {
       'sankey',
     ];
 
-    if (regSeries.indexOf(nameLowerCase) >= 0) {
+    if (regSeries.indexOf(realName) < 0 && isOwnEmpty(props)) {
+      config[nameLowerCase] = true;
+    } else if (regSeries.indexOf(realName) >= 0) {
       if (!config.series) {
         config.series = [];
       }
 
       config.series.push({
-        quickType: firstLowerCase(displayName),
-        ...props
+        quickType: realName,
+        ...props,
       });
-    } else if (isOwnEmpty(props)) {
-      config[nameLowerCase] = true;
     } else if (nameLowerCase === 'axis') {
       if (!config.axis) {
         config.axis = [];
@@ -188,6 +194,33 @@ export class Chart implements AfterViewInit, OnChanges {
     return config;
   }
 
+  // 同 React Version
+  changeViewConfig() {
+    const views = this.views;
+    const facetviews = this.facetviews;
+    const config = this.config;
+
+    if (!isOwnEmpty(views)) {
+      config.views = [];
+
+      for (const item in views) {
+        if (views.hasOwnProperty(item)) {
+          config.views.push(views[item]);
+        }
+      }
+    }
+
+    if (!isOwnEmpty(facetviews)) {
+      config.facet.views = [];
+
+      for (const item in facetviews) {
+        if (facetviews.hasOwnProperty(item)) {
+          config.facet.views.push(facetviews[item]);
+        }
+      }
+    }
+  }
+
   ngAfterViewInit() {
     if (this.chart) {
       this.chart.destroy();
@@ -196,9 +229,9 @@ export class Chart implements AfterViewInit, OnChanges {
   }
 
   getProps(allProps: any) {
-    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId', 'views',
+    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId', 'views', 'facetviews',
       'constructor', 'combineViewConfig', 'combineChartConfig', 'combineContentConfig',
-      'ngAfterViewInit', 'getProps', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
+      'ngAfterViewInit', 'getProps', 'changeViewConfig', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
 
     if (allProps) {
       const properties: {
@@ -229,22 +262,32 @@ export class Chart implements AfterViewInit, OnChanges {
     return chart;
   }
 
+
   initChart(rerender?: any) {
     const name = this.constructor.name;
     const props = this.getProps(this);
+    const config = this.config;
     this.combineContentConfig(name, props, this.context.config);
-    this.combineChartConfig(props, this.context.config);
-    this.combineViewConfig(props, this.context.config);
-    this.context.config.chart = this.getViewChartConfig(this.context.config);
-    if (this.constructor.name === 'Chart') {
+    // this.context.config.chart = this.getViewChartConfig(this.context.config);
+    if (name === 'Chart') {
+      this.combineChartConfig(props, this.context.config);
+      this.combineViewConfig(props, this.context.config);
       this.renderChart(rerender);
-    } else if (this.constructor.name === 'Facet') {
-      this.context.config.facet.views = {
-        ...this.context.config.facet.views,
-        ...this.context.config,
-        series: this.context.config.series && this.context.config.series[0]
-      };
-      delete this.context.config.series;
+    } else if (name === 'Facet') {
+      const options = omit(props, 'children');
+      config.facet = options;
+    } else if (name === 'FacetView') {
+      const viewId = this.viewId;
+      if (!this.facetviews[viewId]) {
+        this.facetviews[viewId] = { viewId };
+      }
+      this.combineViewConfig(props, this.facetviews[viewId]);
+    } else if (name === 'View') {
+      const viewId = this.viewId;
+      if (!this.views[viewId]) {
+        this.views[viewId] = { viewId };
+      }
+      this.combineViewConfig(props, this.views[viewId]);
     }
   }
 
@@ -257,7 +300,8 @@ export class Chart implements AfterViewInit, OnChanges {
 
   renderChart(rerender?: any) {
     this.context.config.chart.container = this.chartDiv.nativeElement;
-
+    this.changeViewConfig();
+    console.log(this.context.config, 'this.context.config');
     if (rerender) {
       this.chart.repaint(this.context.config);
     } else {
