@@ -299,8 +299,16 @@ export class Chart implements AfterViewInit, OnChanges {
       if (!this.context.views[viewId]) {
         this.context.views[viewId] = { viewId };
       }
-      this.combineContentConfig(name, props, this.context.views[viewId]);
-      this.combineViewConfig(props, this.context.views[viewId]);
+      const view = this.context.views[viewId];
+      this.combineContentConfig(name, props, view);
+      this.combineViewConfig(props, view);
+      this.context.views[viewId] = {
+        ...config,
+        ...view
+      };
+      // 清理多余的 facetview 为 true
+      delete this.context.views[viewId].view;
+      this.context.config = {};
     } else {
       this.combineContentConfig(name, props, config);
     }

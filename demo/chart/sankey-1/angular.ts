@@ -11,11 +11,11 @@ import { data, dataMapping, dataPre, scale } from './data'
   template: `
   <div>
     <Chart [forceFit]="forceFit" [height]="height" [data]="data" [dataPre]="dataPre">
-      <View viewId="2" dataView="edges" [dataMapping]="dataMapping" [scale]="scale">
-        <Sankey [ngStyle]="{ curvature: 0.5 }" color="#333" opacity="0.1" tooltip="value"></Sankey>
+      <View viewId="2" dataView="edges" [scale]="scale">
+        <Sankey position="x*y" [style]="sankeyStyle" color="#333" opacity="0.1" tooltip="value"></Sankey>
       </View>
-      <View viewId="3" dataView="nodes" [dataMapping]="viewDataMapping" [scale]="scale">
-        <Polygon [ngStyle]="{ stroke: '#ccc' }" [label]="label"></Polygon>
+      <View viewId="3" dataView="nodes" [scale]="scale">
+        <Polygon position="x*y" color="name" [style]="polygonStyle" [label]="label"></Polygon>
       </View>
     </Chart>
   </div>
@@ -28,16 +28,19 @@ class AppComponent {
   data = data;
   dataPre = dataPre;
   dataMapping = dataMapping;
+  sankeyStyle = { curvature: 0.5 };
+  polygonStyle = { stroke: '#ccc' };
   viewDataMapping = { column: 'x', row: 'y', color: 'name' };
   scale = scale;
-  label = {
-    dataKey: 'name',
-    textStyle: {
-      fill: 'black',
-      textAlign: 'left'
-    },
-    offset: 0,
-  };
+  label = [
+    'name', {
+      textStyle: {
+        fill: 'black',
+        textAlign: 'left'
+      },
+      offset: 0,
+    }
+  ];
 }
 
 @NgModule({
