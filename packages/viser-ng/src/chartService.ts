@@ -10,6 +10,7 @@ export class ChartContext {
   public config: any = {};
   public views: any = {};
   public facetviews: any = {};
+  public lastFacetId: string;
   constructor() {
     this.viewId = generateRandomNum();
   }

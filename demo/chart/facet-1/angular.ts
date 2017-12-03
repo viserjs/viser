@@ -11,14 +11,13 @@ import { chartData, scale } from './data'
   template: `
   <div>
     <Chart [forceFit]="forceFit" [height]="600" [data]="chartData" [scale]="scale">
-      <Axis></Axis>
       <Tooltip></Tooltip>
       <Facet type="rect" [fields]="fields">
         <FacetView>
-          <Point position="carat*price" color="cut" opacity="0.3" size="3"></Point>
+          <Point position="carat*price" color="cut" [opacity]="opacity" [size]="size"></Point>
         </FacetView>
       </Facet>
-      <Tooltip></Tooltip>
+      <Axis></Axis>
     </Chart>
   </div>
   `
@@ -29,6 +28,8 @@ export class AppComponent {
   height: number = 600;
   chartData = chartData;
   scale = scale;
+  opacity = 0.3;
+  size = 3;
   fields = ['cut', 'clarity'];
 }
 
