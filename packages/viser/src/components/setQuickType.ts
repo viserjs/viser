@@ -112,13 +112,6 @@ const QUICK_TYPE = [
     },
   },
   {
-    type: 'waterfall',
-    series: {
-      gemo: 'interval',
-      shape: 'waterfall',
-    },
-  },
-  {
     type: 'funnel',
     series: {
       gemo: 'interval',
@@ -132,16 +125,6 @@ const QUICK_TYPE = [
       gemo: 'interval',
       adjust: 'symmetric',
       shape: 'pyramid',
-    },
-  },
-  {
-    type: 'radialBar',
-    series: {
-      gemo: 'interval',
-      shape: 'radialBar',
-    },
-    coord: {
-      type: 'polar',
     },
   },
   {
@@ -194,6 +177,13 @@ const QUICK_TYPE = [
     series: {
       gemo: 'edge',
       shape: 'sankey',
+    },
+  },
+  {
+    type: 'errorBar',
+    series: {
+      gemo: 'schema',
+      shape: 'errorbar',
     },
   },
 ];
