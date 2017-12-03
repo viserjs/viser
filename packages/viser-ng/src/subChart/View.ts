@@ -7,7 +7,6 @@ import { Chart } from '../Chart';
 })
 class View extends Chart {
   @Input() data?: any;
-  @Input() dataMapping?: object[];
   @Input() dataPre?: {
     connector?: string;
     source?: any;
@@ -22,12 +21,12 @@ class View extends Chart {
   template: `<div #chartDom></div>`,
 })
 class FacetView extends Chart {
-  @Input() dataMapping?: object[];
   @Input() dataPre?: {
     connector?: string;
     source?: any;
     transform?: object[] | object;
   };
+  @Input() dataView?: string;
 }
 
 export { View, FacetView };

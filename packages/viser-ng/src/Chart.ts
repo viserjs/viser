@@ -60,7 +60,7 @@ interface IBackground {
   lineWidth: number;
   fill: string;
   fillOpactiy: number;
-  radius: number
+  radius: number;
 }
 
 @Component({
@@ -78,7 +78,7 @@ export class Chart implements AfterViewInit, OnChanges {
   };
   @Input() height?: number;
   @Input() width?: number;
-  @Input() animate?: boolean;
+  @Input() animate?: boolean | object;
   @Input() forceFit?: boolean;
   @Input() background?: any;
   @Input() plotBackground?: any;
@@ -96,7 +96,6 @@ export class Chart implements AfterViewInit, OnChanges {
     this.context = context;
   }
 
-  // 同 React Version
   combineViewConfig(props: IRChart, config: any) {
     if (props.data) {
       config.data = props.data;
@@ -115,7 +114,6 @@ export class Chart implements AfterViewInit, OnChanges {
     }
   }
 
-  // 同 React Version
   combineChartConfig(props: any, config: any) {
     const chartRetain = [
       'height', 'width', 'animate', 'forceFit',
@@ -124,7 +122,6 @@ export class Chart implements AfterViewInit, OnChanges {
     config.chart = retain(props, chartRetain);
   }
 
-  // 同 React Version
   combineContentConfig(displayName: string, props: IRChart, config: any) {
     const realName = firstLowerCase(displayName);
     const nameLowerCase = displayName.toLowerCase();
@@ -145,10 +142,8 @@ export class Chart implements AfterViewInit, OnChanges {
       'stackInterval',
       'dodgeInterval',
       'point',
-      'waterfall',
       'funnel',
       'pyramid',
-      'radialBar',
       'schema',
       'box',
       'candle',
@@ -157,6 +152,7 @@ export class Chart implements AfterViewInit, OnChanges {
       'heatmap',
       'edge',
       'sankey',
+      'errorBar',
     ];
 
     if (regSeries.indexOf(realName) < 0 && isOwnEmpty(props)) {
@@ -192,7 +188,6 @@ export class Chart implements AfterViewInit, OnChanges {
     return config;
   }
 
-  // 同 React Version
   changeViewConfig() {
     const views = this.context.views;
     const facetviews = this.context.facetviews;
@@ -260,7 +255,6 @@ export class Chart implements AfterViewInit, OnChanges {
     return chart;
   }
 
-
   initChart(rerender?: any) {
     const name = this.constructor.name;
     const props = this.getProps(this);
@@ -286,12 +280,10 @@ export class Chart implements AfterViewInit, OnChanges {
         facetview
       );
       this.combineViewConfig(props, facetview);
-      // 将 FacetView 下面的子集生成的 json 赋值给 facetViews
       this.context.facetviews[viewId] = {
         ...config,
         ...facetview
       };
-      // 清理多余的 facetview 为 true
       delete this.context.facetviews[viewId].facetview;
       this.context.config = {};
     } else if (name === 'View') {
@@ -306,7 +298,6 @@ export class Chart implements AfterViewInit, OnChanges {
         ...config,
         ...view
       };
-      // 清理多余的 facetview 为 true
       delete this.context.views[viewId].view;
       this.context.config = {};
     } else {
@@ -327,6 +318,7 @@ export class Chart implements AfterViewInit, OnChanges {
     if (rerender) {
       this.chart.repaint(this.context.config);
     } else {
+      console.log(this.context.config)
       this.chart = viser(this.context.config);
     }
   }

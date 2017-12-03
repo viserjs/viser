@@ -64,10 +64,8 @@ export class LiteChart implements AfterViewInit, OnChanges {
   @Input() stackBar?: boolean;
   @Input() dodgeBar?: boolean;
   @Input() point?: boolean;
-  @Input() waterfall?: boolean;
   @Input() funnel?: boolean;
   @Input() pyramid?: boolean;
-  @Input() radialBar?: boolean;
   @Input() schema?: boolean;
   @Input() box?: boolean;
   @Input() candle?: boolean;
@@ -76,6 +74,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
   @Input() heatmap?: boolean;
   @Input() edge?: boolean;
   @Input() sankey?: boolean;
+  @Input() errorBar?: boolean;
   @ViewChild('chartDom') chartDiv?: any;
   config: any = {};
   views: IViewConfig = {};
@@ -152,11 +151,12 @@ export class LiteChart implements AfterViewInit, OnChanges {
       'bar',
       'stackBar',
       'dodgeBar',
+      'interval',
+      'stackInterval',
+      'dodgeInterval',
       'point',
-      'waterfall',
       'funnel',
       'pyramid',
-      'radialBar',
       'schema',
       'box',
       'candle',
@@ -165,6 +165,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
       'heatmap',
       'edge',
       'sankey',
+      'errobBar',
     ];
 
     for (const res of regSeries) {
@@ -188,9 +189,9 @@ export class LiteChart implements AfterViewInit, OnChanges {
   }
 
   getProps(allProps: any) {
-    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId', 'views',
-      'constructor', 'combineViewConfig', 'combineChartConfig', 'combineContentConfig',
-      'ngAfterViewInit', 'getProps', 'combineSeriesConfig', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
+    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId', 'views', 'constructor',
+      'combineViewConfig', 'combineChartConfig', 'combineContentConfig', 'ngAfterViewInit', 'getProps',
+      'combineSeriesConfig', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
 
     if (allProps) {
       const properties: {

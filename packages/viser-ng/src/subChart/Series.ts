@@ -2,36 +2,25 @@ import * as Style from './Style';
 import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
 
-type func = () => void;
-
-interface ILabelSeries {
-  dataKey?: string;
-  offset?: number;
-  textStyle?: Style.ITextStyle;
-  callback?: func;
-}
-
-interface ITooltipSeries {
-  dataKey?: string;
-  callback?: func;
-}
-
 @Component({
   selector: 'Series',
   template: `<div #chartDom></div>`,
 })
 class Series extends Chart {
-  @Input() position?: string | string[];
   @Input() quickType?: string;
+  @Input() position?: string | string[];
   @Input() gemo?: string;
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -39,15 +28,20 @@ class Series extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Pie extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -55,15 +49,20 @@ class Pie extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Sector extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -71,15 +70,20 @@ class Sector extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Line extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -87,15 +91,20 @@ class Line extends Chart {
   template: `<div #chartDom></div>`,
 })
 class SmoothLine extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -103,15 +112,20 @@ class SmoothLine extends Chart {
   template: `<div #chartDom></div>`,
 })
 class DashLine extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -119,15 +133,20 @@ class DashLine extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Area extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -135,15 +154,20 @@ class Area extends Chart {
   template: `<div #chartDom></div>`,
 })
 class StackArea extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -151,15 +175,20 @@ class StackArea extends Chart {
   template: `<div #chartDom></div>`,
 })
 class SmoothArea extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -167,15 +196,20 @@ class SmoothArea extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Bar extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -183,15 +217,20 @@ class Bar extends Chart {
   template: `<div #chartDom></div>`,
 })
 class StackBar extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -199,15 +238,83 @@ class StackBar extends Chart {
   template: `<div #chartDom></div>`,
 })
 class DodgeBar extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
+}
+
+@Component({
+  selector: 'Interval',
+  template: `<div #chartDom></div>`,
+})
+class Interval extends Chart {
+  @Input() quickType?: string;
+  @Input() position?: string | string[];
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
+  @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
+}
+
+@Component({
+  selector: 'StackInterval',
+  template: `<div #chartDom></div>`,
+})
+class StackInterval extends Chart {
+  @Input() quickType?: string;
+  @Input() position?: string | string[];
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
+  @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
+}
+
+@Component({
+  selector: 'DodgeInterval',
+  template: `<div #chartDom></div>`,
+})
+class DodgeInterval extends Chart {
+  @Input() quickType?: string;
+  @Input() position?: string | string[];
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
+  @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -215,31 +322,20 @@ class DodgeBar extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Point extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
-}
-
-@Component({
-  selector: 'Waterfall',
-  template: `<div #chartDom></div>`,
-})
-class Waterfall extends Chart {
-  @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
-  @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -247,15 +343,20 @@ class Waterfall extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Funnel extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -263,31 +364,20 @@ class Funnel extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Pyramid extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
-}
-
-@Component({
-  selector: 'RadialBar',
-  template: `<div #chartDom></div>`,
-})
-class RadialBar extends Chart {
-  @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
-  @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -295,15 +385,20 @@ class RadialBar extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Schema extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -311,15 +406,20 @@ class Schema extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Box extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -327,15 +427,20 @@ class Box extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Candle extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -343,15 +448,20 @@ class Candle extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Polygon extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -359,15 +469,20 @@ class Polygon extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Contour extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -375,15 +490,20 @@ class Contour extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Heatmap extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -391,15 +511,20 @@ class Heatmap extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Edge extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 @Component({
@@ -407,15 +532,41 @@ class Edge extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Sankey extends Chart {
+  @Input() quickType?: string;
   @Input() position?: string | string[];
-  @Input() adjust?: string;
-  @Input() color?: string;
-  @Input() shape?: string;
-  @Input() size?: number;
-  @Input() opacity?: number;
-  @Input() label?: string | ILabelSeries;
-  @Input() tooltip?: boolean | string | ITooltipSeries;
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
   @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
+}
+
+@Component({
+  selector: 'ErrorBar',
+  template: `<div #chartDom></div>`,
+})
+class ErrorBar extends Chart {
+  @Input() quickType?: string;
+  @Input() position?: string | string[];
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
+  @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
 }
 
 export {
@@ -431,11 +582,12 @@ export {
   Bar,
   StackBar,
   DodgeBar,
+  Interval,
+  StackInterval,
+  DodgeInterval,
   Point,
-  Waterfall,
   Funnel,
   Pyramid,
-  RadialBar,
   Schema,
   Box,
   Candle,
@@ -444,4 +596,5 @@ export {
   Heatmap,
   Edge,
   Sankey,
+  ErrorBar,
 };
