@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, OnChanges, Output, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
 import viser from 'viser';
 import { ChartContext } from './chartService';
 import IRChart from './typed/IRChart';
@@ -68,7 +68,7 @@ interface IBackground {
   selector: 'Chart',
   template: `<div #chartDom></div>`
 })
-export class Chart implements AfterViewInit, OnChanges {
+export class Chart implements OnInit, AfterViewInit, OnChanges {
   @Input() data?: any;
   @Input() dataMapping?: object[];
   @Input() dataPre?: {
@@ -86,14 +86,15 @@ export class Chart implements AfterViewInit, OnChanges {
   @Input() scale?: object[];
   @Input() dataView?: string;
   @ViewChild('chartDom') chartDiv?: any;
-
   config: any = {};
   chart: any = null;
   viewId: string;
-
-  constructor(private context: ChartContext) {
+  private componentId = generateRandomNum();
+  private vcRef: any;
+  constructor(private context: ChartContext, vcRef: ViewContainerRef) {
     this.viewId = context.viewId;
     this.context = context;
+    this.vcRef = vcRef;
   }
 
   combineViewConfig(props: IRChart, config: any) {
@@ -161,7 +162,6 @@ export class Chart implements AfterViewInit, OnChanges {
       if (!config.series) {
         config.series = [];
       }
-
       config.series.push({
         quickType: realName,
         ...props,
@@ -201,6 +201,7 @@ export class Chart implements AfterViewInit, OnChanges {
           config.views.push(views[item]);
         }
       }
+      delete this.context.config.series;
     }
 
     if (!isOwnEmpty(facetviews)) {
@@ -211,6 +212,7 @@ export class Chart implements AfterViewInit, OnChanges {
           config.facet.views.push(facetviews[item]);
         }
       }
+      delete this.context.config.series;
     }
   }
 
@@ -222,9 +224,9 @@ export class Chart implements AfterViewInit, OnChanges {
   }
 
   getProps(allProps: any) {
-    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId', 'views', 'facetviews',
+    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId', 'views', 'facetviews', 'componentId', 'vcRef',
       'constructor', 'combineViewConfig', 'combineChartConfig', 'combineContentConfig',
-      'ngAfterViewInit', 'getProps', 'changeViewConfig', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
+      'ngOnInit', 'ngAfterViewInit', 'getProps', 'changeViewConfig', 'getViewType', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
 
     if (allProps) {
       const properties: {
@@ -240,6 +242,16 @@ export class Chart implements AfterViewInit, OnChanges {
     return allProps;
   }
 
+  ngOnInit() {
+    const name = this.constructor.name;
+    const viewType = this.getViewType();
+    const hasInViews = ['FacetView', 'View'].indexOf(viewType) !== -1;
+    if (['FacetView', 'View'].indexOf(name) > -1) {
+      this.context.lastFacetId = this.componentId;
+    } else if (hasInViews) {
+      this.componentId = this.context.lastFacetId;
+    }
+  }
   getViewChartConfig(config: any) {
     const chartProperties = ['forceFit', 'height', 'width', 'container'];
     const chart: {
@@ -255,12 +267,20 @@ export class Chart implements AfterViewInit, OnChanges {
     return chart;
   }
 
+  getViewType() {
+    // 获取父级元素的 tagName
+    return this.vcRef.parentInjector.elDef.element.name;
+  }
+
   initChart(rerender?: any) {
     const name = this.constructor.name;
     const props = this.getProps(this);
     const config = this.context.config;
     const views = this.context.views;
-    // this.context.config.chart = this.getViewChartConfig(this.context.config);
+    const viewType = this.getViewType();
+    const hasInViews = ['FacetView', 'View'].indexOf(viewType) !== -1;;
+    const viewId = this.componentId;
+
     if (name === 'Chart') {
       this.combineChartConfig(props, this.context.config);
       this.combineViewConfig(props, this.context.config);
@@ -269,38 +289,35 @@ export class Chart implements AfterViewInit, OnChanges {
       const options = omit(props, 'children');
       config.facet = options;
     } else if (name === 'FacetView') {
-      const viewId = generateRandomNum();
       if (!this.context.facetviews[viewId]) {
         this.context.facetviews[viewId] = { viewId };
       }
-      const facetview = this.context.facetviews[viewId];
-      this.combineContentConfig(
-        name,
-        props,
-        facetview
-      );
-      this.combineViewConfig(props, facetview);
-      this.context.facetviews[viewId] = {
-        ...config,
-        ...facetview
-      };
-      delete this.context.facetviews[viewId].facetview;
-      this.context.config = {};
+      this.combineViewConfig(props, this.context.facetviews[viewId]);
     } else if (name === 'View') {
-      const viewId = generateRandomNum();
       if (!this.context.views[viewId]) {
         this.context.views[viewId] = { viewId };
       }
-      const view = this.context.views[viewId];
-      this.combineContentConfig(name, props, view);
-      this.combineViewConfig(props, view);
-      this.context.views[viewId] = {
-        ...config,
-        ...view
-      };
-      delete this.context.views[viewId].view;
-      this.context.config = {};
+      this.combineViewConfig(props, this.context.views[viewId]);
     } else {
+      if (!hasInViews) {
+        this.combineContentConfig(name, props, config);
+      } else {
+        if (viewType === 'View') {
+          if (!this.context.views[viewId]) {
+            this.context.views[viewId] = { viewId };
+          }
+          this.combineContentConfig(name, props, this.context.views[viewId]);
+        } else if (viewType === 'FacetView') {
+          if (!this.context.facetviews[viewId]) {
+            this.context.facetviews[viewId] = { viewId };
+          }
+          this.combineContentConfig(
+            name,
+            props,
+            this.context.facetviews[viewId]
+          );
+        }
+      }
       this.combineContentConfig(name, props, config);
     }
   }
@@ -318,7 +335,6 @@ export class Chart implements AfterViewInit, OnChanges {
     if (rerender) {
       this.chart.repaint(this.context.config);
     } else {
-      console.log(this.context.config)
       this.chart = viser(this.context.config);
     }
   }
