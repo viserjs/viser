@@ -32,23 +32,15 @@ The UMD build is also available on unpkg.com:
 
 Then you can find the library on window.ViserReact.
 
-### dev build
-
-```shell
-$ git clone https://github.com/viserjs/viser.git
-$ cd viser/packages/viser-react
-$ npm install
-$ cd ../../demo
-$ npm install
-$ npm run start
-```
-
 ## Demo
 
 To examine the demos in your local build, open to `demo` directory, and execute
 
 ```shell
-$ npm run[-script] start
+$ git clone https://github.com/viserjs/viser.git
+$ npm run postinstall
+$ cd ./demo && npm install
+$ npm run start
 ```
 
 and then browse to http://localhost:3000
