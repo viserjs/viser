@@ -106,9 +106,7 @@ class CommonChart {
 
   public setFacetContent(chart: any, config: IMainConfig) {
     this.setScale(chart, config);
-    this.setAxis(chart, config);
     this.setSeries(chart, config);
-    this.setTooltip(chart, config);
     this.setGuide(chart, config);
   }
 
