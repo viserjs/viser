@@ -9,10 +9,9 @@ class App extends React.Component {
       <div>
         <Chart forceFit={true} height={600} data={chartData} scale={scale}>
           <Tooltip />
+          <Axis />
           <Facet type="rect" fields={['cut', 'clarity']}>
             <FacetView>
-              <Tooltip />
-              <Axis />
               <Point position='carat*price' color='cut' opacity={0.3} size={3} />
             </FacetView>
           </Facet>

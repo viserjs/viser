@@ -2,10 +2,9 @@
   <div>
     <v-chart :force-fit="true" :height="600" :data="chartData" :scale="scale">
       <v-tooltip />
+      <v-axis />
       <v-facet :type="'rect'" :fields="['cut', 'clarity']">
         <v-facet-view>
-          <v-axis />
-          <v-tooltip />
           <v-point :position="'carat*price'" :color="'cut'" :opacity="0.3" :size="3" />
         </v-facet-view>
       </v-facet>

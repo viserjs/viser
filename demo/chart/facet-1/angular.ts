@@ -4,17 +4,17 @@ import { Component, enableProdMode, NgModule } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserModule } from '@angular/platform-browser';
 import { ViserModule } from '../../../packages/viser-ng/src/index';
-import { chartData, dataMapping, scale } from './data'
+import { chartData, scale } from './data'
 
 @Component({
   selector: '#mount',
   template: `
   <div>
     <Chart [forceFit]="forceFit" [height]="600" [data]="chartData" [scale]="scale">
+      <Axis></Axis>
+      <Tooltip></Tooltip>
       <Facet type="rect" [fields]="fields">
         <FacetView>
-          <Axis></Axis>
-          <Tooltip></Tooltip>
           <Point position="carat*price" color="cut" opacity="0.3" size="3"></Point>
         </FacetView>
       </Facet>
@@ -28,11 +28,9 @@ export class AppComponent {
   forceFit: boolean= true;
   height: number = 600;
   chartData = chartData;
-  dataMapping = dataMapping;
   scale = scale;
   fields = ['cut', 'clarity'];
 }
-
 
 @NgModule({
   declarations: [
