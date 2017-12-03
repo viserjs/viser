@@ -1,11 +1,10 @@
 import Vue from 'vue';
 import typedProps from './typed';
-import viser, { RegisterShape as registerShape} from 'viser';
+import * as viser from 'viser';
 
-const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area', 'point',
-  'stackarea', 'smootharea', 'bar', 'stackbar', 'dodgebar', 'interval', 'stackinterval', 'dodgeinterval',
-  'funnel', 'pyramid', 'radialbar', 'schema', 'box', 'candle', 'polygon', 'contour',
-  'heatmap', 'edge', 'sankey'];
+const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area', 'point', 'stackarea',
+  'smootharea', 'bar', 'stackbar', 'dodgebar', 'interval', 'stackinterval', 'dodgeinterval',
+  'funnel', 'pyramid', 'schema', 'box', 'candle', 'polygon', 'contour', 'heatmap', 'edge', 'sankey', 'errorbar'];
 
 const rootCharts = ['v-chart', 'v-lite-chart'];
 
@@ -79,7 +78,7 @@ const baseChartComponent = {
         }
 
         if (!isUpdate) {
-          this.chart = viser(d2Json);
+          this.chart = viser.default(d2Json);
         } else {
           this.chart.repaint(d2Json);
         }
@@ -173,16 +172,15 @@ export default {
     Vue.component('v-area', baseChartComponent)
     Vue.component('v-stack-area', baseChartComponent)
     Vue.component('v-smooth-area', baseChartComponent)
-    Vue.component('v-water-fall', baseChartComponent)
     Vue.component('v-funnel', baseChartComponent)
     Vue.component('v-pyramid', baseChartComponent)
-    Vue.component('v-radial-bar', baseChartComponent)
     Vue.component('v-box', baseChartComponent)
     Vue.component('v-candle', baseChartComponent)
     Vue.component('v-polygon', baseChartComponent)
     Vue.component('v-contour', baseChartComponent)
     Vue.component('v-heatmap', baseChartComponent)
     Vue.component('v-sankey', baseChartComponent)
+    Vue.component('v-error-bar', baseChartComponent)
   }
 };
 
@@ -266,4 +264,6 @@ function setIfNotExist(obj: any, key: string, value: any) {
   }
 }
 
-export const RegisterShape = registerShape;
+export const registerAnimation = viser.registerAnimation;
+export const registerShape = viser.registerShape;
+export const Global = viser.Global;
