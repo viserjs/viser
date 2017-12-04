@@ -41,6 +41,13 @@ const QUICK_TYPE = [
     },
   },
   {
+    type: 'stackLine',
+    series: {
+      gemo: 'line',
+      adjust: 'stack',
+    },
+  },
+  {
     type: 'area',
     series: {
       gemo: 'area',
