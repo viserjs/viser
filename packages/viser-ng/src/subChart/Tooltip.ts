@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
 
 interface ICrosshairs {
-  type?: 'rect' | 'x' | 'y' | 'cross',
+  type?: string,
   style?: Style.ILineStyle;
 }
 

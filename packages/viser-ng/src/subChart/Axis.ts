@@ -24,7 +24,7 @@ interface IAxisGrid {
   alternateColor: string | string[];
 }
 
-interface IAxisLabels {
+interface IAxisLabel {
   offset: number;
   formatter: string | formatterFunc;
   autoRotate: boolean;
@@ -40,13 +40,13 @@ interface IAxisLabels {
 class Axis extends Chart {
   @Input() dataKey?: string;
   @Input() position?: string | 'start' | 'center' | 'end';
-  @Input() title?: null | ITitle;
-  @Input() tick?: null | IAxisTick;
-  @Input() subTick?: null | IAxisTick;
-  @Input() grid?: null | IAxisGrid;
-  @Input() labels?: null | IAxisLabels;
-  @Input() line?: null | Style.ILineStyle;
-  @Input() tickLine?: null | Style.ILineStyle;
+  @Input() title?: ITitle;
+  @Input() tick?: IAxisTick;
+  @Input() subTick?: IAxisTick;
+  @Input() grid?: IAxisGrid;
+  @Input() label?: boolean | IAxisLabel;
+  @Input() line?: Style.ILineStyle;
+  @Input() tickLine?: Style.ILineStyle;
 }
 
 export default Axis;

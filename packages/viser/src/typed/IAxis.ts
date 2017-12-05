@@ -22,7 +22,7 @@ interface IAxisGrid {
   alternateColor: string | string[];
 }
 
-interface IAxisLabels {
+interface IAxisLabel {
   offset: number;
   formatter: string | formatterFunc;
   autoRotate: boolean;
@@ -37,7 +37,7 @@ export interface IAxis {
   tick?: IAxisTick;
   subTick?: IAxisTick;
   grid?: IAxisGrid;
-  labels?: IAxisLabels;
+  label?: IAxisLabel;
   line?: IStyle.ILineStyle;
   tickLine?: IStyle.ILineStyle;
 }

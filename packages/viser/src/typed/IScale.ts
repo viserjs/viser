@@ -37,14 +37,14 @@ interface ISPowScale {
 export type IPowScale = ICommonScale | ILinearCommonScale |  ISPowScale;
 
 interface ISTimeScale {
-  type: 'time';
+  type?: 'time';
   mask?: string;
 }
 
 export type ITimeScale = ICommonScale | ILinearCommonScale |  ISTimeScale;
 
 interface ISTimeCatScale {
-  type: 'timeCat';
+  type?: 'timeCat';
   nice?: boolean;
   mask?: string;
   values?: string;
