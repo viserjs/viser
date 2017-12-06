@@ -37,7 +37,7 @@ export interface IAxis {
   tick?: IAxisTick;
   subTick?: IAxisTick;
   grid?: IAxisGrid;
-  label?: IAxisLabel;
+  label?: boolean | IAxisLabel;
   line?: IStyle.ILineStyle;
   tickLine?: IStyle.ILineStyle;
 }
