@@ -65,7 +65,7 @@ interface IBackground {
 
 @Component({
   providers: [ChartContext],
-  selector: 'Chart',
+  selector: 'v-chart',
   template: `<div #chartDom></div>`
 })
 export class Chart implements OnInit, AfterViewInit, OnChanges {
@@ -245,7 +245,7 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
   ngOnInit() {
     const name = this.constructor.name;
     const viewType = this.getViewType();
-    const hasInViews = ['FacetView', 'View'].indexOf(viewType) !== -1;
+    const hasInViews = ['v-facet-view', 'v-view'].indexOf(viewType) !== -1;
     if (['FacetView', 'View'].indexOf(name) > -1) {
       this.context.lastFacetId = this.componentId;
     } else if (hasInViews) {
@@ -278,9 +278,9 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
     const config = this.context.config;
     const views = this.context.views;
     const viewType = this.getViewType();
-    const hasInViews = ['FacetView', 'View'].indexOf(viewType) !== -1;;
+    const hasInViews = ['v-facet-view', 'v-view'].indexOf(viewType) !== -1;;
     const viewId = this.componentId;
-
+    console.log(name, 'name');
     if (name === 'Chart') {
       this.combineChartConfig(props, this.context.config);
       this.combineViewConfig(props, this.context.config);
@@ -302,12 +302,12 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
       if (!hasInViews) {
         this.combineContentConfig(name, props, config);
       } else {
-        if (viewType === 'View') {
+        if (viewType === 'v-view') {
           if (!this.context.views[viewId]) {
             this.context.views[viewId] = { viewId };
           }
           this.combineContentConfig(name, props, this.context.views[viewId]);
-        } else if (viewType === 'FacetView') {
+        } else if (viewType === 'v-facet-view') {
           if (!this.context.facetviews[viewId]) {
             this.context.facetviews[viewId] = { viewId };
           }

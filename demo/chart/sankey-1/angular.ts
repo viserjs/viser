@@ -10,14 +10,14 @@ import { data, dataPre, scale } from './data'
   selector: '#mount',
   template: `
   <div>
-    <Chart [forceFit]="forceFit" [height]="height" [data]="data" [dataPre]="dataPre">
-      <View viewId="2" dataView="edges" [scale]="scale">
-        <Sankey position="x*y" [style]="sankeyStyle" color="#333" opacity="0.1" tooltip="value"></Sankey>
-      </View>
-      <View viewId="3" dataView="nodes" [scale]="scale">
-        <Polygon position="x*y" color="name" [style]="polygonStyle" [label]="label"></Polygon>
-      </View>
-    </Chart>
+    <v-chart [forceFit]="forceFit" [height]="height" [data]="data" [dataPre]="dataPre">
+      <v-view viewId="2" dataView="edges" [scale]="scale">
+        <v-sankey position="x*y" [style]="sankeyStyle" color="#333" opacity="0.1" tooltip="value"></v-sankey>
+      </v-view>
+      <v-view viewId="3" dataView="nodes" [scale]="scale">
+        <v-polygon position="x*y" color="name" [style]="polygonStyle" [label]="label"></v-polygon>
+      </v-view>
+    </v-chart>
   </div>
   `
 })

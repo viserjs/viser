@@ -10,16 +10,16 @@ import { data, dataPre, scale } from './data';
   selector: '#mount',
   template: `
   <div>
-    <Chart [forceFit]="forceFit" [height]="height" [data]="data" [dataPre]="dataPre" [scale]="scale">
-      <View viewId="2" dataView="edges">
-        <Coord type="polar" direction="yReverse"></Coord>
-        <Edge position="x*y" color="source" shape="arc" opacity="0.5" tooltip="source*target*value"></Edge>
-      </View>
-      <View viewId="3" dataView="nodes">
-        <Coord type="polar" direction="yReverse" ></Coord>
-        <Polygon position="x*y" color="id" [label]="label" ></Polygon>
-      </View>
-    </Chart>
+    <v-chart [forceFit]="forceFit" [height]="height" [data]="data" [dataPre]="dataPre" [scale]="scale">
+      <v-view viewId="2" dataView="edges">
+        <v-coord type="polar" direction="yReverse"></v-coord>
+        <v-edge position="x*y" color="source" shape="arc" opacity="0.5" tooltip="source*target*value"></v-edge>
+      </v-view>
+      <v-view viewId="3" dataView="nodes">
+        <v-coord type="polar" direction="yReverse" ></v-coord>
+        <v-polygon position="x*y" color="id" [label]="label" ></v-polygon>
+      </v-view>
+    </v-chart>
   </div>
   `
 })

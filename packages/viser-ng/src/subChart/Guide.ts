@@ -21,7 +21,7 @@ interface IRegionStyle {
 }
 
 @Component({
-  selector: 'Guide',
+  selector: 'v-guide',
   template: `<div #chartDom></div>`,
 })
 class Guide extends Chart {

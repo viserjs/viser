@@ -23,7 +23,7 @@ function retain(obj: any, attr: string[]) {
 
 @Component({
   providers: [],
-  selector: 'LiteChart',
+  selector: 'v-liteChart',
   template: `<div #chartDom></div>`
 })
 

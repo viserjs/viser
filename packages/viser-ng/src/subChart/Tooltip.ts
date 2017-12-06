@@ -8,7 +8,7 @@ interface ICrosshairs {
 }
 
 @Component({
-  selector: 'Tooltip',
+  selector: 'v-tooltip',
   template: `<div #chartDom></div>`,
 })
 class Tooltip extends Chart {

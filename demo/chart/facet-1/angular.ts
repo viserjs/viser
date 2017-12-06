@@ -10,15 +10,15 @@ import { chartData, scale } from './data'
   selector: '#mount',
   template: `
   <div>
-    <Chart [forceFit]="forceFit" [height]="600" [data]="chartData" [scale]="scale">
-      <Tooltip></Tooltip>
-      <Facet type="rect" [fields]="fields">
-        <FacetView>
-          <Point position="carat*price" color="cut" [opacity]="opacity" [size]="size"></Point>
-        </FacetView>
-      </Facet>
-      <Axis></Axis>
-    </Chart>
+    <v-chart [forceFit]="forceFit" [height]="600" [data]="chartData" [scale]="scale">
+      <v-tooltip></v-tooltip>
+      <v-facet type="rect" [fields]="fields">
+        <v-facet-view>
+          <v-point position="carat*price" color="cut" [opacity]="opacity" [size]="size"></v-point>
+        </v-facet-view>
+      </v-facet>
+      <v-axis></v-axis>
+    </v-chart>
   </div>
   `
 })
