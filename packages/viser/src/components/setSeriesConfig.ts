@@ -151,16 +151,16 @@ function setSeriesLabel(chart: any, currSeries: ISeries) {
 function setSeriesStyle(chart: any, currSeries: ISeries) {
   const style = currSeries.style;
 
-  if (_.isObject(style)) {
-    return chart.style(style);
-  }
-
   if (_.isArray(style) && style.length >= 1) {
     if (style[1]) {
       return chart.style(style[0], style[1]);
     }
 
     return chart.style(style[0]);
+  }
+
+  if (_.isObject(style)) {
+    return chart.style(style);
   }
 
   return chart;
