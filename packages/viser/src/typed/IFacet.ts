@@ -16,6 +16,10 @@ interface IFacet {
   showTitle?: boolean;
   autoSetAxis?: boolean;
   padding?: number;
+  cols?: number;
+  rows?: number;
+  transpose?: boolean;
+  line?: IStyle.ILineStyle;
   colTitle?: IColTitleProps;
   rowTitle?: IRowTitleProps;
   eachView?: (views: any, facet: any) => void;
