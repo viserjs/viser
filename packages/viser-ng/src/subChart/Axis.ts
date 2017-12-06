@@ -33,7 +33,7 @@ interface IAxisLabels {
 }
 
 @Component({
-  selector: 'Axis',
+  selector: 'v-axis',
   template: `<div #chartDom></div>`,
 })
 

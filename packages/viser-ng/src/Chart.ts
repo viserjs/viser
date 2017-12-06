@@ -65,7 +65,7 @@ interface IBackground {
 
 @Component({
   providers: [ChartContext],
-  selector: 'Chart',
+  selector: 'v-chart',
   template: `<div #chartDom></div>`
 })
 export class Chart implements OnInit, AfterViewInit, OnChanges {

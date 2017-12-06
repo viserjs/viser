@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
 
 @Component({
-  selector: 'View',
+  selector: 'v-view',
   template: `<div #chartDom></div>`,
 })
 class View extends Chart {
@@ -17,7 +17,7 @@ class View extends Chart {
 }
 
 @Component({
-  selector: 'FacetView',
+  selector: 'v-facet-view',
   template: `<div #chartDom></div>`,
 })
 class FacetView extends Chart {

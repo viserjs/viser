@@ -13,7 +13,7 @@ interface IRowTitleProps {
 }
 
 @Component({
-  selector: 'Facet',
+  selector: 'v-facet',
   template: `<div #chartDom></div>`,
 })
 class Facet extends Chart {

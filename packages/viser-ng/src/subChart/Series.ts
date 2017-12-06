@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
 
 @Component({
-  selector: 'Series',
+  selector: 'v-series',
   template: `<div #chartDom></div>`,
 })
 class Series extends Chart {
@@ -24,7 +24,7 @@ class Series extends Chart {
 }
 
 @Component({
-  selector: 'Pie',
+  selector: 'v-pie',
   template: `<div #chartDom></div>`,
 })
 class Pie extends Chart {
@@ -45,7 +45,7 @@ class Pie extends Chart {
 }
 
 @Component({
-  selector: 'Sector',
+  selector: 'v-sector',
   template: `<div #chartDom></div>`,
 })
 class Sector extends Chart {
@@ -66,7 +66,7 @@ class Sector extends Chart {
 }
 
 @Component({
-  selector: 'Line',
+  selector: 'v-line',
   template: `<div #chartDom></div>`,
 })
 class Line extends Chart {
@@ -87,7 +87,7 @@ class Line extends Chart {
 }
 
 @Component({
-  selector: 'SmoothLine',
+  selector: 'v-smooth-line',
   template: `<div #chartDom></div>`,
 })
 class SmoothLine extends Chart {
@@ -108,7 +108,7 @@ class SmoothLine extends Chart {
 }
 
 @Component({
-  selector: 'DashLine',
+  selector: 'v-dash-line',
   template: `<div #chartDom></div>`,
 })
 class DashLine extends Chart {
@@ -129,7 +129,7 @@ class DashLine extends Chart {
 }
 
 @Component({
-  selector: 'Area',
+  selector: 'v-area',
   template: `<div #chartDom></div>`,
 })
 class Area extends Chart {
@@ -150,7 +150,7 @@ class Area extends Chart {
 }
 
 @Component({
-  selector: 'StackArea',
+  selector: 'v-stack-area',
   template: `<div #chartDom></div>`,
 })
 class StackArea extends Chart {
@@ -171,7 +171,7 @@ class StackArea extends Chart {
 }
 
 @Component({
-  selector: 'SmoothArea',
+  selector: 'v-smooth-area',
   template: `<div #chartDom></div>`,
 })
 class SmoothArea extends Chart {
@@ -192,7 +192,7 @@ class SmoothArea extends Chart {
 }
 
 @Component({
-  selector: 'Bar',
+  selector: 'v-bar',
   template: `<div #chartDom></div>`,
 })
 class Bar extends Chart {
@@ -213,7 +213,7 @@ class Bar extends Chart {
 }
 
 @Component({
-  selector: 'StackBar',
+  selector: 'v-stack-bar',
   template: `<div #chartDom></div>`,
 })
 class StackBar extends Chart {
@@ -234,7 +234,7 @@ class StackBar extends Chart {
 }
 
 @Component({
-  selector: 'DodgeBar',
+  selector: 'v-dodge-bar',
   template: `<div #chartDom></div>`,
 })
 class DodgeBar extends Chart {
@@ -255,7 +255,7 @@ class DodgeBar extends Chart {
 }
 
 @Component({
-  selector: 'Interval',
+  selector: 'v-interval',
   template: `<div #chartDom></div>`,
 })
 class Interval extends Chart {
@@ -276,7 +276,7 @@ class Interval extends Chart {
 }
 
 @Component({
-  selector: 'StackInterval',
+  selector: 'v-stack-interval',
   template: `<div #chartDom></div>`,
 })
 class StackInterval extends Chart {
@@ -297,7 +297,7 @@ class StackInterval extends Chart {
 }
 
 @Component({
-  selector: 'DodgeInterval',
+  selector: 'v-dodge-interval',
   template: `<div #chartDom></div>`,
 })
 class DodgeInterval extends Chart {
@@ -318,7 +318,7 @@ class DodgeInterval extends Chart {
 }
 
 @Component({
-  selector: 'Point',
+  selector: 'v-point',
   template: `<div #chartDom></div>`,
 })
 class Point extends Chart {
@@ -339,7 +339,7 @@ class Point extends Chart {
 }
 
 @Component({
-  selector: 'Funnel',
+  selector: 'v-funnel',
   template: `<div #chartDom></div>`,
 })
 class Funnel extends Chart {
@@ -360,7 +360,7 @@ class Funnel extends Chart {
 }
 
 @Component({
-  selector: 'Pyramid',
+  selector: 'v-pyramid',
   template: `<div #chartDom></div>`,
 })
 class Pyramid extends Chart {
@@ -381,7 +381,7 @@ class Pyramid extends Chart {
 }
 
 @Component({
-  selector: 'Schema',
+  selector: 'v-schema',
   template: `<div #chartDom></div>`,
 })
 class Schema extends Chart {
@@ -402,7 +402,7 @@ class Schema extends Chart {
 }
 
 @Component({
-  selector: 'Box',
+  selector: 'v-box',
   template: `<div #chartDom></div>`,
 })
 class Box extends Chart {
@@ -423,7 +423,7 @@ class Box extends Chart {
 }
 
 @Component({
-  selector: 'Candle',
+  selector: 'v-candle',
   template: `<div #chartDom></div>`,
 })
 class Candle extends Chart {
@@ -444,7 +444,7 @@ class Candle extends Chart {
 }
 
 @Component({
-  selector: 'Polygon',
+  selector: 'v-polygon',
   template: `<div #chartDom></div>`,
 })
 class Polygon extends Chart {
@@ -465,7 +465,7 @@ class Polygon extends Chart {
 }
 
 @Component({
-  selector: 'Contour',
+  selector: 'v-contour',
   template: `<div #chartDom></div>`,
 })
 class Contour extends Chart {
@@ -486,7 +486,7 @@ class Contour extends Chart {
 }
 
 @Component({
-  selector: 'Heatmap',
+  selector: 'v-heatmap',
   template: `<div #chartDom></div>`,
 })
 class Heatmap extends Chart {
@@ -507,7 +507,7 @@ class Heatmap extends Chart {
 }
 
 @Component({
-  selector: 'Edge',
+  selector: 'v-edge',
   template: `<div #chartDom></div>`,
 })
 class Edge extends Chart {
@@ -528,7 +528,7 @@ class Edge extends Chart {
 }
 
 @Component({
-  selector: 'Sankey',
+  selector: 'v-sankey',
   template: `<div #chartDom></div>`,
 })
 class Sankey extends Chart {
@@ -549,7 +549,7 @@ class Sankey extends Chart {
 }
 
 @Component({
-  selector: 'ErrorBar',
+  selector: 'v-error-bar',
   template: `<div #chartDom></div>`,
 })
 class ErrorBar extends Chart {

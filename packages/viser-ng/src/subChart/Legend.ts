@@ -15,7 +15,7 @@ interface IBackground {
 }
 
 @Component({
-  selector: 'Legend',
+  selector: 'v-legend',
   template: `<div #chartDom></div>`,
 })
 
