@@ -7,7 +7,7 @@ type formatterFunc = (val: number) => string | number;
 interface ITitle {
   autoRotate?: boolean;
   offset?: number;
-  position?: 'start' | 'center' | 'end';
+  position?: string;
   TextStyle?: Style.ITextStyle;
 }
 
@@ -39,7 +39,7 @@ interface IAxisLabel {
 
 class Axis extends Chart {
   @Input() dataKey?: string;
-  @Input() position?: string | 'start' | 'center' | 'end';
+  @Input() position?: string;
   @Input() title?: ITitle;
   @Input() tick?: IAxisTick;
   @Input() subTick?: IAxisTick;
