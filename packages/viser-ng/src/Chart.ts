@@ -318,7 +318,6 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
           );
         }
       }
-      this.combineContentConfig(name, props, config);
     }
   }
 
