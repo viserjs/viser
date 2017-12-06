@@ -280,7 +280,7 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
     const viewType = this.getViewType();
     const hasInViews = ['v-facet-view', 'v-view'].indexOf(viewType) !== -1;;
     const viewId = this.componentId;
-    console.log(name, 'name');
+
     if (name === 'Chart') {
       this.combineChartConfig(props, this.context.config);
       this.combineViewConfig(props, this.context.config);
