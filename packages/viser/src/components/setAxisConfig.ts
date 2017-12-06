@@ -1,60 +1,35 @@
 import * as setCustomFormatter from './setCustomFormatter';
 import * as _ from 'lodash';
+import * as EventUtils from '../utils/EventUtils';
 
-function validateAxis(dataMapping, oriAxis) {
-  if (oriAxis === true) { return true; }
-  const axis = Array.isArray(oriAxis) ? oriAxis : [oriAxis];
+function setRotatePolarAxis(chart: any, axisItem: any, coord: any, data: any) {
+  const polarLabel = _.get(axisItem, 'polarLabel');
+  const rotate = _.get(axisItem, 'polarLabel.rotate');
 
-  const seriesKey = [];
-  const newAxis = [];
-
-  for (const citem of dataMapping.column) {
-    seriesKey.push(citem);
-  }
-
-  for (const ritem of dataMapping.row) {
-    seriesKey.push(ritem);
-  }
-
-  for (const item of axis) {
-    if (item && item.dataKey && seriesKey.indexOf(item.dataKey) >= 0) {
-      newAxis.push(item);
-    }
-  }
-
-  return newAxis;
-}
-
-function setRotatePolarAxis(chart, config) {
-  const { coord, data, dataMapping, axis } = config;
-
-  const colsKey = dataMapping.column[0];
-  const axisTick = dataMapping.scale[colsKey];
-
-  if (!axisTick || !_.get(axisTick, 'tick.rotate')) { return; }
+  if (!rotate) { return; }
 
   let tickStyle = {};
-  if (axisTick.tick.rotate === 'parallel') {
+  if (rotate === 'parallel') {
     tickStyle = {
       rotate: coord.startAngle,
       textAlign: 'center',
     };
-  } else if (axisTick.tick.rotate === 'normal') {
+  } else if (rotate === 'normal') {
     tickStyle = {
       rotate: coord.startAngle + 90,
       textAlign: 'right',
     };
   }
 
-  const offsetX = _.get(axisTick, 'tick.offsetX') ? { offsetX: axisTick.tick.offsetX } : null;
-  const offsetY = _.get(axisTick, 'tick.offsetY') ? { offsetY: axisTick.tick.offsetY } : null;
+  const offsetX = _.get(axisItem, 'polarLabel.offsetX');
+  const offsetY = _.get(axisItem, 'polarLabel.offsetY');
 
   data.forEach((res: any, i: any) => {
     chart.guide().text({
       position: [i, 0],
-      content: data[i][colsKey],
+      content: data[i][axisItem.dataKey],
       style: {
-        axisTick,
+        polarLabel,
         ...tickStyle,
       },
       ...offsetX,
@@ -63,79 +38,37 @@ function setRotatePolarAxis(chart, config) {
   });
 }
 
-function generateAxisNameOptions(config: any) {
-  const axisPos = config.position;
-  const namePos = config.name.position;
-  const title = config.name.value ? config.name.value :
-    (config.name.formatter ? config.name.formatter() : '');
-
-  // position coordinate begin  left top point
-  let labelViewPos = ['0%', '0%'];
-  if (axisPos === 'bottom' && namePos === 'left') {
-    labelViewPos = ['0%', '100%'];
-  } else if (axisPos === 'bottom' && namePos === 'middle') {
-    labelViewPos = ['50%', '100%'];
-  } else if (axisPos === 'bottom' && namePos === 'right') {
-    labelViewPos = ['100%', '100%'];
-  } else if (axisPos === 'left' && namePos === 'top') {
-    labelViewPos = ['0%', '0%'];
-  } else if (axisPos === 'left' && namePos === 'middle') {
-    labelViewPos = ['0%', '50%'];
-  } else if (axisPos === 'left' && namePos === 'bottom') {
-    labelViewPos = ['0%', '100%'];
-  } else if (axisPos === 'right' && namePos === 'top') {
-    labelViewPos = ['100%', '0%'];
-  } else if (axisPos === 'right' && namePos === 'middle') {
-    labelViewPos = ['100%', '50%'];
-  } else if (axisPos === 'right' && namePos === 'bottom') {
-    labelViewPos = ['100%', '100%'];
-  } else if (axisPos === 'top' && namePos === 'left') {
-    labelViewPos = ['0%', '0%'];
-  } else if (axisPos === 'top' && namePos === 'middle') {
-    labelViewPos = ['50%', '0%'];
-  } else if (axisPos === 'top' && namePos === 'right') {
-    labelViewPos = ['100%', '0%'];
+export const process = (chart: any, config: any) => {
+  if (!config.axis || (_.isArray(config.axis) && config.axis.length === 0)) {
+    return chart.axis(false);
   }
 
-  return {
-    top: true,
-    position: labelViewPos,
-    content: title,
-    style: config.label,
-  };
-}
-
-export const process = (chart, config) => {
-  const { coord, axis, series, dataMapping } = config;
-
-  if (config.axis) {
-    config.axis = validateAxis(config.dataMapping, config.axis);
-  } else {
-    config.axis = false;
-  }
-
-  const isArr = Array.isArray(axis);
-
-  if (!axis || (isArr && axis.length === 0)) { return chart.axis(false); }
+  const axis = config.axis = Array.isArray(config.axis) ? config.axis : [config.axis];
+  const { coord, data } = config;
 
   if (axis === true) { return chart.axis(); }
 
-  if (coord && coord.type === 'polar' && coord.direction === 'rotate') {
-    setRotatePolarAxis(chart, config);
-  }
-
-  const newAxis = [];
-
   for (const res of axis) {
     if (res.show === false) { return chart.axis(res.dataKey, false); }
+
+    if (coord && coord.type === 'polar' && coord.direction === 'rotate') {
+      setRotatePolarAxis(chart, res, coord, data);
+    }
 
     if (res.label) { res.label = setCustomFormatter.supportD3Formatter(res.label); }
 
     const options = _.omit(res, ['show', 'dataKey']);
     chart.axis(res.dataKey, options);
 
-    if (res.name) {
-      chart.guide().text(generateAxisNameOptions(res));
+    for (const item in res) {
+      if (res.hasOwnProperty(item)) {
+        let name = `axis-${item}`;
+        if (item === 'tickLine') {
+          name = 'axis-ticks';
+        }
+
+        EventUtils.setEvent(chart, name, res[item]);
+      }
     }
   }
 

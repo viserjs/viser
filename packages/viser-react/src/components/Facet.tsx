@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { default as FacetProps } from '../types/Facet';
+import { IFacet } from 'viser';
 
-export default class Facet extends React.Component<FacetProps, any> {
+export default class Facet extends React.Component<IFacet, any> {
   static contextTypes = {
     centralizedUpdates: PropTypes.func,
     hasInViews: PropTypes.bool,
@@ -11,7 +11,7 @@ export default class Facet extends React.Component<FacetProps, any> {
 
   displayName = 'Facet';
 
-  constructor(props) {
+  constructor(props: IFacet) {
     super(props);
   }
 
@@ -24,6 +24,6 @@ export default class Facet extends React.Component<FacetProps, any> {
   }
 
   render() {
-    return <div>{this.props.children}</div>;
+    return this.props.children;
   }
 }

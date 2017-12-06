@@ -30,31 +30,20 @@ export const data2 = [
 ];
 
 export const data3 = [
-  ['Europe', 'Europe', 'Europe', 'Asia', 'Asia', 'Asia'],
-  ['1750', '1800', '1850', '1750', '1800', '1850'],
-  [163, 203, 276, 502, 635, 809],
+  ['Europe', 'Europe', 'Europe', 'Europe', 'Europe', 'Europe', 'Europe', 'Europe', 'Asia', 'Asia', 'Asia', 'Asia', 'Asia', 'Asia', 'Asia', 'Asia'],
+  ['1750', '1800', '1850', '1900', '1950', '1999', '2050', '2100', '1750', '1800', '1850', '1900', '1950', '1999', '2050', '2100'],
+  [163, 203, 276, 408, 547, 729, 628, 828, 502, 635, 809, 947, 1402, 3634, 5268, 7268],
 ];
 
 export const dataPre = {
-  transform: {
+  transform: [{
     type: 'percent',
     field: 'value',
     dimension: 'country',
     groupBy: ['year'],
     as: 'percent'
-  }
+  }]
 };
-
-export const dataMapping = [{
-  dataKey: 'year',
-  mark: 'column',
-}, {
-  dataKey: 'percent',
-  mark: 'row',
-}, {
-  dataKey: 'country',
-  mark: 'color',
-}];
 
 export const scale = [{
   dataKey: 'percent',

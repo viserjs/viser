@@ -1,9 +1,9 @@
-import * as Style from './Style';
+import * as IStyle from './IStyle';
 
 type func = () => void;
 type formatterFunc = (val: number) => string | number;
 
- interface Legend {
+export interface ILegend {
   dataKey?: string;
   position?: 'top' | 'right' | 'bottom' | 'left';
   title?: null | object;
@@ -16,8 +16,8 @@ type formatterFunc = (val: number) => string | number;
   background?: object;
   allowAllCanceled?: boolean;
   itemFormatter?: formatterFunc;
-  marker?: string | func;
-  textStyle?: Style.ITextStyle;
+  marker?: string & func;
+  textStyle?: IStyle.ITextStyle;
   clickable?: boolean;
   hoverable?: boolean;
   selectedMode?: 'single' | 'multiple';
@@ -25,4 +25,6 @@ type formatterFunc = (val: number) => string | number;
   onClick?: func;
 }
 
-export default Legend;
+type ILegendConfig = boolean | ILegend;
+
+export default ILegendConfig;

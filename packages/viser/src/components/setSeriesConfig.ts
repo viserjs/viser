@@ -1,11 +1,12 @@
 import * as _ from 'lodash';
 import * as setQuickType from './setQuickType';
+import * as EventUtils from '../utils/EventUtils';
+import { ISeries } from '../typed/ISeries';
+import IMainConfig from '../typed/IMain';
 
-function isFunction(fn) {
-  return Object.prototype.toString.call(fn) === '[object Function]';
-}
+function setSeriesGemo(chart: any, currSeries: ISeries) {
+  const gemo = currSeries.gemo;
 
-function renderGemo(chart, gemo) {
   switch (gemo) {
     case 'line':
       chart = chart.line();
@@ -42,191 +43,212 @@ function renderGemo(chart, gemo) {
   return chart;
 }
 
-function skipPosition(dataMapping, currSeries) {
-  if (!currSeries.position && dataMapping.column && dataMapping.row) {
-    if (currSeries.quickType === 'pie') {
-      currSeries.position = `${dataMapping.row[0]}`;
-    } else {
-      currSeries.position = `${dataMapping.column[0]}*${dataMapping.row[0]}`;
-    }
-  }
+function setSeriesPosition(chart: any, currSeries: ISeries) {
+  const position = currSeries.position;
+  if (!_.isEmpty(position)) { return chart.position(position); }
 
-  return currSeries;
+  return chart;
 }
 
-function setSeriesPosition(chart, currSeries) {
-  return chart.position(currSeries.position);
-}
-
-function setSeriesAdjust(chart, currSeries) {
+function setSeriesAdjust(chart: any, currSeries: ISeries) {
   const adjust = currSeries.adjust;
-
   if (!_.isEmpty(adjust)) { return chart.adjust(adjust); }
 
   return chart;
 }
 
-function setSeriesShape(chart, dataMapping, currSeries) {
-  const dim = dataMapping.shape;
+function setSeriesShape(chart: any, currSeries: ISeries) {
   const shape = currSeries.shape;
 
-  if (dim && shape) {
-    return chart.shape(dim, shape);
-  } else if (dim && !shape) {
-    return chart.shape(dim);
-  } else if (shape) {
+  if (_.isString(shape)) {
     return chart.shape(shape);
   }
 
+  if (_.isArray(shape) && shape.length >= 1) {
+    if (shape[1]) {
+      return chart.shape(shape[0], shape[1]);
+    }
+
+    return chart.shape(shape[0]);
+  }
+
   return chart;
 }
 
-function setSeriesColor(chart, dataMapping, currSeries) {
-  const color = _.get(currSeries, 'color');
-  const dim = dataMapping.color;
+function setSeriesColor(chart: any, currSeries: ISeries) {
+  const color = currSeries.color;
 
-  if (dim && color) {
-    return chart.color(dim, color);
-  } else if (dim && !color) {
-    return chart.color(dim);
-  } else if (color) {
+  if (_.isString(color)) {
     return chart.color(color);
   }
 
+  if (_.isArray(color) && color.length >= 1) {
+    if (color[1]) {
+      return chart.color(color[0], color[1]);
+    }
+
+    return chart.color(color[0]);
+  }
+
   return chart;
 }
 
-function setSeriesSize(chart, dataMapping, currSeries) {
-  const dim = dataMapping.size;
+function setSeriesSize(chart: any, currSeries: ISeries) {
   const size = currSeries.size;
 
-  if (dim && size) {
-    return chart.size(dim, size);
-  } else if (dim && !size) {
-    return chart.size(dim);
-  } else if (size) {
+  if (_.isNumber(size) || _.isString(size)) {
     return chart.size(size);
   }
 
+  if (_.isArray(size) && size.length >= 1) {
+    if (size[1]) {
+      return chart.size(size[0], size[1]);
+    }
+
+    return chart.size(size[0]);
+  }
+
   return chart;
 }
 
-function setSeriesOpacity(chart, dataMapping, currSeries) {
-  const dim = dataMapping.opacity;
+function setSeriesOpacity(chart: any, currSeries: ISeries) {
   const opacity = currSeries.opacity;
 
-  if (dim && opacity) {
-    return chart.opacity(dim, opacity);
-  } else if (dim && !opacity) {
-    return chart.opacity(dim);
-  } else if (opacity) {
+  if (_.isNumber(opacity) || _.isString(opacity)) {
     return chart.opacity(opacity);
   }
 
+  if (_.isArray(opacity) && opacity.length >= 1) {
+    if (opacity[1]) {
+      return chart.opacity(opacity[0], opacity[1]);
+    }
+
+    return chart.opacity(opacity[0]);
+  }
+
   return chart;
 }
 
-function setSeriesLabel(chart, currSeries) {
+function setSeriesLabel(chart: any, currSeries: ISeries) {
   const label = currSeries.label;
 
-  if (!_.isEmpty(label)) {
-    if (_.isString(label)) {
-      return chart.label(label);
+  if (_.isString(label)) {
+    return chart.label(label);
+  }
+
+  if (_.isArray(label) && label.length >= 1) {
+    if (label[1]) {
+      EventUtils.setEvent(chart, 'label', label[1]);
+      return chart.label(label[0], label[1]);
     }
 
-    if (label.dataKey) {
-      const options = _.omit(label, 'dataKey');
-      return chart.label(label.dataKey, options);
-    }
+    return chart.label(label[0]);
   }
 
   return chart;
 }
 
-function setSeriesStyle(chart, currSeries) {
+function setSeriesStyle(chart: any, currSeries: ISeries) {
   const style = currSeries.style;
 
-  if (!_.isEmpty(style)) {
-    const options = _.omit(style, 'dataKey');
+  if (_.isObject(style)) {
+    return chart.style(style);
+  }
 
-    if (style.dataKey) {
-      return chart.style(style.dataKey, options);
-    } else {
-      return chart.style(options);
+  if (_.isArray(style) && style.length >= 1) {
+    if (style[1]) {
+      return chart.style(style[0], style[1]);
     }
+
+    return chart.style(style[0]);
   }
 
   return chart;
 }
 
-function setSeriesTooltip(chart, currSeries) {
+function setSeriesTooltip(chart: any, currSeries: ISeries) {
   const tooltip = currSeries.tooltip;
 
-  if (tooltip === false) {
-    return chart.tooltip(false);
+  if (_.isBoolean(tooltip) || _.isString(tooltip)) {
+    return chart.tooltip(tooltip);
   }
 
-  if (!_.isEmpty(tooltip)) {
-    if (_.isString(tooltip)) {
-      return chart.tooltip(tooltip);
+  if (_.isArray(tooltip) && tooltip.length >= 1) {
+    if (tooltip[1]) {
+      return chart.tooltip(tooltip[0], tooltip[1]);
     }
 
-    if (tooltip.dataKey && tooltip.callback) {
-      return chart.tooltip(tooltip.dataKey, tooltip.callback);
-    }
-
-    if (tooltip.dataKey) {
-      return chart.tooltip(tooltip.dataKey);
-    }
+    return chart.tooltip(tooltip[0]);
   }
 
   return chart;
 }
 
-function setSeriesSelect(chart, currSeries) {
+function setSeriesSelect(chart: any, currSeries: ISeries) {
   const select = currSeries.select;
 
-  if (select === false) {
-    return chart.select(false);
+  if (_.isBoolean(select)) {
+    return chart.select(select);
   }
 
-  if (select) {
-    if (select === true) {
-      return chart.select(true);
+  if (_.isArray(select) && select.length >= 1) {
+    if (select[1]) {
+      return chart.select(select[0], select[1]);
     }
 
-    return chart.select(true, select);
+    return chart.select(select[0]);
   }
 
   return chart;
 }
 
-export const process = (chart, config) => {
+function setSeriesActive(chart: any, currSeries: ISeries) {
+  const active = currSeries.active;
+
+  if (_.isBoolean(active)) {
+    return chart.active(active);
+  }
+
+  return chart;
+}
+
+function setSeriesAnimate(chart: any, currSeries: ISeries) {
+  const animate = currSeries.animate;
+
+  if (!_.isEmpty(animate)) {
+    return chart.animate(animate);
+  }
+
+  return chart;
+}
+
+export const process = (chart: any, config: IMainConfig) => {
   if (_.isEmpty(config.series)) { return chart; }
 
   config.series = Array.isArray(config.series) ? config.series : [config.series];
   config = setQuickType.process(config);
 
-  const { dataMapping } = config;
   let series = config.series;
 
-  // add `index` to comfirm overlay index
-  series = _.sortBy(series, 'index');
+  // add `zIndex` to comfirm overlay index
+  series = _.sortBy(series, 'zIndex');
 
   let chartInstance;
   series.forEach((currSeries: any) => {
-    currSeries = skipPosition(dataMapping, currSeries);
-    chartInstance = renderGemo(chart, currSeries.gemo);
+    EventUtils.setEvent(chart, currSeries.gemo, currSeries);
+    chartInstance = setSeriesGemo(chart, currSeries);
     chartInstance = setSeriesPosition(chartInstance, currSeries);
     chartInstance = setSeriesAdjust(chartInstance, currSeries);
-    chartInstance = setSeriesShape(chartInstance, dataMapping, currSeries);
-    chartInstance = setSeriesColor(chartInstance, dataMapping, currSeries);
-    chartInstance = setSeriesOpacity(chartInstance, dataMapping, currSeries);
-    chartInstance = setSeriesSize(chartInstance, dataMapping, currSeries);
+    chartInstance = setSeriesShape(chartInstance, currSeries);
+    chartInstance = setSeriesColor(chartInstance, currSeries);
+    chartInstance = setSeriesOpacity(chartInstance, currSeries);
+    chartInstance = setSeriesSize(chartInstance, currSeries);
     chartInstance = setSeriesLabel(chartInstance, currSeries);
     chartInstance = setSeriesTooltip(chartInstance, currSeries);
     chartInstance = setSeriesStyle(chartInstance, currSeries);
     chartInstance = setSeriesSelect(chartInstance, currSeries);
+    chartInstance = setSeriesActive(chartInstance, currSeries);
+    chartInstance = setSeriesAnimate(chartInstance, currSeries);
   });
 
   return chartInstance;

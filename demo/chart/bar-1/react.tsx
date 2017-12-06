@@ -1,7 +1,7 @@
 import { Chart, Tooltip, Axis, StackBar, LiteChart } from '../../../packages/viser-react/src/index';
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
-import { data, dataMapping, dataPre, scale } from './data'
+import { data, dataPre, scale } from './data'
 
 class App extends React.Component {
   state = {
@@ -21,13 +21,14 @@ class App extends React.Component {
   }
 
   render() {
+
     return (
       <div>
         <button onClick={this.handleClick}>Click</button>
-        <Chart forceFit height={this.state.height} data={data} dataPre={dataPre} dataMapping={dataMapping} scale={scale}>
+        <Chart forceFit height={this.state.height} data={data} dataPre={dataPre} scale={scale}>
           <Tooltip />
           <Axis />
-          <StackBar style={{ stroke: '#fff', lineWidth: this.state.lineWidth }} />
+          <StackBar position='year*percent' color='country' style={{ stroke: '#fff', lineWidth: this.state.lineWidth }} />
         </Chart>
         {/* <LiteChart height={400} data={data} dataPre={dataPre} dataMapping={dataMapping} forceFit stackBar /> */}
       </div>

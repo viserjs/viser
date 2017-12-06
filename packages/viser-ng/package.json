@@ -1,6 +1,6 @@
 {
   "name": "viser-ng",
-  "version": "0.1.1",
+  "version": "1.1.1",
   "description": "viser-ng is angular of viser.",
   "repository": "viserjs/viser-ng",
   "license": "MIT",
@@ -21,21 +21,24 @@
     "analyse": "cross-env NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "peerDependencies": {
-    "@angular/core": ">4",
-    "@angular/compiler": ">4",
-    "@angular/compiler-cli": ">4"
+    "@angular/core": "^2.4.0",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "^5.0.3",
+    "zone.js": "^0.7.2"
   },
   "dependencies": {
-    "viser": "^0.2.0"
+    "viser": "^1.0.0",
+    "@types/core-js": "^0.9.43",
+    "@types/node": "7.0.7"
   },
   "devDependencies": {
     "@angular/compiler": "^4.0.1",
     "@angular/compiler-cli": "^4.0.1",
     "@angular/core": "^4.0.1",
-    "@types/core-js": "0.9.35",
-    "@types/node": "7.0.7",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "@types/core-js": "^0.9.43",
+    "@types/node": "7.0.7",
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.1",

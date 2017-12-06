@@ -1,9 +1,9 @@
-interface IRectCoordProps {
+export interface IRectCoord {
   type?: 'rect';
   direction?: string;
 }
 
-interface IPolarProps {
+export interface IPolarCoord {
   type?: 'polar' | 'theta' | 'helix';
   direction?: string;
   radius?: number;
@@ -12,6 +12,6 @@ interface IPolarProps {
   endAngle?: number;
 }
 
-type Coord = IRectCoordProps | IPolarProps;
+type ICoord = IRectCoord | IPolarCoord;
 
-export default Coord;
+export default ICoord;

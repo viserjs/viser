@@ -1,15 +1,9 @@
-import ShapeRegister from '../utils/ShapeRegister';
+import * as CustomizeUtils from '../utils/CustomizeUtils';
+import IShapePoints from '../typed/IShapePoints';
 
 const DEFAULT_ERRORBAR_SHAPE = 'errorbar';
 
-interface IShapePoints {
-  x: number;
-  y: number;
-  y0: number;
-  size: number;
-}
-
-function renderBarPath(points) {
+function renderBarPath(points: IShapePoints[]) {
   return [
     ['M', points[1].x, points[1].y],
     ['L', points[2].x, points[2].y],
@@ -23,12 +17,12 @@ function renderBarPath(points) {
   ];
 }
 
-export const registerShape = (config) => {
+export const registerShape = () => {
   let barWidth = 1;
   let hasPoint = false;
 
-  ShapeRegister.regist('schema', DEFAULT_ERRORBAR_SHAPE, {
-    getPoints({ x, y, y0, size }: IShapePoints) {
+  CustomizeUtils.registerShape('schema', DEFAULT_ERRORBAR_SHAPE, {
+    getPoints({ x, y, size }: IShapePoints) {
       // 1 -> 2
       // |    |
       // 5<-4 |

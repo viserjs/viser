@@ -4,10 +4,16 @@
     "moduleResolution": "node",
     "outDir": "es",
     "jsx": "react",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "lib": [
+      "dom",
+      "es5",
+      "es6",
+      "scripthost"
+    ]
   },
   "include": [
     "src/**/*"

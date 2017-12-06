@@ -41,6 +41,13 @@ const QUICK_TYPE = [
     },
   },
   {
+    type: 'stackLine',
+    series: {
+      gemo: 'line',
+      adjust: 'stack',
+    },
+  },
+  {
     type: 'area',
     series: {
       gemo: 'area',
@@ -58,6 +65,28 @@ const QUICK_TYPE = [
     series: {
       gemo: 'area',
       shape: 'smooth',
+    },
+  },
+  {
+    type: 'interval',
+    series: {
+      gemo: 'interval',
+    }
+  },
+  {
+    type: 'stackInterval',
+    series: {
+      gemo: 'interval',
+      shape: 'interval',
+      adjust: 'stack',
+    },
+  },
+  {
+    type: 'dodgeInterval',
+    series: {
+      gemo: 'interval',
+      shape: 'interval',
+      adjust: 'dodge',
     },
   },
   {
@@ -90,13 +119,6 @@ const QUICK_TYPE = [
     },
   },
   {
-    type: 'waterfall',
-    series: {
-      gemo: 'interval',
-      shape: 'waterfall',
-    },
-  },
-  {
     type: 'funnel',
     series: {
       gemo: 'interval',
@@ -110,16 +132,6 @@ const QUICK_TYPE = [
       gemo: 'interval',
       adjust: 'symmetric',
       shape: 'pyramid',
-    },
-  },
-  {
-    type: 'radialBar',
-    series: {
-      gemo: 'interval',
-      shape: 'radialBar',
-    },
-    coord: {
-      type: 'polar',
     },
   },
   {
@@ -167,12 +179,26 @@ const QUICK_TYPE = [
       gemo: 'edge',
     },
   },
+  {
+    type: 'sankey',
+    series: {
+      gemo: 'edge',
+      shape: 'sankey',
+    },
+  },
+  {
+    type: 'errorBar',
+    series: {
+      gemo: 'schema',
+      shape: 'errorbar',
+    },
+  },
 ];
 
-export const process = (config) => {
+export const process = (config: any) => {
   const series = config.series;
   const coord = config.coord;
-  const quickType = {};
+  const quickType: any = {};
 
   for (const item of QUICK_TYPE) {
     quickType[item.type] = item;

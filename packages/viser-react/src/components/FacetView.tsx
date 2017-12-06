@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { default as ViewProps } from '../types/View';
+import { IView } from 'viser';
 
 function generateRandomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
 }
 
-export default class FacetView extends React.Component<ViewProps, any> {
+export default class FacetView extends React.Component<IView, any> {
   static childContextTypes = {
     hasInViews: PropTypes.bool,
     viewId: PropTypes.string,
@@ -21,7 +21,7 @@ export default class FacetView extends React.Component<ViewProps, any> {
 
   displayName = 'FacetView';
 
-  constructor(props) {
+  constructor(props: IView) {
     super(props);
 
     this.state = {
@@ -48,6 +48,6 @@ export default class FacetView extends React.Component<ViewProps, any> {
   }
 
   render() {
-    return <div>{this.props.children}</div>;
+    return this.props.children;
   }
 }

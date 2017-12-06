@@ -1,15 +1,15 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { default as ViewProps } from '../types/View';
+import { IView } from 'viser';
 
 function generateRandomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
 }
 
-export default class View extends React.Component<ViewProps, any> {
+export default class View extends React.Component<IView, any> {
   static childContextTypes = {
     hasInViews: PropTypes.bool,
-    viewId: PropTypes.number,
+    viewId: PropTypes.string,
   };
 
   static contextTypes = {
@@ -17,9 +17,9 @@ export default class View extends React.Component<ViewProps, any> {
     hasInViews: PropTypes.bool,
   };
 
-  displayName = 'Views';
+  displayName = 'View';
 
-  constructor(props) {
+  constructor(props: IView) {
     super(props);
 
     this.state = {
@@ -44,6 +44,6 @@ export default class View extends React.Component<ViewProps, any> {
   }
 
   render() {
-    return <div>{this.props.children}</div>;
+    return this.props.children;
   }
 }

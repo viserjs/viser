@@ -1,9 +1,9 @@
 import * as _ from 'lodash';
 import * as setCustomFormatter from './setCustomFormatter';
 
-export const process = (chart, config) => {
+export const process = (chart: any, config: any) => {
   let scale = config.scale;
-  let options = {};
+  let options: any = {};
 
   if (_.isEmpty(scale)) { return; }
 

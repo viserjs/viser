@@ -122,9 +122,9 @@ export const data = {
 };
 
 export const dataPre = {
-  connector: 'graph',
-  source: {
-    edgesKey: 'links',
+  connector: {
+    type: 'graph',
+    edges: d => d.links,
   },
   transform: {
     type: 'diagram.sankey',
@@ -133,19 +133,10 @@ export const dataPre = {
   },
 };
 
-export const dataMapping = [
-  {
-    dataKey: 'x',
-    mark: 'column',
-    scale: {
-      sync: true
-    }
-  },
-  {
-    dataKey: 'y',
-    mark: 'row',
-    scale: {
-      sync: true
-    }
-  },
-];
+export const scale = [{
+  dataKey: 'x',
+  sync: true
+}, {
+  dataKey: 'y',
+  sync: true
+}]

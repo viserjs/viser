@@ -3,10 +3,15 @@
     "module": "es2015",
     "moduleResolution": "Node",
     "outDir": "es",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "lib": [
+      "es6",
+      "scripthost",
+      "dom"
+    ]
   },
   "include": [
     "src/**/*"

@@ -1,14 +1,15 @@
-import ShapeRegister from '../utils/ShapeRegister';
+import * as CustomizeUtils from '../utils/CustomizeUtils';
+import IShapePoints from '../typed/IShapePoints';
 
 const DEFAULT_SANKEY_SHAPE = 'sankey';
 
-function interpolationGenerator(a, b) {
+function interpolationGenerator(a: number, b: number) {
   const ka = +a;
   const kb = b - ka;
-  return t => ka + kb * t;
+  return (t: number) => ka + kb * t;
 }
 
-function getCurvePath(from, to, curvature) {
+function getCurvePath(from: any, to: any, curvature: number) {
   const interpolationFunc = interpolationGenerator(from.x, to.x);
   const fromCtrlX = interpolationFunc(curvature);
   const toCtrlX = interpolationFunc(1 - curvature);
@@ -23,7 +24,7 @@ function getCurvePath(from, to, curvature) {
   return points;
 }
 
-function getEdgePath(points, curvature) {
+function getEdgePath(points: IShapePoints[], curvature: number) {
   const path = [
     ['M', points[0].x, points[0].y],
     ['L', points[1].x, points[1].y]
@@ -38,8 +39,8 @@ function getEdgePath(points, curvature) {
   return path;
 }
 
-export const registerShape = (config) => {
-  ShapeRegister.regist('edge', DEFAULT_SANKEY_SHAPE, {
+export const registerShape = () => {
+  CustomizeUtils.registerShape('edge', DEFAULT_SANKEY_SHAPE, {
     drawShape(cfg: any, group: any) {
       const { points, style } = cfg;
       const curvature = style.curvature || 0.5;

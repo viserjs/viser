@@ -1,6 +1,6 @@
 import { degreeToRadian } from '../utils/PolarUtils';
 
-function setPolarCoord(chart, coord) {
+function setPolarCoord(chart: any, coord: any) {
   let newCoord = {};
 
   if (coord.radius && (coord.radius < 0 || coord.radius > 1) ||
@@ -51,7 +51,7 @@ function setPolarCoord(chart, coord) {
   return polarCoord;
 }
 
-function setRectCoord(chart, coord) {
+function setRectCoord(chart: any, coord: any) {
   if (!coord.direction) {
     return chart.coord('rect');
   }
@@ -89,7 +89,7 @@ function setRectCoord(chart, coord) {
   return chart;
 }
 
-export const process = (chart, coord) => {
+export const process = (chart: any, coord: any) => {
   if (!coord || !coord.type) {
     return chart.coord('rect');
   }

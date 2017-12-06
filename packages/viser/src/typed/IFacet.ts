@@ -1,13 +1,13 @@
-import * as Style from './Style';
+import * as IStyle from './IStyle';
 
 interface IColTitleProps {
   offsetY?: number;
-  style?: Style.ITextStyle;
+  style?: IStyle.ITextStyle;
 }
 
 interface IRowTitleProps {
   offsetX?: number;
-  style?: Style.ITextStyle;
+  style?: IStyle.ITextStyle;
 }
 
 interface IFacet {
@@ -16,9 +16,13 @@ interface IFacet {
   showTitle?: boolean;
   autoSetAxis?: boolean;
   padding?: number;
+  cols?: number;
+  rows?: number;
+  transpose?: boolean;
+  line?: IStyle.ILineStyle;
   colTitle?: IColTitleProps;
   rowTitle?: IRowTitleProps;
-  eachView?: () => void;
+  eachView?: (views: any, facet: any) => void;
 }
 
 export default IFacet;
