@@ -5,31 +5,31 @@ import { Chart } from '../Chart';
 type formatterFunc = (val: number) => string | number;
 
 interface ITitle {
-  autoRotate: boolean;
-  offset: number;
-  position: 'start' | 'center' | 'end';
-  TextStyle: Style.ITextStyle;
+  autoRotate?: boolean;
+  offset?: number;
+  position?: 'start' | 'center' | 'end';
+  TextStyle?: Style.ITextStyle;
 }
 
 interface IAxisTick {
-  ticks: number[];
-  tickCount: number;
-  tickInterval: number;
+  ticks?: number[];
+  tickCount?: number;
+  tickInterval?: number;
 }
 
 interface IAxisGrid {
-  align: string;
-  type: 'line' | 'polygon';
-  lineStyle: Style.ILineStyle;
-  alternateColor: string | string[];
+  align?: string;
+  type?: 'line' | 'polygon';
+  lineStyle?: Style.ILineStyle;
+  alternateColor?: string | string[];
 }
 
 interface IAxisLabel {
-  offset: number;
-  formatter: string | formatterFunc;
-  autoRotate: boolean;
-  rotate: number | 'normal' | 'parallel';
-  textStyle: Style.ITextStyle;
+  offset?: number;
+  formatter?: string | formatterFunc;
+  autoRotate?: boolean;
+  rotate?: number | 'normal' | 'parallel';
+  textStyle?: Style.ITextStyle;
 }
 
 @Component({
