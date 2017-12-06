@@ -268,7 +268,6 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
   }
 
   getViewType() {
-    // 获取父级元素的 tagName
     return this.vcRef.parentInjector.elDef.element.name;
   }
 
