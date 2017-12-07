@@ -3,7 +3,7 @@ type formatterFunc = (val: number) => string | number;
 interface ICommonScale {
   dataKey: string;
   type?: string;
-  formatter?: formatterFunc;
+  formatter?: string | formatterFunc;
   range?: number[];
   alias?: string;
   tickCount?: number;

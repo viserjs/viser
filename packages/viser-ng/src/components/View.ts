@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
+import { IScale } from 'viser';
 
 @Component({
   selector: 'v-view',
@@ -27,6 +28,7 @@ class FacetView extends Chart {
     transform?: object[] | object;
   };
   @Input() dataView?: string;
+  @Input() scale?: IScale;
 }
 
 export { View, FacetView };

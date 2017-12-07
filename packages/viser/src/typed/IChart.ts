@@ -12,7 +12,7 @@ export interface IChart {
   container?: any;
   height: number;
   width?: number;
-  animate?: boolean;
+  animate?: boolean | object;
   forceFit?: boolean;
   background?: IBackground;
   plotBackground?: IBackground;

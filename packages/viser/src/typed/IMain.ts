@@ -5,7 +5,6 @@ import ILegend from './ILegend';
 
 interface ISMain {
   data: any;
-  calData?: any;
   viewId?: string;
   chart?: IChart;
   facet?: IFacet;

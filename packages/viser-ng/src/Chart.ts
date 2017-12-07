@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit, OnChanges, Output, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
-import viser from 'viser';
+import viser, { IScale } from 'viser';
 import { ChartContext } from './chartService';
 import IRChart from './typed/IRChart';
 
@@ -80,10 +80,10 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
   @Input() width?: number;
   @Input() animate?: boolean | object;
   @Input() forceFit?: boolean;
-  @Input() background?: any;
-  @Input() plotBackground?: any;
+  @Input() background?: IBackground;
+  @Input() plotBackground?: IBackground;
   @Input() padding?: number | object | number[];
-  @Input() scale?: object[];
+  @Input() scale?: IScale;
   @Input() dataView?: string;
   @ViewChild('chartDom') chartDiv?: any;
   config: any = {};
