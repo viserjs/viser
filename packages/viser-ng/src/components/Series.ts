@@ -1,4 +1,3 @@
-import * as Style from './Style';
 import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
 

@@ -13,15 +13,18 @@ interface IRowTitleProps {
 interface IFacet {
   type: string;
   fields?: string[];
-  showTitle?: boolean;
-  autoSetAxis?: boolean;
-  padding?: number;
+  rowField?: string | string[];
+  colField?: string | string[];
   cols?: number;
   rows?: number;
-  transpose?: boolean;
-  line?: IStyle.ILineStyle;
+  showTitle?: boolean;
   colTitle?: IColTitleProps;
   rowTitle?: IRowTitleProps;
+  autoSetAxis?: boolean;
+  padding?: number | number[];
+  transpose?: boolean;
+  line?: IStyle.ILineStyle;
+  lineSmooth?: boolean;
   eachView?: (views: any, facet: any) => void;
 }
 

@@ -4,6 +4,7 @@ export interface ITextStyle {
   fill?: string;
   fontWeight?: string;
   textBaseline?: 'top' | 'middle' | 'bottom';
+  rotate?: number;
 }
 
 export interface ILineStyle {

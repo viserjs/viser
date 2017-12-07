@@ -1,15 +1,15 @@
-import * as Style from './Style';
+import * as IStyle from './Style';
 import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
 
 interface IColTitleProps {
   offsetY?: number;
-  style?: Style.ITextStyle;
+  style?: IStyle.ITextStyle;
 }
 
 interface IRowTitleProps {
   offsetX?: number;
-  style?: Style.ITextStyle;
+  style?: IStyle.ITextStyle;
 }
 
 @Component({
@@ -19,12 +19,19 @@ interface IRowTitleProps {
 class Facet extends Chart {
   @Input() type: string;
   @Input() fields?: string[];
+  @Input() rowField?: string | string[];
+  @Input() colField?: string | string[];
+  @Input() cols?: number;
+  @Input() rows?: number;
   @Input() showTitle?: boolean;
-  @Input() autoSetAxis?: boolean;
-  @Input() padding?: number;
   @Input() colTitle?: IColTitleProps;
   @Input() rowTitle?: IRowTitleProps;
-  @Input() eachView?: () => void;
+  @Input() autoSetAxis?: boolean;
+  @Input() padding?: number | number[];
+  @Input() transpose?: boolean;
+  @Input() lineSmooth?: boolean;
+  @Input() line?: IStyle.ILineStyle;
+  @Input() eachView?: (views: any, facet: any) => void;
 }
 
 export default Facet;

@@ -1,10 +1,10 @@
-import * as Style from './Style';
+import * as IStyle from './Style';
 import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
 
 interface ICrosshairs {
   type?: string,
-  style?: Style.ILineStyle;
+  style?: IStyle.ILineStyle;
 }
 
 @Component({
