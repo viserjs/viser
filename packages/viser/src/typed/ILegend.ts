@@ -16,7 +16,7 @@ export interface ILegend {
   background?: object;
   allowAllCanceled?: boolean;
   itemFormatter?: formatterFunc;
-  marker?: string & func;
+  marker?: string | func;
   textStyle?: IStyle.ITextStyle;
   clickable?: boolean;
   hoverable?: boolean;
