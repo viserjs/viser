@@ -217,19 +217,32 @@ class CommonChart {
   }
 
   public repaintData(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
+    let hasDataChange = false;
+
     if (!_.isEmpty(config.data) && !_.isEqual(oriConfig.data, config.data)) {
       const viewData = DataSetUtils.getProcessedData(config.data, config.dataPre);
       const calData = DataSetUtils.getDataContent(viewData, config.dataView);
 
+      hasDataChange = true;
       chart.changeData(calData);
-    } else {
-      config.calData = oriConfig.calData;
+    }
+
+    return hasDataChange;
+  }
+
+  public repaintViewData(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
+    let viewData;
+
+    if ((_.isEmpty(config.data) && !_.isEmpty(oriConfig.data)) ||
+        (!_.isEmpty(config.data) && !_.isEqual(oriConfig.data, config.data))) {
+      viewData = DataSetUtils.getProcessedData(config.data, config.dataPre);
+      const calData = DataSetUtils.getDataContent(viewData, config.dataView);
+      chart.changeData(calData);
     }
   }
 
   public repaintContent(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
     let hasChartChange = false;
-    this.repaintData(chart, oriConfig, config);
 
     if (config.scale && !_.isEqual(oriConfig.scale, config.scale)) {
       this.setScale(chart, config);
@@ -275,6 +288,7 @@ class CommonChart {
 
         if (oriView.length) {
           view = this.viewInstance[item.viewId];
+          this.repaintViewData(view, oriView[0], item);
           this.repaintContent(view, oriView[0], item);
         } else {
           view = this.setView(item, chart, config);
@@ -293,6 +307,9 @@ class CommonChart {
     config = this.checkChartConfig(config);
 
     this.repaintWidthHeight(config);
+
+    const hasDataChange = this.repaintData(chart, oriConfig, config);
+    if (hasDataChange) { this.mainDataSet = config.data; }
 
     const hasContentChange = this.repaintContent(chart, oriConfig, config);
     this.repaintViews(chart, oriConfig, config);
