@@ -206,10 +206,12 @@ export const getDataContent = (data: any, dataView: string = 'rows') => {
   if (_.isArray(dataView) && dataView.length >= 2) {
     const type = dataView[0];
 
-    if (type === 'nodes') {
-      return data.getAllNodes().map(dataView[1]);
-    } else if (type === 'edges') {
-      return data.getAllLinks().map(dataView[1]);
+    if (_.isFunction(dataView[1])) {
+      if (type === 'nodes') {
+        return dataView[1](data.getAllNodes());
+      } else if (type === 'edges') {
+        return dataView[1](data.getAllLinks());
+      }
     }
   }
 
