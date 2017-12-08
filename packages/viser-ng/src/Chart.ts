@@ -123,6 +123,21 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
     config.chart = retain(props, chartRetain);
   }
 
+  convertValueToNum(props: any) {
+    const numberProps: any = {};
+    const numberKeys = ['radius', 'innerRadius', 'size', 'offsetX', 'offsetY', 'cols', 'padding', 'opacity'];
+    Object.keys(props).forEach((propKey) => {
+      if (numberKeys.indexOf(propKey) > -1) {
+        if (typeof props[propKey] === 'string') {
+          let value = parseFloat(props[propKey]);
+          value = isNaN(value) ? props[propKey] : value;
+          numberProps[propKey] = value;
+        }
+      }
+    });
+
+    return numberProps;
+  }
   combineContentConfig(displayName: string, props: IRChart, config: any) {
     const realName = firstLowerCase(displayName);
     const nameLowerCase = displayName.toLowerCase();
@@ -164,7 +179,7 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
       }
       config.series.push({
         quickType: realName,
-        ...props,
+        ...props
       });
     } else if (nameLowerCase === 'axis') {
       if (!config.axis) {
@@ -201,7 +216,6 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
           config.views.push(views[item]);
         }
       }
-      delete this.context.config.series;
     }
 
     if (!isOwnEmpty(facetviews)) {
@@ -212,7 +226,6 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
           config.facet.views.push(facetviews[item]);
         }
       }
-      delete this.context.config.series;
     }
   }
 
@@ -225,7 +238,7 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
 
   getProps(allProps: any) {
     const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId', 'views', 'facetviews', 'componentId', 'vcRef',
-      'constructor', 'combineViewConfig', 'combineChartConfig', 'combineContentConfig',
+      'constructor', 'combineViewConfig', 'convertValueToNum', 'combineChartConfig', 'combineContentConfig',
       'ngOnInit', 'ngAfterViewInit', 'getProps', 'changeViewConfig', 'getViewType', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
 
     if (allProps) {
@@ -237,7 +250,11 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
           properties[key] = allProps[key];
         }
       }
-      return properties;
+      const numberProps = this.convertValueToNum(properties);
+      return {
+        ...properties,
+        ...numberProps
+      };
     }
     return allProps;
   }
