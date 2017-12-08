@@ -12,7 +12,7 @@ class Series extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -33,7 +33,7 @@ class Pie extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -54,7 +54,7 @@ class Sector extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -75,7 +75,7 @@ class Line extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -96,7 +96,7 @@ class SmoothLine extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -117,7 +117,7 @@ class DashLine extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -138,7 +138,7 @@ class Area extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -159,7 +159,7 @@ class StackArea extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -180,7 +180,7 @@ class SmoothArea extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -201,7 +201,7 @@ class Bar extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -222,7 +222,7 @@ class StackBar extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -243,7 +243,7 @@ class DodgeBar extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -264,7 +264,7 @@ class Interval extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -285,7 +285,7 @@ class StackInterval extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -306,7 +306,7 @@ class DodgeInterval extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -327,7 +327,7 @@ class Point extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -348,7 +348,7 @@ class Funnel extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -369,7 +369,7 @@ class Pyramid extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -390,7 +390,7 @@ class Schema extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -411,7 +411,7 @@ class Box extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -432,7 +432,7 @@ class Candle extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -453,7 +453,7 @@ class Polygon extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -474,7 +474,7 @@ class Contour extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -495,7 +495,7 @@ class Heatmap extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -516,7 +516,7 @@ class Edge extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -537,7 +537,7 @@ class Sankey extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
@@ -558,7 +558,7 @@ class ErrorBar extends Chart {
   @Input() adjust?: string | string[] | object[];
   @Input() color?: any;
   @Input() shape?: any;
-  @Input() size?: any;
+  @Input() size?: number;
   @Input() opacity?: any;
   @Input() label?: any;
   @Input() tooltip?: any;
