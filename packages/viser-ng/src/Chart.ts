@@ -125,7 +125,7 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
 
   convertValueToNum(props: any) {
     const numberProps: any = {};
-    const numberKeys = ['size', 'offsetX', 'offsetY', 'cols', 'padding', 'opacity'];
+    const numberKeys = ['radius', 'innerRadius', 'size', 'offsetX', 'offsetY', 'cols', 'padding', 'opacity'];
     Object.keys(props).forEach((propKey) => {
       if (numberKeys.indexOf(propKey) > -1) {
         if (typeof props[propKey] === 'string') {
