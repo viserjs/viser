@@ -5,6 +5,7 @@ type formatterFunc = (val: number) => string | number;
 
 export interface ILegend {
   dataKey?: string;
+  show?: boolean;
   position?: 'top' | 'right' | 'bottom' | 'left';
   title?: null | object;
   offsetX?: number;
