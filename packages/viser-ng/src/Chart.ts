@@ -91,6 +91,7 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
   viewId: string;
   private componentId = generateRandomNum();
   private vcRef: any;
+
   constructor(private context: ChartContext, vcRef: ViewContainerRef) {
     this.viewId = context.viewId;
     this.context = context;
@@ -253,7 +254,7 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
       const numberProps = this.convertValueToNum(properties);
       return {
         ...properties,
-        ...numberProps
+        ...numberProps,
       };
     }
     return allProps;
@@ -330,7 +331,7 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
           this.combineContentConfig(
             name,
             props,
-            this.context.facetviews[viewId]
+            this.context.facetviews[viewId],
           );
         }
       }
@@ -347,6 +348,7 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
   renderChart(rerender?: any) {
     this.context.config.chart.container = this.chartDiv.nativeElement;
     this.changeViewConfig();
+
     if (!rerender || !this.chart) {
       this.chart = viser(this.context.config);
     } else {
