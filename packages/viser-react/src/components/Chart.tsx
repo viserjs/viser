@@ -262,7 +262,12 @@ export default class Chart extends React.Component<IRChart, any> {
     this.combineViewConfig(this.props, this.config);
 
     this.changeViewConfig();
-    this.chart.repaint(this.config);
+
+    if (this.chart) {
+      this.chart.repaint(config);
+    } else {
+      this.chart = viser(config);
+    }
   }
 
   clearConfigData() {

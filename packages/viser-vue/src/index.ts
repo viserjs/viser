@@ -77,7 +77,7 @@ const baseChartComponent = {
           setIfNotExist(d2Json, 'tooltip', true);
         }
 
-        if (!isUpdate) {
+        if (!isUpdate || !this.chart) {
           this.chart = viser.default(d2Json);
         } else {
           this.chart.repaint(d2Json);
