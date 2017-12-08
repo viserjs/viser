@@ -5,6 +5,8 @@ export interface ITextStyle {
   fontWeight?: string;
   textBaseline?: 'top' | 'middle' | 'bottom';
   rotate?: number;
+  shadowBlur?: number;
+  shadowColor?: string;
 }
 
 export interface ILineStyle {
