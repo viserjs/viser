@@ -135,6 +135,7 @@ const baseChartComponent = {
         nearestRootComponent.jsonForD2.views = {
           ...cleanUndefined(normalizeProps(this._props)),
           ...this.jsonForD2,
+          viewId: generateRandomNum()
         };
       } else if (this.$options._componentTag === 'v-facet-view') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
@@ -307,4 +308,8 @@ function setIfNotExist(obj: any, key: string, value: any) {
   if (!obj[key]) {
     obj[key] = value;
   }
+}
+
+function generateRandomNum() {
+  return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
 }
