@@ -9,7 +9,7 @@ import IScale from './IScale';
 export interface IView {
   data?: any;
   viewId?: string;
-  dataView?: string;
+  dataView?: any;
   coord?: ICoord;
   dataPre?: IDataPre;
   scale?: IScale;
