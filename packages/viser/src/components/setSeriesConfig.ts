@@ -45,14 +45,14 @@ function setSeriesGemo(chart: any, currSeries: ISeries) {
 
 function setSeriesPosition(chart: any, currSeries: ISeries) {
   const position = currSeries.position;
-  if (!_.isEmpty(position)) { return chart.position(position); }
+  if (!_.isNil(position)) { return chart.position(position); }
 
   return chart;
 }
 
 function setSeriesAdjust(chart: any, currSeries: ISeries) {
   const adjust = currSeries.adjust;
-  if (!_.isEmpty(adjust)) { return chart.adjust(adjust); }
+  if (!_.isNil(adjust)) { return chart.adjust(adjust); }
 
   return chart;
 }
@@ -159,7 +159,7 @@ function setSeriesStyle(chart: any, currSeries: ISeries) {
     return chart.style(style[0]);
   }
 
-  if (_.isObject(style)) {
+  if (_.isPlainObject(style)) {
     return chart.style(style);
   }
 

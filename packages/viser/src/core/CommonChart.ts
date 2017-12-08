@@ -27,17 +27,15 @@ class CommonChart {
 
   constructor(config: IMainConfig) {
     this.config = _.cloneDeep(config);
-    this.config = this.checkChartConfig(this.config);
+    this.checkChartConfig(this.config);
     const chart: any = this.chartInstance = new G2.Chart(this.config.chart);
   }
 
-  public checkChartConfig(config: any) {
+  public checkChartConfig(config: IMainConfig) {
     const chart = config.chart;
-    if (!chart || !chart.height) {
+    if (_.isNil(chart.height)) {
       throw new Error('please set correct chart option');
     }
-
-    return config;
   };
 
   public destroy(chart: any) {
@@ -304,8 +302,6 @@ class CommonChart {
     const viewsConfig = config.views;
     const chart = this.chartInstance;
 
-    config = this.checkChartConfig(config);
-
     this.repaintWidthHeight(config);
 
     const hasDataChange = this.repaintData(chart, oriConfig, config);
@@ -331,11 +327,10 @@ class CommonChart {
   }
 
   public repaint(config: IMainConfig) {
-    if (_.isEmpty(config)) { return; }
-
-    config = _.cloneDeep(config);
-    this.renderDiffConfig(config);
-    this.oriConfig = config;
+    const newConfig = _.cloneDeep(config);
+    this.checkChartConfig(newConfig);
+    this.renderDiffConfig(newConfig);
+    this.oriConfig = newConfig;
   }
 
   public getWidth() {
