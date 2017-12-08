@@ -37,6 +37,7 @@ class Legend extends Chart {
   @Input() clickable?: boolean;
   @Input() hoverable?: boolean;
   @Input() selectedMode?: 'single' | 'multiple';
+  @Input() reversed?: boolean;
   @Input() onHover?: func;
   @Input() onClick?: func;
 }

@@ -40,6 +40,8 @@ export interface IAxis {
   label?: boolean | IAxisLabel;
   line?: IStyle.ILineStyle;
   tickLine?: IStyle.ILineStyle;
+  subTickCount?: number;
+  subTickLine?: IStyle.ILineStyle;
 }
 
 type IAxisConfig = boolean | IAxis | IAxis[];

@@ -23,6 +23,7 @@ export interface ILegend {
   selectedMode?: 'single' | 'multiple';
   onHover?: func;
   onClick?: func;
+  reversed?: boolean;
 }
 
 type ILegendConfig = boolean | ILegend;

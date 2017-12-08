@@ -47,6 +47,8 @@ class Axis extends Chart {
   @Input() label?: boolean | IAxisLabel;
   @Input() line?: Style.ILineStyle;
   @Input() tickLine?: Style.ILineStyle;
+  @Input() subTickCount?: number;
+  @Input() subTickLine?: Style.ILineStyle;
 }
 
 export default Axis;
