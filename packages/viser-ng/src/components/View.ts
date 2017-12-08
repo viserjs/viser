@@ -14,7 +14,7 @@ class View extends Chart {
     transform?: object[] | object;
   };
   @Input() scale?: object[];
-  @Input() dataView?: string;
+  @Input() dataView?: any;
 }
 
 @Component({
@@ -27,7 +27,7 @@ class FacetView extends Chart {
     source?: any;
     transform?: object[] | object;
   };
-  @Input() dataView?: string;
+  @Input() dataView?: any;
   @Input() scale?: IScale;
 }
 

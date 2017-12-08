@@ -203,12 +203,16 @@ export const getProcessedData = (data: any, dataPre: IDataPreConfig) => {
 };
 
 export const getDataContent = (data: any, dataView: string = 'rows') => {
-  if (dataView === 'treeNodes') {
-    return data.getAllNodes().map((node: any) => {
-      node.name = node.data.name;
-      node.value = node.data.value;
-      return node;
-    });
+  if (_.isArray(dataView) && dataView.length >= 2) {
+    const type = dataView[0];
+
+    if (_.isFunction(dataView[1])) {
+      if (type === 'nodes') {
+        return dataView[1](data.getAllNodes());
+      } else if (type === 'edges') {
+        return dataView[1](data.getAllLinks());
+      }
+    }
   }
 
   return data[dataView];

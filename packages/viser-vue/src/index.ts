@@ -77,7 +77,7 @@ const baseChartComponent = {
           setIfNotExist(d2Json, 'tooltip', true);
         }
 
-        if (!isUpdate) {
+        if (!isUpdate || !this.chart) {
           this.chart = viser.default(d2Json);
         } else {
           this.chart.repaint(d2Json);
@@ -88,6 +88,7 @@ const baseChartComponent = {
         oneObjectMoreArray(nearestRootComponent.jsonForD2, 'views', {
           ...cleanUndefined(normalizeProps(this._props)),
           ...this.jsonForD2,
+          viewId: generateRandomNum(),
         });
       } else if (this.$options._componentTag === 'v-facet-view') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
@@ -262,6 +263,10 @@ function setIfNotExist(obj: any, key: string, value: any) {
   if (!obj[key]) {
     obj[key] = value;
   }
+}
+
+function generateRandomNum() {
+  return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
 }
 
 export const registerAnimation = viser.registerAnimation;

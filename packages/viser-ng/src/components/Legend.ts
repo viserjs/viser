@@ -21,6 +21,7 @@ interface IBackground {
 
 class Legend extends Chart {
   @Input() dataKey?: string;
+  @Input() show?: boolean;
   @Input() position?: 'top' | 'right' | 'bottom' | 'left';
   @Input() title?: null | object;
   @Input() offsetX?: number;
@@ -37,6 +38,7 @@ class Legend extends Chart {
   @Input() clickable?: boolean;
   @Input() hoverable?: boolean;
   @Input() selectedMode?: 'single' | 'multiple';
+  @Input() reversed?: boolean;
   @Input() onHover?: func;
   @Input() onClick?: func;
 }
