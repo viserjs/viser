@@ -4,7 +4,7 @@ import * as IStyle from './IStyle';
 type func = () => void;
 
 interface ILineText {
-  position?: string | number | 'start' | 'center' | 'end';
+  position?: string | number;
   autoRotate?: number;
   style?: IStyle.ILineStyle;
   content?: string;

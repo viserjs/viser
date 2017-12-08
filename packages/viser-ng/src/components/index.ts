@@ -5,8 +5,8 @@ import Guide from './Guide';
 import Legend from './Legend';
 import Tooltip from './Tooltip';
 import { View, FacetView } from './View';
-import { Series, Pie, Sector, Line, SmoothLine, DashLine, Area, StackArea, SmoothArea, Bar, StackBar, DodgeBar, Point,
-  Waterfall, Funnel, Pyramid, RadialBar, Schema, Box, Candle, Polygon, Contour, Heatmap, Edge, Sankey, } from './Series';
+import { Series, Pie, Sector, Line, SmoothLine, DashLine, Area, StackArea, SmoothArea, Bar, StackBar, DodgeBar,
+  Interval, StackInterval, DodgeInterval, Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap, Edge, Sankey, ErrorBar } from './Series';
 
 export {
   Axis,
@@ -29,11 +29,12 @@ export {
   Bar,
   StackBar,
   DodgeBar,
+  Interval,
+  StackInterval,
+  DodgeInterval,
   Point,
-  Waterfall,
   Funnel,
   Pyramid,
-  RadialBar,
   Schema,
   Box,
   Candle,
@@ -42,4 +43,5 @@ export {
   Heatmap,
   Edge,
   Sankey,
+  ErrorBar,
 };

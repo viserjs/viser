@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
 
 @Component({
-  selector: 'Coord',
+  selector: 'v-coord',
   template: `<div #chartDom></div>`,
 })
 

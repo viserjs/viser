@@ -1,14 +1,14 @@
 import * as IStyle from './IStyle';
 
 interface ICrosshairs {
-  type?: 'rect' | 'x' | 'y' | 'cross',
+  type?: string;
   style?: IStyle.ILineStyle;
 }
 
 export interface ITooltip {
   showTitle?: boolean;
   offset?: number;
-  crosshairs?: ICrosshairs;
+  crosshairs?: boolean | ICrosshairs;
   containerTpl?: string;
   itemTpl?: string;
   inPlot?: boolean;

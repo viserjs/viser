@@ -1,11 +1,16 @@
 {
   "name": "viser-ng",
-  "version": "1.0.2",
+  "version": "1.1.5",
   "description": "viser-ng is angular of viser.",
   "repository": "viserjs/viser-ng",
   "license": "MIT",
   "authors": "DT-FE",
-  "files": ["lib", "es", "umd", "src"],
+  "files": [
+    "lib",
+    "es",
+    "umd",
+    "src"
+  ],
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "src/index.ts",
@@ -22,7 +27,7 @@
     "zone.js": "^0.7.2"
   },
   "dependencies": {
-    "viser": "^1.0.3",
+    "viser": "^1.0.0",
     "@types/core-js": "^0.9.43",
     "@types/node": "7.0.7"
   },
@@ -50,5 +55,10 @@
     "webpack-bundle-analyzer": "^2.9.0",
     "zone.js": "^0.8.5"
   },
-  "keywords": ["g2", "chart", "angular", "datavis"]
+  "keywords": [
+    "g2",
+    "chart",
+    "angular",
+    "datavis"
+  ]
 }

@@ -6,16 +6,16 @@ type func = () => void;
 type formatterFunc = (val: number) => string | number;
 
 interface IBackground {
-  stroke: string;
-  strokeOpacity: number;
-  lineWidth: number;
-  fill: string;
-  fillOpactiy: number;
-  radius: number
+  stroke?: string;
+  strokeOpacity?: number;
+  lineWidth?: number;
+  fill?: string;
+  fillOpactiy?: number;
+  radius?: number
 }
 
 @Component({
-  selector: 'Legend',
+  selector: 'v-legend',
   template: `<div #chartDom></div>`,
 })
 

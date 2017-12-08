@@ -58,10 +58,6 @@ export default class LiteChart extends React.Component<IRLiteChart, any> {
       config.data = props.data;
     }
 
-    if (props.dataMapping) {
-      config.dataMapping = props.dataMapping;
-    }
-
     if (props.dataPre) {
       config.dataPre = props.dataPre;
     }
@@ -108,6 +104,9 @@ export default class LiteChart extends React.Component<IRLiteChart, any> {
       'bar',
       'stackBar',
       'dodgeBar',
+      'interval',
+      'stackInterval',
+      'dodgeInterval',
       'point',
       'waterfall',
       'funnel',
@@ -119,7 +118,7 @@ export default class LiteChart extends React.Component<IRLiteChart, any> {
       'polygon',
       'contour',
       'heatmap',
-      'edge'
+      'edge',
     ];
 
     for (const res of regSeries) {

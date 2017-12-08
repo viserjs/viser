@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
-import viser, { IViewConfig, ICoord, IDataMapping, IDataPre, IScale, IAxis, IGuide, ISeries, ITooltip, IFacet, ILegend } from 'viser';
+import viser, { IViewConfig, ICoord, IDataPre, IScale, IAxis, IGuide, ISeries, ITooltip, IFacet, ILegend } from 'viser';
 
 function generateRandomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
@@ -23,7 +23,7 @@ function retain(obj: any, attr: string[]) {
 
 @Component({
   providers: [],
-  selector: 'LiteChart',
+  selector: 'v-liteChart',
   template: `<div #chartDom></div>`
 })
 
@@ -43,7 +43,6 @@ export class LiteChart implements AfterViewInit, OnChanges {
   @Input() opacity?: any;
   @Input() size?: any;
   @Input() coord?: ICoord;
-  @Input() dataMapping?: IDataMapping;
   @Input() dataPre?: IDataPre;
   @Input() scale?: IScale;
   @Input() axis?: IAxis;
@@ -65,10 +64,8 @@ export class LiteChart implements AfterViewInit, OnChanges {
   @Input() stackBar?: boolean;
   @Input() dodgeBar?: boolean;
   @Input() point?: boolean;
-  @Input() waterfall?: boolean;
   @Input() funnel?: boolean;
   @Input() pyramid?: boolean;
-  @Input() radialBar?: boolean;
   @Input() schema?: boolean;
   @Input() box?: boolean;
   @Input() candle?: boolean;
@@ -77,6 +74,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
   @Input() heatmap?: boolean;
   @Input() edge?: boolean;
   @Input() sankey?: boolean;
+  @Input() errorBar?: boolean;
   @ViewChild('chartDom') chartDiv?: any;
   config: any = {};
   views: IViewConfig = {};
@@ -153,11 +151,12 @@ export class LiteChart implements AfterViewInit, OnChanges {
       'bar',
       'stackBar',
       'dodgeBar',
+      'interval',
+      'stackInterval',
+      'dodgeInterval',
       'point',
-      'waterfall',
       'funnel',
       'pyramid',
-      'radialBar',
       'schema',
       'box',
       'candle',
@@ -166,6 +165,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
       'heatmap',
       'edge',
       'sankey',
+      'errobBar',
     ];
 
     for (const res of regSeries) {
@@ -189,9 +189,9 @@ export class LiteChart implements AfterViewInit, OnChanges {
   }
 
   getProps(allProps: any) {
-    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId', 'views',
-      'constructor', 'combineViewConfig', 'combineChartConfig', 'combineContentConfig',
-      'ngAfterViewInit', 'getProps', 'combineSeriesConfig', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
+    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId', 'views', 'constructor',
+      'combineViewConfig', 'combineChartConfig', 'combineContentConfig', 'ngAfterViewInit', 'getProps',
+      'combineSeriesConfig', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
 
     if (allProps) {
       const properties: {

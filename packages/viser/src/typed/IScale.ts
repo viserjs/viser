@@ -1,8 +1,9 @@
-type func = () => void;
+type formatterFunc = (val: number) => string | number;
 
 interface ICommonScale {
   dataKey: string;
-  formatter?: func;
+  type?: string;
+  formatter?: string | formatterFunc;
   range?: number[];
   alias?: string;
   tickCount?: number;
@@ -16,35 +17,33 @@ interface ILinearCommonScale {
   tickInterval?: number;
 }
 
-export type ILinearScale = ICommonScale | ILinearCommonScale;
+export type ILinearScale = ICommonScale & ILinearCommonScale;
 
 interface ISCatScale {
   values?: string;
 }
 
-export type ICatScale = ILinearCommonScale | ISCatScale;
+export type ICatScale = ILinearCommonScale & ISCatScale;
 
 interface ISLogScale {
   base?: number;
 }
 
-export type ILogScale = ICommonScale | ILinearCommonScale |  ISLogScale;
+export type ILogScale = ICommonScale & ILinearCommonScale &  ISLogScale;
 
 interface ISPowScale {
   exponent?: number;
 }
 
-export type IPowScale = ICommonScale | ILinearCommonScale |  ISPowScale;
+export type IPowScale = ICommonScale & ILinearCommonScale &  ISPowScale;
 
 interface ISTimeScale {
-  type: 'time';
   mask?: string;
 }
 
-export type ITimeScale = ICommonScale | ILinearCommonScale |  ISTimeScale;
+export type ITimeScale = ICommonScale & ILinearCommonScale &  ISTimeScale;
 
 interface ISTimeCatScale {
-  type: 'timeCat';
   nice?: boolean;
   mask?: string;
   values?: string;

@@ -1,33 +1,34 @@
 import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
+import { IScale } from 'viser';
 
 @Component({
-  selector: 'View',
+  selector: 'v-view',
   template: `<div #chartDom></div>`,
 })
 class View extends Chart {
   @Input() data?: any;
-  @Input() dataMapping?: object[];
   @Input() dataPre?: {
     connector?: string;
     source?: any;
     transform?: object[] | object;
   };
   @Input() scale?: object[];
-  @Input() dataView?: string;
+  @Input() dataView?: any;
 }
 
 @Component({
-  selector: 'FacetView',
+  selector: 'v-facet-view',
   template: `<div #chartDom></div>`,
 })
 class FacetView extends Chart {
-  @Input() dataMapping?: object[];
   @Input() dataPre?: {
     connector?: string;
     source?: any;
     transform?: object[] | object;
   };
+  @Input() dataView?: any;
+  @Input() scale?: IScale;
 }
 
 export { View, FacetView };

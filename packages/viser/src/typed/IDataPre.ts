@@ -1,8 +1,6 @@
 export interface IDataPre {
-  connector?: string;
-  source?: any;
+  connector?: object;
   transform?: object | object[];
-  useDataView?: boolean;
   geoKey?: string;
 }
 

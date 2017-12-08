@@ -36,19 +36,13 @@ export const data3 = [
 ];
 
 export const dataPre = {
-  transform: {
+  transform: [{
     type: 'percent',
     field: 'value',
     dimension: 'country',
     groupBy: ['year'],
     as: 'percent'
-  }
-};
-
-export const dataMapping = {
-  column: 'year',
-  row: 'percent',
-  color: 'country'
+  }]
 };
 
 export const scale = [{

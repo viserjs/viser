@@ -1,14 +1,14 @@
-import * as Style from './Style';
+import * as IStyle from './Style';
 import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
 
 interface ICrosshairs {
-  type?: 'rect' | 'x' | 'y' | 'cross',
-  style?: Style.ILineStyle;
+  type?: string,
+  style?: IStyle.ILineStyle;
 }
 
 @Component({
-  selector: 'Tooltip',
+  selector: 'v-tooltip',
   template: `<div #chartDom></div>`,
 })
 class Tooltip extends Chart {

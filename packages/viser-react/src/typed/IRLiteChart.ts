@@ -12,6 +12,9 @@ interface ISLite {
   bar?: boolean;
   stackBar?: boolean;
   dodgeBar?: boolean;
+  interval?: boolean;
+  stackInterval?: boolean;
+  dodgeInterval?: boolean;
   point?: boolean;
   waterfall?: boolean;
   funnel?: boolean;
@@ -24,6 +27,7 @@ interface ISLite {
   contour?: boolean;
   heatmap?: boolean;
   edge?: boolean;
+  sankey?: boolean;
 }
 
 type IRLiteChart = ISLite & IMain & {

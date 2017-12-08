@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule, enableProdMode } from '@angular/core';
 import { Chart } from './Chart';
 import { LiteChart } from './LiteChart';
 import { Axis, Coord, Facet, Guide, Legend, Tooltip, View, FacetView, Series, Pie, Sector, Line, SmoothLine, DashLine, Area, StackArea, SmoothArea,
- Bar, StackBar, DodgeBar, Point, Waterfall, Funnel, Pyramid, RadialBar, Schema, Box, Candle, Polygon, Contour, Heatmap, Edge, Sankey } from './subChart/index';
+ Bar, StackBar, DodgeBar, Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap, Edge, Sankey, ErrorBar } from './components/index';
+import * as viser from 'viser';
 
 @NgModule({
   declarations: [
@@ -29,10 +30,8 @@ import { Axis, Coord, Facet, Guide, Legend, Tooltip, View, FacetView, Series, Pi
     StackBar,
     DodgeBar,
     Point,
-    Waterfall,
     Funnel,
     Pyramid,
-    RadialBar,
     Schema,
     Box,
     Candle,
@@ -41,6 +40,7 @@ import { Axis, Coord, Facet, Guide, Legend, Tooltip, View, FacetView, Series, Pi
     Heatmap,
     Edge,
     Sankey,
+    ErrorBar,
   ],
   exports: [
     Chart,
@@ -66,10 +66,8 @@ import { Axis, Coord, Facet, Guide, Legend, Tooltip, View, FacetView, Series, Pi
     StackBar,
     DodgeBar,
     Point,
-    Waterfall,
     Funnel,
     Pyramid,
-    RadialBar,
     Schema,
     Box,
     Candle,
@@ -78,7 +76,12 @@ import { Axis, Coord, Facet, Guide, Legend, Tooltip, View, FacetView, Series, Pi
     Heatmap,
     Edge,
     Sankey,
+    ErrorBar,
   ],
 })
 export class ViserModule {
 }
+enableProdMode();
+export const registerAnimation = viser.registerAnimation;
+export const registerShape = viser.registerShape;
+export const Global = viser.Global;

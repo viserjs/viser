@@ -1,10 +1,10 @@
 interface IBackground {
-  stroke: string;
-  strokeOpacity: number;
-  lineWidth: number;
-  fill: string;
-  fillOpactiy: number;
-  radius: number
+  stroke?: string;
+  strokeOpacity?: number;
+  lineWidth?: number;
+  fill?: string;
+  fillOpactiy?: number;
+  radius?: number
 }
 
 export interface IChart {
@@ -12,7 +12,7 @@ export interface IChart {
   container?: any;
   height: number;
   width?: number;
-  animate?: boolean;
+  animate?: boolean | object;
   forceFit?: boolean;
   background?: IBackground;
   plotBackground?: IBackground;

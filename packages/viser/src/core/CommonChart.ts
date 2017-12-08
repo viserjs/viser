@@ -4,14 +4,12 @@
  */
 import loadShapes from '../shapes/loadShapes';
 import IMainConfig from '../typed/IMain';
-import IDataMappingConfig from '../typed/IDataMapping';
 import * as _ from 'lodash';
 import * as EventUtils from '../utils/EventUtils';
 import * as DataSetUtils from '../utils/DataSetUtils';
 import * as setCoordConfig from '../components/setCoordConfig';
 import * as setAxisConfig from '../components/setAxisConfig';
 import * as setSeriesConfig from '../components/setSeriesConfig';
-import * as setDataMappingConfig from '../components/setDataMappingConfig';
 import * as setCustomFormatter from '../components/setCustomFormatter';
 import * as setLengendConfig from '../components/setLengendConfig';
 import * as setGuideConfig from '../components/setGuideConfig';
@@ -106,9 +104,13 @@ class CommonChart {
     this.setGuide(chart, config);
   }
 
-  public setView(item: any, chart: any, config: IMainConfig) {
-    item = setDataMappingConfig.process(item);
+  public setFacetContent(chart: any, config: IMainConfig) {
+    this.setScale(chart, config);
+    this.setSeries(chart, config);
+    this.setGuide(chart, config);
+  }
 
+  public setView(item: any, chart: any, config: IMainConfig) {
     const view = this.createView(chart, item);
 
     let viewData = item.data;
@@ -140,23 +142,16 @@ class CommonChart {
     }
   }
 
-  public setFacetViews(chart: any, facet: any, views: IMainConfig, dataMapping: IDataMappingConfig) {
-    if (!views.dataMapping) {
-      views.dataMapping = dataMapping;
-    } else {
-      views = setDataMappingConfig.process(views);
-    }
-
+  public setFacetViews(chart: any, facet: any, views: IMainConfig) {
     const viewData = DataSetUtils.getProcessedData(facet.data, views.dataPre);
     const calData = DataSetUtils.getDataContent(viewData, views.dataView);
 
     this.setDataSource(chart, calData);
-    this.setContent(chart, views);
+    this.setFacetContent(chart, views);
   }
 
   public setFacet(chart: any, config: IMainConfig) {
     let facet: any = config.facet;
-    const dataMapping = config.dataMapping;
 
     if (!facet) { return; }
 
@@ -169,13 +164,13 @@ class CommonChart {
     if (_.isFunction(facet.views)) {
       options.eachView = (v: any, f: any) => {
         const options = facet.views(v, f);
-        this.setFacetViews(v, f, options, dataMapping);
+        this.setFacetViews(v, f, options);
       }
     } else {
       facet.views = Array.isArray(facet.views) ? facet.views : [facet.views];
 
       options.eachView = (v: any, f: any) => {
-        this.setFacetViews(v, f, facet.views[0], dataMapping);
+        this.setFacetViews(v, f, facet.views[0]);
       }
     }
 
@@ -183,9 +178,9 @@ class CommonChart {
   }
 
   public render() {
-    let config = setDataMappingConfig.process(this.config);
+    let config = this.config;
 
-    const { data, dataMapping, dataPre, dataView } = config;
+    const { data, dataPre, dataView } = config;
     const chart = this.chartInstance;
 
     loadShapes();
@@ -194,7 +189,7 @@ class CommonChart {
     const chartData = this.mainDataSet = DataSetUtils.getProcessedData(data, dataPre);
 
     if (config.series || config.facet) {
-      const calData = DataSetUtils.getDataContent(chartData);
+      const calData = DataSetUtils.getDataContent(chartData, dataView);
       this.setDataSource(chart, calData);
     }
     this.setContent(chart, config);
@@ -222,45 +217,64 @@ class CommonChart {
   }
 
   public repaintData(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
+    let hasDataChange = false;
+
     if (!_.isEmpty(config.data) && !_.isEqual(oriConfig.data, config.data)) {
       const viewData = DataSetUtils.getProcessedData(config.data, config.dataPre);
       const calData = DataSetUtils.getDataContent(viewData, config.dataView);
 
+      hasDataChange = true;
       chart.changeData(calData);
-    } else {
-      config.calData = oriConfig.calData;
+    }
+
+    return hasDataChange;
+  }
+
+  public repaintViewData(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
+    let viewData;
+
+    if ((_.isEmpty(config.data) && !_.isEmpty(oriConfig.data)) ||
+        (!_.isEmpty(config.data) && !_.isEqual(oriConfig.data, config.data))) {
+      viewData = DataSetUtils.getProcessedData(config.data, config.dataPre);
+      const calData = DataSetUtils.getDataContent(viewData, config.dataView);
+      chart.changeData(calData);
     }
   }
 
   public repaintContent(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
-    config = setDataMappingConfig.process(config);
+    let hasChartChange = false;
 
-    this.repaintData(chart, oriConfig, config);
-
-    if (config.dataMapping && !_.isEqual(oriConfig.dataMapping, config.dataMapping)) {
+    if (config.scale && !_.isEqual(oriConfig.scale, config.scale)) {
       this.setScale(chart, config);
+      hasChartChange = true;
     }
 
     if (config.coord && !_.isEqual(oriConfig.coord, config.coord)) {
       this.setCoord(chart, config);
+      hasChartChange = true;
     }
 
     if (config.axis && !_.isEqual(oriConfig.axis, config.axis)) {
       this.setAxis(chart, config);
+      hasChartChange = true;
     }
 
-    if ((config.dataMapping && !_.isEqual(oriConfig.dataMapping, config.dataMapping)) ||
-        (config.series && !_.isEqual(oriConfig.series, config.series))) {
+    if (config.series && !_.isEqual(oriConfig.series, config.series)) {
       this.setSeries(chart, config);
+      hasChartChange = true;
     }
 
     if (config.tooltip && !_.isEqual(oriConfig.tooltip, config.tooltip)) {
       this.setTooltip(chart, config);
+      hasChartChange = true;
     }
 
     if (config.guide && !_.isEqual(oriConfig.guide, config.guide)) {
       this.setGuide(chart, config);
+      hasChartChange = true;
     }
+
+    return hasChartChange;
   }
 
   public repaintViews(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
@@ -270,15 +284,17 @@ class CommonChart {
     if (!_.isEqual(oriConfig.views, config.views)) {
       for (let item of viewsConfig) {
         const oriView = oViewsConfig.filter((res: any) => (res.viewId === item.viewId));
+        let view;
 
         if (oriView.length) {
-          const view = this.viewInstance[item.viewId];
+          view = this.viewInstance[item.viewId];
+          this.repaintViewData(view, oriView[0], item);
           this.repaintContent(view, oriView[0], item);
-          view.repaint();
         } else {
-          const view = this.setView(item, chart, config);
-          view.repaint();
+          view = this.setView(item, chart, config);
         }
+
+        view.repaint();
       }
     }
   }
@@ -287,37 +303,29 @@ class CommonChart {
     const oriConfig = this.oriConfig;
     const viewsConfig = config.views;
     const chart = this.chartInstance;
-    let hasChartChange = false;
 
     config = this.checkChartConfig(config);
 
     this.repaintWidthHeight(config);
 
-    if (!config.viewId) {
-      this.repaintContent(chart, oriConfig, config);
-      hasChartChange = true;
-    } else if (config.viewId && !oriConfig.viewId) {
-      const view = this.setView(config, chart, config);
-      view.repaint();
-    } else if (config.viewId && oriConfig.viewId && _.isEqual(oriConfig.viewId, config.viewId)) {
-      const view = this.viewInstance[config.viewId];
-      this.repaintContent(view, oriConfig, config);
-      view.repaint();
-    }
+    const hasDataChange = this.repaintData(chart, oriConfig, config);
+    if (hasDataChange) { this.mainDataSet = config.data; }
 
+    const hasContentChange = this.repaintContent(chart, oriConfig, config);
     this.repaintViews(chart, oriConfig, config);
 
+    let hasChartPartChange = false;
     if (config.legend && !_.isEqual(oriConfig.legend, config.legend)) {
       this.setLegend(chart, config);
-      hasChartChange = true;
+      hasChartPartChange = true;
     }
 
     if (config.facet && !_.isEqual(oriConfig.facet, config.facet)) {
       this.setFacet(chart, config);
-      hasChartChange = true;
+      hasChartPartChange = true;
     }
 
-    if (hasChartChange) {
+    if (hasContentChange || hasChartPartChange) {
       chart.repaint();
     }
   }

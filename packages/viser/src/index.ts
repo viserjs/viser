@@ -2,7 +2,6 @@ import CommonChart from './core/CommonChart';
 import IAxisConfig, { IAxis } from './typed/IAxis';
 import IChart from './typed/IChart';
 import ICoord, { IPolarCoord, IRectCoord } from './typed/ICoord';
-import IDataMappingConfig, { IDataMapping } from './typed/IDataMapping';
 import IDataPre from './typed/IDataPre';
 import IFacet from './typed/IFacet';
 import IGuideConfig, { IGuide, ILineGuide, ITextGuide, IImageGuide, IRegionGuide, IArcGuide } from './typed/IGuide';
@@ -12,6 +11,8 @@ import ITooltipConfig, { ITooltip } from './typed/ITooltip';
 import IViewConfig, { IView } from './typed/IView';
 import IScale from './typed/IScale';
 import IMain from './typed/IMain';
+import * as CustomizeUtils from './utils/CustomizeUtils';
+const G2 = require('@antv/g2');
 
 export {
   IAxis,
@@ -20,8 +21,6 @@ export {
   ICoord,
   IRectCoord,
   IPolarCoord,
-  IDataMapping,
-  IDataMappingConfig,
   IDataPre,
   IFacet,
   IGuide,
@@ -42,6 +41,10 @@ export {
   IScale,
   IMain,
 };
+
+export const registerAnimation = CustomizeUtils.registerAnimation;
+export const registerShape = CustomizeUtils.registerShape;
+export const Global = G2.Global;
 
 export default function(config: any) {
   const commonChart = new CommonChart(config);

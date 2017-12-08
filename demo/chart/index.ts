@@ -11,4 +11,8 @@ export default [
     type: 'sankey-1',
     case: ['json', 'react', 'vue', 'angular']
   },
+  {
+    type: 'chord-1',
+    case: ['json', 'react', 'vue', 'angular']
+  },
 ];

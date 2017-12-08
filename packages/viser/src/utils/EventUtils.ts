@@ -1,8 +1,11 @@
+import * as _ from 'lodash';
+
 const regEventName = /on(.+)(MouseEnter|MouseMove|MouseLeave|Click|DdlClick|MouseDown|MouseUp|TouchStart|TouchMove|TouchEnd)/;
 
 export function setSEvent (chart: any, itemname: string, keyname: string, content: any) {
-  const parseEventItem = regEventName.exec(keyname);
+  if (_.isEmpty(keyname)) { return; }
 
+  const parseEventItem = regEventName.exec(keyname);
   if (!parseEventItem || parseEventItem.length <= 2) { return; }
 
   const lowerEventItem = parseEventItem[1].toLowerCase();
@@ -13,7 +16,10 @@ export function setSEvent (chart: any, itemname: string, keyname: string, conten
 }
 
 export function setEvent (chart: any, name: string, item: any) {
+  if (_.isEmpty(item)) { return; }
+
   const events = Object.keys(item).filter((entry) => /^on/.test(entry));
+  if (_.isEmpty(events)) { return; }
 
   events.forEach(entry => {
     const eventName = entry.slice(2, entry.length);

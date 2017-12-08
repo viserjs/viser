@@ -1,16 +1,16 @@
 import Vue from 'vue';
-import viser from 'viser';
+import typedProps from './typed';
+import * as viser from 'viser';
 
-const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area',
-  'stackarea', 'smootharea', 'bar', 'stackbar', 'dodgebar', 'point', 'waterfall',
-  'funnel', 'pyramid', 'radialbar', 'schema', 'box', 'candle', 'polygon', 'contour',
-  'heatmap', 'edge', 'sankey'];
+const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area', 'point', 'stackarea',
+  'smootharea', 'bar', 'stackbar', 'dodgebar', 'interval', 'stackinterval', 'dodgeinterval',
+  'funnel', 'pyramid', 'schema', 'box', 'candle', 'polygon', 'contour', 'heatmap', 'edge', 'sankey', 'errorbar'];
 
 const rootCharts = ['v-chart', 'v-lite-chart'];
 
-const rootChartProps = ['data', 'dataMapping', 'dataView', 'dataPre', 'scale', 'viewId'];
+const rootChartProps = ['data', 'dataView', 'dataPre', 'scale', 'viewId'];
 
-const seriesProps = ['position', 'quickType', 'gemo', 'adjust', 'color', 'shape', 'size', 'opacity', 'label', 'tooltip', 'style'];
+const seriesProps = ['position', 'quickType', 'gemo', 'adjust', 'color', 'shape', 'size', 'opacity', 'label', 'tooltip', 'style', 'animate'];
 
 const camelCase: any = (() => {
   const DEFAULT_REGEX = /[-_]+(.)?/g;
@@ -31,54 +31,7 @@ const baseChartComponent = {
     };
   },
   // Why use null? See https://github.com/vuejs/vue/issues/4792.
-  props: {
-    width: null,
-    height: null,
-    data: null,
-    dataMapping: null,
-    dataPre: null,
-    dataView: null,
-    crosshairs: null,
-    dataKey: null,
-    label: null,
-    size: null,
-    vStyle: null,
-    show: null,
-    color: null,
-    tooltip: null,
-    opacity: null,
-    gemo: null,
-    type: null,
-    scale: null,
-    forceFit: null,
-    fields: null,
-    viewId: null,
-
-    pie: null,
-    sector: null,
-    line: null,
-    smoothLine: null,
-    dashLine: null,
-    area: null,
-    stackArea: null,
-    smoothArea: null,
-    bar: null,
-    stackBar: null,
-    dodgeBar: null,
-    point: null,
-    waterfall: null,
-    funnel: null,
-    pyramid: null,
-    radialBar: null,
-    schema: null,
-    box: null,
-    candle: null,
-    polygon: null,
-    contour: null,
-    heatmap: null,
-    edge: null,
-    sankey: null,
-  } as any,
+  props: typedProps,
   methods: {
     /**
      * find nearest parent rechart component
@@ -125,14 +78,14 @@ const baseChartComponent = {
         }
 
         if (!isUpdate) {
-          this.chart = viser(d2Json);
+          this.chart = viser.default(d2Json);
         } else {
           this.chart.repaint(d2Json);
         }
       } else if (this.$options._componentTag === 'v-view') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
-        nearestRootComponent.jsonForD2.views = {
+        oneObjectMoreArray(nearestRootComponent.jsonForD2, 'views', {
           ...cleanUndefined(normalizeProps(this._props)),
           ...this.jsonForD2,
           viewId: generateRandomNum()
@@ -209,6 +162,9 @@ export default {
     Vue.component('v-bar', baseChartComponent);
     Vue.component('v-stack-bar', baseChartComponent)
     Vue.component('v-dodge-bar', baseChartComponent)
+    Vue.component('v-interval', baseChartComponent);
+    Vue.component('v-stack-interval', baseChartComponent)
+    Vue.component('v-dodge-interval', baseChartComponent)
     Vue.component('v-schema', baseChartComponent);
     Vue.component('v-line', baseChartComponent);
     Vue.component('v-smooth-line', baseChartComponent);
@@ -217,16 +173,15 @@ export default {
     Vue.component('v-area', baseChartComponent)
     Vue.component('v-stack-area', baseChartComponent)
     Vue.component('v-smooth-area', baseChartComponent)
-    Vue.component('v-water-fall', baseChartComponent)
     Vue.component('v-funnel', baseChartComponent)
     Vue.component('v-pyramid', baseChartComponent)
-    Vue.component('v-radial-bar', baseChartComponent)
     Vue.component('v-box', baseChartComponent)
     Vue.component('v-candle', baseChartComponent)
     Vue.component('v-polygon', baseChartComponent)
     Vue.component('v-contour', baseChartComponent)
     Vue.component('v-heatmap', baseChartComponent)
     Vue.component('v-sankey', baseChartComponent)
+    Vue.component('v-error-bar', baseChartComponent)
   }
 };
 
@@ -313,3 +268,7 @@ function setIfNotExist(obj: any, key: string, value: any) {
 function generateRandomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
 }
+
+export const registerAnimation = viser.registerAnimation;
+export const registerShape = viser.registerShape;
+export const Global = viser.Global;

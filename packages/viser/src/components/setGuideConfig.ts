@@ -69,8 +69,8 @@ export const process = (chart: any, config: any) => {
       setGuideArc(chart, res);
     } else if (res.type === 'text') {
       chart.guide().text(res);
-    } else if (res.type === 'tag') {
-      chart.guide().tag(res);
+    } else if (res.type === 'image') {
+      chart.guide().image(res);
     } else if (res.type === 'html') {
       chart.guide().html(res);
     }

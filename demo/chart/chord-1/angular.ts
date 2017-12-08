@@ -4,18 +4,20 @@ import { Component, enableProdMode, NgModule } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserModule } from '@angular/platform-browser';
 import { ViserModule } from '../../../packages/viser-ng/src/index';
-import { data, dataPre, scale } from './data'
+import { data, dataPre, scale } from './data';
 
 @Component({
   selector: '#mount',
   template: `
   <div>
-    <v-chart [forceFit]="forceFit" [height]="height" [data]="data" [dataPre]="dataPre">
-      <v-view viewId="2" dataView="edges" [scale]="scale">
-        <v-sankey position="x*y" [style]="sankeyStyle" color="#333" opacity="0.1" tooltip="value"></v-sankey>
+    <v-chart [forceFit]="forceFit" [height]="height" [data]="data" [dataPre]="dataPre" [scale]="scale">
+      <v-view viewId="2" dataView="edges">
+        <v-coord type="polar" direction="yReverse"></v-coord>
+        <v-edge position="x*y" color="source" shape="arc" opacity="0.5" tooltip="source*target*value"></v-edge>
       </v-view>
-      <v-view viewId="3" dataView="nodes" [scale]="scale">
-        <v-polygon position="x*y" color="name" [style]="polygonStyle" [label]="label"></v-polygon>
+      <v-view viewId="3" dataView="nodes">
+        <v-coord type="polar" direction="yReverse" ></v-coord>
+        <v-polygon position="x*y" color="id" [label]="label" ></v-polygon>
       </v-view>
     </v-chart>
   </div>
@@ -27,17 +29,13 @@ class AppComponent {
   height: number = 600;
   data = data;
   dataPre = dataPre;
-  sankeyStyle = { curvature: 0.5 };
-  polygonStyle = { stroke: '#ccc' };
-  viewDataMapping = { column: 'x', row: 'y', color: 'name' };
   scale = scale;
   label = [
     'name', {
+      labelEmit: true,
       textStyle: {
-        fill: 'black',
-        textAlign: 'left'
+        fill: '#8c8c8c'
       },
-      offset: 0,
     }
   ];
 }
