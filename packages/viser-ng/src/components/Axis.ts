@@ -1,14 +1,15 @@
-import * as Style from './Style';
+import * as IStyle from './Style';
 import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
 
 type formatterFunc = (val: number) => string | number;
+type eventFunc = (ev: any) => void;
 
 interface ITitle {
   autoRotate?: boolean;
   offset?: number;
   position?: string;
-  TextStyle?: Style.ITextStyle;
+  textStyle?: IStyle.ITextStyle;
 }
 
 interface IAxisTick {
@@ -18,10 +19,15 @@ interface IAxisTick {
 }
 
 interface IAxisGrid {
+  zIndex?: number;
+  type?: string;
   align?: string;
-  type?: 'line' | 'polygon';
-  lineStyle?: Style.ILineStyle;
+  lineStyle?: IStyle.ILineStyle;
+  items: object[];
   alternateColor?: string | string[];
+  matrix?: any;
+  hideFirstLine?: boolean;
+  hideLastLine?: boolean;
 }
 
 interface IAxisLabel {
@@ -29,7 +35,7 @@ interface IAxisLabel {
   formatter?: string | formatterFunc;
   autoRotate?: boolean;
   rotate?: number | 'normal' | 'parallel';
-  textStyle?: Style.ITextStyle;
+  textStyle?: IStyle.ITextStyle;
 }
 
 @Component({
@@ -45,10 +51,20 @@ class Axis extends Chart {
   @Input() subTick?: IAxisTick;
   @Input() grid?: IAxisGrid;
   @Input() label?: boolean | IAxisLabel;
-  @Input() line?: Style.ILineStyle;
-  @Input() tickLine?: Style.ILineStyle;
+  @Input() line?: IStyle.ILineStyle;
+  @Input() tickLine?: IStyle.ILineStyle;
   @Input() subTickCount?: number;
-  @Input() subTickLine?: Style.ILineStyle;
+  @Input() subTickLine?: IStyle.ILineStyle;
+  @Input() autoPaint?: boolean;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 export default Axis;

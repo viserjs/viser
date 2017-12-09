@@ -54,6 +54,8 @@ function omit(obj: any, attr: string) {
   return newObj;
 }
 
+type eventFunc = (ev: any) => void;
+
 interface IBackground {
   stroke: string;
   strokeOpacity: number;
@@ -85,6 +87,20 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
   @Input() padding?: number | object | number[];
   @Input() scale?: IScale;
   @Input() dataView?: string;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
+  @Input() onPlotEnter?: eventFunc;
+  @Input() onPlotMove?: eventFunc;
+  @Input() onPlotLeave?: eventFunc;
+  @Input() onPlotClick?: eventFunc;
+  @Input() onPlotDbClick?: eventFunc;
   @ViewChild('chartDom') chartDiv?: any;
   config: any = {};
   chart: any = null;

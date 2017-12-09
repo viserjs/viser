@@ -19,10 +19,14 @@ interface IRowTitleProps {
 class Facet extends Chart {
   @Input() type: string;
   @Input() fields?: string[];
-  @Input() rowField?: string | string[];
-  @Input() colField?: string | string[];
   @Input() cols?: number;
   @Input() rows?: number;
+  @Input() colField?: string | string[];
+  @Input() rowField?: string | string[];
+  @Input() colValue?: number;
+  @Input() rowValue?: number;
+  @Input() colIndex?: number;
+  @Input() rowIndex?: number;
   @Input() showTitle?: boolean;
   @Input() colTitle?: IColTitleProps;
   @Input() rowTitle?: IRowTitleProps;

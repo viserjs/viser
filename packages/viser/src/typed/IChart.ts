@@ -1,3 +1,5 @@
+type eventFunc = (ev: any) => void;
+
 interface IBackground {
   stroke?: string;
   strokeOpacity?: number;
@@ -17,6 +19,20 @@ export interface IChart {
   background?: IBackground;
   plotBackground?: IBackground;
   padding?: number | object | number[];
+  onMouseDown?: eventFunc;
+  onMouseMove?: eventFunc;
+  onMouseLeave?: eventFunc;
+  onMouseUp?: eventFunc;
+  onClick?: eventFunc;
+  onDbClick?: eventFunc;
+  onTouchStart?: eventFunc;
+  onTouchMove?: eventFunc;
+  onTouchEnd?: eventFunc;
+  onPlotEnter?: eventFunc;
+  onPlotMove?: eventFunc;
+  onPlotLeave?: eventFunc;
+  onPlotClick?: eventFunc;
+  onPlotDbClick?: eventFunc;
 }
 
 export default IChart;

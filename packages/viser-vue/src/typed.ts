@@ -8,18 +8,19 @@ const props: any = [
   // dataPre
   'connector', 'transform', 'geoKey',
   // facet
-  'type', 'fields', 'rowField', 'colField', 'showTitle', 'autoSetAxis', 'padding', 'colTitle', 'rowTitle', 'eachView', 'cols', 'rows', 'padding', 'line', 'lineSmooth', 'transpose',
+  'type', 'fields', 'rowField', 'colField', 'colValue', 'rowValue', 'colIndex', 'rowIndex', 'showTitle', 'autoSetAxis', 'padding', 'colTitle', 'rowTitle', 'eachView', 'cols', 'rows', 'padding', 'line', 'lineSmooth', 'transpose',
   // guide
   'type', 'position', 'autoRotate', 'vStyle', 'content', 'offsetX', 'offsetY', 'top', 'zIndex', 'start', 'end', 'lineStyle', 'text', 'src', 'width', 'heigth', 'alignX', 'alignY', 'html',
   // legend
-  'dataKey', 'show', 'position', 'title', 'offsetX', 'offsetY', 'itemGap', 'itemMarginBottom', 'itemWidth', 'unCheckColor', 'background',
-  'allowAllCanceled', 'itemFormatter', 'marker', 'textStyle', 'clickable', 'hoverable', 'selectedMode', 'onHover', 'onClick', 'reversed',
+  'dataKey', 'show', 'position', 'title', 'titleGap', 'offsetX', 'offsetY', 'items', 'itemGap', 'itemsGroup', 'itemMarginBottom', 'itemWidth', 'unCheckColor', 'background',
+  'allowAllCanceled', 'itemFormatter', 'marker', 'textStyle', 'clickable', 'hoverable', 'selectedMode', 'onHover', 'onClick', 'reversed', 'layout', 'backPadding', 'useHtml',
+  'autoWrap', 'autoPosition', 'container', 'containerTpl', 'itemTpl',
   // main
   'data', 'viewId', 'scale', 'dataPre', 'dataView', 'forceFit',
   // series
   'quickType', 'position', 'gemo', 'adjust', 'color', 'shape', 'size', 'opacity', 'label', 'tooltip', 'vStyle', 'select', 'active', 'animate',
   // tooltip
-  'showTitle', 'offset', 'crosshairs', 'containerTpl', 'itemTpl', 'inPlot', 'follow', 'shared', 'position',
+  'x', 'y', 'items', 'showTitle', 'offset', 'timeStamp', 'crosshairs', 'containerTpl', 'itemTpl', 'inPlot', 'plotRange', 'follow', 'shared', 'position', 'enterable', 'onShow', 'onHide', 'onChange',
   // lite
   'pie', 'sector', 'line', 'smoothLine', 'dashLine', 'area', 'stackArea', 'smoothArea', 'bar', 'stackBar', 'dodgeBar', 'interval', 'stackInterval', 'dodgeInterval',
   'point', 'funnel', 'pyramid', 'schema', 'box', 'candle', 'polygon', 'contour', 'heatmap', 'edge', 'sankey', 'errorBar',

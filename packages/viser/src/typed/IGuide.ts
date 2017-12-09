@@ -2,6 +2,19 @@
 import * as IStyle from './IStyle';
 
 type func = () => void;
+type eventFunc = (ev: any) => void;
+
+interface IGuideEvent {
+  onMouseDown?: eventFunc;
+  onMouseMove?: eventFunc;
+  onMouseLeave?: eventFunc;
+  onMouseUp?: eventFunc;
+  onClick?: eventFunc;
+  onDbClick?: eventFunc;
+  onTouchStart?: eventFunc;
+  onTouchMove?: eventFunc;
+  onTouchEnd?: eventFunc;
+}
 
 interface ILineText {
   position?: string | number;
@@ -80,7 +93,7 @@ export interface IArcGuide {
   style?: object;
 }
 
-export type IGuide = ILineGuide | ITextGuide | IImageGuide | IRegionGuide | IArcGuide;
+export type IGuide = IGuideEvent & (ILineGuide | ITextGuide | IImageGuide | IRegionGuide | IArcGuide);
 type IGuideConfig = IGuide | IGuide[];
 
 export default IGuideConfig;

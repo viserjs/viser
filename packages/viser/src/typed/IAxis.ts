@@ -1,12 +1,13 @@
 import * as IStyle from './IStyle';
 
 type formatterFunc = (val: number) => string | number;
+type eventFunc = (ev: any) => void;
 
 interface ITitle {
   autoRotate?: boolean;
   offset?: number;
   position?: string;
-  TextStyle?: IStyle.ITextStyle;
+  textStyle?: IStyle.ITextStyle;
 }
 
 interface IAxisTick {
@@ -16,10 +17,15 @@ interface IAxisTick {
 }
 
 interface IAxisGrid {
-  align?: string;
+  zIndex?: number;
   type?: string;
+  align?: string;
   lineStyle?: IStyle.ILineStyle;
+  items: object[];
   alternateColor?: string | string[];
+  matrix?: any;
+  hideFirstLine?: boolean;
+  hideLastLine?: boolean;
 }
 
 interface IAxisLabel {
@@ -42,6 +48,16 @@ export interface IAxis {
   tickLine?: IStyle.ILineStyle;
   subTickCount?: number;
   subTickLine?: IStyle.ILineStyle;
+  autoPaint?: boolean;
+  onMouseDown?: eventFunc;
+  onMouseMove?: eventFunc;
+  onMouseLeave?: eventFunc;
+  onMouseUp?: eventFunc;
+  onClick?: eventFunc;
+  onDbClick?: eventFunc;
+  onTouchStart?: eventFunc;
+  onTouchMove?: eventFunc;
+  onTouchEnd?: eventFunc;
 }
 
 type IAxisConfig = boolean | IAxis | IAxis[];

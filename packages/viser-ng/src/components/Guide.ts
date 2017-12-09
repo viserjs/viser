@@ -2,7 +2,9 @@
 import * as Style from './Style';
 import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
+
 type func = () => void;
+type eventFunc = (ev: any) => void;
 
 interface ILineText {
   position?: string | number;
@@ -40,6 +42,18 @@ class Guide extends Chart {
   @Input() height?: number;
   @Input() offsetX?: number;
   @Input() offsetY?: number;
+  @Input() alignX?: 'left' | 'middle' | 'right';
+  @Input() alignY?: 'top' | 'middle' | 'bottom';
+  @Input() html?: string;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 export default Guide;

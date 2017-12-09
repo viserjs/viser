@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
 
+type eventFunc = (ev: any) => void;
+
 @Component({
   selector: 'v-series',
   template: `<div #chartDom></div>`,
@@ -20,6 +22,15 @@ class Series extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -41,6 +52,15 @@ class Pie extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -62,6 +82,15 @@ class Sector extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -83,6 +112,15 @@ class Line extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -104,6 +142,15 @@ class SmoothLine extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -125,6 +172,15 @@ class DashLine extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -146,6 +202,15 @@ class Area extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -167,6 +232,15 @@ class StackArea extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -188,6 +262,15 @@ class SmoothArea extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -209,6 +292,15 @@ class Bar extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -230,6 +322,15 @@ class StackBar extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -251,6 +352,15 @@ class DodgeBar extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -272,6 +382,15 @@ class Interval extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -293,6 +412,15 @@ class StackInterval extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -314,6 +442,15 @@ class DodgeInterval extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -335,6 +472,15 @@ class Point extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -356,6 +502,15 @@ class Funnel extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -377,6 +532,15 @@ class Pyramid extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -398,6 +562,15 @@ class Schema extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -419,6 +592,15 @@ class Box extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -440,6 +622,15 @@ class Candle extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -461,6 +652,15 @@ class Polygon extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -482,6 +682,15 @@ class Contour extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -503,6 +712,15 @@ class Heatmap extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -524,6 +742,15 @@ class Edge extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -545,6 +772,15 @@ class Sankey extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -566,6 +802,15 @@ class ErrorBar extends Chart {
   @Input() select?: any;
   @Input() active?: boolean;
   @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
 }
 
 export {
