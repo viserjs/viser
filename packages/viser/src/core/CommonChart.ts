@@ -36,7 +36,7 @@ class CommonChart {
     if (_.isNil(chart.height)) {
       throw new Error('please set correct chart option');
     }
-  };
+  }
 
   public destroy(chart: any) {
     chart && chart.destroy();

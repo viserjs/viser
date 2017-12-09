@@ -170,8 +170,6 @@ function createSource(data: any, dataPre: IDataPreConfig) {
 }
 
 export const getProcessedData = (data: any, dataPre: IDataPreConfig) => {
-  if (_.isEmpty(data)) { return []; }
-
   if (_.isEmpty(dataPre) || _.isEmpty(dataPre.transform)) {
     return createSource(data, dataPre);
   }
