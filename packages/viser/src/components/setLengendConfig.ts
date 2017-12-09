@@ -1,8 +1,6 @@
 import * as _ from 'lodash';
 import * as EventUtils from '../utils/EventUtils';
 
-const regEventName = /on(.+)(MouseEnter|MouseMove|MouseLeave|Click|DdlClick|MouseDown|MouseUp|TouchStart|TouchMove|TouchEnd)/;
-
 function setHighlight(item: any) {
   item.onHover = (ev: any) => {
     const shapes = ev.shapes;
