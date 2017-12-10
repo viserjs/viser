@@ -11,9 +11,11 @@ export const process = (chart: any, config: any) => {
     return chart.tooltip(true);
   }
 
-  tooltip.forEach((res: any) => {
-    EventUtils.setEvent(chart, 'tooltip', res);
-  });
+  for (const item in tooltip) {
+    if (tooltip.hasOwnProperty(item)) {
+      EventUtils.setEvent(chart, 'tooltip', item);
+    }
+  }
 
   return chart.tooltip(tooltip);
 };
