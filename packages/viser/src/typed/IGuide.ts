@@ -39,7 +39,7 @@ export interface ITextGuide {
   type?: 'text';
   top?: boolean;
   zIndex?: number;
-  position: object | number[] | func;
+  position?: object | number[] | func;
   content?: string;
   style?: IStyle.ITextStyle;
   offsetX?: number;
@@ -76,7 +76,7 @@ export interface IRegionGuide {
 
 export interface IHtmlGuide {
   type?: 'html';
-  position: object | number[] | func;
+  position?: object | number[] | func;
   alignX?: 'left' | 'middle' | 'right';
   alignY?: 'top' | 'middle' | 'bottom';
   offsetX?: number;

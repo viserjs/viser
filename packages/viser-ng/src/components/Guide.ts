@@ -32,8 +32,8 @@ class Guide extends Chart {
   @Input() zIndex?: number;
   @Input() start?: object | number[] | func;
   @Input() end?: object | number[] | func;
-  @Input() position: object | number[] | func;
-  @Input() lineStyle: Style.ILineStyle;
+  @Input() position?: object | number[] | func;
+  @Input() lineStyle?: Style.ILineStyle;
   @Input() content?: string;
   @Input() style?: object | Style.ITextStyle | IRegionStyle;
   @Input() text: ILineText;

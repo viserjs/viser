@@ -7,12 +7,12 @@ type formatterFunc = (val: number) => string | number;
 type eventFunc = (ev: any) => void;
 
 interface IBackground {
-  stroke: string;
-  strokeOpacity: number;
-  lineWidth: number;
-  fill: string;
-  fillOpactiy: number;
-  radius: number;
+  stroke?: string;
+  strokeOpacity?: number;
+  lineWidth?: number;
+  fill?: string;
+  fillOpactiy?: number;
+  radius?: number;
 }
 
 @Component({
