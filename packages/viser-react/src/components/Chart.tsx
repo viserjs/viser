@@ -266,6 +266,7 @@ export default class Chart extends React.Component<IRChart, any> {
     if (this.chart) {
       this.chart.repaint(config);
     } else {
+      config.chart.container = this.container;
       this.chart = viser(config);
     }
   }
