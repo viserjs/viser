@@ -24,6 +24,7 @@ class Legend extends Chart {
   @Input() show?: boolean;
   @Input() position?: 'top' | 'right' | 'bottom' | 'left';
   @Input() title?: null | object;
+  @Input() offset?: number;
   @Input() offsetX?: number;
   @Input() offsetY?: number;
   @Input() items?: object[];
