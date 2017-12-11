@@ -89,7 +89,9 @@ function setRectCoord(chart: any, coord: any) {
   return chart;
 }
 
-export const process = (chart: any, coord: any) => {
+export const process = (chart: any, config: any) => {
+  const coord = config.coord;
+
   if (!coord || !coord.type) {
     return chart.coord('rect');
   }

@@ -48,7 +48,7 @@ export const registerShape = CustomizeUtils.registerShape;
 export const Global = G2.Global;
 
 export default function(config: any) {
-  if (_.isNil(config) || _.isEmpty(config) || _.isEmpty(config.data)) { return; }
+  if (_.isNil(config) || _.isEmpty(config)) { return; }
 
   const commonChart = new CommonChart(config);
   commonChart.render();

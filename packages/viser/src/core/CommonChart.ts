@@ -3,10 +3,10 @@
  * @description instantiation of chart, include base functions
  */
 import loadShapes from '../shapes/loadShapes';
+import CommonDataSet from './CommonDataSet';
 import IMainConfig from '../typed/IMain';
 import * as _ from 'lodash';
 import * as EventUtils from '../utils/EventUtils';
-import * as DataSetUtils from '../utils/DataSetUtils';
 import * as setCoordConfig from '../components/setCoordConfig';
 import * as setAxisConfig from '../components/setAxisConfig';
 import * as setSeriesConfig from '../components/setSeriesConfig';
@@ -20,22 +20,59 @@ const G2 = require('@antv/g2');
 
 class CommonChart {
   chartInstance: any;
+  datasetInstance: any;
   viewInstance: any = {};
   config: any;
   oriConfig: any;
-  mainDataSet: any = {};
 
   constructor(config: IMainConfig) {
     this.config = _.cloneDeep(config);
     this.checkChartConfig(this.config);
     const chart: any = this.chartInstance = new G2.Chart(this.config.chart);
+    const dataSet: any = this.datasetInstance = new CommonDataSet();
   }
 
-  public checkChartConfig(config: IMainConfig) {
-    const chart = config.chart;
-    if (_.isNil(chart.height)) {
-      throw new Error('please set correct chart option');
+  public getWidth() {
+    return this.chartInstance.get('width');
+  }
+
+  public getHeight() {
+    return this.chartInstance.get('height');
+  }
+
+  public render() {
+    let config = this.config;
+    const chart = this.chartInstance;
+
+    loadShapes();
+    this.setEvents(chart, config);
+
+    if (!_.isEmpty(config.data)) {
+      const { data, dataPre, dataView } = config;
+
+      const processedData = this.datasetInstance.getProcessedData(data, dataPre, 'main');
+
+      if (!_.isEmpty(config.series) ||!_.isEmpty(config.facet)) {
+        const calData = this.datasetInstance.getDataView(processedData, dataView);
+        this.setDataSource(chart, calData);
+      }
     }
+
+    this.setCoord(chart, config);
+    this.setContent(chart, config);
+    this.setLegend(chart, config);
+    this.setViews(chart, config);
+    this.setFacet(chart, config);
+
+    this.oriConfig = config;
+    chart.render();
+  }
+
+  public repaint(config: IMainConfig) {
+    const newConfig = _.cloneDeep(config);
+    this.checkChartConfig(newConfig);
+    this.renderDiffConfig(newConfig);
+    this.oriConfig = newConfig;
   }
 
   public destroy(chart: any) {
@@ -46,7 +83,14 @@ class CommonChart {
     chart && chart.clear();
   }
 
-  public createView(chart: any, config: IMainConfig) {
+  private checkChartConfig(config: IMainConfig) {
+    const chart = config.chart;
+    if (_.isNil(chart.height)) {
+      throw new Error('please set correct chart option');
+    }
+  }
+
+  private createView(chart: any, config: IMainConfig) {
     const view = chart.view();
 
     if (!config.viewId) {
@@ -57,78 +101,83 @@ class CommonChart {
     return view;
   }
 
-  public setEvents(chart: any, config: IMainConfig) {
+  private setEvents(chart: any, config: IMainConfig) {
     EventUtils.setEvent(chart, null, config.chart);
   }
 
-  public setDataSource(chart: any, data: any) {
+  private setDataSource(chart: any, data: any) {
     chart.source(data);
   }
 
-  public setScale(chart: any, config: IMainConfig) {
+  private setScale(chart: any, config: IMainConfig) {
     return setScaleConfig.process(chart, config);
   }
 
-  public setCoord(chart: any, config: IMainConfig) {
-    return setCoordConfig.process(chart, config.coord);
+  private setCoord(chart: any, config: IMainConfig) {
+    return setCoordConfig.process(chart, config);
   }
 
-  public setSeries(chart: any, config: IMainConfig) {
+  private setSeries(chart: any, config: IMainConfig) {
     return setSeriesConfig.process(chart, config);
   }
 
-  public setAxis(chart: any, config: IMainConfig) {
+  private setAxis(chart: any, config: IMainConfig) {
     return setAxisConfig.process(chart, config);
   }
 
-  public setTooltip(chart: any, config: IMainConfig) {
+  private setTooltip(chart: any, config: IMainConfig) {
     return setTooltipConfig.process(chart, config);
   }
 
-  public setGuide(chart: any, config: IMainConfig) {
+  private setGuide(chart: any, config: IMainConfig) {
     return setGuideConfig.process(chart, config);
   }
 
-  public setLegend(chart: any, config: IMainConfig) {
+  private setLegend(chart: any, config: IMainConfig) {
     return setLengendConfig.process(chart, config);
   }
 
-  public setContent(chart: any, config: IMainConfig) {
+  private setContent(chart: any, config: IMainConfig) {
     this.setScale(chart, config);
     this.setAxis(chart, config);
     this.setSeries(chart, config);
-    this.setCoord(chart, config);
     this.setTooltip(chart, config);
     this.setGuide(chart, config);
   }
 
-  public setFacetContent(chart: any, config: IMainConfig) {
+  private setFacetContent(chart: any, config: IMainConfig) {
     this.setScale(chart, config);
     this.setSeries(chart, config);
     this.setGuide(chart, config);
   }
 
-  public setView(item: any, chart: any, config: IMainConfig) {
+  private setView(item: any, chart: any, config: IMainConfig) {
     const view = this.createView(chart, item);
 
     let viewData = item.data;
+    let processedData;
 
     if (item.data) {
-      viewData = DataSetUtils.getProcessedData(item.data, item.dataPre);
+      processedData = this.datasetInstance.getProcessedData(item.data, item.dataPre, item.viewId);
     } else if (!item.data && item.dataPre) {
-      viewData = DataSetUtils.getProcessedData(config.data, item.dataPre);
+      processedData = this.datasetInstance.getProcessedData(config.data, item.dataPre, item.viewId);
     } else if (!item.data && !item.dataPre) {
-      viewData = this.mainDataSet;
+      processedData = this.datasetInstance.copyData('main', item.viewId);
     }
 
-    const calData = DataSetUtils.getDataContent(viewData, item.dataView);
+    const calData = this.datasetInstance.getDataView(processedData, item.dataView);
     this.setDataSource(view, calData);
+
+    if (item.coord) {
+      this.setCoord(view, item);
+    }
+
     this.setContent(view, item);
 
     return view;
   }
 
-  public setViews(chart: any, config: IMainConfig) {
+  private setViews(chart: any, config: IMainConfig) {
     let views = config.views;
 
     if (_.isEmpty(views)) { return; }
@@ -140,18 +189,18 @@ class CommonChart {
     }
   }
 
-  public setFacetViews(chart: any, facet: any, views: IMainConfig) {
-    const viewData = DataSetUtils.getProcessedData(facet.data, views.dataPre);
-    const calData = DataSetUtils.getDataContent(viewData, views.dataView);
+  private setFacetViews(chart: any, facet: any, views: IMainConfig) {
+    const processedData = this.datasetInstance.getProcessedData(facet.data, views.dataPre);
+    const calData = this.datasetInstance.getDataView(processedData, views.dataView);
 
     this.setDataSource(chart, calData);
     this.setFacetContent(chart, views);
   }
 
-  public setFacet(chart: any, config: IMainConfig) {
-    let facet: any = config.facet;
+  private setFacet(chart: any, config: IMainConfig) {
+    if (_.isEmpty(config.facet)) { return; }
 
-    if (!facet) { return; }
+    let facet: any = config.facet;
 
     const options = _.omit(facet, ['type', 'views']);
 
@@ -166,7 +215,6 @@ class CommonChart {
       }
     } else {
       facet.views = Array.isArray(facet.views) ? facet.views : [facet.views];
-
       options.eachView = (v: any, f: any) => {
         this.setFacetViews(v, f, facet.views[0]);
       }
@@ -175,31 +223,7 @@ class CommonChart {
     return chart.facet(facet.type, options);
   }
 
-  public render() {
-    let config = this.config;
-
-    const { data, dataPre, dataView } = config;
-    const chart = this.chartInstance;
-
-    loadShapes();
-    this.setEvents(chart, config);
-
-    const chartData = this.mainDataSet = DataSetUtils.getProcessedData(data, dataPre);
-
-    if (config.series || config.facet) {
-      const calData = DataSetUtils.getDataContent(chartData, dataView);
-      this.setDataSource(chart, calData);
-    }
-    this.setContent(chart, config);
-    this.setLegend(chart, config);
-    this.setViews(chart, config);
-    this.setFacet(chart, config);
-
-    this.oriConfig = config;
-    chart.render();
-  }
-
-  public repaintWidthHeight(config: IMainConfig) {
+  private repaintWidthHeight(config: IMainConfig) {
     const oriConfig = this.oriConfig;
     const chart = this.chartInstance;
 
@@ -214,60 +238,54 @@ class CommonChart {
     }
   }
 
-  public repaintData(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
-    let hasDataChange = false;
-
+  private repaintData(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
     if (!_.isEmpty(config.data) && !_.isEqual(oriConfig.data, config.data)) {
-      const viewData = DataSetUtils.getProcessedData(config.data, config.dataPre);
-      const calData = DataSetUtils.getDataContent(viewData, config.dataView);
+      const processedData = this.datasetInstance.getProcessedData(config.data, config.dataPre, 'main');
+      const calData = this.datasetInstance.getDataView(processedData, config.dataView);
 
-      hasDataChange = true;
       chart.changeData(calData);
     }
-
-    return hasDataChange;
   }
 
-  public repaintViewData(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
-    let viewData;
-
+  private repaintViewData(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
     if ((_.isEmpty(config.data) && !_.isEmpty(oriConfig.data)) ||
         (!_.isEmpty(config.data) && !_.isEqual(oriConfig.data, config.data))) {
-      viewData = DataSetUtils.getProcessedData(config.data, config.dataPre);
-      const calData = DataSetUtils.getDataContent(viewData, config.dataView);
+      const processedData = this.datasetInstance.getProcessedData(config.data, config.dataPre, config.viewId);
+      const calData = this.datasetInstance.getDataView(processedData, config.dataView);
+
       chart.changeData(calData);
     }
   }
 
-  public repaintContent(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
+  private repaintContent(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
     let hasChartChange = false;
 
-    if (config.scale && !_.isEqual(oriConfig.scale, config.scale)) {
+    if (!_.isEqual(oriConfig.scale, config.scale)) {
       this.setScale(chart, config);
       hasChartChange = true;
     }
 
-    if (config.coord && !_.isEqual(oriConfig.coord, config.coord)) {
+    if (!_.isEqual(oriConfig.coord, config.coord)) {
       this.setCoord(chart, config);
       hasChartChange = true;
     }
 
-    if (config.axis && !_.isEqual(oriConfig.axis, config.axis)) {
+    if (!_.isEqual(oriConfig.axis, config.axis)) {
       this.setAxis(chart, config);
       hasChartChange = true;
     }
 
-    if (config.series && !_.isEqual(oriConfig.series, config.series)) {
+    if (!_.isEqual(oriConfig.series, config.series)) {
       this.setSeries(chart, config);
       hasChartChange = true;
     }
 
-    if (config.tooltip && !_.isEqual(oriConfig.tooltip, config.tooltip)) {
+    if (!_.isEqual(oriConfig.tooltip, config.tooltip)) {
       this.setTooltip(chart, config);
       hasChartChange = true;
     }
 
-    if (config.guide && !_.isEqual(oriConfig.guide, config.guide)) {
+    if (!_.isEqual(oriConfig.guide, config.guide)) {
       this.setGuide(chart, config);
       hasChartChange = true;
     }
@@ -275,12 +293,12 @@ class CommonChart {
     return hasChartChange;
   }
 
-  public repaintViews(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
-    const viewsConfig: any = config.views;
-    const oViewsConfig: any = oriConfig.views
+  private repaintViews(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
+    config.views = Array.isArray(config.views) ? config.views : [config.views];
+    const oViewsConfig: any = oriConfig.views;
 
     if (!_.isEqual(oriConfig.views, config.views)) {
-      for (let item of viewsConfig) {
+      for (let item of config.views) {
         const oriView = oViewsConfig.filter((res: any) => (res.viewId === item.viewId));
         let view;
 
@@ -297,26 +315,24 @@ class CommonChart {
     }
   }
 
-  public renderDiffConfig(config: IMainConfig) {
+  private renderDiffConfig(config: IMainConfig) {
     const oriConfig = this.oriConfig;
-    const viewsConfig = config.views;
     const chart = this.chartInstance;
 
     this.repaintWidthHeight(config);
 
-    const hasDataChange = this.repaintData(chart, oriConfig, config);
-    if (hasDataChange) { this.mainDataSet = config.data; }
+    this.repaintData(chart, oriConfig, config);
 
     const hasContentChange = this.repaintContent(chart, oriConfig, config);
     this.repaintViews(chart, oriConfig, config);
 
     let hasChartPartChange = false;
-    if (config.legend && !_.isEqual(oriConfig.legend, config.legend)) {
+    if (!_.isEqual(oriConfig.legend, config.legend)) {
       this.setLegend(chart, config);
       hasChartPartChange = true;
     }
 
-    if (config.facet && !_.isEqual(oriConfig.facet, config.facet)) {
+    if (!_.isEqual(oriConfig.facet, config.facet)) {
       this.setFacet(chart, config);
       hasChartPartChange = true;
     }
@@ -324,21 +340,6 @@ class CommonChart {
     if (hasContentChange || hasChartPartChange) {
       chart.repaint();
     }
-  }
-
-  public repaint(config: IMainConfig) {
-    const newConfig = _.cloneDeep(config);
-    this.checkChartConfig(newConfig);
-    this.renderDiffConfig(newConfig);
-    this.oriConfig = newConfig;
-  }
-
-  public getWidth() {
-    return this.chartInstance.get('width');
-  }
-
-  public getHeight() {
-    return this.chartInstance.get('height');
   }
 }
 
