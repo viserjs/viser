@@ -1,17 +1,19 @@
 import * as EventUtils from '../utils/EventUtils';
+import * as _ from 'lodash';
 
 export const process = (chart: any, config: any) => {
-  const tooltip = config.tooltip;
+  let tooltip = config.tooltip;
 
-  if (!tooltip || tooltip === false) {
+  if (_.isNil(tooltip) || tooltip === false || tooltip.show === false) {
     return chart.tooltip(false);
   }
 
-  if (tooltip === true) {
-    return chart.tooltip(true);
-  }
-
   for (const item in tooltip) {
+    if (item === 'g2Tooltip') {
+      tooltip['g2-tooltip'] = tooltip[item];
+      tooltip = _.omit(tooltip, 'g2Tooltip');
+    }
+
     if (tooltip.hasOwnProperty(item)) {
       EventUtils.setEvent(chart, 'tooltip', item);
     }

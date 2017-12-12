@@ -15,9 +15,12 @@ export const process = (chart: any, config: any) => {
   const legend = config.legend;
   const isArr = Array.isArray(legend);
 
-  if (!legend || (isArr && legend.length === 0)) {
+  if (_.isNil(legend) || legend === false ||
+     (isArr && legend.length === 0)) {
     return chart.legend(false);
   }
+
+  if (legend === true) { return chart.legend(); }
 
   const arrLegend = isArr ? legend : [legend];
 

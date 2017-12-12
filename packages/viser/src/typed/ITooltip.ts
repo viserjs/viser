@@ -23,6 +23,7 @@ export interface ITooltip {
   shared?: boolean;
   enterable?: boolean;
   position?: 'left' | 'right' | 'top' | 'bottom';
+  g2Tooltip?: any;
   onShow?: eventFunc;
   onHide?: eventFunc;
   onChange?: eventFunc;

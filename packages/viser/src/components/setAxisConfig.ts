@@ -39,26 +39,27 @@ function setRotatePolarAxis(chart: any, axisItem: any, coord: any, data: any) {
 }
 
 export const process = (chart: any, config: any) => {
-  if (!config.axis || (_.isArray(config.axis) && config.axis.length === 0)) {
+  const axis = config.axis;
+  const isArr = _.isArray(config.axis);
+
+  if (_.isNil(axis) || axis === false ||
+     (isArr && axis.length === 0)) {
     return chart.axis(false);
   }
 
-  const axis = config.axis = Array.isArray(config.axis) ? config.axis : [config.axis];
-  const { coord, data } = config;
-
   if (axis === true) { return chart.axis(); }
 
-  for (const res of axis) {
-    if (res.show === false) { return chart.axis(res.dataKey, false); }
+  const arrAxis = isArr ? config.axis : [config.axis];
+  const { coord, data } = config;
 
+  for (const res of arrAxis) {
     if (coord && coord.type === 'polar' && coord.direction === 'rotate') {
       setRotatePolarAxis(chart, res, coord, data);
     }
 
-    if (res.label) { res.label = setCustomFormatter.supportD3Formatter(res.label); }
-
-    const options = _.omit(res, ['show', 'dataKey']);
-    chart.axis(res.dataKey, options);
+    if (res.label) {
+      res.label = setCustomFormatter.supportD3Formatter(res.label);
+    }
 
     for (const item in res) {
       if (res.hasOwnProperty(item)) {
@@ -69,6 +70,15 @@ export const process = (chart: any, config: any) => {
 
         EventUtils.setEvent(chart, name, res[item]);
       }
+    }
+
+    if (res.dataKey) {
+      if (res.show === false) { return chart.axis(res.dataKey, false); }
+
+      const options = _.omit(res, ['show', 'dataKey']);
+      chart.axis(res.dataKey, options);
+    } else {
+      chart.axis(res);
     }
   }
 

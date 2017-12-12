@@ -59,6 +59,8 @@ class CommonChart {
     }
 
     this.setCoord(chart, config);
+    this.setTooltip(chart, config);
+    this.setAxis(chart, config);
     this.setContent(chart, config);
     this.setLegend(chart, config);
     this.setViews(chart, config);
@@ -139,14 +141,6 @@ class CommonChart {
 
   private setContent(chart: any, config: IMainConfig) {
     this.setScale(chart, config);
-    this.setAxis(chart, config);
-    this.setSeries(chart, config);
-    this.setTooltip(chart, config);
-    this.setGuide(chart, config);
-  }
-
-  private setFacetContent(chart: any, config: IMainConfig) {
-    this.setScale(chart, config);
     this.setSeries(chart, config);
     this.setGuide(chart, config);
   }
@@ -168,9 +162,9 @@ class CommonChart {
     const calData = this.datasetInstance.getDataView(processedData, item.dataView);
     this.setDataSource(view, calData);
 
-    if (item.coord) {
-      this.setCoord(view, item);
-    }
+    if (!_.isNil(item.coord)) { this.setCoord(view, item); }
+    if (!_.isNil(item.tooltip)) { this.setTooltip(view, item); }
+    if (!_.isNil(item.axis)) { this.setAxis(view, item); }
 
     this.setContent(view, item);
 
@@ -194,7 +188,7 @@ class CommonChart {
     const calData = this.datasetInstance.getDataView(processedData, views.dataView);
 
     this.setDataSource(chart, calData);
-    this.setFacetContent(chart, views);
+    this.setContent(chart, views);
   }
 
   private setFacet(chart: any, config: IMainConfig) {
@@ -239,18 +233,9 @@ class CommonChart {
   }
 
   private repaintData(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
-    if (!_.isEmpty(config.data) && !_.isEqual(oriConfig.data, config.data)) {
-      const processedData = this.datasetInstance.getProcessedData(config.data, config.dataPre, 'main');
-      const calData = this.datasetInstance.getDataView(processedData, config.dataView);
-
-      chart.changeData(calData);
-    }
-  }
-
-  private repaintViewData(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
-    if ((_.isEmpty(config.data) && !_.isEmpty(oriConfig.data)) ||
-        (!_.isEmpty(config.data) && !_.isEqual(oriConfig.data, config.data))) {
-      const processedData = this.datasetInstance.getProcessedData(config.data, config.dataPre, config.viewId);
+    if (!_.isEqual(oriConfig.data, config.data)) {
+      const viewId = config.viewId || 'main';
+      const processedData = this.datasetInstance.getProcessedData(config.data, config.dataPre, viewId);
       const calData = this.datasetInstance.getDataView(processedData, config.dataView);
 
       chart.changeData(calData);
@@ -304,7 +289,7 @@ class CommonChart {
 
         if (oriView.length) {
           view = this.viewInstance[item.viewId];
-          this.repaintViewData(view, oriView[0], item);
+          this.repaintData(view, oriView[0], item);
           this.repaintContent(view, oriView[0], item);
         } else {
           view = this.setView(item, chart, config);
@@ -320,7 +305,6 @@ class CommonChart {
     const chart = this.chartInstance;
 
     this.repaintWidthHeight(config);
-
     this.repaintData(chart, oriConfig, config);
 
     const hasContentChange = this.repaintContent(chart, oriConfig, config);
