@@ -17,39 +17,42 @@ class CommonDataSet {
   }
 
   public getProcessedData(data: any, dataPre: IDataPreConfig, viewId: string) {
+    let cData = _.cloneDeep(data);
+    let cDataPre = _.isFunction ? dataPre : _.cloneDeep(dataPre);
+
     let currData: any;
     if (viewId && this.dataSet[viewId]) { return; }
 
-    if (_.isEmpty(data)) {
+    if (_.isEmpty(cData)) {
       currData = [];
       this.setDataSet(currData, viewId);
       return currData;
     }
 
-    if (_.isFunction(dataPre)) { dataPre = dataPre(this.dataSet); }
+    if (_.isFunction(cDataPre)) { cDataPre = cDataPre(this.dataSet); }
 
-    if (_.isEmpty(dataPre) || _.isEmpty(dataPre.transform)) {
-      currData = this.createSource(data, dataPre);
+    if (_.isEmpty(cDataPre) || _.isEmpty(cDataPre.transform)) {
+      currData = this.createSource(cData, cDataPre);
       this.setDataSet(currData, viewId);
       return currData;
     }
 
-    dataPre.transform = Array.isArray(dataPre.transform) ? dataPre.transform : [dataPre.transform];
-    let transform = dataPre.transform as any;
+    cDataPre.transform = Array.isArray(cDataPre.transform) ? cDataPre.transform : [cDataPre.transform];
+    let transform = cDataPre.transform as any;
 
     // basic exchange row and colmun
     if (transform && transform.length) {
       const exchangeType = transform[0].exchangeType;
       if (exchangeType === 'type-1') {
-        data = this.processExchangeColumnToRowOne(data, transform[0]);
+        cData = this.processExchangeColumnToRowOne(cData, transform[0]);
       } else if (exchangeType === 'type-2') {
-        data = this.processExchangeColumnToRowTwo(data, transform[0]);
+        cData = this.processExchangeColumnToRowTwo(cData, transform[0]);
       } else if (exchangeType === 'type-3') {
-        data = this.processExchangeColumnToRowThree(data, transform[0]);
+        cData = this.processExchangeColumnToRowThree(cData, transform[0]);
       }
     }
 
-    let dv = this.createSource(data, dataPre);
+    let dv = this.createSource(cData, cDataPre);
 
     let ds;
     for (const item of transform) {

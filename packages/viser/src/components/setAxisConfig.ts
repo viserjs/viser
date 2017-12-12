@@ -39,17 +39,17 @@ function setRotatePolarAxis(chart: any, axisItem: any, coord: any, data: any) {
 }
 
 export const process = (chart: any, config: any) => {
-  const axis = config.axis;
-  const isArr = _.isArray(config.axis);
+  const cAxis = _.cloneDeep(config.axis);
+  const isArr = _.isArray(cAxis);
 
-  if (_.isNil(axis) || axis === false ||
-     (isArr && axis.length === 0)) {
+  if (_.isNil(cAxis) || cAxis === false ||
+     (isArr && cAxis.length === 0)) {
     return chart.axis(false);
   }
 
-  if (axis === true) { return chart.axis(); }
+  if (cAxis === true) { return chart.axis(); }
 
-  const arrAxis = isArr ? config.axis : [config.axis];
+  const arrAxis = isArr ? cAxis : [cAxis];
   const { coord, data } = config;
 
   for (const res of arrAxis) {

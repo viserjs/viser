@@ -1,4 +1,5 @@
 import { degreeToRadian } from '../utils/PolarUtils';
+import * as _ from 'lodash';
 
 function setPolarCoord(chart: any, coord: any) {
   let newCoord = {};
@@ -90,20 +91,20 @@ function setRectCoord(chart: any, coord: any) {
 }
 
 export const process = (chart: any, config: any) => {
-  const coord = config.coord;
+  const cCoord = _.cloneDeep(config.coord);
 
-  if (!coord || !coord.type) {
+  if (!cCoord || !cCoord.type) {
     return chart.coord('rect');
   }
 
-  const type = coord.type;
+  const type = cCoord.type;
 
   if (type === 'polar' || type === 'theta') {
-    return setPolarCoord(chart, coord);
+    return setPolarCoord(chart, cCoord);
   }
 
   if (type === 'rect') {
-    return setRectCoord(chart, coord);
+    return setRectCoord(chart, cCoord);
   }
 
   return chart.coord(type);

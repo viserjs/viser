@@ -172,13 +172,14 @@ class CommonChart {
   }
 
   private setViews(chart: any, config: IMainConfig) {
-    let views = config.views;
+    let cViews = _.cloneDeep(config.views);
+    const isArr = Array.isArray(cViews);
 
-    if (_.isEmpty(views)) { return; }
+    if (_.isNil(cViews) || _.isEmpty(cViews)) { return; }
 
-    views = Array.isArray(views) ? views : [views];
+    const arrViews: any = isArr ? cViews : [cViews];
 
-    for (let item of views) {
+    for (let item of arrViews) {
       this.setView(item, chart, config);
     }
   }
@@ -192,48 +193,50 @@ class CommonChart {
   }
 
   private setFacet(chart: any, config: IMainConfig) {
-    if (_.isEmpty(config.facet)) { return; }
+    let cFacet = _.cloneDeep(config.facet);
 
-    let facet: any = config.facet;
+    if (_.isNil(cFacet) || _.isEmpty(cFacet)) { return; }
 
-    const options = _.omit(facet, ['type', 'views']);
+    const options = _.omit(cFacet, ['type', 'views']);
 
-    if (_.isEmpty(facet.views) && !_.isFunction(facet.views)) {
-      return chart.facet(facet.type, options);
+    if (_.isEmpty(cFacet.views) && !_.isFunction(cFacet.views)) {
+      return chart.facet(cFacet.type, options);
     }
 
-    if (_.isFunction(facet.views)) {
+    if (_.isFunction(cFacet.views)) {
       options.eachView = (v: any, f: any) => {
-        const options = facet.views(v, f);
+        const options = cFacet.views(v, f);
         this.setFacetViews(v, f, options);
       }
     } else {
-      facet.views = Array.isArray(facet.views) ? facet.views : [facet.views];
+      cFacet.views = Array.isArray(cFacet.views) ? cFacet.views : [cFacet.views];
       options.eachView = (v: any, f: any) => {
-        this.setFacetViews(v, f, facet.views[0]);
+        this.setFacetViews(v, f, cFacet.views[0]);
       }
     }
 
-    return chart.facet(facet.type, options);
+    return chart.facet(cFacet.type, options);
   }
 
-  private repaintWidthHeight(config: IMainConfig) {
+  private repaintWidthHeight(chart: any, config: IMainConfig) {
     const oriConfig = this.oriConfig;
-    const chart = this.chartInstance;
 
     const width = _.get(config, 'chart.width');
-    if (width && !_.isEqual(_.get(oriConfig, 'chart.width'), width)) {
+    const oWidth = _.get(oriConfig, 'chart.width');
+    if ((!_.isNil(width) || !_.isNil(oWidth)) && !_.isEqual(oWidth, width)) {
       chart.changeWidth(width);
     }
 
     const height = _.get(config, 'chart.height');
-    if (height && !_.isEqual(_.get(oriConfig, 'chart.height'), height)) {
+    const oHeight = _.get(oriConfig, 'chart.height');
+    if ((!_.isNil(height) || !_.isNil(oHeight)) && !_.isEqual(oHeight, height)) {
       chart.changeHeight(height);
     }
   }
 
   private repaintData(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
-    if (!_.isEqual(oriConfig.data, config.data)) {
+    if ((!_.isNil(oriConfig.data) || !_.isNil(config.data)) &&
+        !_.isEqual(oriConfig.data, config.data)) {
       const viewId = config.viewId || 'main';
       const processedData = this.datasetInstance.getProcessedData(config.data, config.dataPre, viewId);
       const calData = this.datasetInstance.getDataView(processedData, config.dataView);
@@ -245,32 +248,38 @@ class CommonChart {
   private repaintContent(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
     let hasChartChange = false;
 
-    if (!_.isEqual(oriConfig.scale, config.scale)) {
+    if ((!_.isNil(oriConfig.scale) || !_.isNil(config.scale)) &&
+        !_.isEqual(oriConfig.scale, config.scale)) {
       this.setScale(chart, config);
       hasChartChange = true;
     }
 
-    if (!_.isEqual(oriConfig.coord, config.coord)) {
+    if ((!_.isNil(oriConfig.coord) || !_.isNil(config.coord)) &&
+        !_.isEqual(oriConfig.coord, config.coord)) {
       this.setCoord(chart, config);
       hasChartChange = true;
     }
 
-    if (!_.isEqual(oriConfig.axis, config.axis)) {
+    if ((!_.isNil(oriConfig.axis) || !_.isNil(config.axis)) &&
+        !_.isEqual(oriConfig.axis, config.axis)) {
       this.setAxis(chart, config);
       hasChartChange = true;
     }
 
-    if (!_.isEqual(oriConfig.series, config.series)) {
+    if ((!_.isNil(oriConfig.series) || !_.isNil(config.series)) &&
+        !_.isEqual(oriConfig.series, config.series)) {
       this.setSeries(chart, config);
       hasChartChange = true;
     }
 
-    if (!_.isEqual(oriConfig.tooltip, config.tooltip)) {
+    if ((!_.isNil(oriConfig.tooltip) || !_.isNil(config.tooltip)) &&
+        !_.isEqual(oriConfig.tooltip, config.tooltip)) {
       this.setTooltip(chart, config);
       hasChartChange = true;
     }
 
-    if (!_.isEqual(oriConfig.guide, config.guide)) {
+    if ((!_.isNil(oriConfig.guide) || !_.isNil(config.guide)) &&
+        !_.isEqual(oriConfig.guide, config.guide)) {
       this.setGuide(chart, config);
       hasChartChange = true;
     }
@@ -279,11 +288,15 @@ class CommonChart {
   }
 
   private repaintViews(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
-    config.views = Array.isArray(config.views) ? config.views : [config.views];
     const oViewsConfig: any = oriConfig.views;
+    const cViews = _.cloneDeep(config.views);
+    const isArr = Array.isArray(cViews);
 
-    if (!_.isEqual(oriConfig.views, config.views)) {
-      for (let item of config.views) {
+    if ((!_.isNil(oriConfig.views) || !_.isNil(config.views)) &&
+        !_.isEqual(oriConfig.views, config.views)) {
+      const arrViews: any = isArr ? cViews : [cViews];
+
+      for (let item of arrViews) {
         const oriView = oViewsConfig.filter((res: any) => (res.viewId === item.viewId));
         let view;
 
@@ -304,19 +317,21 @@ class CommonChart {
     const oriConfig = this.oriConfig;
     const chart = this.chartInstance;
 
-    this.repaintWidthHeight(config);
+    this.repaintWidthHeight(chart, config);
     this.repaintData(chart, oriConfig, config);
 
     const hasContentChange = this.repaintContent(chart, oriConfig, config);
     this.repaintViews(chart, oriConfig, config);
 
     let hasChartPartChange = false;
-    if (!_.isEqual(oriConfig.legend, config.legend)) {
+    if ((!_.isNil(oriConfig.legend) || !_.isNil(config.legend)) &&
+        !_.isEqual(oriConfig.legend, config.legend)) {
       this.setLegend(chart, config);
       hasChartPartChange = true;
     }
 
-    if (!_.isEqual(oriConfig.facet, config.facet)) {
+    if ((!_.isNil(oriConfig.facet) || !_.isNil(config.facet)) &&
+        !_.isEqual(oriConfig.facet, config.facet)) {
       this.setFacet(chart, config);
       hasChartPartChange = true;
     }

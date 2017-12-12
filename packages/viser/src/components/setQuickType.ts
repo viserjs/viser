@@ -195,9 +195,7 @@ const QUICK_TYPE = [
   },
 ];
 
-export const process = (config: any) => {
-  const series = config.series;
-  const coord = config.coord;
+export const process = (series: any, coord: any) => {
   const quickType: any = {};
 
   for (const item of QUICK_TYPE) {
@@ -209,7 +207,7 @@ export const process = (config: any) => {
     const currType = quickType[series[i].quickType];
 
     if (currType) {
-      config.series[i] = {
+      series[i] = {
         ...series[i],
         ...currType.series,
       };
@@ -217,14 +215,9 @@ export const process = (config: any) => {
       if (coord && coord.type && _.get(currType, 'coord.type') &&
           _.get(currType, 'coord.type') !== coord.type) {
         throw new Error('quickType and coord had conflicted.');
-      } else {
-        config.coord = {
-          ...coord,
-          ...currType.coord,
-        };
       }
     }
   }
 
-  return config;
+  return series;
 };

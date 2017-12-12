@@ -51,14 +51,14 @@ function setGuideArc(chart: any, item: any) {
 }
 
 export const process = (chart: any, config: any) => {
-  let guide = config.guide;
-  const isArr = Array.isArray(guide);
+  const cGuide = _.cloneDeep(config.guide);
+  const isArr = Array.isArray(cGuide);
 
-  if (_.isEmpty(guide)) { return chart; }
+  if (_.isNil(cGuide) || _.isEmpty(cGuide)) { return; }
 
-  guide = Array.isArray(guide) ? guide : [guide];
+  const arrGuide = isArr ? cGuide : [cGuide];
 
-  guide.forEach((res: any) => {
+  arrGuide.forEach((res: any) => {
     EventUtils.setEvent(chart, `guide-${res.type}`, res);
 
     if (res.type === 'line') {

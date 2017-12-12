@@ -12,17 +12,17 @@ function setHighlight(item: any) {
 }
 
 export const process = (chart: any, config: any) => {
-  const legend = config.legend;
-  const isArr = Array.isArray(legend);
+  const cLegend = _.cloneDeep(config.legend);
+  const isArr = Array.isArray(cLegend);
 
-  if (_.isNil(legend) || legend === false ||
-     (isArr && legend.length === 0)) {
+  if (_.isNil(cLegend) || cLegend === false ||
+     (isArr && cLegend.length === 0)) {
     return chart.legend(false);
   }
 
-  if (legend === true) { return chart.legend(); }
+  if (cLegend === true) { return chart.legend(); }
 
-  const arrLegend = isArr ? legend : [legend];
+  const arrLegend = isArr ? cLegend : [cLegend];
 
   for (let res of arrLegend) {
     if (res.highlight) {

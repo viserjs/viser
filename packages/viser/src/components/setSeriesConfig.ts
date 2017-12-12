@@ -223,18 +223,19 @@ function setSeriesAnimate(chart: any, currSeries: ISeries) {
 }
 
 export const process = (chart: any, config: IMainConfig) => {
-  if (_.isEmpty(config.series)) { return chart; }
+  const cSeries = _.cloneDeep(config.series);
+  const isArr = _.isArray(cSeries);
 
-  config.series = Array.isArray(config.series) ? config.series : [config.series];
-  config = setQuickType.process(config);
+  if (_.isNil(cSeries) || _.isEmpty(cSeries)) { return chart; }
 
-  let series = config.series;
+  let arrSeries = isArr ? cSeries : [cSeries];
+  arrSeries = setQuickType.process(arrSeries, config.coord);
 
   // add `zIndex` to comfirm overlay index
-  series = _.sortBy(series, 'zIndex');
+  arrSeries = _.sortBy(arrSeries, 'zIndex');
 
   let chartInstance;
-  series.forEach((currSeries: any) => {
+  arrSeries.forEach((currSeries: any) => {
     EventUtils.setEvent(chart, currSeries.gemo, currSeries);
     chartInstance = setSeriesGemo(chart, currSeries);
     chartInstance = setSeriesPosition(chartInstance, currSeries);
