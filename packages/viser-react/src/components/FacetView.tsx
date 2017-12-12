@@ -26,7 +26,7 @@ export default class FacetView extends React.Component<IView, any> {
 
     this.state = {
       hasInViews: true,
-      viewId: generateRandomNum(),
+      viewId: this.props.viewId || generateRandomNum(),
       viewType: 'facet',
     };
   }

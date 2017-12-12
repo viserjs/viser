@@ -24,7 +24,7 @@ export default class View extends React.Component<IView, any> {
 
     this.state = {
       hasInViews: true,
-      viewId: generateRandomNum(),
+      viewId: this.props.viewId || generateRandomNum(),
     };
   }
 
