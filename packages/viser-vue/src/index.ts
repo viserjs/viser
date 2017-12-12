@@ -88,7 +88,7 @@ const baseChartComponent = {
         oneObjectMoreArray(nearestRootComponent.jsonForD2, 'views', {
           ...cleanUndefined(normalizeProps(this._props)),
           ...this.jsonForD2,
-          viewId: generateRandomNum(),
+          viewId: this._props.viewId || generateRandomNum(),
         });
       } else if (this.$options._componentTag === 'v-facet-view') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
