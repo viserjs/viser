@@ -29,7 +29,7 @@ interface IFacet {
   transpose?: boolean;
   line?: IStyle.ILineStyle;
   lineSmooth?: boolean;
-  views: any;
+  views?: any;
   eachView?: (views: any, facet: any) => void;
 }
 
