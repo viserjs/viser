@@ -11,6 +11,7 @@ export interface ITooltip {
   x?: number;
   y?: number;
   items?: object[];
+  title?: string;
   showTitle?: boolean;
   offset?: number;
   timeStamp?: number;
