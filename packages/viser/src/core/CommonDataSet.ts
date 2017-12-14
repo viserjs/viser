@@ -241,14 +241,14 @@ class CommonDataSet {
     if (item.type === 'toNumber') {
       dv = dv.transform({
         type: 'map',
-        callback(row: any) {
+        callback: (row: any) => {
           return this.handleToNumber(row, item);
         }
       });
     } else if (item.type === 'merge') {
       dv = dv.transform({
         type: 'map',
-        callback(row: any) {
+        callback: (row: any) => {
           return this.handleMergeFields(row, item);
         }
       });
