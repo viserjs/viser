@@ -13,6 +13,7 @@ export interface ITextStyle {
 
 export interface ILineStyle {
   stroke?: string;
+  strokeOpacity?: number;
   lineWidth?: number;
   lineHeight?: number;
   lineDash?: number[];

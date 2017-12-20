@@ -38,11 +38,13 @@ interface IAxisLabel {
 
 export interface IAxis {
   dataKey?: string;
+  show?: boolean;
   position?: string;
   title?: ITitle;
   tick?: IAxisTick;
   subTick?: IAxisTick;
   grid?: IAxisGrid;
+  zIndex?: number;
   label?: boolean | IAxisLabel;
   line?: IStyle.ILineStyle;
   tickLine?: IStyle.ILineStyle;
