@@ -45,11 +45,13 @@ interface IAxisLabel {
 
 class Axis extends Chart {
   @Input() dataKey?: string;
+  @Input() show?: boolean;
   @Input() position?: string;
   @Input() title?: ITitle;
   @Input() tick?: IAxisTick;
   @Input() subTick?: IAxisTick;
   @Input() grid?: IAxisGrid;
+  @Input() zIndex?: number;
   @Input() label?: boolean | IAxisLabel;
   @Input() line?: IStyle.ILineStyle;
   @Input() tickLine?: IStyle.ILineStyle;

@@ -30,9 +30,9 @@ class Guide extends Chart {
   @Input() type?: 'line' | 'text' | 'image' | 'region' | 'arc';
   @Input() top?: boolean;
   @Input() zIndex?: number;
-  @Input() start?: object | number[] | func;
-  @Input() end?: object | number[] | func;
-  @Input() position?: object | number[] | func;
+  @Input() start?: object | (number | string)[] | func;
+  @Input() end?: object | (number | string)[] | func;
+  @Input() position?: object | (number | string)[] | func;
   @Input() lineStyle?: Style.ILineStyle;
   @Input() content?: string;
   @Input() style?: object | Style.ITextStyle | IRegionStyle;
