@@ -104,7 +104,7 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
   @ViewChild('chartDom') chartDiv?: any;
   config: any = {};
   chart: any = null;
-  viewId: string;
+  @Input() viewId: string;
   private componentId = generateRandomNum();
   private vcRef: any;
 
@@ -281,9 +281,10 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
     const viewType = this.getViewType();
     const hasInViews = ['v-facet-view', 'v-view'].indexOf(viewType) !== -1;
     if (['FacetView', 'View'].indexOf(name) > -1) {
-      this.context.lastFacetId = this.componentId;
+      this.context.lastFacetId = this.viewId || this.componentId;
     } else if (hasInViews) {
       this.componentId = this.context.lastFacetId;
+      this.viewId = this.context.lastFacetId;
     }
   }
   getViewChartConfig(config: any) {
@@ -312,7 +313,7 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
     const views = this.context.views;
     const viewType = this.getViewType();
     const hasInViews = ['v-facet-view', 'v-view'].indexOf(viewType) !== -1;;
-    const viewId = props.viewId || this.componentId;
+    const viewId = props.viewId || this.viewId || this.componentId;
 
     if (name === 'Chart') {
       this.combineChartConfig(props, this.context.config);
