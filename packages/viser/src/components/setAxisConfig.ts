@@ -73,10 +73,12 @@ export const process = (chart: any, config: any) => {
     }
 
     if (res.dataKey) {
-      if (res.show === false) { return chart.axis(res.dataKey, false); }
-
-      const options = _.omit(res, ['show', 'dataKey']);
-      chart.axis(res.dataKey, options);
+      if (res.show === false) {
+        chart.axis(res.dataKey, false);
+      } else {
+        const options = _.omit(res, ['show', 'dataKey']);
+        chart.axis(res.dataKey, options);
+      }
     } else {
       chart.axis(res);
     }
