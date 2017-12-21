@@ -21,7 +21,6 @@ class CommonDataSet {
     let cDataPre = _.isFunction ? dataPre : _.cloneDeep(dataPre);
 
     let currData: any;
-    if (viewId && this.dataSet[viewId]) { return; }
 
     if (_.isEmpty(cData)) {
       currData = [];
