@@ -18,6 +18,7 @@ class Tooltip extends Chart {
   @Input() y?: number;
   @Input() items?: object[];
   @Input() title?: string;
+  @Input() show?: boolean;
   @Input() showTitle?: boolean;
   @Input() offset?: number;
   @Input() timeStamp?: number;
