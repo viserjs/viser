@@ -1,6 +1,6 @@
 import * as IStyle from './IStyle';
 
-type formatterFunc = (val: number) => string | number;
+type formatterFunc = (val: string | number) => string | number;
 type eventFunc = (ev: any) => void;
 
 interface ITitle {

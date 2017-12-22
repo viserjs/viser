@@ -31,8 +31,8 @@ export interface ILineGuide {
   zIndex?: number;
   start?: object | (number | string)[] | func;
   end?: object | (number | string)[] | func;
-  lineStyle: IStyle.ILineStyle;
-  text: ILineText;
+  lineStyle?: IStyle.ILineStyle;
+  text?: ILineText;
 }
 
 export interface ITextGuide {
