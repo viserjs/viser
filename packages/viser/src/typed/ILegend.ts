@@ -9,6 +9,7 @@ export interface ILegend {
   show?: boolean;
   position?: 'top' | 'right' | 'bottom' | 'left';
   title?: null | object;
+  custom?: boolean;
   offset?: number;
   offsetX?: number;
   offsetY?: number;
