@@ -313,12 +313,20 @@ class CommonChart {
     }
   }
 
+  private repaintGuide(chart: any, config: IMainConfig) {
+    // clear guide before repaint
+    // and the procedure of repaint will be included in
+    // action in repaintView -> repaintContent
+    chart.guide().clear();
+  }
+
   private renderDiffConfig(config: IMainConfig) {
     const oriConfig = this.oriConfig;
     const chart = this.chartInstance;
 
     this.repaintWidthHeight(chart, config);
     this.repaintData(chart, oriConfig, config);
+    this.repaintGuide(chart, config);
 
     const hasContentChange = this.repaintContent(chart, oriConfig, config);
     this.repaintViews(chart, oriConfig, config);

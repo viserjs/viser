@@ -1,4 +1,4 @@
-import { Chart, Tooltip, Axis, StackBar, LiteChart } from '../../../packages/viser-react/src/index';
+import { Chart, Tooltip, Axis, StackBar, LiteChart, Guide } from '../../../packages/viser-react/src/index';
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 import { data, dataPre, scale } from './data'
@@ -50,6 +50,15 @@ class App extends React.Component {
           <Tooltip />
           <Axis />
           <StackBar position='year*percent' color='country' style={{ stroke: '#fff', lineWidth: this.state.lineWidth }} />
+          <Guide
+            type="html"
+            position={['50%', '0%']}
+            html={`
+              <div style="width: 300px;text-align: center;">
+                <p style="font-size: 12px;color: #545454;margin: 0;">${Math.random() * 10}%</p>
+              </div>
+            `}
+          />
         </Chart>
         {/* <LiteChart height={400} data={data} dataPre={dataPre} dataMapping={dataMapping} forceFit stackBar /> */}
       </div>
