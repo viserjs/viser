@@ -235,8 +235,8 @@ class CommonChart {
   }
 
   private repaintData(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
-    if ((!_.isNil(oriConfig.data) || !_.isNil(config.data)) &&
-        !_.isEqual(oriConfig.data, config.data)) {
+    if (((!_.isNil(oriConfig.data) || !_.isNil(config.data)) && !_.isEqual(oriConfig.data, config.data)) ||
+        (!_.isNil(config.dataPre) && !_.isEqual(oriConfig.dataPre, config.dataPre))) {
       const viewId = config.viewId || 'main';
       const processedData = this.datasetInstance.getProcessedData(config.data, config.dataPre, viewId);
       const calData = this.datasetInstance.getDataView(processedData, config.dataView);
