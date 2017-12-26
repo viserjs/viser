@@ -2,7 +2,7 @@ import * as IStyle from './Style';
 import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
 
-type formatterFunc = (val: number) => string | number;
+type formatterFunc = (val: string | number) => string | number;
 type eventFunc = (ev: any) => void;
 
 interface ITitle {
