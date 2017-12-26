@@ -3,5 +3,10 @@ export interface IDataPre {
   transform?: object | object[];
   geoKey?: string;
 }
+export interface IDataPreFunc extends IDataPre {
+  (dv: any): IDataPre;
+}
 
-export default IDataPre;
+type IDataPreConfig = IDataPre | IDataPreFunc;
+
+export default IDataPreConfig;
