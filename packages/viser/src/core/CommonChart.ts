@@ -23,7 +23,6 @@ class CommonChart {
   datasetInstance: any;
   viewInstance: any = {};
   config: any;
-  oriConfig: any;
 
   constructor(config: IMainConfig) {
     this.config = _.cloneDeep(config);
@@ -66,7 +65,6 @@ class CommonChart {
     this.setViews(chart, config);
     this.setFacet(chart, config);
 
-    this.oriConfig = config;
     chart.render();
   }
 
@@ -74,7 +72,6 @@ class CommonChart {
     const newConfig = _.cloneDeep(config);
     this.checkChartConfig(newConfig);
     this.renderDiffConfig(newConfig);
-    this.oriConfig = newConfig;
   }
 
   public destroy(chart: any) {
@@ -219,40 +216,31 @@ class CommonChart {
   }
 
   private repaintWidthHeight(chart: any, config: IMainConfig) {
-    const oriConfig = this.oriConfig;
-
     const width = _.get(config, 'chart.width');
-    const oWidth = _.get(oriConfig, 'chart.width');
-    if ((!_.isNil(width) || !_.isNil(oWidth)) && !_.isEqual(oWidth, width)) {
+    if (!_.isNil(width)) {
       chart.changeWidth(width);
     }
 
     const height = _.get(config, 'chart.height');
-    const oHeight = _.get(oriConfig, 'chart.height');
-    if ((!_.isNil(height) || !_.isNil(oHeight)) && !_.isEqual(oHeight, height)) {
+    if (!_.isNil(height)) {
       chart.changeHeight(height);
     }
   }
 
-  private repaintData(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
-    if (((!_.isNil(oriConfig.data) || !_.isNil(config.data)) && !_.isEqual(oriConfig.data, config.data)) ||
-        (!_.isNil(config.dataPre) && !_.isEqual(oriConfig.dataPre, config.dataPre))) {
-      const viewId = config.viewId || 'main';
-      const processedData = this.datasetInstance.getProcessedData(config.data, config.dataPre, viewId);
-      const calData = this.datasetInstance.getDataView(processedData, config.dataView);
+  private repaintData(chart: any, config: IMainConfig) {
+    const viewId = config.viewId || 'main';
+    const processedData = this.datasetInstance.getProcessedData(config.data, config.dataPre, viewId);
+    const calData = this.datasetInstance.getDataView(processedData, config.dataView);
 
+    if (!_.isNil(calData)) {
       chart.changeData(calData);
     }
   }
 
   private renderDiffConfig(config: IMainConfig) {
-    const oriConfig = this.oriConfig;
     const chart = this.chartInstance;
 
-    this.repaintWidthHeight(chart, config);
-    this.repaintData(chart, oriConfig, config);
     this.clear(chart);
-
     this.setScale(chart, config);
     this.setCoord(chart, config);
     this.setAxis(chart, config);
@@ -262,6 +250,9 @@ class CommonChart {
     this.setViews(chart, config);
     this.setLegend(chart, config);
     this.setFacet(chart, config);
+
+    this.repaintWidthHeight(chart, config);
+    this.repaintData(chart, config);
 
     chart.repaint();
   }
