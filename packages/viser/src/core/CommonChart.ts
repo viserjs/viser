@@ -245,108 +245,25 @@ class CommonChart {
     }
   }
 
-  private repaintContent(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
-    let hasChartChange = false;
-
-    if ((!_.isNil(oriConfig.scale) || !_.isNil(config.scale)) &&
-        !_.isEqual(oriConfig.scale, config.scale)) {
-      this.setScale(chart, config);
-      hasChartChange = true;
-    }
-
-    if ((!_.isNil(oriConfig.coord) || !_.isNil(config.coord)) &&
-        !_.isEqual(oriConfig.coord, config.coord)) {
-      this.setCoord(chart, config);
-      hasChartChange = true;
-    }
-
-    if ((!_.isNil(oriConfig.axis) || !_.isNil(config.axis)) &&
-        !_.isEqual(oriConfig.axis, config.axis)) {
-      this.setAxis(chart, config);
-      hasChartChange = true;
-    }
-
-    if ((!_.isNil(oriConfig.series) || !_.isNil(config.series)) &&
-        !_.isEqual(oriConfig.series, config.series)) {
-      this.setSeries(chart, config);
-      hasChartChange = true;
-    }
-
-    if ((!_.isNil(oriConfig.tooltip) || !_.isNil(config.tooltip)) &&
-        !_.isEqual(oriConfig.tooltip, config.tooltip)) {
-      this.setTooltip(chart, config);
-      hasChartChange = true;
-    }
-
-    if ((!_.isNil(oriConfig.guide) || !_.isNil(config.guide)) &&
-        !_.isEqual(oriConfig.guide, config.guide)) {
-      this.setGuide(chart, config);
-      hasChartChange = true;
-    }
-
-    return hasChartChange;
-  }
-
-  private repaintViews(chart: any, oriConfig: IMainConfig, config: IMainConfig) {
-    const oViewsConfig: any = oriConfig.views;
-    const cViews = _.cloneDeep(config.views);
-    const isArr = Array.isArray(cViews);
-
-    if ((!_.isNil(oriConfig.views) || !_.isNil(config.views)) &&
-        !_.isEqual(oriConfig.views, config.views)) {
-      const arrViews: any = isArr ? cViews : [cViews];
-
-      for (let item of arrViews) {
-        const oriView = oViewsConfig.filter((res: any) => (res.viewId === item.viewId));
-        let view;
-
-        if (oriView.length) {
-          view = this.viewInstance[item.viewId];
-          this.repaintData(view, oriView[0], item);
-          this.repaintContent(view, oriView[0], item);
-        } else {
-          view = this.setView(item, chart, config);
-        }
-
-        view.repaint();
-      }
-    }
-  }
-
-  private repaintGuide(chart: any, config: IMainConfig) {
-    // clear guide before repaint
-    // and the procedure of repaint will be included in
-    // action in repaintView -> repaintContent
-    chart.guide().clear();
-  }
-
   private renderDiffConfig(config: IMainConfig) {
     const oriConfig = this.oriConfig;
     const chart = this.chartInstance;
 
     this.repaintWidthHeight(chart, config);
     this.repaintData(chart, oriConfig, config);
-    this.repaintGuide(chart, config);
+    this.clear(chart);
 
-    const hasContentChange = this.repaintContent(chart, oriConfig, config);
-    this.repaintViews(chart, oriConfig, config);
+    this.setScale(chart, config);
+    this.setCoord(chart, config);
+    this.setAxis(chart, config);
+    this.setSeries(chart, config);
+    this.setTooltip(chart, config);
+    this.setGuide(chart, config);
+    this.setViews(chart, config);
+    this.setLegend(chart, config);
+    this.setFacet(chart, config);
 
-    let hasChartPartChange = false;
-    if ((!_.isNil(oriConfig.legend) || !_.isNil(config.legend)) &&
-        !_.isEqual(oriConfig.legend, config.legend)) {
-      this.setLegend(chart, config);
-      hasChartPartChange = true;
-    }
-
-    if ((!_.isNil(oriConfig.facet) || !_.isNil(config.facet)) &&
-        !_.isEqual(oriConfig.facet, config.facet)) {
-      this.setFacet(chart, config);
-      hasChartPartChange = true;
-    }
-
-    if (hasContentChange || hasChartPartChange) {
-      chart.repaint();
-    }
+    chart.repaint();
   }
 }
 
