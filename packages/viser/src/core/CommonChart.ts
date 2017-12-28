@@ -217,30 +217,33 @@ class CommonChart {
 
   private repaintWidthHeight(chart: any, config: IMainConfig) {
     const width = _.get(config, 'chart.width');
-    if (!_.isNil(width)) {
-      chart.changeWidth(width);
-    }
+    if (width) { chart.changeWidth(width); }
 
     const height = _.get(config, 'chart.height');
-    if (!_.isNil(height)) {
-      chart.changeHeight(height);
-    }
+    if (height) { chart.changeHeight(height); }
   }
 
   private repaintData(chart: any, config: IMainConfig) {
-    const viewId = config.viewId || 'main';
-    const processedData = this.datasetInstance.getProcessedData(config.data, config.dataPre, viewId);
-    const calData = this.datasetInstance.getDataView(processedData, config.dataView);
+    let calData;
 
-    if (!_.isNil(calData)) {
-      chart.changeData(calData);
+    if (!_.isEmpty(config.data)) {
+      const { data, dataPre, dataView } = config;
+
+      const processedData = this.datasetInstance.getProcessedData(data, dataPre, 'main');
+
+      if (!_.isEmpty(config.series) ||!_.isEmpty(config.facet)) {
+        calData = this.datasetInstance.getDataView(processedData, dataView);
+      }
     }
+
+    return calData;
   }
 
   private renderDiffConfig(config: IMainConfig) {
     const chart = this.chartInstance;
 
     this.clear(chart);
+    const calData = this.repaintData(chart, config);
     this.setScale(chart, config);
     this.setCoord(chart, config);
     this.setAxis(chart, config);
@@ -252,8 +255,10 @@ class CommonChart {
     this.setFacet(chart, config);
 
     this.repaintWidthHeight(chart, config);
-    this.repaintData(chart, config);
 
+    if (calData) {
+      chart.changeData(calData);
+    }
     chart.repaint();
   }
 }
