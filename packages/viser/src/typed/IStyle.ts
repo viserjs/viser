@@ -18,4 +18,5 @@ export interface ILineStyle {
   lineHeight?: number;
   lineDash?: number[];
   length?: number;
+  textAlign?: string;
 }

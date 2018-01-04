@@ -18,7 +18,7 @@ interface IGuideEvent {
 
 interface ILineText {
   position?: string | number;
-  autoRotate?: number;
+  autoRotate?: boolean;
   style?: IStyle.ILineStyle;
   content?: string;
   offsetX?: number;
