@@ -4,12 +4,6 @@ import * as PropTypes from 'prop-types';
 import IRLiteChart from '../typed/IRLiteChart';
 import viser from 'viser';
 
-const isReact16 = ReactDOM.createPortal !== undefined;
-
-const createPortal: any = isReact16
-  ? ReactDOM.createPortal
-  : ReactDOM.unstable_renderSubtreeIntoContainer;
-
 function retain(obj: any, attr: any) {
   const newObj = Object.create(null);
 
@@ -157,12 +151,6 @@ export default class LiteChart extends React.Component<IRLiteChart, any> {
     // fake element for rendering children
     this.elm = document.createElement('div');
 
-    if (!isReact16) {
-      createPortal(this, <div>{this.props.children}</div>, this.elm);
-    } else {
-      createPortal(this.props.children, this.elm);
-    }
-
     this.chart = viser(config);
   }
 
@@ -171,13 +159,12 @@ export default class LiteChart extends React.Component<IRLiteChart, any> {
     this.combineViewConfig(this.props, this.config);
     this.combineSeriesConfig(this.props, this.config);
 
-    if (!isReact16) {
-      createPortal(this, <div>{this.props.children}</div>, this.elm);
+    if (this.chart) {
+      this.chart.repaint(config);
     } else {
-      createPortal(this.props.children, this.elm);
+      config.chart.container = this.container;
+      this.chart = viser(config);
     }
-
-    this.chart.repaint(config);
   }
 
   clearConfigData() {
