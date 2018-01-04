@@ -166,6 +166,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
       'edge',
       'sankey',
       'errobBar',
+      'jitterPoint',
     ];
 
     for (const res of regSeries) {

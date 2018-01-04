@@ -119,6 +119,7 @@ export default class LiteChart extends React.Component<IRLiteChart, any> {
       'contour',
       'heatmap',
       'edge',
+      'jitterPoint',
     ];
 
     for (const res of regSeries) {
