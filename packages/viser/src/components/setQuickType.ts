@@ -194,7 +194,7 @@ const QUICK_TYPE = [
     },
   },
   {
-    type: 'pointJitter',
+    type: 'jitterPoint',
     series: {
       gemo: 'point',
       adjust: 'jitter',
