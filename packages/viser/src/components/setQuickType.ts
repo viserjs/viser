@@ -193,6 +193,13 @@ const QUICK_TYPE = [
       shape: 'errorbar',
     },
   },
+  {
+    type: 'pointJitter',
+    series: {
+      gemo: 'point',
+      adjust: 'jitter',
+    },
+  },
 ];
 
 export const process = (series: any, coord: any) => {
