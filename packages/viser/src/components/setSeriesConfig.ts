@@ -36,6 +36,9 @@ function setSeriesGemo(chart: any, currSeries: ISeries) {
     case 'edge':
       chart = chart.edge();
       break;
+    case 'pointJitter':
+      chart = chart.pointJitter();
+      break;
     default:
       chart = chart.line();
   }
