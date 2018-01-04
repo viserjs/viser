@@ -6,7 +6,7 @@ import Legend from './Legend';
 import Tooltip from './Tooltip';
 import { View, FacetView } from './View';
 import { Series, Pie, Sector, Line, SmoothLine, DashLine, Area, StackArea, SmoothArea, Bar, StackBar, DodgeBar,
-  Interval, StackInterval, DodgeInterval, Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap, Edge, Sankey, ErrorBar, PointJitter } from './Series';
+  Interval, StackInterval, DodgeInterval, Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap, Edge, Sankey, ErrorBar, JitterPoint } from './Series';
 
 export {
   Axis,
@@ -44,5 +44,5 @@ export {
   Edge,
   Sankey,
   ErrorBar,
-  PointJitter,
+  JitterPoint,
 };

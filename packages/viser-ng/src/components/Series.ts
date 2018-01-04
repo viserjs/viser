@@ -814,10 +814,10 @@ class ErrorBar extends Chart {
 }
 
 @Component({
-  selector: 'v-point-jitter',
+  selector: 'v-jitter-point',
   template: `<div #chartDom></div>`,
 })
-class PointJitter extends Chart {
+class JitterPoint extends Chart {
   @Input() quickType?: string;
   @Input() position?: string | string[];
   @Input() gemo?: string;
@@ -871,5 +871,5 @@ export {
   Edge,
   Sankey,
   ErrorBar,
-  PointJitter,
+  JitterPoint,
 };
