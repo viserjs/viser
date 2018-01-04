@@ -28,7 +28,7 @@ interface ISLite {
   heatmap?: boolean;
   edge?: boolean;
   sankey?: boolean;
-  pointJitter?: boolean;
+  jitterPoint?: boolean;
 }
 
 type IRLiteChart = ISLite & IMain & {

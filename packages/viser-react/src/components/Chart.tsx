@@ -134,7 +134,7 @@ export default class Chart extends React.Component<IRChart, any> {
       'heatmap',
       'edge',
       'sankey',
-      'pointJitter',
+      'jitterPoint',
     ];
 
     if (regSeries.indexOf(realName) < 0 && isOwnEmpty(props)) {
