@@ -8,6 +8,7 @@ interface ITitle {
   offset?: number;
   position?: string;
   textStyle?: IStyle.ITextStyle;
+  text?: string;
 }
 
 interface IAxisTick {
