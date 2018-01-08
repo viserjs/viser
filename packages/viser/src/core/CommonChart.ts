@@ -3,7 +3,6 @@
  * @description instantiation of chart, include base functions
  */
 import loadShapes from '../shapes/loadShapes';
-import CommonDataSet from './CommonDataSet';
 import IMainConfig from '../typed/IMain';
 import * as _ from 'lodash';
 import * as EventUtils from '../utils/EventUtils';
@@ -20,15 +19,13 @@ const G2 = require('@antv/g2');
 
 class CommonChart {
   chartInstance: any;
-  datasetInstance: any;
   viewInstance: any = {};
   config: any;
 
   constructor(config: IMainConfig) {
     this.config = _.cloneDeep(config);
     this.checkChartConfig(this.config);
-    const chart: any = this.chartInstance = new G2.Chart(this.config.chart);
-    const dataSet: any = this.datasetInstance = new CommonDataSet();
+    this.chartInstance = new G2.Chart(this.config.chart);
   }
 
   public getWidth() {
@@ -46,15 +43,8 @@ class CommonChart {
     loadShapes();
     this.setEvents(chart, config);
 
-    if (!_.isEmpty(config.data)) {
-      const { data, dataPre, dataView } = config;
-
-      const processedData = this.datasetInstance.getProcessedData(data, dataPre, 'main');
-
-      if (!_.isEmpty(config.series) ||!_.isEmpty(config.facet)) {
-        const calData = this.datasetInstance.getDataView(processedData, dataView);
-        this.setDataSource(chart, calData);
-      }
+    if (!_.isEmpty(config.data) && (!_.isEmpty(config.series) || !_.isEmpty(config.facet))) {
+      this.setDataSource(chart, config.data);
     }
 
     this.setCoord(chart, config);
@@ -145,19 +135,14 @@ class CommonChart {
   private setView(item: any, chart: any, config: IMainConfig) {
     const view = this.createView(chart, item);
 
-    let viewData = item.data;
-    let processedData;
-
+    let viewData;
     if (item.data) {
-      processedData = this.datasetInstance.getProcessedData(item.data, item.dataPre, item.viewId);
-    } else if (!item.data && item.dataPre) {
-      processedData = this.datasetInstance.getProcessedData(config.data, item.dataPre, item.viewId);
-    } else if (!item.data && !item.dataPre) {
-      processedData = this.datasetInstance.copyData('main', item.viewId);
+      viewData = item.data;
+    } else {
+      viewData = config.data;
     }
 
-    const calData = this.datasetInstance.getDataView(processedData, item.dataView);
-    this.setDataSource(view, calData);
+    this.setDataSource(view, viewData);
 
     if (!_.isNil(item.coord)) { this.setCoord(view, item); }
     if (!_.isNil(item.tooltip)) { this.setTooltip(view, item); }
@@ -182,10 +167,7 @@ class CommonChart {
   }
 
   private setFacetViews(chart: any, facet: any, views: IMainConfig) {
-    const processedData = this.datasetInstance.getProcessedData(facet.data, views.dataPre);
-    const calData = this.datasetInstance.getDataView(processedData, views.dataView);
-
-    this.setDataSource(chart, calData);
+    this.setDataSource(chart, facet.data);
     this.setContent(chart, views);
   }
 
@@ -223,27 +205,10 @@ class CommonChart {
     if (height) { chart.changeHeight(height); }
   }
 
-  private repaintData(chart: any, config: IMainConfig) {
-    let calData;
-
-    if (!_.isEmpty(config.data)) {
-      const { data, dataPre, dataView } = config;
-
-      const processedData = this.datasetInstance.getProcessedData(data, dataPre, 'main');
-
-      if (!_.isEmpty(config.series) ||!_.isEmpty(config.facet)) {
-        calData = this.datasetInstance.getDataView(processedData, dataView);
-      }
-    }
-
-    return calData;
-  }
-
   private renderDiffConfig(config: IMainConfig) {
     const chart = this.chartInstance;
 
     this.clear(chart);
-    const calData = this.repaintData(chart, config);
     this.setScale(chart, config);
     this.setCoord(chart, config);
     this.setAxis(chart, config);
@@ -256,8 +221,8 @@ class CommonChart {
 
     this.repaintWidthHeight(chart, config);
 
-    if (calData) {
-      chart.changeData(calData);
+    if (config.data) {
+      chart.changeData(config.data);
     }
     chart.repaint();
   }

@@ -22,7 +22,6 @@ import { chartData, scale } from './data'
   </div>
   `
 })
-
 export class AppComponent {
   forceFit: boolean= true;
   height: number = 600;

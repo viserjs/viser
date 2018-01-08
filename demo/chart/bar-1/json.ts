@@ -1,22 +1,20 @@
 import viser from '../../../packages/viser/src/index';
-import { data, dataPre, scale } from './data'
+import { data, scale } from './data'
+const DataSet = require('@antv/data-set');
+
+const ds: any = new DataSet();
+const dv = ds.createView().source(data);
+
+dv.transform({
+  type: 'percent',
+  field: 'value',
+  dimension: 'country',
+  groupBy: ['year'],
+  as: 'percent'
+});
 
 viser({
-  data: data,
-  dataPre: {
-    transform: [
-    // {
-    //   exchangeType: 'type-3',
-    //   fields: ['country', 'year', 'value'],
-    // },
-    {
-      type: 'percent',
-      field: 'value',
-      dimension: 'country',
-      groupBy: ['year'],
-      as: 'percent'
-    }]
-  },
+  data: dv.rows,
   scale: scale,
   axis: true,
   tooltip: true,

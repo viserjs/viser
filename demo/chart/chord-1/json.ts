@@ -1,13 +1,27 @@
 import viser from '../../../packages/viser/src/index';
-import { data, dataPre, scale } from './data';
+import { data, scale } from './data';
+const DataSet = require('@antv/data-set');
+
+const ds: any = new DataSet();
+const dv = ds.createView().source(data, {
+  type: 'graph',
+  edges: d => d.links
+});
+
+dv.transform({
+  type: 'diagram.arc',
+  sourceWeight: e => e.sourceWeight,
+  targetWeight: e => e.targetWeight,
+  weight: true,
+  marginRatio: 0.3
+});
 
 viser({
   data,
-  dataPre,
   scale,
   views: [{
     viewId: '34',
-    dataView: 'edges',
+    data: dv.edges,
     axis: false,
     coord: {
       type: 'polar',
@@ -23,7 +37,7 @@ viser({
     }],
   }, {
     viewId: '23',
-    dataView: 'nodes',
+    data: dv.nodes,
     axis: false,
     coord: {
       type: 'polar',
