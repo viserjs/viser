@@ -77,7 +77,6 @@ const QUICK_TYPE = [
     type: 'stackInterval',
     series: {
       gemo: 'interval',
-      shape: 'interval',
       adjust: 'stack',
     },
   },
