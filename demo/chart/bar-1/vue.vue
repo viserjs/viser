@@ -1,8 +1,8 @@
 <template>
   <div>
     <!-- <button v-on:click="handleClick">Click</button> -->
-    <v-chart :force-fit="true" :height="height" :data="data" :data-pre="dataPre" :scale="scale">
-      <v-tooltip />
+    <v-chart :force-fit="true" :height="height" :data="data" :data-pre="dataPre" :data-mapping="dataMapping" :scale="scale">
+      <v-tooltip/>
       <v-axis />
       <v-stack-bar :position="'year*percent'" :color="'country'" :v-style="stackBarStyle" />
     </v-chart>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { data, dataPre, scale } from "./data";
+import { data, dataMapping, dataPre, scale } from './data';
 
 export default {
   data() {
@@ -21,7 +21,7 @@ export default {
       scale,
       height: 400,
       stackBarStyle: {
-        stroke: "#fff",
+        stroke: '#fff',
         lineWidth: 1
       }
     };
