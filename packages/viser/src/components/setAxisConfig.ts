@@ -63,12 +63,8 @@ export const process = (chart: any, config: any) => {
 
     for (const item in res) {
       if (res.hasOwnProperty(item)) {
-        let name = `axis-${item}`;
-        if (item === 'tickLine') {
-          name = 'axis-ticks';
-        }
-
-        EventUtils.setEvent(chart, name, res[item]);
+        let name = item === 'tickLine' ? 'ticks' : item;
+        EventUtils.setSEvent(chart, 'axis', name, res[item]);
       }
     }
 

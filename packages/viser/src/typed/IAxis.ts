@@ -1,7 +1,7 @@
 import * as IStyle from './IStyle';
 
 type formatterFunc = (val: string | number) => string | number;
-type eventFunc = (chart: any, ev: any) => void;
+type eventFunc = (ev: any, chart: any) => void;
 
 interface ITitle {
   autoRotate?: boolean;
@@ -52,15 +52,51 @@ export interface IAxis {
   subTickCount?: number;
   subTickLine?: IStyle.ILineStyle;
   autoPaint?: boolean;
-  onMouseDown?: eventFunc;
-  onMouseMove?: eventFunc;
-  onMouseLeave?: eventFunc;
-  onMouseUp?: eventFunc;
-  onClick?: eventFunc;
-  onDbClick?: eventFunc;
-  onTouchStart?: eventFunc;
-  onTouchMove?: eventFunc;
-  onTouchEnd?: eventFunc;
+  onTitleMouseDown?: eventFunc;
+  onTitleMouseMove?: eventFunc;
+  onTitleMouseLeave?: eventFunc;
+  onTitleMouseUp?: eventFunc;
+  onTitleClick?: eventFunc;
+  onTitleDbClick?: eventFunc;
+  onTitleTouchStart?: eventFunc;
+  onTitleTouchMove?: eventFunc;
+  onTitleTouchEnd?: eventFunc;
+  onLabelMouseDown?: eventFunc;
+  onLabelMouseMove?: eventFunc;
+  onLabelMouseLeave?: eventFunc;
+  onLabelMouseUp?: eventFunc;
+  onLabelClick?: eventFunc;
+  onLabelDbClick?: eventFunc;
+  onLabelTouchStart?: eventFunc;
+  onLabelTouchMove?: eventFunc;
+  onLabelTouchEnd?: eventFunc;
+  onTicksMouseDown?: eventFunc;
+  onTicksMouseMove?: eventFunc;
+  onTicksMouseLeave?: eventFunc;
+  onTicksMouseUp?: eventFunc;
+  onTicksClick?: eventFunc;
+  onTicksDbClick?: eventFunc;
+  onTicksTouchStart?: eventFunc;
+  onTicksTouchMove?: eventFunc;
+  onTicksTouchEnd?: eventFunc;
+  onLineMouseDown?: eventFunc;
+  onLineMouseMove?: eventFunc;
+  onLineMouseLeave?: eventFunc;
+  onLineMouseUp?: eventFunc;
+  onLineClick?: eventFunc;
+  onLineDbClick?: eventFunc;
+  onLineTouchStart?: eventFunc;
+  onLineTouchMove?: eventFunc;
+  onLineTouchEnd?: eventFunc;
+  onGridMouseDown?: eventFunc;
+  onGridMouseMove?: eventFunc;
+  onGridMouseLeave?: eventFunc;
+  onGridMouseUp?: eventFunc;
+  onGridClick?: eventFunc;
+  onGridDbClick?: eventFunc;
+  onGridTouchStart?: eventFunc;
+  onGridTouchMove?: eventFunc;
+  onGridTouchEnd?: eventFunc;
 }
 
 type IAxisConfig = boolean | IAxis | IAxis[];

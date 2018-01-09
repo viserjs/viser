@@ -1,4 +1,4 @@
-type eventFunc = (ev: any) => void;
+type eventFunc = (ev: any, chart: any) => void;
 
 export interface IBrush {
   canvas: any;

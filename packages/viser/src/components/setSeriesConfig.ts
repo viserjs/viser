@@ -138,7 +138,6 @@ function setSeriesLabel(chart: any, currSeries: ISeries) {
 
   if (_.isArray(label) && label.length >= 1) {
     if (label[1]) {
-      EventUtils.setEvent(chart, 'label', label[1]);
       return chart.label(label[0], label[1]);
     }
 
@@ -237,6 +236,13 @@ export const process = (chart: any, config: IMainConfig) => {
   let chartInstance;
   arrSeries.forEach((currSeries: any) => {
     EventUtils.setEvent(chart, currSeries.gemo, currSeries);
+
+    for (const item in currSeries) {
+      if (currSeries.hasOwnProperty(item)) {
+        EventUtils.setSEvent(chart, 'label', name, currSeries[item]);
+      }
+    }
+
     chartInstance = setSeriesGemo(chart, currSeries);
     chartInstance = setSeriesPosition(chartInstance, currSeries);
     chartInstance = setSeriesAdjust(chartInstance, currSeries);

@@ -5,6 +5,8 @@
 import loadShapes from '../shapes/loadShapes';
 import IMainConfig from '../typed/IMain';
 import * as _ from 'lodash';
+import * as G2 from '@antv/g2';
+import * as Brush from '@antv/g2-brush';
 import * as EventUtils from '../utils/EventUtils';
 import * as setCoordConfig from '../components/setCoordConfig';
 import * as setAxisConfig from '../components/setAxisConfig';
@@ -14,8 +16,10 @@ import * as setLengendConfig from '../components/setLengendConfig';
 import * as setGuideConfig from '../components/setGuideConfig';
 import * as setTooltipConfig from '../components/setTooltipConfig';
 import * as setScaleConfig from '../components/setScaleConfig';
-import * as G2 from '@antv/g2';
-import * as Brush from '@antv/g2-brush';
+
+function firstUpperCase(str: string) {
+  return str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase());
+}
 
 class CommonChart {
   chartInstance: any;
@@ -208,37 +212,18 @@ class CommonChart {
       ...config.brush,
       canvas: chart.get('canvas'),
       chart,
-      onBrushstart(ev: any) {
-        if (brush.onBrushstart) {
-          brush.onBrushstart(ev, chart);
-        }
-      },
-      onBrushmove(ev: any) {
-        if (brush.onBrushmove) {
-          brush.onBrushmove(ev, chart);
-        }
-      },
-      onBrushend(ev: any) {
-        if (brush.onBrushend) {
-          brush.onBrushend(ev, chart);
-        }
-      },
-      onDragtart(ev: any) {
-        if (brush.onDragtart) {
-          brush.onDragtart(ev, chart);
-        }
-      },
-      onDragmove(ev: any) {
-        if (brush.onDragmove) {
-          brush.onDragmove(ev, chart);
-        }
-      },
-      onDragend(ev: any) {
-        if (brush.onDragend) {
-          brush.onDragend(ev, chart);
-        }
-      },
     };
+
+    const regEvents = /on(BrushStart|BrushMove|BrushEnd|DragStart|DragMove|DragEnd)/;
+    const events = Object.keys(brush).filter((entry) => regEvents.test(entry));
+
+    events.forEach(entry => {
+      const item = regEvents.exec(entry);
+      const oriEventName = 'on' + firstUpperCase(item[0]);
+      brushConfig[oriEventName] = (ev: any) => {
+        brush[entry](ev, chart);
+      };
+    });
 
     new Brush(brushConfig);
   }
