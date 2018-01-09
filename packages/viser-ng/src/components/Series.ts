@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
 
-type eventFunc = (ev: any) => void;
+type eventFunc = (ev: any, chart: any) => void;
 
 @Component({
   selector: 'v-series',
@@ -31,6 +31,15 @@ class Series extends Chart {
   @Input() onTouchStart?: eventFunc;
   @Input() onTouchMove?: eventFunc;
   @Input() onTouchEnd?: eventFunc;
+  @Input() onLabelMouseDown?: eventFunc;
+  @Input() onLabelMouseMove?: eventFunc;
+  @Input() onLabelMouseLeave?: eventFunc;
+  @Input() onLabelMouseUp?: eventFunc;
+  @Input() onLabelClick?: eventFunc;
+  @Input() onLabelDbClick?: eventFunc;
+  @Input() onLabelTouchStart?: eventFunc;
+  @Input() onLabelTouchMove?: eventFunc;
+  @Input() onLabelTouchEnd?: eventFunc;
 }
 
 @Component({

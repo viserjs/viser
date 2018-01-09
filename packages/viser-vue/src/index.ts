@@ -8,7 +8,7 @@ const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area', 'p
 
 const rootCharts = ['v-chart', 'v-lite-chart'];
 
-const rootChartProps = ['data', 'dataView', 'dataPre', 'scale', 'viewId'];
+const rootChartProps = ['data', 'scale', 'viewId'];
 
 const seriesProps = ['position', 'quickType', 'gemo', 'adjust', 'color', 'shape', 'size', 'opacity', 'label', 'tooltip', 'style', 'animate'];
 
@@ -33,6 +33,10 @@ const baseChartComponent = {
   // Why use null? See https://github.com/vuejs/vue/issues/4792.
   props: typedProps,
   methods: {
+    repaint() {
+      const d2Json = this.createRootD2Json();
+      this.chart.repaint(d2Json);
+    },
     /**
      * find nearest parent rechart component
      */
@@ -49,33 +53,38 @@ const baseChartComponent = {
       }
       return null;
     },
+    createRootD2Json() {
+      const d2Json = {
+        ...cleanUndefined(normalizeProps(this._props, rootChartProps)),
+        chart: {
+          container: this.$el,
+          ...cleanUndefined(normalizeProps(this._props, null, rootChartProps)),
+        },
+        ...this.jsonForD2,
+      };
+
+      // liteChart handle tag-props
+      if (this.$options._componentTag === 'v-lite-chart') {
+        const existProps = cleanUndefined(this._props);
+        Object.keys(existProps).forEach(propsKey => {
+          const lowerCasePropsKey = propsKey.toLowerCase()
+          if (regSeries.indexOf(lowerCasePropsKey) > -1) {
+            safePush(d2Json, 'series', {
+              quickType: propsKey,
+              ...normalizeProps(existProps, seriesProps),
+            });
+          }
+        });
+        setIfNotExist(d2Json, 'axis', true);
+        setIfNotExist(d2Json, 'legend', true);
+        setIfNotExist(d2Json, 'tooltip', true);
+      }
+
+      return d2Json;
+    },
     freshChart(isUpdate: boolean) {
       if (rootCharts.indexOf(this.$options._componentTag) > -1) { // hit top
-        const d2Json = {
-          ...cleanUndefined(normalizeProps(this._props, rootChartProps)),
-          chart: {
-            container: this.$el,
-            ...cleanUndefined(normalizeProps(this._props, null, rootChartProps))
-          },
-          ...this.jsonForD2,
-        };
-
-        // liteChart handle tag-props
-        if (this.$options._componentTag === 'v-lite-chart') {
-          const existProps = cleanUndefined(this._props);
-          Object.keys(existProps).forEach(propsKey => {
-            const lowerCasePropsKey = propsKey.toLowerCase()
-            if (regSeries.indexOf(lowerCasePropsKey) > -1) {
-              safePush(d2Json, 'series', {
-                quickType: propsKey,
-                ...normalizeProps(existProps, seriesProps),
-              });
-            }
-          });
-          setIfNotExist(d2Json, 'axis', true);
-          setIfNotExist(d2Json, 'legend', true);
-          setIfNotExist(d2Json, 'tooltip', true);
-        }
+        const d2Json = this.createRootD2Json();
 
         if (!isUpdate || !this.chart) {
           this.chart = viser.default(d2Json);
@@ -145,20 +154,21 @@ export default {
   // tslint:disable-next-line:no-shadowed-variable
   install: (Vue: any, options: any) => {
     Vue.component('v-chart', baseChartComponent);
-    Vue.component('v-point', baseChartComponent);
     Vue.component('v-tooltip', baseChartComponent);
     Vue.component('v-legend', baseChartComponent);
     Vue.component('v-axis', baseChartComponent);
+    Vue.component('v-brush', baseChartComponent);
     Vue.component('v-view', baseChartComponent);
     Vue.component('v-coord', baseChartComponent);
-    Vue.component('v-pie', baseChartComponent);
-    Vue.component('v-edge', baseChartComponent);
     Vue.component('v-series', baseChartComponent);
     Vue.component('v-facet', baseChartComponent)
     Vue.component('v-facet-view', baseChartComponent)
     Vue.component('v-lite-chart', baseChartComponent)
     Vue.component('v-guide', baseChartComponent)
 
+    Vue.component('v-edge', baseChartComponent);
+    Vue.component('v-point', baseChartComponent);
+    Vue.component('v-pie', baseChartComponent);
     Vue.component('v-bar', baseChartComponent);
     Vue.component('v-stack-bar', baseChartComponent)
     Vue.component('v-dodge-bar', baseChartComponent)

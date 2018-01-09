@@ -1,13 +1,24 @@
 import viser from '../../../packages/viser/src/index';
-import { data, dataPre, scale } from './data';
+import { data, scale } from './data';
+const DataSet = require('@antv/data-set');
+
+const ds: any = new DataSet();
+const dv = ds.createView().source(data, {
+  type: 'graph',
+  edges: d => d.links
+});
+
+dv.transform({
+  type: 'diagram.sankey',
+  nodeWidth: 0.015,
+  nodePadding: 0.02,
+});
 
 viser({
-  data,
-  dataPre,
   views: [{
-    viewId: '34',
+    viewId: '2',
     scale,
-    dataView: 'edges',
+    data: dv.edges,
     series: [{
       quickType: 'sankey',
       position: 'x*y',
@@ -20,7 +31,7 @@ viser({
     }],
   }, {
     viewId: '23',
-    dataView: 'nodes',
+    data: dv.nodes,
     scale,
     series: [{
       quickType: 'polygon',

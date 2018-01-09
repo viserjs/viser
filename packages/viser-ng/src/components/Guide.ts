@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
 
 type func = () => void;
-type eventFunc = (ev: any) => void;
+type eventFunc = (ev: any, chart: any) => void;
 
 interface ILineText {
   position?: string | number;
