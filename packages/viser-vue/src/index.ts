@@ -33,6 +33,10 @@ const baseChartComponent = {
   // Why use null? See https://github.com/vuejs/vue/issues/4792.
   props: typedProps,
   methods: {
+    repaint() {
+      const d2Json = this.createRootD2Json();
+      this.chart.repaint(d2Json);
+    },
     /**
      * find nearest parent rechart component
      */
@@ -49,33 +53,38 @@ const baseChartComponent = {
       }
       return null;
     },
+    createRootD2Json() {
+      const d2Json = {
+        ...cleanUndefined(normalizeProps(this._props, rootChartProps)),
+        chart: {
+          container: this.$el,
+          ...cleanUndefined(normalizeProps(this._props, null, rootChartProps)),
+        },
+        ...this.jsonForD2,
+      };
+
+      // liteChart handle tag-props
+      if (this.$options._componentTag === 'v-lite-chart') {
+        const existProps = cleanUndefined(this._props);
+        Object.keys(existProps).forEach(propsKey => {
+          const lowerCasePropsKey = propsKey.toLowerCase()
+          if (regSeries.indexOf(lowerCasePropsKey) > -1) {
+            safePush(d2Json, 'series', {
+              quickType: propsKey,
+              ...normalizeProps(existProps, seriesProps),
+            });
+          }
+        });
+        setIfNotExist(d2Json, 'axis', true);
+        setIfNotExist(d2Json, 'legend', true);
+        setIfNotExist(d2Json, 'tooltip', true);
+      }
+
+      return d2Json;
+    },
     freshChart(isUpdate: boolean) {
       if (rootCharts.indexOf(this.$options._componentTag) > -1) { // hit top
-        const d2Json = {
-          ...cleanUndefined(normalizeProps(this._props, rootChartProps)),
-          chart: {
-            container: this.$el,
-            ...cleanUndefined(normalizeProps(this._props, null, rootChartProps))
-          },
-          ...this.jsonForD2,
-        };
-
-        // liteChart handle tag-props
-        if (this.$options._componentTag === 'v-lite-chart') {
-          const existProps = cleanUndefined(this._props);
-          Object.keys(existProps).forEach(propsKey => {
-            const lowerCasePropsKey = propsKey.toLowerCase()
-            if (regSeries.indexOf(lowerCasePropsKey) > -1) {
-              safePush(d2Json, 'series', {
-                quickType: propsKey,
-                ...normalizeProps(existProps, seriesProps),
-              });
-            }
-          });
-          setIfNotExist(d2Json, 'axis', true);
-          setIfNotExist(d2Json, 'legend', true);
-          setIfNotExist(d2Json, 'tooltip', true);
-        }
+        const d2Json = this.createRootD2Json();
 
         if (!isUpdate || !this.chart) {
           this.chart = viser.default(d2Json);
