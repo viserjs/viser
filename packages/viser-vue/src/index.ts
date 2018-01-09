@@ -145,20 +145,21 @@ export default {
   // tslint:disable-next-line:no-shadowed-variable
   install: (Vue: any, options: any) => {
     Vue.component('v-chart', baseChartComponent);
-    Vue.component('v-point', baseChartComponent);
     Vue.component('v-tooltip', baseChartComponent);
     Vue.component('v-legend', baseChartComponent);
     Vue.component('v-axis', baseChartComponent);
+    Vue.component('v-brush', baseChartComponent);
     Vue.component('v-view', baseChartComponent);
     Vue.component('v-coord', baseChartComponent);
-    Vue.component('v-pie', baseChartComponent);
-    Vue.component('v-edge', baseChartComponent);
     Vue.component('v-series', baseChartComponent);
     Vue.component('v-facet', baseChartComponent)
     Vue.component('v-facet-view', baseChartComponent)
     Vue.component('v-lite-chart', baseChartComponent)
     Vue.component('v-guide', baseChartComponent)
 
+    Vue.component('v-edge', baseChartComponent);
+    Vue.component('v-point', baseChartComponent);
+    Vue.component('v-pie', baseChartComponent);
     Vue.component('v-bar', baseChartComponent);
     Vue.component('v-stack-bar', baseChartComponent)
     Vue.component('v-dodge-bar', baseChartComponent)

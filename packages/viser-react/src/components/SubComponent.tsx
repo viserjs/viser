@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { ICoord, ITooltip, ILegend, IGuide, IAxis, ISeries } from 'viser';
+import { ICoord, ITooltip, ILegend, IGuide, IAxis, ISeries, IBrush } from 'viser';
 
 class Props {}
 
@@ -36,6 +36,7 @@ export class Tooltip extends SubComponent<ITooltip> { displayName = 'Tooltip'; }
 export class Legend extends SubComponent<ILegend> { displayName = 'Legend'; }
 export class Guide extends SubComponent<IGuide> { displayName = 'Guide'; }
 export class Axis extends SubComponent<IAxis> { displayName = 'Axis'; }
+export class Brush extends SubComponent<IBrush> { displayName = 'Brush'; }
 
 export class Series extends SubComponent<ISeries> { displayName = 'Series'; }
 export class Line extends SubComponent<ISeries> { displayName = 'Line'; }
