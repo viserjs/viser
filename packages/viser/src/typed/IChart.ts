@@ -1,4 +1,4 @@
-type eventFunc = (ev: any) => void;
+type eventFunc = (chart: any, ev: any) => void;
 
 interface IBackground {
   stroke?: string;

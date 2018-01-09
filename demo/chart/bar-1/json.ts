@@ -21,7 +21,7 @@ viser({
   legend: {
     dataKey: 'country',
     onItemMouseEnter: (ev) => {
-      console.log(5, ev);
+      // console.log(5, ev);
     }
   },
   series: [{
@@ -33,7 +33,7 @@ viser({
     position: 'year*percent',
     color: 'country',
     onMouseenter: (ev) => {
-      console.log(3, ev);
+      // console.log(3, ev);
     },
   }],
   guide: [{
@@ -54,7 +54,7 @@ viser({
       }
     },
     onMouseenter: (ev) => {
-      console.log(2, ev);
+      // console.log(2, ev);
     },
   }, {
     type: 'line',
@@ -77,12 +77,21 @@ viser({
       // console.log(2, ev);
     },
   }],
+  brush: {
+    type: 'X',
+    onBrushstart(chart) {
+      chart.hideTooltip();
+    },
+    onBrushmove(chart) {
+      chart.hideTooltip();
+    }
+  },
   chart: {
     container: 'mount',
     forceFit: true,
     height: 400,
     onDblClick: (ev) => {
-      console.log(1, ev)
+      // console.log(1, ev)
     }
   },
 });

@@ -8,7 +8,7 @@ const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area', 'p
 
 const rootCharts = ['v-chart', 'v-lite-chart'];
 
-const rootChartProps = ['data', 'dataView', 'dataPre', 'scale', 'viewId'];
+const rootChartProps = ['data', 'scale', 'viewId'];
 
 const seriesProps = ['position', 'quickType', 'gemo', 'adjust', 'color', 'shape', 'size', 'opacity', 'label', 'tooltip', 'style', 'animate'];
 

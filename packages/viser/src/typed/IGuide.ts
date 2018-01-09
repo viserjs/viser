@@ -2,7 +2,7 @@
 import * as IStyle from './IStyle';
 
 type func = () => void;
-type eventFunc = (ev: any) => void;
+type eventFunc = (chart: any, ev: any) => void;
 
 interface IGuideEvent {
   onMouseDown?: eventFunc;

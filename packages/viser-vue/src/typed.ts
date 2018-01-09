@@ -5,8 +5,6 @@ const props: any = [
   'id', 'container', 'height', 'width', 'animate', 'forceFit', 'background', 'plotBackground', 'padding',
   // coord
   'type', 'direction', 'radius', 'innerRadius', 'startAngle', 'endAngle',
-  // dataPre
-  'connector', 'transform', 'geoKey',
   // facet
   'type', 'fields', 'rowField', 'colField', 'colValue', 'rowValue', 'colIndex', 'rowIndex', 'showTitle', 'autoSetAxis', 'padding', 'colTitle', 'rowTitle', 'eachView', 'cols', 'rows', 'padding', 'line', 'lineSmooth', 'transpose',
   // guide
@@ -16,7 +14,7 @@ const props: any = [
   'allowAllCanceled', 'itemFormatter', 'marker', 'textStyle', 'clickable', 'hoverable', 'selectedMode', 'onHover', 'onClick', 'reversed', 'layout', 'backPadding', 'useHtml',
   'autoWrap', 'autoPosition', 'container', 'containerTpl', 'itemTpl',
   // main
-  'data', 'viewId', 'scale', 'dataPre', 'dataView', 'forceFit',
+  'data', 'viewId', 'scale', 'forceFit',
   // series
   'quickType', 'position', 'gemo', 'adjust', 'color', 'shape', 'size', 'opacity', 'label', 'tooltip', 'vStyle', 'select', 'active', 'animate',
   // tooltip

@@ -12,7 +12,11 @@ export function setSEvent (chart: any, itemname: string, keyname: string, conten
   const lowerEventName = parseEventItem[2].toLowerCase();
   const eventItem = `${itemname}-${lowerEventItem}`;
 
-  chart.on(`${eventItem}:${lowerEventName}`, content);
+  chart.on(`${eventItem}:${lowerEventName}`, (ev: any) => {
+    if (content) {
+      content(chart, ev);
+    }
+  });
 }
 
 export function setEvent (chart: any, name: string, item: any) {
@@ -26,9 +30,17 @@ export function setEvent (chart: any, name: string, item: any) {
     const eventLowerCase = eventName.toLowerCase();
     const content = item[entry];
     if (name) {
-      chart.on(`${name}:${eventLowerCase}`, content);
+      chart.on(`${name}:${eventLowerCase}`, (ev: any) => {
+        if (content) {
+          content(chart, ev);
+        }
+      });
     } else {
-      chart.on(eventLowerCase, content);
+      chart.on(eventLowerCase, (ev: any) => {
+        if (content) {
+          content(chart, ev);
+        }
+      });
     }
   });
 }

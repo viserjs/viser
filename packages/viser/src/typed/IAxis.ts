@@ -1,7 +1,7 @@
 import * as IStyle from './IStyle';
 
 type formatterFunc = (val: string | number) => string | number;
-type eventFunc = (ev: any) => void;
+type eventFunc = (chart: any, ev: any) => void;
 
 interface ITitle {
   autoRotate?: boolean;

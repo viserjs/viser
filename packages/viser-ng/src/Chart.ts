@@ -54,7 +54,7 @@ function omit(obj: any, attr: string) {
   return newObj;
 }
 
-type eventFunc = (ev: any) => void;
+type eventFunc = (chart: any, ev: any) => void;
 
 interface IBackground {
   stroke?: string;
@@ -72,12 +72,6 @@ interface IBackground {
 })
 export class Chart implements OnInit, AfterViewInit, OnChanges {
   @Input() data?: any;
-  @Input() dataMapping?: object[];
-  @Input() dataPre?: {
-    connector?: string;
-    source?: any;
-    transform?: object[] | object;
-  };
   @Input() height?: number;
   @Input() width?: number;
   @Input() animate?: boolean | object;
@@ -86,7 +80,6 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
   @Input() plotBackground?: IBackground;
   @Input() padding?: number | object | number[];
   @Input() scale?: IScale;
-  @Input() dataView?: string;
   @Input() onMouseDown?: eventFunc;
   @Input() onMouseMove?: eventFunc;
   @Input() onMouseLeave?: eventFunc;
@@ -117,14 +110,6 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
   combineViewConfig(props: IRChart, config: any) {
     if (props.data) {
       config.data = props.data;
-    }
-
-    if (props.dataPre) {
-      config.dataPre = props.dataPre;
-    }
-
-    if (props.dataView) {
-      config.dataView = props.dataView;
     }
 
     if (props.scale) {

@@ -1,6 +1,6 @@
 import * as IStyle from './IStyle';
 
-type eventFunc = (ev: any) => void;
+type eventFunc = (chart: any, ev: any) => void;
 
 interface ICrosshairs {
   type?: string;

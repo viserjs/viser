@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
-import viser, { IViewConfig, ICoord, IDataPre, IScale, IAxis, IGuide, ISeries, ITooltip, IFacet, ILegend } from 'viser';
+import viser, { IViewConfig, ICoord, IScale, IAxis, IGuide, ISeries, ITooltip, IFacet, ILegend } from 'viser';
 
 function generateRandomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
@@ -31,7 +31,6 @@ export class LiteChart implements AfterViewInit, OnChanges {
   @Input() data: any;
   @Input() width?: number;
   @Input() height?: number;
-  @Input() dataView?: string;
   @Input() gemo?: string;
   @Input() color?: any[];
   @Input() label?: boolean;
@@ -43,13 +42,11 @@ export class LiteChart implements AfterViewInit, OnChanges {
   @Input() opacity?: any;
   @Input() size?: any;
   @Input() coord?: ICoord;
-  @Input() dataPre?: IDataPre;
   @Input() scale?: IScale;
   @Input() axis?: IAxis;
   @Input() guide?: IGuide;
   @Input() series?: ISeries;
   @Input() tooltip?: ITooltip;
-  @Input() calData?: any;
   @Input() facet?: IFacet;
   @Input() legend?: ILegend;
   @Input() pie?: boolean;
@@ -88,14 +85,6 @@ export class LiteChart implements AfterViewInit, OnChanges {
   combineViewConfig(props: any, config: any) {
     if (props.data) {
       config.data = props.data;
-    }
-
-    if (props.dataMapping) {
-      config.dataMapping = props.dataMapping;
-    }
-
-    if (props.dataPre) {
-      config.dataPre = props.dataPre;
     }
 
     if (props.scale) {

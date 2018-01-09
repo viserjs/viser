@@ -14,8 +14,8 @@ import * as setLengendConfig from '../components/setLengendConfig';
 import * as setGuideConfig from '../components/setGuideConfig';
 import * as setTooltipConfig from '../components/setTooltipConfig';
 import * as setScaleConfig from '../components/setScaleConfig';
-
-const G2 = require('@antv/g2');
+import * as G2 from '@antv/g2';
+import * as Brush from '@antv/g2-brush';
 
 class CommonChart {
   chartInstance: any;
@@ -56,6 +56,10 @@ class CommonChart {
     this.setFacet(chart, config);
 
     chart.render();
+
+    if (!_.isEmpty(config.brush)) {
+      this.setBrush(chart, config);
+    }
   }
 
   public repaint(config: IMainConfig) {
@@ -195,6 +199,48 @@ class CommonChart {
     }
 
     return chart.facet(cFacet.type, options);
+  }
+
+  private setBrush(chart: any, config: any) {
+    const { brush } = config;
+
+    const brushConfig = {
+      ...config.brush,
+      canvas: chart.get('canvas'),
+      chart,
+      onBrushstart(ev: any) {
+        if (brush.onBrushstart) {
+          brush.onBrushstart(chart, ev);
+        }
+      },
+      onBrushmove(ev: any) {
+        if (brush.onBrushmove) {
+          brush.onBrushmove(chart, ev);
+        }
+      },
+      onBrushend(ev: any) {
+        if (brush.onBrushend) {
+          brush.onBrushend(chart, ev);
+        }
+      },
+      onDragtart(ev: any) {
+        if (brush.onDragtart) {
+          brush.onDragtart(chart, ev);
+        }
+      },
+      onDragmove(ev: any) {
+        if (brush.onDragmove) {
+          brush.onDragmove(chart, ev);
+        }
+      },
+      onDragend(ev: any) {
+        if (brush.onDragend) {
+          brush.onDragend(chart, ev);
+        }
+      },
+    };
+
+    new Brush(brushConfig);
   }
 
   private repaintWidthHeight(chart: any, config: IMainConfig) {
