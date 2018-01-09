@@ -1,4 +1,4 @@
-import * as G2 from '@antv/g2';
+const G2 = require('@antv/g2');
 
 export const registerShape = (geoName: string, shapeName: string, shapeFun: any) => {
   G2.Shape.registerShape(geoName, shapeName, shapeFun);

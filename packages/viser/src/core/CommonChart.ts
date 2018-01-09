@@ -5,8 +5,6 @@
 import loadShapes from '../shapes/loadShapes';
 import IMainConfig from '../typed/IMain';
 import * as _ from 'lodash';
-import * as G2 from '@antv/g2';
-import * as Brush from '@antv/g2-brush';
 import * as EventUtils from '../utils/EventUtils';
 import * as setCoordConfig from '../components/setCoordConfig';
 import * as setAxisConfig from '../components/setAxisConfig';
@@ -16,6 +14,8 @@ import * as setLengendConfig from '../components/setLengendConfig';
 import * as setGuideConfig from '../components/setGuideConfig';
 import * as setTooltipConfig from '../components/setTooltipConfig';
 import * as setScaleConfig from '../components/setScaleConfig';
+const G2 = require('@antv/g2');
+const Brush = require('@antv/g2-brush');
 
 function firstUpperCase(str: string) {
   return str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase());

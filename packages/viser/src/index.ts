@@ -1,4 +1,3 @@
-import * as G2 from '@antv/g2';
 import CommonChart from './core/CommonChart';
 import IAxisConfig, { IAxis } from './typed/IAxis';
 import IBrush from './typed/IBrush';
@@ -14,6 +13,7 @@ import IScale from './typed/IScale';
 import IMain from './typed/IMain';
 import * as CustomizeUtils from './utils/CustomizeUtils';
 import * as _ from 'lodash';
+const G2 = require('@antv/g2');
 
 export {
   IAxis,
