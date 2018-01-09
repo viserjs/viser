@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import {ICoord, ITooltip, ILegend, IGuide, IAxis, ISeries } from 'viser';
+import { ICoord, ITooltip, ILegend, IGuide, IAxis, ISeries } from 'viser';
 
 class Props {}
 
