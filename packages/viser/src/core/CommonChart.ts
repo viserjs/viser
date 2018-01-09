@@ -210,32 +210,32 @@ class CommonChart {
       chart,
       onBrushstart(ev: any) {
         if (brush.onBrushstart) {
-          brush.onBrushstart(chart, ev);
+          brush.onBrushstart(ev, chart);
         }
       },
       onBrushmove(ev: any) {
         if (brush.onBrushmove) {
-          brush.onBrushmove(chart, ev);
+          brush.onBrushmove(ev, chart);
         }
       },
       onBrushend(ev: any) {
         if (brush.onBrushend) {
-          brush.onBrushend(chart, ev);
+          brush.onBrushend(ev, chart);
         }
       },
       onDragtart(ev: any) {
         if (brush.onDragtart) {
-          brush.onDragtart(chart, ev);
+          brush.onDragtart(ev, chart);
         }
       },
       onDragmove(ev: any) {
         if (brush.onDragmove) {
-          brush.onDragmove(chart, ev);
+          brush.onDragmove(ev, chart);
         }
       },
       onDragend(ev: any) {
         if (brush.onDragend) {
-          brush.onDragend(chart, ev);
+          brush.onDragend(ev, chart);
         }
       },
     };
