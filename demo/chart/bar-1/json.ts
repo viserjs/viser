@@ -24,10 +24,10 @@ viser({
   }],
   brush: {
     type: 'X',
-    onBrushstart(ev, chart) {
+    onBrushStart(ev, chart) {
       chart.hideTooltip();
     },
-    onBrushmove(ev, chart) {
+    onBrushMove(ev, chart) {
       chart.hideTooltip();
     }
   },
