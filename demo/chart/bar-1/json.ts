@@ -3,24 +3,38 @@ import { data, scale } from './data'
 const DataSet = require('@antv/data-set');
 
 const ds = new DataSet();
-const dv = ds.createView('test')
+const dv = ds.createView()
   .source(data)
   .transform({
-    as: [ 'count' ],
-    groupBy: [ 'release' ],
-    operations: [ 'count' ],
-    type: 'aggregate'
+    type: 'percent',
+    field: 'value',
+    dimension: 'country',
+    groupBy: ['year'],
+    as: 'percent'
   });
 
 viser({
-  data: dv,
+  data: dv.rows,
   scale: scale,
   axis: true,
   tooltip: true,
+  legend: {
+    dataKey: 'country',
+    onItemMouseEnter: (ev) => {
+      console.log(5, ev);
+    }
+  },
   series: [{
-    quickType: 'interval',
-    position: 'release*count',
-    color: '#e50000',
+    quickType: 'stackBar',
+    style: {
+      stroke: '#fff',
+      lineWidth: 1
+    },
+    position: 'year*percent',
+    color: 'country',
+    onMouseEnter: (ev) => {
+      console.log(3, ev);
+    },
   }],
   brush: {
     type: 'X',
