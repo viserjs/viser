@@ -76,10 +76,8 @@ export class LiteChart implements AfterViewInit, OnChanges {
   config: any = {};
   views: IViewConfig = {};
   chart: any = null;
-  viewId: string;
 
   constructor() {
-    this.viewId = generateRandomNum();
   }
 
   combineViewConfig(props: any, config: any) {
@@ -179,7 +177,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
   }
 
   getProps(allProps: any) {
-    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId', 'views', 'constructor',
+    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'constructor',
       'combineViewConfig', 'combineChartConfig', 'combineContentConfig', 'ngAfterViewInit', 'getProps',
       'combineSeriesConfig', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
 
