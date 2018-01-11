@@ -1,5 +1,7 @@
 import * as IStyle from './IStyle';
 
+type eventFunc = (ev: any, chart: any) => void;
+
 export interface ISeries {
   quickType?: string;
   position?: string | string[];
@@ -15,6 +17,24 @@ export interface ISeries {
   select?: any;
   active?: boolean;
   animate?: object;
+  onMouseDown?: eventFunc;
+  onMouseMove?: eventFunc;
+  onMouseLeave?: eventFunc;
+  onMouseUp?: eventFunc;
+  onClick?: eventFunc;
+  onDbClick?: eventFunc;
+  onTouchStart?: eventFunc;
+  onTouchMove?: eventFunc;
+  onTouchEnd?: eventFunc;
+  onLabelMouseDown?: eventFunc;
+  onLabelMouseMove?: eventFunc;
+  onLabelMouseLeave?: eventFunc;
+  onLabelMouseUp?: eventFunc;
+  onLabelClick?: eventFunc;
+  onLabelDbClick?: eventFunc;
+  onLableTouchStart?: eventFunc;
+  onLabelTouchMove?: eventFunc;
+  onLabelTouchEnd?: eventFunc;
 }
 
 type ISeriesConfig = ISeries | ISeries[];

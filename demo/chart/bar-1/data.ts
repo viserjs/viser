@@ -35,16 +35,6 @@ export const data3 = [
   [163, 203, 276, 408, 547, 729, 628, 828, 502, 635, 809, 947, 1402, 3634, 5268, 7268],
 ];
 
-export const dataPre = {
-  transform: [{
-    type: 'percent',
-    field: 'value',
-    dimension: 'country',
-    groupBy: ['year'],
-    as: 'percent'
-  }]
-};
-
 export const scale = [{
   dataKey: 'percent',
   min: 0,

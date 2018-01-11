@@ -1,21 +1,45 @@
 import viser from '../../../packages/viser/src/index';
-import { chartData, scale } from './data';
+import { sourcedata } from './data';
+const DataSet = require('@antv/data-set');
+const { DataView } = DataSet;
+
+const scale = [{
+  dataKey: 'mean',
+  sync: true
+}, {
+  dataKey: 'cut',
+  sync: true,
+}];
 
 viser({
-  data: chartData,
+  data: sourcedata,
   tooltip: true,
-  axis: true,
+  legend: true,
+  coord: {
+    type: "polar"
+  },
   scale: scale,
   facet: {
-    type: 'rect',
-    fields: ['cut', 'clarity'],
-    views: {
-      series: {
-        position: 'carat*price',
-        color: 'cut',
-        quickType: 'point',
-        opacity: 0.3,
-        size: 3,
+    type: "circle",
+    fields: ['clarity'],
+    views: (view, facet) => {
+      const data = facet.data;
+      const dv = new DataView();
+      dv.source(data).transform({
+        type: 'aggregate',
+        fields: [ 'price' ],
+        operations: [ 'mean' ],
+        as: [ 'mean' ],
+        groupBy: [ 'cut' ]
+      });
+
+      return {
+        data: dv,
+        series: {
+          quickType: 'interval',
+          position: 'cut*mean',
+          color: 'cut',
+        }
       }
     }
   },

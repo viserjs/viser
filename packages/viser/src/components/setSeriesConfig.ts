@@ -45,14 +45,14 @@ function setSeriesGemo(chart: any, currSeries: ISeries) {
 
 function setSeriesPosition(chart: any, currSeries: ISeries) {
   const position = currSeries.position;
-  if (!_.isEmpty(position)) { return chart.position(position); }
+  if (!_.isNil(position)) { return chart.position(position); }
 
   return chart;
 }
 
 function setSeriesAdjust(chart: any, currSeries: ISeries) {
   const adjust = currSeries.adjust;
-  if (!_.isEmpty(adjust)) { return chart.adjust(adjust); }
+  if (!_.isNil(adjust)) { return chart.adjust(adjust); }
 
   return chart;
 }
@@ -138,7 +138,6 @@ function setSeriesLabel(chart: any, currSeries: ISeries) {
 
   if (_.isArray(label) && label.length >= 1) {
     if (label[1]) {
-      EventUtils.setEvent(chart, 'label', label[1]);
       return chart.label(label[0], label[1]);
     }
 
@@ -159,7 +158,7 @@ function setSeriesStyle(chart: any, currSeries: ISeries) {
     return chart.style(style[0]);
   }
 
-  if (_.isObject(style)) {
+  if (_.isPlainObject(style)) {
     return chart.style(style);
   }
 
@@ -223,19 +222,27 @@ function setSeriesAnimate(chart: any, currSeries: ISeries) {
 }
 
 export const process = (chart: any, config: IMainConfig) => {
-  if (_.isEmpty(config.series)) { return chart; }
+  const cSeries = _.cloneDeep(config.series);
+  const isArr = _.isArray(cSeries);
 
-  config.series = Array.isArray(config.series) ? config.series : [config.series];
-  config = setQuickType.process(config);
+  if (_.isNil(cSeries) || _.isEmpty(cSeries)) { return chart; }
 
-  let series = config.series;
+  let arrSeries = isArr ? cSeries : [cSeries];
+  arrSeries = setQuickType.process(arrSeries, config.coord);
 
   // add `zIndex` to comfirm overlay index
-  series = _.sortBy(series, 'zIndex');
+  arrSeries = _.sortBy(arrSeries, 'zIndex');
 
   let chartInstance;
-  series.forEach((currSeries: any) => {
+  arrSeries.forEach((currSeries: any) => {
     EventUtils.setEvent(chart, currSeries.gemo, currSeries);
+
+    for (const item in currSeries) {
+      if (currSeries.hasOwnProperty(item)) {
+        EventUtils.setSEvent(chart, 'label', name, currSeries[item]);
+      }
+    }
+
     chartInstance = setSeriesGemo(chart, currSeries);
     chartInstance = setSeriesPosition(chartInstance, currSeries);
     chartInstance = setSeriesAdjust(chartInstance, currSeries);

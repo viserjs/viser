@@ -1,31 +1,53 @@
 <template>
   <div>
-    <v-chart :force-fit="true" :height="600" :data="chartData" :scale="scale">
+    <v-chart :force-fit="true" :height="600" :data="sourcedata" :scale="scale">
       <v-tooltip />
       <v-axis />
-      <v-facet :type="'rect'" :fields="['cut', 'clarity']">
-        <v-facet-view>
-          <v-point :position="'carat*price'" :color="'cut'" :opacity="0.3" :size="3" />
-        </v-facet-view>
-      </v-facet>
+      <v-facet :type="'rect'" :fields="['clarity']" :views="views" />
     </v-chart>
   </div>
 </template>
 
 <script>
-import { chartData, scale } from "./data";
+import { sourcedata } from "./data";
+
+const scale = [{
+  dataKey: 'mean',
+  sync: true
+}, {
+  dataKey: 'cut',
+  sync: true,
+}];
+
+const views = (view, facet) => {
+  const data = facet.data;
+  const dv = new DataView();
+  dv.source(data).transform({
+    type: 'aggregate',
+    fields: [ 'price' ],
+    operations: [ 'mean' ],
+    as: [ 'mean' ],
+    groupBy: [ 'cut' ]
+  });
+
+  return {
+    data: dv,
+    series: {
+      quickType: 'bar',
+      position: 'cut*mean',
+      color: 'cut',
+    }
+  }
+};
 
 export default {
   data() {
     return {
-      chartData,
-      scale
+      sourcedata,
+      scale,
+      views,
     };
   },
   methods: {}
 };
 </script>
-
-<style scoped>
-
-</style>

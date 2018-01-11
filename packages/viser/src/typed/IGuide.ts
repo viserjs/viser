@@ -2,10 +2,23 @@
 import * as IStyle from './IStyle';
 
 type func = () => void;
+type eventFunc = (ev: any, chart: any) => void;
+
+interface IGuideEvent {
+  onMouseDown?: eventFunc;
+  onMouseMove?: eventFunc;
+  onMouseLeave?: eventFunc;
+  onMouseUp?: eventFunc;
+  onClick?: eventFunc;
+  onDbClick?: eventFunc;
+  onTouchStart?: eventFunc;
+  onTouchMove?: eventFunc;
+  onTouchEnd?: eventFunc;
+}
 
 interface ILineText {
   position?: string | number;
-  autoRotate?: number;
+  autoRotate?: boolean;
   style?: IStyle.ILineStyle;
   content?: string;
   offsetX?: number;
@@ -16,17 +29,17 @@ export interface ILineGuide {
   type?: 'line';
   top?: boolean;
   zIndex?: number;
-  start?: object | number[] | func;
-  end?: object | number[] | func;
-  lineStyle: IStyle.ILineStyle;
-  text: ILineText;
+  start?: object | (number | string)[] | func;
+  end?: object | (number | string)[] | func;
+  lineStyle?: IStyle.ILineStyle;
+  text?: ILineText;
 }
 
 export interface ITextGuide {
   type?: 'text';
   top?: boolean;
   zIndex?: number;
-  position: object | number[] | func;
+  position?: object | (number | string)[] | func;
   content?: string;
   style?: IStyle.ITextStyle;
   offsetX?: number;
@@ -37,8 +50,8 @@ export interface IImageGuide {
   type?: 'image';
   top?: boolean;
   zIndex?: number;
-  start?: object | number[] | func;
-  end?: object | number[] | func;
+  start?: object | (number | string)[] | func;
+  end?: object | (number | string)[] | func;
   src?: string;
   width?: number;
   height?: number;
@@ -56,14 +69,14 @@ interface IRegionStyle {
 export interface IRegionGuide {
   type?: 'region';
   top?: boolean;
-  start?: object | number[] | func;
-  end?: object | number[] | func;
+  start?: object | (number | string)[] | func;
+  end?: object | (number | string)[] | func;
   style?: IRegionStyle;
 }
 
 export interface IHtmlGuide {
   type?: 'html';
-  position: object | number[] | func;
+  position?: object | (number | string)[] | func;
   alignX?: 'left' | 'middle' | 'right';
   alignY?: 'top' | 'middle' | 'bottom';
   offsetX?: number;
@@ -75,12 +88,12 @@ export interface IHtmlGuide {
 export interface IArcGuide {
   type?: 'arc';
   top?: boolean;
-  start?: object | number[] | func;
-  end?: object | number[] | func;
+  start?: object | (number | string)[] | func;
+  end?: object | (number | string)[] | func;
   style?: object;
 }
 
-export type IGuide = ILineGuide | ITextGuide | IImageGuide | IRegionGuide | IArcGuide;
+export type IGuide = IGuideEvent & (ILineGuide | ITextGuide | IImageGuide | IRegionGuide | IArcGuide | IHtmlGuide);
 type IGuideConfig = IGuide | IGuide[];
 
 export default IGuideConfig;

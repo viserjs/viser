@@ -4,11 +4,11 @@ import * as viser from 'viser';
 
 const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area', 'point', 'stackarea',
   'smootharea', 'bar', 'stackbar', 'dodgebar', 'interval', 'stackinterval', 'dodgeinterval',
-  'funnel', 'pyramid', 'schema', 'box', 'candle', 'polygon', 'contour', 'heatmap', 'edge', 'sankey', 'errorbar'];
+  'funnel', 'pyramid', 'schema', 'box', 'candle', 'polygon', 'contour', 'heatmap', 'edge', 'sankey', 'errorbar', 'jitterpoint'];
 
 const rootCharts = ['v-chart', 'v-lite-chart'];
 
-const rootChartProps = ['data', 'dataView', 'dataPre', 'scale', 'viewId'];
+const rootChartProps = ['data', 'scale', 'viewId'];
 
 const seriesProps = ['position', 'quickType', 'gemo', 'adjust', 'color', 'shape', 'size', 'opacity', 'label', 'tooltip', 'style', 'animate'];
 
@@ -34,7 +34,7 @@ const baseChartComponent = {
   props: typedProps,
   methods: {
     repaint() {
-      const d2Json = this.createRootD2Json()
+      const d2Json = this.createRootD2Json();
       this.chart.repaint(d2Json);
     },
     /**
@@ -58,7 +58,7 @@ const baseChartComponent = {
         ...cleanUndefined(normalizeProps(this._props, rootChartProps)),
         chart: {
           container: this.$el,
-          ...cleanUndefined(normalizeProps(this._props, null, rootChartProps))
+          ...cleanUndefined(normalizeProps(this._props, null, rootChartProps)),
         },
         ...this.jsonForD2,
       };
@@ -79,13 +79,14 @@ const baseChartComponent = {
         setIfNotExist(d2Json, 'legend', true);
         setIfNotExist(d2Json, 'tooltip', true);
       }
-      return d2Json
+
+      return d2Json;
     },
     freshChart(isUpdate: boolean) {
       if (rootCharts.indexOf(this.$options._componentTag) > -1) { // hit top
-        const d2Json = this.createRootD2Json()
+        const d2Json = this.createRootD2Json();
 
-        if (!isUpdate) {
+        if (!isUpdate || !this.chart) {
           this.chart = viser.default(d2Json);
         } else {
           this.chart.repaint(d2Json);
@@ -96,8 +97,8 @@ const baseChartComponent = {
         oneObjectMoreArray(nearestRootComponent.jsonForD2, 'views', {
           ...cleanUndefined(normalizeProps(this._props)),
           ...this.jsonForD2,
-          viewId: generateRandomNum()
-        };
+          viewId: this._props.viewId || generateRandomNum(),
+        });
       } else if (this.$options._componentTag === 'v-facet-view') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
@@ -153,20 +154,21 @@ export default {
   // tslint:disable-next-line:no-shadowed-variable
   install: (Vue: any, options: any) => {
     Vue.component('v-chart', baseChartComponent);
-    Vue.component('v-point', baseChartComponent);
     Vue.component('v-tooltip', baseChartComponent);
     Vue.component('v-legend', baseChartComponent);
     Vue.component('v-axis', baseChartComponent);
+    Vue.component('v-brush', baseChartComponent);
     Vue.component('v-view', baseChartComponent);
     Vue.component('v-coord', baseChartComponent);
-    Vue.component('v-pie', baseChartComponent);
-    Vue.component('v-edge', baseChartComponent);
     Vue.component('v-series', baseChartComponent);
     Vue.component('v-facet', baseChartComponent)
     Vue.component('v-facet-view', baseChartComponent)
     Vue.component('v-lite-chart', baseChartComponent)
     Vue.component('v-guide', baseChartComponent)
 
+    Vue.component('v-edge', baseChartComponent);
+    Vue.component('v-point', baseChartComponent);
+    Vue.component('v-pie', baseChartComponent);
     Vue.component('v-bar', baseChartComponent);
     Vue.component('v-stack-bar', baseChartComponent)
     Vue.component('v-dodge-bar', baseChartComponent)
@@ -190,6 +192,7 @@ export default {
     Vue.component('v-heatmap', baseChartComponent)
     Vue.component('v-sankey', baseChartComponent)
     Vue.component('v-error-bar', baseChartComponent)
+    Vue.component('v-jitter-point', baseChartComponent)
   }
 };
 
