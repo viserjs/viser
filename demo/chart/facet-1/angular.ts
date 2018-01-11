@@ -43,8 +43,9 @@ const views = (view, facet) => {
   <div>
     <v-chart [forceFit]="forceFit" [height]="600" [data]="chartData" [scale]="scale">
       <v-tooltip></v-tooltip>
-      <v-facet type="rect" [fields]="fields" [views]="views"></v-facet>
-      <v-axis></v-axis>
+      <v-legend></v-legend>
+      <v-coord type="polar"></v-coord>
+      <v-facet type="circle" [fields]="fields" [views]="views"></v-facet>
     </v-chart>
   </div>
   `
