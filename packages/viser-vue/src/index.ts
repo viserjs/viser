@@ -79,7 +79,6 @@ const baseChartComponent = {
         setIfNotExist(d2Json, 'legend', true);
         setIfNotExist(d2Json, 'tooltip', true);
       }
-      console.log('d2Json', d2Json)
       return d2Json;
     },
     freshChart(isUpdate: boolean) {
