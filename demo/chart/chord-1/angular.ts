@@ -25,7 +25,7 @@ dv.transform({
   selector: '#mount',
   template: `
   <div>
-    <v-chart [forceFit]="forceFit" [height]="height" [data]="data" [dataPre]="dataPre" [scale]="scale">
+    <v-chart [forceFit]="forceFit" [height]="height" [data]="data" [scale]="scale">
       <v-view viewId="2" [data]="edgesData">
         <v-coord type="polar" direction="yReverse"></v-coord>
         <v-edge position="x*y" color="source" shape="arc" opacity="0.5" tooltip="source*target*value"></v-edge>
