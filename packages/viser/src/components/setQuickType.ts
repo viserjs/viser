@@ -214,8 +214,8 @@ export const process = (series: any, coord: any) => {
 
     if (currType) {
       series[i] = {
-        ...series[i],
         ...currType.series,
+        ...series[i],
       };
 
       if (coord && coord.type && _.get(currType, 'coord.type') &&
