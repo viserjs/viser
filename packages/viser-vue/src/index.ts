@@ -79,7 +79,6 @@ const baseChartComponent = {
         setIfNotExist(d2Json, 'legend', true);
         setIfNotExist(d2Json, 'tooltip', true);
       }
-
       return d2Json;
     },
     freshChart(isUpdate: boolean) {
@@ -108,7 +107,6 @@ const baseChartComponent = {
         };
       } else if (this.$options._componentTag === 'v-facet') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
-
         nearestRootComponent.jsonForD2.facet = {
           ...cleanUndefined(normalizeProps(this._props)),
           ...this.jsonForD2,
