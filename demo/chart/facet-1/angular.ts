@@ -4,7 +4,38 @@ import { Component, enableProdMode, NgModule } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserModule } from '@angular/platform-browser';
 import { ViserModule } from '../../../packages/viser-ng/src/index';
-import { chartData, scale } from './data'
+import { sourcedata } from './data'
+const DataSet = require('@antv/data-set');
+const { DataView } = DataSet;
+
+const scale = [{
+  dataKey: 'mean',
+  sync: true
+}, {
+  dataKey: 'cut',
+  sync: true,
+}];
+
+const views = (view, facet) => {
+  const data = facet.data;
+  const dv = new DataView();
+  dv.source(data).transform({
+    type: 'aggregate',
+    fields: [ 'price' ],
+    operations: [ 'mean' ],
+    as: [ 'mean' ],
+    groupBy: [ 'cut' ]
+  });
+
+  return {
+    data: dv,
+    series: {
+      quickType: 'bar',
+      position: 'cut*mean',
+      color: 'cut',
+    }
+  }
+}
 
 @Component({
   selector: '#mount',
@@ -12,24 +43,21 @@ import { chartData, scale } from './data'
   <div>
     <v-chart [forceFit]="forceFit" [height]="600" [data]="chartData" [scale]="scale">
       <v-tooltip></v-tooltip>
-      <v-facet type="rect" [fields]="fields">
-        <v-facet-view>
-          <v-point position="carat*price" color="cut" [opacity]="opacity" [size]="size"></v-point>
-        </v-facet-view>
-      </v-facet>
+      <v-facet type="rect" [fields]="fields" [views]="views"></v-facet>
       <v-axis></v-axis>
     </v-chart>
   </div>
   `
 })
 export class AppComponent {
-  forceFit: boolean= true;
+  forceFit: boolean = true;
   height: number = 600;
-  chartData = chartData;
+  chartData = sourcedata;
   scale = scale;
   opacity = 0.3;
   size = 3;
-  fields = ['cut', 'clarity'];
+  fields = ['clarity'];
+  views = views;
 }
 
 @NgModule({

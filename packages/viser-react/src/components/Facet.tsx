@@ -27,6 +27,10 @@ export default class Facet extends React.Component<IFacet, any> {
   }
 
   render() {
+    if (!this.props.children) {
+      return null as React.ReactElement<any>;
+    }
+
     if (isReact16) {
       return this.props.children;
     } else {

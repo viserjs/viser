@@ -35,6 +35,7 @@ class Facet extends Chart {
   @Input() transpose?: boolean;
   @Input() lineSmooth?: boolean;
   @Input() line?: IStyle.ILineStyle;
+  @Input() views?: any;
   @Input() eachView?: (views: any, facet: any) => void;
 }
 
