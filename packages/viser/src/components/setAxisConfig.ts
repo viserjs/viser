@@ -39,36 +39,44 @@ function setRotatePolarAxis(chart: any, axisItem: any, coord: any, data: any) {
 }
 
 export const process = (chart: any, config: any) => {
-  if (!config.axis || (_.isArray(config.axis) && config.axis.length === 0)) {
+  const cAxis = _.cloneDeep(config.axis);
+  const isArr = _.isArray(cAxis);
+
+  if (_.isNil(cAxis) || cAxis === false ||
+     (isArr && cAxis.length === 0)) {
     return chart.axis(false);
   }
 
-  const axis = config.axis = Array.isArray(config.axis) ? config.axis : [config.axis];
+  if (cAxis === true) { return chart.axis(); }
+
+  const arrAxis = isArr ? cAxis : [cAxis];
   const { coord, data } = config;
 
-  if (axis === true) { return chart.axis(); }
-
-  for (const res of axis) {
-    if (res.show === false) { return chart.axis(res.dataKey, false); }
-
+  for (const res of arrAxis) {
     if (coord && coord.type === 'polar' && coord.direction === 'rotate') {
       setRotatePolarAxis(chart, res, coord, data);
     }
 
-    if (res.label) { res.label = setCustomFormatter.supportD3Formatter(res.label); }
-
-    const options = _.omit(res, ['show', 'dataKey']);
-    chart.axis(res.dataKey, options);
+    if (res.label) {
+      res.label = setCustomFormatter.supportD3Formatter(res.label);
+    }
 
     for (const item in res) {
       if (res.hasOwnProperty(item)) {
-        let name = `axis-${item}`;
-        if (item === 'tickLine') {
-          name = 'axis-ticks';
-        }
-
-        EventUtils.setEvent(chart, name, res[item]);
+        let name = item === 'tickLine' ? 'ticks' : item;
+        EventUtils.setSEvent(chart, 'axis', name, res[item]);
       }
+    }
+
+    if (res.dataKey) {
+      if (res.show === false) {
+        chart.axis(res.dataKey, false);
+      } else {
+        const options = _.omit(res, ['show', 'dataKey']);
+        chart.axis(res.dataKey, options);
+      }
+    } else {
+      chart.axis(res);
     }
   }
 

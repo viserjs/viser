@@ -12,6 +12,7 @@
     "@angular/core": "^4.0.0",
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
+    "@antv/data-set": "^0.8.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "reflect-metadata": "^0.1.10",

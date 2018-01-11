@@ -6,7 +6,7 @@ export const supportD3Formatter = (obj: any) => {
     if (obj.hasOwnProperty(item)) {
       const formatter = _.get(obj[item], 'formatter');
 
-      if (formatter && typeof formatter === 'string') {
+      if (_.isString(formatter)) {
         obj[item].formatter = (val: number) => {
           return d3.format(formatter)(val);
         };

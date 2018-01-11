@@ -77,7 +77,6 @@ const QUICK_TYPE = [
     type: 'stackInterval',
     series: {
       gemo: 'interval',
-      shape: 'interval',
       adjust: 'stack',
     },
   },
@@ -193,11 +192,16 @@ const QUICK_TYPE = [
       shape: 'errorbar',
     },
   },
+  {
+    type: 'jitterPoint',
+    series: {
+      gemo: 'point',
+      adjust: 'jitter',
+    },
+  },
 ];
 
-export const process = (config: any) => {
-  const series = config.series;
-  const coord = config.coord;
+export const process = (series: any, coord: any) => {
   const quickType: any = {};
 
   for (const item of QUICK_TYPE) {
@@ -209,22 +213,17 @@ export const process = (config: any) => {
     const currType = quickType[series[i].quickType];
 
     if (currType) {
-      config.series[i] = {
-        ...series[i],
+      series[i] = {
         ...currType.series,
+        ...series[i],
       };
 
       if (coord && coord.type && _.get(currType, 'coord.type') &&
           _.get(currType, 'coord.type') !== coord.type) {
         throw new Error('quickType and coord had conflicted.');
-      } else {
-        config.coord = {
-          ...coord,
-          ...currType.coord,
-        };
       }
     }
   }
 
-  return config;
+  return series;
 };

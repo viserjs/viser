@@ -15,4 +15,8 @@ export default [
     type: 'chord-1',
     case: ['json', 'react', 'vue', 'angular']
   },
+  {
+    type: 'map-1',
+    case: ['json']
+  },
 ];

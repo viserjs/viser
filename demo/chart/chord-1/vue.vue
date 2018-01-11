@@ -1,11 +1,11 @@
 <template>
   <div>
-    <v-chart :force-fit="true" :height="600" :data-pre="dataPre" :data="data" :scale="scale">
-      <v-view :view-id="'2'" :data-view="'edges'">
+    <v-chart :force-fit="true" :height="600" :scale="scale">
+      <v-view :view-id="'2'" :data="edgesData">
         <v-coord :type="'polar'" :direction="'yReverse'" />
         <v-edge :position="'x*y'" :color="'source'" :shape="'arc'" :opacity="0.5" :tooltip="'source*target*value'" />
       </v-view>
-      <v-view :view-id="'3'" :data-view="'nodes'">
+      <v-view :view-id="'3'" :data="nodesData">
         <v-coord :type="'polar'" :direction="'yReverse'" />
         <v-polygon :position="'x*y'" :color="'id'" :label="label" />
       </v-view>
@@ -13,14 +13,29 @@
   </div>
 </template>
 <script>
-import { data, scale, dataPre } from "./data";
+import { data, scale } from "./data";
+const DataSet = require('@antv/data-set');
+
+const ds = new DataSet();
+const dv = ds.createView().source(data, {
+  type: 'graph',
+  edges: d => d.links
+});
+
+dv.transform({
+  type: 'diagram.arc',
+  sourceWeight: e => e.sourceWeight,
+  targetWeight: e => e.targetWeight,
+  weight: true,
+  marginRatio: 0.3
+});
 
 export default {
   data() {
     return {
-      data,
-      dataPre,
       scale,
+      edgesData: dv.edges,
+      nodesData: dv.nodes,
       label: [
         'name', {
           labelEmit: true,

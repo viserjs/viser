@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
-import viser, { IViewConfig, ICoord, IDataPre, IScale, IAxis, IGuide, ISeries, ITooltip, IFacet, ILegend } from 'viser';
+import viser, { IViewConfig, ICoord, IScale, IAxis, IGuide, ISeries, ITooltip, IFacet, ILegend } from 'viser';
 
 function generateRandomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
@@ -31,7 +31,6 @@ export class LiteChart implements AfterViewInit, OnChanges {
   @Input() data: any;
   @Input() width?: number;
   @Input() height?: number;
-  @Input() dataView?: string;
   @Input() gemo?: string;
   @Input() color?: any[];
   @Input() label?: boolean;
@@ -43,13 +42,11 @@ export class LiteChart implements AfterViewInit, OnChanges {
   @Input() opacity?: any;
   @Input() size?: any;
   @Input() coord?: ICoord;
-  @Input() dataPre?: IDataPre;
   @Input() scale?: IScale;
   @Input() axis?: IAxis;
   @Input() guide?: IGuide;
   @Input() series?: ISeries;
   @Input() tooltip?: ITooltip;
-  @Input() calData?: any;
   @Input() facet?: IFacet;
   @Input() legend?: ILegend;
   @Input() pie?: boolean;
@@ -79,23 +76,13 @@ export class LiteChart implements AfterViewInit, OnChanges {
   config: any = {};
   views: IViewConfig = {};
   chart: any = null;
-  viewId: string;
 
   constructor() {
-    this.viewId = generateRandomNum();
   }
 
   combineViewConfig(props: any, config: any) {
     if (props.data) {
       config.data = props.data;
-    }
-
-    if (props.dataMapping) {
-      config.dataMapping = props.dataMapping;
-    }
-
-    if (props.dataPre) {
-      config.dataPre = props.dataPre;
     }
 
     if (props.scale) {
@@ -166,6 +153,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
       'edge',
       'sankey',
       'errobBar',
+      'jitterPoint',
     ];
 
     for (const res of regSeries) {
@@ -189,7 +177,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
   }
 
   getProps(allProps: any) {
-    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId', 'views', 'constructor',
+    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'constructor',
       'combineViewConfig', 'combineChartConfig', 'combineContentConfig', 'ngAfterViewInit', 'getProps',
       'combineSeriesConfig', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
 

@@ -89,14 +89,6 @@ export default class Chart extends React.Component<IRChart, any> {
       config.data = props.data;
     }
 
-    if (props.dataPre) {
-      config.dataPre = props.dataPre;
-    }
-
-    if (props.dataView) {
-      config.dataView = props.dataView;
-    }
-
     if (props.scale) {
       config.scale = props.scale;
     }
@@ -134,6 +126,7 @@ export default class Chart extends React.Component<IRChart, any> {
       'heatmap',
       'edge',
       'sankey',
+      'jitterPoint',
     ];
 
     if (regSeries.indexOf(realName) < 0 && isOwnEmpty(props)) {
@@ -262,7 +255,13 @@ export default class Chart extends React.Component<IRChart, any> {
     this.combineViewConfig(this.props, this.config);
 
     this.changeViewConfig();
-    this.chart.repaint(this.config);
+
+    if (this.chart) {
+      this.chart.repaint(config);
+    } else {
+      config.chart.container = this.container;
+      this.chart = viser(config);
+    }
   }
 
   clearConfigData() {

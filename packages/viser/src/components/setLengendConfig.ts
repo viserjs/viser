@@ -1,8 +1,6 @@
 import * as _ from 'lodash';
 import * as EventUtils from '../utils/EventUtils';
 
-const regEventName = /on(.+)(MouseEnter|MouseMove|MouseLeave|Click|DdlClick|MouseDown|MouseUp|TouchStart|TouchMove|TouchEnd)/;
-
 function setHighlight(item: any) {
   item.onHover = (ev: any) => {
     const shapes = ev.shapes;
@@ -14,14 +12,17 @@ function setHighlight(item: any) {
 }
 
 export const process = (chart: any, config: any) => {
-  const legend = config.legend;
-  const isArr = Array.isArray(legend);
+  const cLegend = _.cloneDeep(config.legend);
+  const isArr = Array.isArray(cLegend);
 
-  if (!legend || (isArr && legend.length === 0)) {
+  if (_.isNil(cLegend) || cLegend === false ||
+     (isArr && cLegend.length === 0)) {
     return chart.legend(false);
   }
 
-  const arrLegend = isArr ? legend : [legend];
+  if (cLegend === true) { return chart.legend(); }
+
+  const arrLegend = isArr ? cLegend : [cLegend];
 
   for (let res of arrLegend) {
     if (res.highlight) {

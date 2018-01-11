@@ -4,7 +4,7 @@ import IFacet from './IFacet';
 import ILegend from './ILegend';
 
 interface ISMain {
-  data: any;
+  data?: any;
   viewId?: string;
   chart?: IChart;
   facet?: IFacet;

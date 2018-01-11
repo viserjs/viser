@@ -1,8 +1,8 @@
 import { NgModule, enableProdMode } from '@angular/core';
 import { Chart } from './Chart';
 import { LiteChart } from './LiteChart';
-import { Axis, Coord, Facet, Guide, Legend, Tooltip, View, FacetView, Series, Pie, Sector, Line, SmoothLine, DashLine, Area, StackArea, SmoothArea,
- Bar, StackBar, DodgeBar, Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap, Edge, Sankey, ErrorBar } from './components/index';
+import { Axis, Brush, Coord, Facet, Guide, Legend, Tooltip, View, FacetView, Series, Pie, Sector, Line, SmoothLine, DashLine, Area, StackArea, SmoothArea,
+ Bar, StackBar, DodgeBar, Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap, Edge, Sankey, ErrorBar, JitterPoint, StackInterval } from './components/index';
 import * as viser from 'viser';
 
 @NgModule({
@@ -10,6 +10,7 @@ import * as viser from 'viser';
     Chart,
     LiteChart,
     Axis,
+    Brush,
     Coord,
     Facet,
     Guide,
@@ -41,11 +42,14 @@ import * as viser from 'viser';
     Edge,
     Sankey,
     ErrorBar,
+    JitterPoint,
+    StackInterval,
   ],
   exports: [
     Chart,
     LiteChart,
     Axis,
+    Brush,
     Coord,
     Facet,
     Guide,
@@ -77,6 +81,8 @@ import * as viser from 'viser';
     Edge,
     Sankey,
     ErrorBar,
+    JitterPoint,
+    StackInterval,
   ],
 })
 export class ViserModule {
