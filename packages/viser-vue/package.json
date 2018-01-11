@@ -1,6 +1,6 @@
 {
   "name": "viser-vue",
-  "version": "1.3.7",
+  "version": "2.0.0",
   "description": "viser-vue is vue of viser.",
   "repository": "viserjs/viser-vue",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "vue": ">2"
   },
   "dependencies": {
-    "viser": "^1.0.3",
+    "viser": "^2.0.0",
     "vue": "^2.5.3",
     "@types/node": "*"
   },
