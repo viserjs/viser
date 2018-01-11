@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { data, scale } from "./data";
+import { data, scale } from './data';
 const DataSet = require('@antv/data-set');
 
 const ds = new DataSet();
@@ -32,7 +32,7 @@ export default {
       scale,
       height: 400,
       stackBarStyle: {
-        stroke: "#fff",
+        stroke: '#fff',
         lineWidth: 1
       }
     };
