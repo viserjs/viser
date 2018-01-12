@@ -1,5 +1,6 @@
 import viser from '../../../packages/viser/src/index';
 import { geoData, data } from './data';
+const DataSet = require('@antv/data-set');
 
 const scale = [{
   dataKey: 'x',
@@ -11,33 +12,31 @@ const scale = [{
   nice: false,
 }];
 
-const bgDataPre = {
-  connector: {
-    type: 'GeoJSON'
-  },
-  transform: {
-    type: 'geo.projection',
-    projection: 'geoMercator',
-    as: ['x', 'y', 'centroidX', 'centroidY'],
-  },
-};
+const ds = new DataSet();
 
-const userDataPre = (dv) => {
-  const geo = dv['111'];
-  return {
-    transform: {
-      type: 'map',
-      callback: (obj) => {
-        const projectedCoord = geo.geoProjectPosition([obj.lng * 1, obj.lat * 1], 'geoMercator');
-        obj.x = projectedCoord[0];
-        obj.y = projectedCoord[1];
-        obj.deaths = obj.deaths * 1;
-        obj.magnitude = obj.magnitude * 1;
-        return obj;
-      }
-    },
+// draw the map
+const dv = ds.createView('back')
+.source(geoData, {
+  type: 'GeoJSON'
+})
+.transform({
+  type: 'geo.projection',
+  projection: 'geoMercator',
+  as: [ 'x', 'y', 'centroidX', 'centroidY' ]
+});
+
+const userData = ds.createView().source(data);
+userData.transform({
+  type: 'map',
+  callback: obj => {
+    const projectedCoord = dv.geoProjectPosition([obj.lng * 1, obj.lat * 1], 'geoMercator');
+    obj.x = projectedCoord[0];
+    obj.y = projectedCoord[1];
+    obj.deaths = obj.deaths * 1;
+    obj.magnitude = obj.magnitude * 1;
+    return obj;
   }
-};
+});
 
 viser({
   scale,
@@ -59,8 +58,7 @@ viser({
   },
   views: [{
     viewId: '111',
-    data: geoData,
-    dataPre: bgDataPre,
+    data: dv,
     tooltip: false,
     series: {
       quickType: 'polygon',
@@ -74,8 +72,7 @@ viser({
     }
   }, {
     viewId: '122',
-    data: data,
-    dataPre: userDataPre,
+    data: userData,
     series: {
       quickType: 'point',
       position: 'x*y',

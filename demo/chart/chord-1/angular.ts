@@ -4,18 +4,33 @@ import { Component, enableProdMode, NgModule } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserModule } from '@angular/platform-browser';
 import { ViserModule } from '../../../packages/viser-ng/src/index';
-import { data, dataPre, scale } from './data';
+import { data, scale } from './data';
+const DataSet = require('@antv/data-set');
+
+const ds = new DataSet();
+const dv = ds.createView().source(data, {
+  type: 'graph',
+  edges: d => d.links
+});
+
+dv.transform({
+  type: 'diagram.arc',
+  sourceWeight: e => e.sourceWeight,
+  targetWeight: e => e.targetWeight,
+  weight: true,
+  marginRatio: 0.3
+});
 
 @Component({
   selector: '#mount',
   template: `
   <div>
-    <v-chart [forceFit]="forceFit" [height]="height" [data]="data" [dataPre]="dataPre" [scale]="scale">
-      <v-view viewId="2" dataView="edges">
+    <v-chart [forceFit]="forceFit" [height]="height" [data]="data" [scale]="scale">
+      <v-view viewId="2" [data]="edgesData">
         <v-coord type="polar" direction="yReverse"></v-coord>
         <v-edge position="x*y" color="source" shape="arc" opacity="0.5" tooltip="source*target*value"></v-edge>
       </v-view>
-      <v-view viewId="3" dataView="nodes">
+      <v-view viewId="3" [data]="nodesData">
         <v-coord type="polar" direction="yReverse" ></v-coord>
         <v-polygon position="x*y" color="id" [label]="label" ></v-polygon>
       </v-view>
@@ -23,12 +38,11 @@ import { data, dataPre, scale } from './data';
   </div>
   `
 })
-
 class AppComponent {
   forceFit: boolean= true;
   height: number = 600;
-  data = data;
-  dataPre = dataPre;
+  edgesData = dv.edges;
+  nodesData = dv.nodes;
   scale = scale;
   label = [
     'name', {

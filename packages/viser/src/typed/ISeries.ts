@@ -1,6 +1,6 @@
 import * as IStyle from './IStyle';
 
-type eventFunc = (ev: any) => void;
+type eventFunc = (ev: any, chart: any) => void;
 
 export interface ISeries {
   quickType?: string;
@@ -26,6 +26,15 @@ export interface ISeries {
   onTouchStart?: eventFunc;
   onTouchMove?: eventFunc;
   onTouchEnd?: eventFunc;
+  onLabelMouseDown?: eventFunc;
+  onLabelMouseMove?: eventFunc;
+  onLabelMouseLeave?: eventFunc;
+  onLabelMouseUp?: eventFunc;
+  onLabelClick?: eventFunc;
+  onLabelDbClick?: eventFunc;
+  onLableTouchStart?: eventFunc;
+  onLabelTouchMove?: eventFunc;
+  onLabelTouchEnd?: eventFunc;
 }
 
 type ISeriesConfig = ISeries | ISeries[];

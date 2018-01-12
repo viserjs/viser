@@ -2,7 +2,7 @@ import * as IStyle from './IStyle';
 
 type func = () => void;
 type formatterFunc = (val: number) => string | number;
-type eventFunc = (ev: any) => void;
+type eventFunc = (ev: any, chart: any) => void;
 
 export interface ILegend {
   dataKey?: string;

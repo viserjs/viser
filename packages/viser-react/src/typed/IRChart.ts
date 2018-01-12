@@ -1,11 +1,9 @@
-import { IChart, ICoord, IDataPre, IScale } from 'viser';
+import { IChart, ICoord, IScale } from 'viser';
 
 interface ISChartProps {
   data?: any;
   viewId?: string;
-  dataView?: any;
   coord?: ICoord;
-  dataPre?: IDataPre;
   scale?: IScale;
 }
 

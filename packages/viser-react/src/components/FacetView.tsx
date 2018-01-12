@@ -1,6 +1,9 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import * as PropTypes from 'prop-types';
 import { IView } from 'viser';
+
+const isReact16 = ReactDOM.createPortal !== undefined;
 
 function generateRandomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
@@ -48,6 +51,10 @@ export default class FacetView extends React.Component<IView, any> {
   }
 
   render() {
-    return this.props.children;
+    if (isReact16) {
+      return this.props.children;
+    } else {
+      return React.Children.only(this.props.children);
+    }
   }
 }

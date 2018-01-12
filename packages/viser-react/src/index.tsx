@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as viser from 'viser';
-import { Coord, Tooltip, Legend, Guide, Axis, Series, Line,
+import { Coord, Tooltip, Legend, Guide, Axis, Series, Brush, Line,
  Pie, Sector, SmoothLine, DashLine, Area, StackArea, SmoothArea,
  Bar, StackBar, DodgeBar, Interval, StackInterval, DodgeInterval,
  Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap,
@@ -17,7 +17,7 @@ export { default as FacetView } from './components/FacetView';
 export { default as Facet } from './components/Facet';
 export { default as LiteChart } from './components/LiteChart';
 export {
-  Coord, Tooltip, Legend, Guide, Axis, Series, Line,
+  Coord, Tooltip, Legend, Guide, Axis, Series, Brush, Line,
   Pie, Sector, SmoothLine, DashLine, Area, StackArea, SmoothArea,
   Bar, StackBar, DodgeBar, Interval, StackInterval, DodgeInterval,
   Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap,

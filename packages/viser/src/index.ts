@@ -1,8 +1,8 @@
 import CommonChart from './core/CommonChart';
 import IAxisConfig, { IAxis } from './typed/IAxis';
+import IBrush from './typed/IBrush';
 import IChart from './typed/IChart';
 import ICoord, { IPolarCoord, IRectCoord } from './typed/ICoord';
-import IDataPre from './typed/IDataPre';
 import IFacet from './typed/IFacet';
 import IGuideConfig, { IGuide, ILineGuide, ITextGuide, IImageGuide, IRegionGuide, IArcGuide } from './typed/IGuide';
 import ILegendConfig, { ILegend } from './typed/ILegend';
@@ -18,11 +18,11 @@ const G2 = require('@antv/g2');
 export {
   IAxis,
   IAxisConfig,
+  IBrush,
   IChart,
   ICoord,
   IRectCoord,
   IPolarCoord,
-  IDataPre,
   IFacet,
   IGuide,
   IGuideConfig,

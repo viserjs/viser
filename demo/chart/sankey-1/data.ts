@@ -121,18 +121,6 @@ export const data = {
   ],
 };
 
-export const dataPre = {
-  connector: {
-    type: 'graph',
-    edges: d => d.links,
-  },
-  transform: {
-    type: 'diagram.sankey',
-    nodeWidth: 0.015,
-    nodePadding: 0.02,
-  },
-};
-
 export const scale = [{
   dataKey: 'x',
   sync: true

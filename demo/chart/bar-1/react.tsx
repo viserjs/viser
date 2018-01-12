@@ -1,7 +1,8 @@
 import { Chart, Tooltip, Axis, StackBar, LiteChart, Guide } from '../../../packages/viser-react/src/index';
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
-import { data, dataPre, scale } from './data'
+import { data, scale } from './data'
+const DataSet = require('@antv/data-set');
 
 export const repaintData = [
   { country: 'Europe', year: '1750', value: 2163 },
@@ -22,7 +23,12 @@ export const repaintData = [
   { country: 'Asia', year: '2100', value: 27268 }
 ];
 
+const ds = new DataSet();
+
 class App extends React.Component {
+  dv: any;
+  ds: any;
+
   state = {
     height: 400,
     lineWidth: 1,
@@ -31,36 +37,46 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
+
+    const dv = ds.createView().source(data);
+    dv.transform({
+      type: 'percent',
+      field: 'value',
+      dimension: 'country',
+      groupBy: ['year'],
+      as: 'percent'
+    });
+
+    this.state.data = dv.rows;
   }
 
   handleClick = () => {
+    const dv = ds.createView().source(repaintData);
+    dv.transform({
+      type: 'percent',
+      field: 'value',
+      dimension: 'country',
+      groupBy: ['year'],
+      as: 'percent'
+    });
+
     this.setState({
       height: 600,
       lineWidth: 10,
-      data: repaintData,
+      data: dv.rows,
     })
   }
 
   render() {
-    const { data } = this.state;
     return (
       <div>
         <button onClick={this.handleClick}>Click</button>
-        <Chart forceFit height={this.state.height} data={data} dataPre={dataPre} scale={scale}>
+        <Chart forceFit height={this.state.height} data={this.state.data} scale={scale}>
           <Tooltip />
           <Axis />
           <StackBar position='year*percent' color='country' style={{ stroke: '#fff', lineWidth: this.state.lineWidth }} />
-          <Guide
-            type="html"
-            position={['50%', '0%']}
-            html={`
-              <div style="width: 300px;text-align: center;">
-                <p style="font-size: 12px;color: #545454;margin: 0;">${Math.random() * 10}%</p>
-              </div>
-            `}
-          />
         </Chart>
-        {/* <LiteChart height={400} data={data} dataPre={dataPre} dataMapping={dataMapping} forceFit stackBar /> */}
+        {/* <LiteChart height={400} data={dv.rows} forceFit stackBar /> */}
       </div>
     );
   }
