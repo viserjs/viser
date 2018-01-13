@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import * as PropTypes from 'prop-types';
 import IRLiteChart from '../typed/IRLiteChart';
 import viser from 'viser';
 
