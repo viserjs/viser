@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit, OnChanges, Output, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, OnChanges, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
 import viser, { IScale } from 'viser';
 import { ChartContext } from './chartService';
 import IRChart from './typed/IRChart';
