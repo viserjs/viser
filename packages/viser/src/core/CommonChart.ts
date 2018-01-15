@@ -175,8 +175,9 @@ class CommonChart {
   }
 
   private setFacetViews(chart: any, facet: any, views: IMainConfig) {
-    const data = views.data ? views.data : facet.data;
-    this.setDataSource(chart, data);
+    if (views.data) {
+      this.setDataSource(chart, views.data);
+    }
     this.setContent(chart, views);
   }
 
