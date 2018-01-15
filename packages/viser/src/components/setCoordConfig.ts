@@ -18,9 +18,12 @@ function setPolarCoord(chart: any, coord: any) {
   }
 
   if (coord.startAngle || coord.endAngle) {
-    if (!coord.startAngle || (coord.startAngle && (coord.startAngle < -360 || coord.startAngle > 360)) ||
-        !coord.endAngle || (coord.endAngle && (coord.endAngle < -360 || coord.endAngle > 360))) {
-      throw new Error('please set correct starAngle and endAngle');
+    if (coord.startAngle && (coord.startAngle < -360 || coord.startAngle > 360)) {
+      throw new Error('please set correct starAngle');
+    }
+
+    if (coord.endAngle && (coord.endAngle < -360 || coord.endAngle > 360)) {
+      throw new Error('please set correct endAngle');
     }
 
     newCoord = {
