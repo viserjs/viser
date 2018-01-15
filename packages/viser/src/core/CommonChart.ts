@@ -47,10 +47,7 @@ class CommonChart {
     loadShapes();
     this.setEvents(chart, config);
 
-    if (!_.isEmpty(config.data) && (!_.isEmpty(config.series) || !_.isEmpty(config.facet))) {
-      this.setDataSource(chart, config.data);
-    }
-
+    this.setDataSource(chart, config.data);
     this.setCoord(chart, config);
     this.setTooltip(chart, config);
     this.setAxis(chart, config);
@@ -103,7 +100,9 @@ class CommonChart {
   }
 
   private setDataSource(chart: any, data: any) {
-    chart.source(data);
+    if (!_.isNil(data) && !_.isEmpty(data)) {
+      chart.source(data);
+    }
   }
 
   private setScale(chart: any, config: IMainConfig) {
@@ -175,9 +174,7 @@ class CommonChart {
   }
 
   private setFacetViews(chart: any, facet: any, views: IMainConfig) {
-    if (views.data) {
-      this.setDataSource(chart, views.data);
-    }
+    this.setDataSource(chart, views.data);
     this.setContent(chart, views);
   }
 

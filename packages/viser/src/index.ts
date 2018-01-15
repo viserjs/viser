@@ -47,8 +47,35 @@ export const registerAnimation = CustomizeUtils.registerAnimation;
 export const registerShape = CustomizeUtils.registerShape;
 export const Global = G2.Global;
 
+function hasDataCondition(config: any) {
+  let hasData = false;
+
+  if (!_.isEmpty(config.data)) {
+    hasData = true;
+  }
+
+  if (!_.isNil(config.views)) {
+    if (_.isPlainObject(config.views) && !_.isEmpty(config.views.data)) {
+      hasData = true;
+    }
+
+    if (_.isArray(config.views)) {
+      for (let item of config.views) {
+        if (!_.isEmpty(item.data)) {
+          hasData = true;
+        }
+      }
+    }
+  }
+
+  return hasData;
+}
+
 export default function(config: any) {
   if (_.isNil(config) || _.isEmpty(config)) { return; }
+
+  const hasData = hasDataCondition(config);
+  if (!hasData) { return; }
 
   const commonChart = new CommonChart(config);
   commonChart.render();
