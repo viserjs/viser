@@ -137,11 +137,7 @@ function setSeriesLabel(chart: any, currSeries: ISeries) {
   }
 
   if (_.isArray(label) && label.length >= 1) {
-    if (label[1]) {
-      return chart.label(label[0], label[1]);
-    }
-
-    return chart.label(label[0]);
+    return chart.label(...label);
   }
 
   return chart;
