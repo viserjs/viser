@@ -21,7 +21,7 @@
     "analyse": "NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "peerDependencies": {
-    "vue": ">2"
+    "vue": ">=1"
   },
   "dependencies": {
     "viser": "^1.0.3",
