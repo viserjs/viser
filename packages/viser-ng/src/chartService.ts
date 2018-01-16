@@ -11,6 +11,9 @@ export class ChartContext {
   public views: any = {};
   public facetviews: any = {};
   public lastFacetId: string;
+  public timer: any;
+  public chart: any;
+  public chartDivElement: any;
   constructor() {
     this.viewId = generateRandomNum();
   }
