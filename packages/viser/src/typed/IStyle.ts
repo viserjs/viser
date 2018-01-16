@@ -1,7 +1,7 @@
 export interface ITextStyle {
   fontSize?: number | string;
   fontFamily?: string;
-  fontWeight?: string;
+  fontWeight?: number;
   textAlign?: string;
   fill?: string;
   lineHeight?: number;
