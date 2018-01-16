@@ -13,31 +13,43 @@ const scale = [{
   sync: true,
 }];
 
-class App extends React.Component {
-  render() {
-    const views = (view, facet) => {
-      const data = facet.data;
-      const dv = new DataView();
-      dv.source(data).transform({
-        type: 'aggregate',
-        fields: [ 'price' ],
-        operations: [ 'mean' ],
-        as: [ 'mean' ],
-        groupBy: [ 'cut' ]
-      });
+const views = (view, facet) => {
+  const data = facet.data;
+  const dv = new DataView();
+  dv.source(data).transform({
+    type: 'aggregate',
+    fields: [ 'price' ],
+    operations: [ 'mean' ],
+    as: [ 'mean' ],
+    groupBy: [ 'cut' ]
+  });
 
-      return {
-        data: dv,
-        series: {
-          quickType: 'bar',
-          position: 'cut*mean',
-          color: 'cut',
-        }
-      }
+  return {
+    data: dv,
+    series: {
+      quickType: 'bar',
+      position: 'cut*mean',
+      color: 'cut',
     }
+  }
+}
+
+class App extends React.Component {
+  state = {
+    data: [],
+  };
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        data: sourcedata
+      });
+    }, 500);
+  }
+  render() {
     return (
       <div>
-        <Chart forceFit={true} height={600} data={sourcedata} scale={scale}>
+        <Chart forceFit={true} height={600} data={this.state.data} scale={scale}>
           <Tooltip />
           <Legend />
           <Coord type="polar" />

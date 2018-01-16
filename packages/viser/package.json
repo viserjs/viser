@@ -1,6 +1,6 @@
 {
   "name": "viser",
-  "version": "2.0.1",
+  "version": "2.0.4",
   "description": "viser is a toolkit fit for data vis engineer.",
   "repository": "viserjs/viser",
   "license": "MIT",
@@ -21,7 +21,6 @@
     "analyse": "NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "dependencies": {
-    "@antv/data-set": "^0.8.0",
     "@antv/g2": "^3.0.0",
     "@antv/g2-brush": "^0.0.2",
     "@types/d3-format": "*",

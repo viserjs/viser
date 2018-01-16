@@ -1,6 +1,6 @@
 {
   "name": "viser-vue",
-  "version": "2.0.1",
+  "version": "2.0.4",
   "description": "viser-vue is vue of viser.",
   "repository": "viserjs/viser-vue",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "analyse": "NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "peerDependencies": {
-    "vue": ">2"
+    "vue": ">=1"
   },
   "dependencies": {
     "viser": "^2.0.0",

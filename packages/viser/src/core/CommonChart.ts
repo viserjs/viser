@@ -47,10 +47,7 @@ class CommonChart {
     loadShapes();
     this.setEvents(chart, config);
 
-    if (!_.isEmpty(config.data) && (!_.isEmpty(config.series) || !_.isEmpty(config.facet))) {
-      this.setDataSource(chart, config.data);
-    }
-
+    this.setDataSource(chart, config.data);
     this.setCoord(chart, config);
     this.setTooltip(chart, config);
     this.setAxis(chart, config);
@@ -61,9 +58,7 @@ class CommonChart {
 
     chart.render();
 
-    if (!_.isEmpty(config.brush)) {
-      this.setBrush(chart, config);
-    }
+    this.setBrush(chart, config);
   }
 
   public repaint(config: IMainConfig) {
@@ -103,7 +98,9 @@ class CommonChart {
   }
 
   private setDataSource(chart: any, data: any) {
-    chart.source(data);
+    if (!_.isNil(data) && !_.isEmpty(data)) {
+      chart.source(data);
+    }
   }
 
   private setScale(chart: any, config: IMainConfig) {
@@ -175,8 +172,7 @@ class CommonChart {
   }
 
   private setFacetViews(chart: any, facet: any, views: IMainConfig) {
-    const data = views.data ? views.data : facet.data;
-    this.setDataSource(chart, data);
+    this.setDataSource(chart, views.data);
     this.setContent(chart, views);
   }
 
@@ -207,6 +203,8 @@ class CommonChart {
   }
 
   private setBrush(chart: any, config: any) {
+    if (_.isNil(config.brush) || _.isEmpty(config.brush)) { return; }
+
     const { brush } = config;
 
     const brushConfig = {
@@ -257,6 +255,8 @@ class CommonChart {
       chart.changeData(config.data);
     }
     chart.repaint();
+
+    this.setBrush(chart, config);
   }
 }
 
