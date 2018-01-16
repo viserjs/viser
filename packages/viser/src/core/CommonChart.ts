@@ -58,9 +58,7 @@ class CommonChart {
 
     chart.render();
 
-    if (!_.isEmpty(config.brush)) {
-      this.setBrush(chart, config);
-    }
+    this.setBrush(chart, config);
   }
 
   public repaint(config: IMainConfig) {
@@ -205,6 +203,8 @@ class CommonChart {
   }
 
   private setBrush(chart: any, config: any) {
+    if (_.isNil(config.brush) || _.isEmpty(config.brush)) { return; }
+
     const { brush } = config;
 
     const brushConfig = {
@@ -255,6 +255,8 @@ class CommonChart {
       chart.changeData(config.data);
     }
     chart.repaint();
+
+    this.setBrush(chart, config);
   }
 }
 
