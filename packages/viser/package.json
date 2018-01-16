@@ -21,7 +21,6 @@
     "analyse": "NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "dependencies": {
-    "@antv/data-set": "^0.8.0",
     "@antv/g2": "^3.0.0",
     "@antv/g2-brush": "^0.0.2",
     "@types/d3-format": "*",
