@@ -54,6 +54,19 @@ function omit(obj: any, attr: string) {
   return newObj;
 }
 
+function uniqComponentIdArray(configs: Array<any>) {
+  const componentIds: any = {};
+  const newConfigs = [];
+  for (let i = (configs.length - 1); i >= 0; i--) {
+    const config = configs[i];
+    if (!componentIds[config.componentId]) {
+      newConfigs.push(config);
+      componentIds[config.componentId] = true;
+    }
+  }
+  return newConfigs;
+}
+
 type eventFunc = (chart: any, ev: any) => void;
 
 interface IBackground {
@@ -96,7 +109,6 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
   @Input() onPlotDbClick?: eventFunc;
   @ViewChild('chartDom') chartDiv?: any;
   config: any = {};
-  chart: any = null;
   @Input() viewId: string;
   private componentId = generateRandomNum();
   private vcRef: any;
@@ -182,23 +194,37 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
       }
       config.series.push({
         quickType: realName,
-        ...props
+        ...props,
+        componentId: this.componentId
       });
+      config.series = uniqComponentIdArray(config.series);
     } else if (nameLowerCase === 'axis') {
       if (!config.axis) {
         config.axis = [];
       }
-      config.axis.push(props);
+      config.axis.push({
+        ...props,
+        componentId: this.componentId
+      });
+      config.axis = uniqComponentIdArray(config.axis);
     } else if (nameLowerCase === 'series') {
       if (!config.series) {
         config.series = [];
       }
-      config.series.push(props);
+      config.series.push({
+        ...props,
+        componentId: this.componentId
+      });
+      config.series = uniqComponentIdArray(config.series);
     } else if (nameLowerCase === 'guide') {
       if (!config.guide) {
         config.guide = [];
       }
-      config.guide.push(props);
+      config.guide.push({
+        ...props,
+        componentId: this.componentId
+      });
+      config.guide = uniqComponentIdArray(config.guide);
     } else {
       config[nameLowerCase] = props;
     }
@@ -233,14 +259,14 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngAfterViewInit() {
-    if (this.chart) {
-      this.chart.destroy();
+    if (this.context.chart) {
+      this.context.chart.destroy();
     }
     this.initChart();
   }
 
   getProps(allProps: any) {
-    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'facetviews', 'componentId', 'vcRef',
+    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId','facetviews', 'componentId', 'vcRef',
       'constructor', 'combineViewConfig', 'convertValueToNum', 'combineChartConfig', 'combineContentConfig',
       'ngOnInit', 'ngAfterViewInit', 'getProps', 'changeViewConfig', 'getViewType', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
     if (['FacetView', 'View'].indexOf(this.constructor.name) < 0) {
@@ -294,7 +320,7 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
     return this.vcRef.parentInjector.elDef.element.name;
   }
 
-  initChart(rerender?: any) {
+  initChart(rerender?: boolean) {
     const name = this.constructor.name;
     const props = this.getProps(this);
     const config = this.context.config;
@@ -341,23 +367,35 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
         }
       }
     }
+    if (rerender) {
+      this.renderChart(true);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!this.chart) {
-      return;
-    }
     this.initChart(true);
   }
 
-  renderChart(rerender?: any) {
-    this.context.config.chart.container = this.chartDiv.nativeElement;
+  renderChart(rerender?: boolean) {
     this.changeViewConfig();
-
-    if (!rerender || !this.chart) {
-      this.chart = viser(this.context.config);
-    } else {
-      this.chart.repaint(this.context.config);
+    const name = this.constructor.name
+    if (rerender) {
+      if (this.context.timer) {
+        window.clearTimeout(this.context.timer);
+        this.context.timer = null;
+      }
+      this.context.timer = setTimeout(() => {
+        if (this.context.chart) {
+          this.context.chart.repaint(this.context.config);
+        } else {
+          this.context.config.chart.container = this.context.chartDivElement;
+          this.context.chart = viser(this.context.config);
+        }
+      }, 90);
+    } else if (!this.context.chart && name === 'Chart') {
+      this.context.config.chart.container = this.chartDiv.nativeElement;
+      this.context.chartDivElement = this.chartDiv.nativeElement;
+      this.context.chart = viser(this.context.config);
     }
   }
 }
