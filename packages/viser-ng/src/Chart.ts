@@ -102,7 +102,7 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
   private vcRef: any;
 
   constructor(private context: ChartContext, vcRef: ViewContainerRef) {
-    this.viewId = context.viewId;
+    this.viewId = generateRandomNum();
     this.context = context;
     this.vcRef = vcRef;
   }
@@ -240,10 +240,12 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
   }
 
   getProps(allProps: any) {
-    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId', 'facetviews', 'componentId', 'vcRef',
+    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'facetviews', 'componentId', 'vcRef',
       'constructor', 'combineViewConfig', 'convertValueToNum', 'combineChartConfig', 'combineContentConfig',
       'ngOnInit', 'ngAfterViewInit', 'getProps', 'changeViewConfig', 'getViewType', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
-
+    if (['FacetView', 'View'].indexOf(this.constructor.name) < 0) {
+      strippingProperties.push('viewId');
+    }
     if (allProps) {
       const properties: {
         [key: string]: string
@@ -298,8 +300,8 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
     const config = this.context.config;
     const views = this.context.views;
     const viewType = this.getViewType();
-    const hasInViews = ['v-facet-view', 'v-view'].indexOf(viewType) !== -1;;
-    const viewId = props.viewId || this.viewId || this.componentId;
+    const hasInViews = ['v-facet-view', 'v-view'].indexOf(viewType) !== -1;
+    const viewId = this.viewId || this.componentId;
 
     if (name === 'Chart') {
       this.combineChartConfig(props, this.context.config);
