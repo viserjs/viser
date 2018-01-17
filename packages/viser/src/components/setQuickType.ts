@@ -114,7 +114,7 @@ const QUICK_TYPE = [
     type: 'point',
     series: {
       gemo: 'point',
-      shape: 'circle',
+      shape: 'hollowCircle',
     },
   },
   {
