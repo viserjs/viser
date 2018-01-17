@@ -18,16 +18,23 @@ function setPolarCoord(chart: any, coord: any) {
   }
 
   if (coord.startAngle || coord.endAngle) {
-    if (!coord.startAngle || (coord.startAngle && (coord.startAngle < -360 || coord.startAngle > 360)) ||
-        !coord.endAngle || (coord.endAngle && (coord.endAngle < -360 || coord.endAngle > 360))) {
-      throw new Error('please set correct starAngle and endAngle');
+    if (coord.startAngle && (coord.startAngle < -360 || coord.startAngle > 360)) {
+      throw new Error('please set correct starAngle');
+    } else {
+      newCoord = {
+        ...newCoord,
+        startAngle: degreeToRadian(coord.startAngle),
+      };
     }
 
-    newCoord = {
-      ...newCoord,
-      startAngle: degreeToRadian(coord.startAngle),
-      endAngle: degreeToRadian(coord.endAngle),
-    };
+    if (coord.endAngle && (coord.endAngle < -360 || coord.endAngle > 360)) {
+      throw new Error('please set correct endAngle');
+    } else {
+      newCoord = {
+        ...newCoord,
+        endAngle: degreeToRadian(coord.endAngle),
+      };
+    }
   }
 
   const polarCoord = chart.coord(coord.type, { ...newCoord });
