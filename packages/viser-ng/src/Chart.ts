@@ -57,7 +57,7 @@ function omit(obj: any, attr: string) {
 function uniqComponentIdArray(configs: Array<any>) {
   const componentIds: any = {};
   const newConfigs = [];
-  for (let i = (configs.length - 1); i >= 0; i--) {
+  for (let i = 0; i <= (configs.length - 1); i++) {
     const config = configs[i];
     if (!componentIds[config.componentId]) {
       newConfigs.push(config);
@@ -126,8 +126,6 @@ export class Chart implements AfterViewInit, OnChanges {
       this.componentId = this.context.lastFacetId;
       this.viewId = this.context.lastFacetId;
     }
-
-    console.log(name, viewType, hasInViews, this.viewId, this.context.lastFacetId);
 
   }
 
@@ -379,7 +377,8 @@ export class Chart implements AfterViewInit, OnChanges {
 
   renderChart(rerender?: boolean) {
     this.changeViewConfig();
-    const name = this.constructor.name
+    const name = this.constructor.name;
+
     if (rerender) {
       if (this.context.timer) {
         window.clearTimeout(this.context.timer);
