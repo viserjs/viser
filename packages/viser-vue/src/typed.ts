@@ -12,7 +12,7 @@ const props: any = [
   // legend
   'dataKey', 'show', 'position', 'title', 'titleGap', 'offset', 'offsetX', 'offsetY', 'items', 'itemGap', 'itemsGroup', 'itemMarginBottom', 'itemWidth', 'unCheckColor', 'background',
   'allowAllCanceled', 'itemFormatter', 'marker', 'textStyle', 'clickable', 'hoverable', 'selectedMode', 'onHover', 'onClick', 'reversed', 'layout', 'backPadding', 'useHtml',
-  'autoWrap', 'autoPosition', 'container', 'containerTpl', 'itemTpl',
+  'autoWrap', 'autoPosition', 'container', 'containerTpl', 'itemTpl', 'legendMarker',
   // main
   'data', 'viewId', 'scale', 'forceFit',
   // series
