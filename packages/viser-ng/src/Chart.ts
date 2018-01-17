@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit, OnChanges, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
 import viser, { IScale } from 'viser';
 import { ChartContext } from './chartService';
 import IRChart from './typed/IRChart';
@@ -83,7 +83,7 @@ interface IBackground {
   selector: 'v-chart',
   template: `<div #chartDom></div>`
 })
-export class Chart implements OnInit, AfterViewInit, OnChanges {
+export class Chart implements AfterViewInit, OnChanges {
   @Input() data?: any;
   @Input() height?: number;
   @Input() width?: number;
@@ -109,14 +109,26 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
   @Input() onPlotDbClick?: eventFunc;
   @ViewChild('chartDom') chartDiv?: any;
   config: any = {};
-  @Input() viewId: string;
+  private viewId: string = generateRandomNum();
   private componentId = generateRandomNum();
   private vcRef: any;
 
   constructor(private context: ChartContext, vcRef: ViewContainerRef) {
-    this.viewId = generateRandomNum();
     this.context = context;
     this.vcRef = vcRef;
+
+    const name = this.constructor.name;
+    const viewType = this.getViewType();
+    const hasInViews = ['v-facet-view', 'v-view'].indexOf(viewType) !== -1;
+    if (['FacetView', 'View'].indexOf(name) > -1) {
+      this.context.lastFacetId = this.viewId || this.componentId;
+    } else if (hasInViews) {
+      this.componentId = this.context.lastFacetId;
+      this.viewId = this.context.lastFacetId;
+    }
+
+    console.log(name, viewType, hasInViews, this.viewId, this.context.lastFacetId);
+
   }
 
   combineViewConfig(props: IRChart, config: any) {
@@ -290,17 +302,6 @@ export class Chart implements OnInit, AfterViewInit, OnChanges {
     return allProps;
   }
 
-  ngOnInit() {
-    const name = this.constructor.name;
-    const viewType = this.getViewType();
-    const hasInViews = ['v-facet-view', 'v-view'].indexOf(viewType) !== -1;
-    if (['FacetView', 'View'].indexOf(name) > -1) {
-      this.context.lastFacetId = this.viewId || this.componentId;
-    } else if (hasInViews) {
-      this.componentId = this.context.lastFacetId;
-      this.viewId = this.context.lastFacetId;
-    }
-  }
   getViewChartConfig(config: any) {
     const chartProperties = ['forceFit', 'height', 'width', 'container'];
     const chart: {
