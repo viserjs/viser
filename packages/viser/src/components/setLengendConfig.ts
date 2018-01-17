@@ -36,9 +36,9 @@ export const process = (chart: any, config: any) => {
     }
     res = {
       ...res,
-      ...res.specialConfig || {},
+      ...res.legendMarker || {},
     };
-    res = _.omit(res, ['specialConfig']);
+    res = _.omit(res, ['legendMarker']);
     if (res.dataKey) {
       if (res.show === false) { return chart.legend(res.dataKey, false); }
       const option = _.omit(res, ['dataKey', 'show']);

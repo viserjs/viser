@@ -39,7 +39,7 @@ export interface ILegend {
   itemTpl?: string | func;
   selectedMode?: 'single' | 'multiple';
   reversed?: boolean;
-  specialConfig?: any;
+  legendMarker?: any;
   onHover?: eventFunc;
   onClick?: eventFunc;
   onTitleMouseDown?: eventFunc;
