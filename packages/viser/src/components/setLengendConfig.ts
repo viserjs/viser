@@ -34,10 +34,13 @@ export const process = (chart: any, config: any) => {
         EventUtils.setSEvent(chart, 'legend', item, res[item]);
       }
     }
-
+    res = {
+      ...res,
+      ...res.specialConfig || {},
+    };
+    res = _.omit(res, ['specialConfig']);
     if (res.dataKey) {
       if (res.show === false) { return chart.legend(res.dataKey, false); }
-
       const option = _.omit(res, ['dataKey', 'show']);
       return chart.legend(res.dataKey, option);
     } else {
