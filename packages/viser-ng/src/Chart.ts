@@ -57,13 +57,16 @@ function omit(obj: any, attr: string) {
 function uniqComponentIdArray(configs: Array<any>) {
   const componentIds: any = {};
   const newConfigs = [];
-  for (let i = 0; i <= (configs.length - 1); i++) {
+  for (let i = (configs.length - 1); i >= 0; i--) {
     const config = configs[i];
     if (!componentIds[config.componentId]) {
       newConfigs.push(config);
       componentIds[config.componentId] = true;
     }
   }
+  newConfigs.sort((ca: any, cb: any) => {
+    return parseInt(ca.componentId, 10) - parseInt(ca.componentId, 10)
+  });
   return newConfigs;
 }
 
