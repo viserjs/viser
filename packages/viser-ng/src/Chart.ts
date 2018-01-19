@@ -65,7 +65,7 @@ function uniqComponentIdArray(configs: Array<any>) {
     }
   }
   newConfigs.sort((ca: any, cb: any) => {
-    return parseInt(ca.componentId, 10) - parseInt(ca.componentId, 10)
+    return parseInt(ca.componentId, 10) - parseInt(cb.componentId, 10)
   });
   return newConfigs;
 }
