@@ -21,5 +21,8 @@
     "url": "git@github.com:viserjs/viser.git"
   },
   "author": "DT-FE",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@antv/g2-plugin-slider": "^2.0.1"
+  }
 }
