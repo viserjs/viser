@@ -1,4 +1,4 @@
-import { Chart, Tooltip, Legend, Axis, Line, Slider } from '../../../packages/viser-react/src/index';
+import { Chart, Tooltip, Legend, Axis, Line, Plugin, Slider } from '../../../packages/viser-react/src/index';
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 import { data, scale } from './data'
@@ -12,21 +12,28 @@ const tooltipOpts = {
 };
 
 class App extends React.Component {
-  dv: any;
-  ds: any;
 
   state = {
-    ds: null,
-    dv: null,
+    start: '2015-07-07',
+    end: '2015-07-28',
   }
 
   constructor(props) {
     super(props);
+  }
 
+  slideChange = (opts: any) => {
+    this.setState({
+      start: opts.startText, end: opts.endText,
+    });
+  }
+
+  getData() {
+    const { start, end } = this.state;
     const ds = new DataSet({
       state: {
-        start: '2015-07-07',
-        end: '2015-07-28'
+        start,
+        end,
       }
     });
     const dv = ds.createView();
@@ -35,8 +42,7 @@ class App extends React.Component {
         type: 'filter',
         callback: obj => {
           const date = obj.time;
-          console.log('dv change');
-          return date <= ds.state.end && date >= ds.state.start;
+          return date <= end && date >= start;
         }
       })
       .transform({
@@ -47,26 +53,20 @@ class App extends React.Component {
           return obj;
         }
       });
-
-    this.state = { ds, dv};
+    return dv;
   }
 
-  sliderChange = ({startText, endText}) => {
-    const { ds, dv} = this.state;
-    ds.setState('start', startText);
-    ds.setState('end', endText);
-    console.log(startText, endText, ds.state.start, ds.state.end);
-  };
   render() {
-    const { ds, dv} = this.state;
-    console.log('rerender');
+    const {start, end} = this.state;
+    const dv = this.getData();
+
     const sliderOpts = {
       container: 'slider', // DOM id
       width: 'auto',
       height: 26,
       padding: [ 20, 40, 20, 40 ],
-      start: ds.state.start, // 和状态量对应
-      end: ds.state.end,
+      start: start, // 和状态量对应
+      end: end,
       data, // 源数据
       xAxis: 'time', // 背景图的横轴对应字段，同时为数据筛选的字段
       yAxis: 'volumn', // 背景图的纵轴对应字段，同时为数据筛选的字段
@@ -76,6 +76,7 @@ class App extends React.Component {
           nice: false,
         }
       },
+      onChange: this.slideChange.bind(this)
     };
     return (
       <div>
@@ -84,8 +85,10 @@ class App extends React.Component {
           <Axis />
           <Legend offset={20}/>
           <Line position='time*max' />
-          <Slider {...sliderOpts} onChange={this.sliderChange}/>
         </Chart>
+        <Plugin>
+          <Slider {...sliderOpts}/>
+        </Plugin>
       </div>
     );
   }
