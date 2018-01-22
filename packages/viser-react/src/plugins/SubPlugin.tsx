@@ -1,9 +1,17 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
+function generateRandomNum() {
+  return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
+}
+
 class Props {}
 
 class SubPlugin<T = {}> extends React.Component<Props & T, any> {
+  static childContextTypes = {
+    containerId: PropTypes.string,
+  };
+
   static contextTypes = {
     centralizedUpdates: PropTypes.func,
   };
@@ -12,6 +20,15 @@ class SubPlugin<T = {}> extends React.Component<Props & T, any> {
 
   constructor(props: Props & T) {
     super(props);
+    this.state = {
+      containerId: (this.props as any).container || generateRandomNum(),
+    };
+  }
+
+  getChildContext() {
+    return {
+      containerId: this.state.containerId,
+    };
   }
 
   componentDidUpdate() {
@@ -23,7 +40,8 @@ class SubPlugin<T = {}> extends React.Component<Props & T, any> {
   }
 
   render() {
-    return null as React.ReactElement<any>;
+    const containerId = this.state.containerId;
+    return <div id={containerId}></div> as React.ReactElement<any>;
   }
 }
 

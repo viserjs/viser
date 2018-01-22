@@ -1,11 +1,16 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import * as _ from 'lodash';
 import { Plugin } from '../../../viser/src/index';
 
 function firstLowerCase(str: string) {
   return str.replace(/^\S/, (s: any) => {
     return s.toLowerCase();
   });
+}
+
+function generateRandomNum() {
+  return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
 }
 
 export default class PluginComponent extends React.Component<any, any> {
@@ -36,10 +41,14 @@ export default class PluginComponent extends React.Component<any, any> {
 
   centralizedUpdates = (unit: any) => {
     const config = this.config;
-    const props = unit.props;
+    const props = _.clone(unit.props);
     const displayName = unit.displayName;
-    const hasInViews = unit.context.hasInViews;
-
+    if (displayName === 'Slider') {
+      const container = props.container;
+      if (!container || !document.getElementById(container)) {
+        props.container = unit.state.containerId;
+      }
+    }
     this.combineContentConfig(
       displayName,
       props,
