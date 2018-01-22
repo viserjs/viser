@@ -5,7 +5,9 @@ import { Coord, Tooltip, Legend, Guide, Axis, Series, Brush, Line,
  Pie, Sector, SmoothLine, DashLine, Area, StackArea, SmoothArea,
  Bar, StackBar, DodgeBar, Interval, StackInterval, DodgeInterval,
  Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap,
- Edge, Sankey, JitterPoint, Slider } from './components/SubComponent';
+ Edge, Sankey, JitterPoint } from './components/SubComponent';
+
+ import { Slider } from './plugins/SubPlugin';
 
 export const registerAnimation = viser.registerAnimation;
 export const registerShape = viser.registerShape;
@@ -22,5 +24,8 @@ export {
   Pie, Sector, SmoothLine, DashLine, Area, StackArea, SmoothArea,
   Bar, StackBar, DodgeBar, Interval, StackInterval, DodgeInterval,
   Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap,
-  Edge, Sankey, JitterPoint, Slider
+  Edge, Sankey, JitterPoint
 };
+
+export { default as Plugin } from './plugins/plugin';
+export { Slider };

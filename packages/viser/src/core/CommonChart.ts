@@ -16,7 +16,6 @@ import * as setTooltipConfig from '../components/setTooltipConfig';
 import * as setScaleConfig from '../components/setScaleConfig';
 const G2 = require('@antv/g2');
 const Brush = require('@antv/g2-brush');
-const Slider = require('@antv/g2-plugin-slider');
 
 function firstUpperCase(str: string) {
   return str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase());
@@ -60,7 +59,6 @@ class CommonChart {
     chart.render();
 
     this.setBrush(chart, config);
-    this.setSlider(chart, config);
   }
 
   public repaint(config: IMainConfig) {
@@ -229,15 +227,6 @@ class CommonChart {
     new Brush(brushConfig);
   }
 
-  private setSlider(chart: any, config: any) {
-    if (_.isNil(config.slider) || _.isEmpty(config.slider)) { return; }
-
-    const { slider } = config;
-    console.log('slider', slider);
-    const sliderInstance = new Slider(slider);
-    sliderInstance.render();
-  }
-
   private repaintWidthHeight(chart: any, config: IMainConfig) {
     const width = _.get(config, 'chart.width');
     if (width) { chart.changeWidth(width); }
@@ -268,7 +257,6 @@ class CommonChart {
     chart.repaint();
 
     this.setBrush(chart, config);
-    this.setSlider(chart, config);
   }
 }
 
