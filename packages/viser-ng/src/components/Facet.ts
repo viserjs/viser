@@ -39,4 +39,4 @@ class Facet extends Chart {
   @Input() eachView?: (views: any, facet: any) => void;
 }
 
-export default Facet;
+export { Facet };

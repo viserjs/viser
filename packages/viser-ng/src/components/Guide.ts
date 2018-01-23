@@ -56,4 +56,4 @@ class Guide extends Chart {
   @Input() onTouchEnd?: eventFunc;
 }
 
-export default Guide;
+export { Guide };
