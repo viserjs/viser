@@ -9,4 +9,4 @@ interface ISChartProps {
 
 type IRChart = IChart & ISChartProps;
 
-export default IRChart;
+export { IRChart };

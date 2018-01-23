@@ -2,7 +2,7 @@ import { NgModule, enableProdMode } from '@angular/core';
 import { Chart } from './Chart';
 import { LiteChart } from './LiteChart';
 import { Axis, Brush, Coord, Facet, Guide, Legend, Tooltip, View, FacetView, Series, Pie, Sector, Line, SmoothLine, DashLine, Area, StackArea, SmoothArea,
- Bar, StackBar, DodgeBar, Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap, Edge, Sankey, ErrorBar, JitterPoint, StackInterval, Interval } from './components/index';
+ Bar, StackBar, DodgeBar, Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap, Edge, Sankey, ErrorBar, JitterPoint, StackInterval, DodgeInterval, Interval } from './components/index';
 import * as viser from 'viser';
 
 @NgModule({
@@ -44,6 +44,7 @@ import * as viser from 'viser';
     ErrorBar,
     JitterPoint,
     StackInterval,
+    DodgeInterval,
     Interval,
   ],
   exports: [
@@ -84,6 +85,7 @@ import * as viser from 'viser';
     ErrorBar,
     JitterPoint,
     StackInterval,
+    DodgeInterval,
     Interval,
   ],
 })

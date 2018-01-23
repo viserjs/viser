@@ -37,4 +37,4 @@ class Tooltip extends Chart {
   @Input() onChange?: eventFunc;
 }
 
-export default Tooltip;
+export { Tooltip };
