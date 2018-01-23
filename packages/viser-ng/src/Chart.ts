@@ -126,10 +126,8 @@ export class Chart implements AfterViewInit, OnChanges {
     if (['FacetView', 'View'].indexOf(name) > -1) {
       this.context.lastFacetId = this.viewId || this.componentId;
     } else if (hasInViews) {
-      this.componentId = this.context.lastFacetId;
       this.viewId = this.context.lastFacetId;
     }
-
   }
 
   combineViewConfig(props: IRChart, config: any) {
@@ -152,7 +150,7 @@ export class Chart implements AfterViewInit, OnChanges {
 
   convertValueToNum(props: any) {
     const numberProps: any = {};
-    const numberKeys = ['radius', 'innerRadius', 'size', 'offsetX', 'offsetY', 'cols', 'padding', 'opacity'];
+    const numberKeys = ['radius', 'innerRadius', 'size', 'offsetX', 'offsetY', 'cols', 'padding', 'opacity', 'startAngle', 'endAngle'];
     Object.keys(props).forEach((propKey) => {
       if (numberKeys.indexOf(propKey) > -1) {
         if (typeof props[propKey] === 'string') {

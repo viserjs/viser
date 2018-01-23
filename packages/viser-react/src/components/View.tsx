@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import * as PropTypes from 'prop-types';
 import { IView } from 'viser';
 
-const isReact16 = ReactDOM.createPortal !== undefined;
+const isReact16 = (ReactDOM as any).createPortal !== undefined;
 
 function generateRandomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
@@ -48,7 +48,7 @@ export default class View extends React.Component<IView, any> {
 
   render() {
     if (isReact16) {
-      return this.props.children;
+      return this.props.children as React.ReactElement<any>;
     } else {
       return React.Children.only(this.props.children);
     }
