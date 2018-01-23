@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
 import viser, { IScale } from 'viser';
 import { ChartContext } from './chartService';
-import IRChart from './typed/IRChart';
+import { IRChart } from './typed/IRChart';
 
 function firstLowerCase(str: string) {
   return str.replace(/^\S/, (s: any) => {

@@ -105,4 +105,4 @@ class Axis extends Chart {
   @Input() onGridTouchEnd?: eventFunc;
 }
 
-export default Axis;
+export { Axis };
