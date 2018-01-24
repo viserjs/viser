@@ -26,6 +26,13 @@ const tooltipOpts = {
       <v-legend [offset]="20"></v-legend>
       <v-line [position]="'time*max'"></v-line>
     </v-chart>
+    <v-plugin>
+      <v-slider [container]="'slider'" [width]="'auto'" [height]="26"
+        [padding]="[ 20, 40, 20, 40 ]" [start]="start" [end]="end" [data]="data"
+        [xAxis]="'time'" [yAxis]="'volumn'" [scales]="scales" [onChange]="this.slideChange"
+      ></v-slider>
+    </v-plugin>
+    <div id="slider"></div>
   </div>
   `
 })
@@ -33,6 +40,7 @@ const tooltipOpts = {
 export class AppComponent {
   forceFit: boolean = true;
   height: number = 600;
+  data = data;
   dv = [];
   scale = scale;
   start = '2015-07-07';
