@@ -76,7 +76,7 @@ export default function(config: any) {
 
   const hasData = hasDataCondition(config);
   if (!hasData) { return; }
-  console.log('config', config);
+
   const commonChart = new CommonChart(config);
   commonChart.render();
 
