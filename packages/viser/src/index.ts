@@ -82,3 +82,5 @@ export default function(config: any) {
 
   return commonChart;
 }
+
+export { default as Plugin } from './plugins/index';
