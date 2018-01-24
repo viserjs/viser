@@ -7,7 +7,7 @@
       <v-line :position="'time*max'" />
     </v-chart>
     <v-plugin>
-      <v-slider container="slider" width="auto" :height="26" :padding="[ 20, 40, 20, 40 ]" :start="start" :end="end"
+      <v-slider width="auto" :height="26" :padding="[ 20, 40, 20, 40 ]" :start="start" :end="end"
         :data="data" xAxis="time" yAxis="volumn" :scales="{
           time: {
             type: 'timeCat',
@@ -59,7 +59,6 @@ export default {
       return dv;
     },
     slideChange: (opts) => {
-      console.log(this, opts);
       this.$data.start = opts.startText;
       this.$data.end = opts.endText;
     },

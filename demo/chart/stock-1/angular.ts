@@ -27,7 +27,7 @@ const tooltipOpts = {
       <v-line [position]="'time*max'"></v-line>
     </v-chart>
     <v-plugin>
-      <v-slider [container]="'slider'" [width]="'auto'" [height]="26"
+      <v-slider [width]="'auto'" [height]="26"
         [padding]="[ 20, 40, 20, 40 ]" [start]="start" [end]="end" [data]="data"
         [xAxis]="'time'" [yAxis]="'volumn'" [scales]="scales" [onChange]="this.slideChange"
       ></v-slider>
@@ -55,12 +55,8 @@ export class AppComponent {
   constructor() {
     this.dv = this.getData();
   }
-  ngOnChanges() {
-    console.log('ngOnChanges');
-  }
 
   getData = () => {
-    console.log('getData');
     const { start, end } = this;
     const ds = new DataSet({
       state: {
@@ -88,7 +84,6 @@ export class AppComponent {
     return dv;
   }
   slideChange = (opts: any) => {
-    console.log(this, opts);
     this.start = opts.startText;
     this.end = opts.endText;
     this.dv = this.getData();

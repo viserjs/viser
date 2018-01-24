@@ -7,7 +7,6 @@ import { PluginComponent } from './Plugin';
 })
 
 class Slider extends PluginComponent {
-  @Input() container?: any;
   @Input() height?: any;
   @Input() width?: any;
   @Input() padding?: any;

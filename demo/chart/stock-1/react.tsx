@@ -61,7 +61,6 @@ class App extends React.Component {
     const dv = this.getData();
 
     const sliderOpts = {
-      container: 'slider', // DOM id
       width: 'auto',
       height: 26,
       padding: [ 20, 40, 20, 40 ],

@@ -36,7 +36,6 @@ export default class PluginComponent extends React.Component<any, any> {
     const nameLowerCase = displayName.toLowerCase();
 
     config[nameLowerCase] = props;
-
   }
 
   centralizedUpdates = (unit: any) => {
@@ -67,18 +66,6 @@ export default class PluginComponent extends React.Component<any, any> {
   componentDidMount() {
     this.createSliderInstance(this.config);
     this.clearConfigData();
-  }
-
-  componentDidUpdate(props: any) {
-
-  }
-
-  componentWillReceiveProps() {
-
-  }
-
-  componentWillUnmount() {
-
   }
 
   portalRef = (container: any) => {
