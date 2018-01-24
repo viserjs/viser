@@ -15,4 +15,4 @@ class Coord extends Chart {
   @Input() endAngle?: number;
 }
 
-export default Coord;
+export { Coord };

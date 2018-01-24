@@ -93,4 +93,4 @@ class Legend extends Chart {
   @Input() onTextTouchEnd?: eventFunc;
 }
 
-export default Legend;
+export { Legend };

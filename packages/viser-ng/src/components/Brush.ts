@@ -33,4 +33,4 @@ class Brush extends Chart {
   @Input() onDragend?: eventFunc;
 }
 
-export default Brush;
+export { Brush };

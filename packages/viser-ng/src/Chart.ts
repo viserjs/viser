@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
 import viser, { IScale } from 'viser';
 import { ChartContext } from './chartService';
-import IRChart from './typed/IRChart';
+import { IRChart } from './typed/IRChart';
 
 function firstLowerCase(str: string) {
   return str.replace(/^\S/, (s: any) => {
@@ -57,13 +57,16 @@ function omit(obj: any, attr: string) {
 function uniqComponentIdArray(configs: Array<any>) {
   const componentIds: any = {};
   const newConfigs = [];
-  for (let i = 0; i <= (configs.length - 1); i++) {
+  for (let i = (configs.length - 1); i >= 0; i--) {
     const config = configs[i];
     if (!componentIds[config.componentId]) {
       newConfigs.push(config);
       componentIds[config.componentId] = true;
     }
   }
+  newConfigs.sort((ca: any, cb: any) => {
+    return parseInt(ca.componentId, 10) - parseInt(cb.componentId, 10)
+  });
   return newConfigs;
 }
 
@@ -123,10 +126,8 @@ export class Chart implements AfterViewInit, OnChanges {
     if (['FacetView', 'View'].indexOf(name) > -1) {
       this.context.lastFacetId = this.viewId || this.componentId;
     } else if (hasInViews) {
-      this.componentId = this.context.lastFacetId;
       this.viewId = this.context.lastFacetId;
     }
-
   }
 
   combineViewConfig(props: IRChart, config: any) {
@@ -149,7 +150,7 @@ export class Chart implements AfterViewInit, OnChanges {
 
   convertValueToNum(props: any) {
     const numberProps: any = {};
-    const numberKeys = ['radius', 'innerRadius', 'size', 'offsetX', 'offsetY', 'cols', 'padding', 'opacity'];
+    const numberKeys = ['radius', 'innerRadius', 'size', 'offsetX', 'offsetY', 'cols', 'padding', 'opacity', 'startAngle', 'endAngle'];
     Object.keys(props).forEach((propKey) => {
       if (numberKeys.indexOf(propKey) > -1) {
         if (typeof props[propKey] === 'string') {
