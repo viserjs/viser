@@ -8,12 +8,10 @@
   "homepage": "https://github.com/viserjs/viser#readme",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "publish": "node ./scripts/publish.js"
+    "publish": "./scripts/publish.sh"
   },
   "devDependencies": {
-    "colors": "^1.1.2",
-    "lerna": "^2.5.0",
-    "ora": "^1.3.0"
+    "lerna": "^2.5.0"
   },
   "engines": {
     "node": ">=8"
