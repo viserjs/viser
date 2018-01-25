@@ -39,6 +39,7 @@ export interface ILegend {
   itemTpl?: string | func;
   selectedMode?: 'single' | 'multiple';
   reversed?: boolean;
+  slidable?: boolean;
   legendMarker?: any;
   onHover?: eventFunc;
   onClick?: eventFunc;
