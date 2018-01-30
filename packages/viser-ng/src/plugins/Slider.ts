@@ -3,7 +3,7 @@ import { PluginComponent } from './Plugin';
 
 @Component({
   selector: 'v-slider',
-  template: `<div></div>`,
+  template: `<div id="slider"></div>`,
 })
 
 class Slider extends PluginComponent {

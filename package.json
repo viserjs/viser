@@ -7,11 +7,11 @@
   },
   "homepage": "https://github.com/viserjs/viser#readme",
   "scripts": {
-    "postinstall": "lerna bootstrap",
-    "pub": "lerna publish"
+    "bootstrap": "lerna bootstrap",
+    "publish": "./scripts/publish.sh"
   },
-  "devDependenucies": {
-    "lerna": "^2.4.0"
+  "devDependencies": {
+    "lerna": "^2.5.0"
   },
   "engines": {
     "node": ">=8"

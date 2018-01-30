@@ -52,6 +52,7 @@ class Legend extends Chart {
   @Input() itemTpl?: string | func;
   @Input() selectedMode?: 'single' | 'multiple';
   @Input() reversed?: boolean;
+  @Input() slidable?: boolean;
   @Input() legendMarker?: any;
   @Input() onHover?: eventFunc;
   @Input() onClick?: eventFunc;

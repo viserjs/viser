@@ -13,7 +13,9 @@ function firstLowerCase(str: string) {
 @Component({
   providers: [PluginContext],
   selector: 'v-plugin',
-  template: `<div></div>`
+  template: `<div>
+    <Slider></Slider>
+  </div>`
 })
 
 export class PluginComponent implements AfterViewInit, OnChanges {

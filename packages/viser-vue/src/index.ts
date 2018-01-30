@@ -6,7 +6,7 @@ const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area', 'p
   'smootharea', 'bar', 'stackbar', 'dodgebar', 'interval', 'stackinterval', 'dodgeinterval',
   'funnel', 'pyramid', 'schema', 'box', 'candle', 'polygon', 'contour', 'heatmap', 'edge', 'sankey', 'errorbar', 'jitterpoint'];
 
-const rootCharts = ['v-chart', 'v-lite-chart'];
+const rootCharts = ['v-chart', 'v-lite-chart', 'v-plugin'];
 
 const rootChartProps = ['data', 'scale', 'viewId'];
 
