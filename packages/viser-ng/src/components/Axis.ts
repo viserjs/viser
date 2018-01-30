@@ -23,6 +23,7 @@ interface IAxisGrid {
   type?: string;
   align?: string;
   lineStyle?: IStyle.ILineStyle;
+  line?: IStyle.ILineStyle;
   items?: object[];
   alternateColor?: string | string[];
   matrix?: any;

@@ -3,7 +3,7 @@ export interface ITextStyle {
   textAlign?: string;
   fill?: string;
   fontWeight?: string;
-  textBaseline?: 'top' | 'middle' | 'bottom';
+  textBaseline?: string;
   rotate?: number;
   shadowBlur?: number;
   shadowColor?: string;

@@ -34,11 +34,17 @@ export const process = (chart: any, config: any) => {
         EventUtils.setSEvent(chart, 'legend', item, res[item]);
       }
     }
-    res = {
-      ...res,
-      ...res.legendMarker || {},
-    };
-    res = _.omit(res, ['legendMarker']);
+
+    if (!_.isNil(res.legendMarker)) {
+      res['g2-legend-marker'] = res.legendMarker;
+    }
+
+    if (!_.isNil(res.legendListItem)) {
+      res['g2-legend-list-item'] = res.legendListItem;
+    }
+
+    res = _.omit(res, ['legendMarker', 'legendListItem']);
+
     if (res.dataKey) {
       if (res.show === false) { return chart.legend(res.dataKey, false); }
       const option = _.omit(res, ['dataKey', 'show']);

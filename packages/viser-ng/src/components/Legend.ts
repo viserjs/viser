@@ -22,7 +22,7 @@ interface IBackground {
 class Legend extends Chart {
   @Input() dataKey?: string;
   @Input() show?: boolean;
-  @Input() position?: 'top' | 'right' | 'bottom' | 'left';
+  @Input() position?: string;
   @Input() title?: null | object;
   @Input() offset?: number;
   @Input() offsetX?: number;
@@ -32,7 +32,7 @@ class Legend extends Chart {
   @Input() titleGap?: number;
   @Input() itemMarginBottom?: number;
   @Input() itemsGroup?: object[];
-  @Input() layout?: 'horizontal' | 'vertical';
+  @Input() layout?: string;
   @Input() allowAllCanceled?: boolean;
   @Input() backPadding?: number[];
   @Input() itemWidth?: number;
@@ -50,10 +50,11 @@ class Legend extends Chart {
   @Input() container?: any;
   @Input() containerTpl?: string;
   @Input() itemTpl?: string | func;
-  @Input() selectedMode?: 'single' | 'multiple';
+  @Input() selectedMode?: string;
   @Input() reversed?: boolean;
   @Input() slidable?: boolean;
   @Input() legendMarker?: any;
+  @Input() legendListItem?: any;
   @Input() onHover?: eventFunc;
   @Input() onClick?: eventFunc;
   @Input() onTitleMouseDown?: eventFunc;
