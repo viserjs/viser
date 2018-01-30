@@ -1,7 +1,7 @@
-import { Chart, Tooltip, Legend, Axis, Line, Plugin, Slider } from '../../../packages/viser-react/src/index';
+import { Chart, Tooltip, Legend, Axis, Line, Plugin, Slider, View, Candle, Bar } from '../../../packages/viser-react/src/index';
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
-import { data, scale } from './data'
+import { data, scale1, scale2 } from './data'
 const DataSet = require('@antv/data-set');
 
 const tooltipOpts = {
@@ -79,11 +79,51 @@ class App extends React.Component {
     };
     return (
       <div>
-        <Chart forceFit height={400} animate={false} padding={[ 10, 40, 40, 40 ]} data={dv} scale={scale}>
+        <Chart forceFit height={400} animate={false} padding={[ 10, 40, 40, 40 ]} data={dv} scale={scale1}>
           <Tooltip {...tooltipOpts}/>
           <Axis />
           <Legend offset={20}/>
-          <Line position='time*max' />
+          <View data={dv} end={{x: 1, y: 0.5}}>
+            <Candle position='time*range' color={['trend', val => {
+              if (val === '上涨') {
+                return '#f04864';
+              }
+
+              if (val === '下跌') {
+                return '#2fc25b';
+              }
+            }]} tooltip={['time*start*end*max*min', (time, start, end, max, min) => {
+              return {
+                name: time,
+                value: '<br><span style="padding-left: 16px">开盘价：' + start + '</span><br/>'
+                + '<span style="padding-left: 16px">收盘价：' + end + '</span><br/>'
+                + '<span style="padding-left: 16px">最高价：' + max + '</span><br/>'
+                + '<span style="padding-left: 16px">最低价：' + min + '</span>'
+              };
+            }]}/>
+          </View>
+          <View data={dv} scale={scale2} start={{x: 0, y: 0.65}}>
+            <Axis dataKey='time' tickLine={null} label={null}/>
+            <Axis dataKey='volumn' label={{
+              formatter: function(val: any) {
+                return parseInt(String(val / 1000), 10) + 'k';
+              }
+            }} />
+            <Bar position='time*volumn' color={['trend',  val => {
+              if (val === '上涨') {
+                return '#f04864';
+              }
+
+              if (val === '下跌') {
+                return '#2fc25b';
+              }
+            }]} tooltip={['time*volumn', (time, volumn) => {
+              return {
+                name: time,
+                value: '<br/><span style="padding-left: 16px">成交量：' + volumn + '</span><br/>'
+              };
+            }]}/>
+          </View>
         </Chart>
         <Plugin>
           <Slider {...sliderOpts}/>

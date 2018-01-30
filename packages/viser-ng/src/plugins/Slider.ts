@@ -1,9 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewContainerRef } from '@angular/core';
 import { PluginComponent } from './Plugin';
+import {PluginContext} from './PluginService';
+
+function generateRandomNum() {
+  return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
+}
 
 @Component({
   selector: 'v-slider',
-  template: `<div id="slider"></div>`,
+  template: `<div id="{{context.container}}"></div>`,
 })
 
 class Slider extends PluginComponent {
@@ -17,6 +22,9 @@ class Slider extends PluginComponent {
   @Input() yAxis?: any;
   @Input() scales?: any;
   @Input() onChange?: any;
+  // constructor(context: PluginContext, vcRef: ViewContainerRef) {
+  //   super(context, vcRef);
+  // }
 }
 
 export { Slider };

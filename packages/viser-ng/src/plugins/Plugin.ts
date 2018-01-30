@@ -9,12 +9,11 @@ function firstLowerCase(str: string) {
   });
 }
 
-
 @Component({
   providers: [PluginContext],
   selector: 'v-plugin',
   template: `<div>
-    <Slider></Slider>
+    <v-slider></v-slider>
   </div>`
 })
 
@@ -36,7 +35,6 @@ export class PluginComponent implements AfterViewInit, OnChanges {
     const nameLowerCase = displayName.toLowerCase();
 
     config[nameLowerCase] = props;
-
   }
 
   getProps(allProps: any) {
@@ -61,20 +59,19 @@ export class PluginComponent implements AfterViewInit, OnChanges {
   initPlugin() {
     const name = this.constructor.name;
     const props = this.getProps(this);
-    const config = this.context.config;
+    this.config = this.context.config;
 
-    if (name === 'plugin'){
+    if (name === 'PluginComponent'){
       this.renderPlugin(true);
     }else if (name === 'Slider') {
+      props.container = this.context.container;
       this.combineContentConfig(name, props, this.config);
     }
 
-    this.renderPlugin();
   }
 
-
   ngOnChanges(changes: SimpleChanges) {
-     this.initPlugin();
+    this.initPlugin();
   }
 
   renderPlugin(rerender?: boolean) {
