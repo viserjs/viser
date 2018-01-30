@@ -15,6 +15,8 @@ class View extends Chart {
   };
   @Input() scale?: object[];
   @Input() dataView?: any;
+  @Input() start?: any;
+  @Input() end?: any;
 }
 
 @Component({

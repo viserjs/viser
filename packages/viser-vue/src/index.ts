@@ -1,12 +1,15 @@
 import Vue from 'vue';
 import typedProps from './typed';
 import * as viser from 'viser';
+import { Plugin } from '../../viser/src/index';
 
 const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area', 'point', 'stackarea',
   'smootharea', 'bar', 'stackbar', 'dodgebar', 'interval', 'stackinterval', 'dodgeinterval',
   'funnel', 'pyramid', 'schema', 'box', 'candle', 'polygon', 'contour', 'heatmap', 'edge', 'sankey', 'errorbar', 'jitterpoint'];
 
 const rootCharts = ['v-chart', 'v-lite-chart'];
+
+const rootPlugin = ['v-plugin'];
 
 const rootChartProps = ['data', 'scale', 'viewId'];
 
@@ -41,7 +44,8 @@ const baseChartComponent = {
      * find nearest parent rechart component
      */
     findNearestRootComponent(componentInstance: Vue) {
-      if ((componentInstance as any).isViser && rootCharts.concat(['v-view', 'v-facet', 'v-facet-view']).indexOf(((componentInstance as any).$options as any)._componentTag) > -1) {
+      if ((componentInstance as any).isViser
+        && rootCharts.concat(['v-view', 'v-facet', 'v-facet-view', 'v-plugin']).indexOf(((componentInstance as any).$options as any)._componentTag) > -1) {
         if ((componentInstance.$options as any)._componentTag === 'v-lite-chart') {
           throw Error('v-lite-chart should be no child elements.')
         }
@@ -54,6 +58,12 @@ const baseChartComponent = {
       return null;
     },
     createRootD2Json() {
+      if (this.$options._componentTag === 'v-plugin') {
+        return {
+          ...cleanUndefined(normalizeProps(this._props, rootChartProps)),
+          ...this.jsonForD2,
+        };
+      }
       const d2Json = {
         ...cleanUndefined(normalizeProps(this._props, rootChartProps)),
         chart: {
@@ -82,9 +92,14 @@ const baseChartComponent = {
       return d2Json;
     },
     freshChart(isUpdate: boolean) {
-      if (rootCharts.indexOf(this.$options._componentTag) > -1) { // hit top
+      if (rootPlugin.indexOf(this.$options._componentTag) > -1) {
         const d2Json = this.createRootD2Json();
+        if (!isUpdate) {
+          this.plugins = Plugin(d2Json);
+        }
 
+      } else if (rootCharts.indexOf(this.$options._componentTag) > -1) { // hit top
+        const d2Json = this.createRootD2Json();
         if (!isUpdate || !this.chart) {
           this.chart = viser.default(d2Json);
         } else {
@@ -96,8 +111,9 @@ const baseChartComponent = {
         oneObjectMoreArray(nearestRootComponent.jsonForD2, 'views', {
           ...cleanUndefined(normalizeProps(this._props)),
           ...this.jsonForD2,
-          viewId: this._props.viewId || generateRandomNum(),
+          viewId: this._uid, //this._props.viewId || generateRandomNum(),
         });
+
       } else if (this.$options._componentTag === 'v-facet-view') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
@@ -111,11 +127,26 @@ const baseChartComponent = {
           ...cleanUndefined(normalizeProps(this._props)),
           ...this.jsonForD2,
         };
+      } else if (this.$options._componentTag === 'v-slider') {
+        const nearestRootComponent = this.findNearestRootComponent(this.$parent);
+        const sliderOpts = cleanUndefined(normalizeProps(this._props));
+        if (!cleanUndefined(normalizeProps(this._props)).container) {
+          sliderOpts.container = 'viser-slider-' + generateRandomNum();
+        }
+        const sliderContainer = document.createElement('div');
+        sliderContainer.id = sliderOpts.container;
+        this.$parent.$el.appendChild(sliderContainer);
+
+        nearestRootComponent.jsonForD2.slider = {
+          ...sliderOpts,
+          ...this.jsonForD2,
+        };
+
       } else {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
         if (!nearestRootComponent) {
-          throw Error(`${this.$options._componentTag} must be wrapped into v-chart`);
+          throw Error(`${this.$options._componentTag} must be wrapped into v-chart or v-plugin`);
         }
 
         const rechartName = this.$options._componentTag.replace(/-/g, '').slice(1);
@@ -191,6 +222,9 @@ export default {
     Vue.component('v-sankey', baseChartComponent)
     Vue.component('v-error-bar', baseChartComponent)
     Vue.component('v-jitter-point', baseChartComponent)
+
+    Vue.component('v-plugin', baseChartComponent)
+    Vue.component('v-slider', baseChartComponent)
   }
 };
 
@@ -214,7 +248,21 @@ function oneObjectMoreArray(obj: any, key: string, value: any) {
     obj[key] = [obj[key]];
   }
 
-  obj[key].push(value);
+  let isExisted = false;
+  if (key === 'views') {
+    obj[key] = obj[key].map((view: any, i: number) => {
+      if (view.viewId === value.viewId) {
+        isExisted = true;
+        return value;
+      } else {
+        return view;
+      }
+    });
+
+  }
+  if (!isExisted) {
+    obj[key].push(value);
+  }
 }
 
 function cleanUndefined(value: any) {

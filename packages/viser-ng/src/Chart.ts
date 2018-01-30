@@ -138,6 +138,14 @@ export class Chart implements AfterViewInit, OnChanges {
     if (props.scale) {
       config.scale = props.scale;
     }
+
+    if (props.start) {
+      config.start = props.start;
+    }
+
+    if (props.end) {
+      config.end = props.end;
+    }
   }
 
   combineChartConfig(props: any, config: any) {
