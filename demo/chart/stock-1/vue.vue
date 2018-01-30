@@ -1,19 +1,20 @@
 <template>
   <div>
-    <v-chart :force-fit="true" :height="400" animate={false} :padding="[ 10, 40, 40, 40 ]" :data="getData()" :scale="scale">
+    <v-chart :force-fit="true" :height="400" :animate="false" :padding="[ 10, 40, 40, 40 ]" :data="dv" :scale="scale">
       <v-tooltip :show-title="tooltipOpts.showTitle" :item-tpl="tooltipOpts.itemTpl"/>
       <v-axis />
       <v-legend :offset="20"/>
       <v-line :position="'time*max'" />
     </v-chart>
     <v-plugin>
-      <v-slider width="auto" :height="26" :padding="[ 20, 40, 20, 40 ]" :start="start" :end="end"
-        :data="data" xAxis="time" yAxis="volumn" :scales="{
+      <v-slider width="auto" :height="26" :padding="[ 20, 40, 20, 40 ]"
+        :start="start" :end="end"
+        :data="data" x-axis="time" y-axis="volumn" :scales="{
           time: {
             type: 'timeCat',
             nice: false,
           }
-        }" :onchange="slideChange"/>
+        }" :on-change="slideChange"/>
     </v-plugin>
   </div>
 </template>
@@ -30,9 +31,12 @@ const tooltipOpts = {
 };
 
 export default {
+  mounted() {
+    this.$data.dv = this.getData();
+  },
   methods: {
-    getData: () => {
-      const { start, end } = this.a.data();
+    getData() {
+      const { start,end } = this;
       const ds = new DataSet({
         state: {
           start,
@@ -58,19 +62,22 @@ export default {
         });
       return dv;
     },
-    slideChange: (opts) => {
-      this.$data.start = opts.startText;
-      this.$data.end = opts.endText;
+    slideChange (opts) {
+      this.start = opts.startText;
+      this.end = opts.endText;
+      this.dv = this.getData();
     },
   },
   data() {
     return {
       data,
       scale,
+      dv: [],
       start: '2015-07-07',
       end: '2015-07-28',
       tooltipOpts,
     };
   },
 };
+
 </script>

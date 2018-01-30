@@ -25,6 +25,8 @@ const props: any = [
   // brush
   'canvas', 'startPoint', 'brushing', 'dragging', 'brushShape', 'container', 'polygonPath', 'type', 'dragable', 'dragoffX', 'dragoffY', 'inPlot', 'xField', 'yField', 'filter',
   'onBrushstart', 'onBrushmove', 'onBrushend', 'onDragstart', 'onDragmove', 'onDragend',
+  // slider
+  'xAxis', 'yAxis', 'onChange',
   // event
   'onMouseDown', 'onMouseMove', 'onMouseLeave', 'onMouseUp', 'onClick', 'onDbClick', 'onTouchStart', 'onTouchMove', 'onTouchEnd', 'onPlotEnter', 'onPlotMove', 'onPlotLeave', 'onPlotClick', 'onPlotDbClick',
   'onTitleMouseDown', 'onTitleMouseMove', 'onTitleMouseLeave', 'onTitleMouseUp', 'onTitleClick', 'onTitleDbClick', 'onTitleTouchStart', 'onTitleTouchMove', 'onTitleTouchEnd',

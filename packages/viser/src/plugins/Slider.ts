@@ -5,6 +5,7 @@ export default (config: any) => {
     console.error('plugin slider container not defined');
     return;
   }
+  document.getElementById(config.container).innerHTML = '';
   const sliderInstance = new Slider(config);
   sliderInstance.render();
 }
