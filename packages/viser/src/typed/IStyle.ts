@@ -5,7 +5,7 @@ export interface ITextStyle {
   textAlign?: string;
   fill?: string;
   lineHeight?: number;
-  textBaseline?: 'top' | 'middle' | 'bottom';
+  textBaseline?: string;
   rotate?: number;
   shadowBlur?: number;
   shadowColor?: string;
