@@ -111,8 +111,9 @@ const baseChartComponent = {
         oneObjectMoreArray(nearestRootComponent.jsonForD2, 'views', {
           ...cleanUndefined(normalizeProps(this._props)),
           ...this.jsonForD2,
-          viewId: this._props.viewId || generateRandomNum(),
+          viewId: this._uid, //this._props.viewId || generateRandomNum(),
         });
+
       } else if (this.$options._componentTag === 'v-facet-view') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
@@ -247,7 +248,21 @@ function oneObjectMoreArray(obj: any, key: string, value: any) {
     obj[key] = [obj[key]];
   }
 
-  obj[key].push(value);
+  let isExisted = false;
+  if (key === 'views') {
+    obj[key] = obj[key].map((view: any, i: number) => {
+      if (view.viewId === value.viewId) {
+        isExisted = true;
+        return value;
+      } else {
+        return view;
+      }
+    });
+
+  }
+  if (!isExisted) {
+    obj[key].push(value);
+  }
 }
 
 function cleanUndefined(value: any) {
