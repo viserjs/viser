@@ -19,4 +19,12 @@ export default [
     type: 'map-1',
     case: ['json']
   },
+  {
+    type: 'stock-1',
+    case: ['json', 'react', 'vue', 'angular']
+  },
+  {
+    type: 'others-1',
+    case: ['json', 'react', 'vue', 'angular']
+  },
 ];

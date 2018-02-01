@@ -83,7 +83,14 @@ class CommonChart {
   }
 
   private createView(chart: any, config: IMainConfig) {
-    const view = chart.view();
+    const opts: any = {};
+    if (config.start) {
+      opts.start = config.start;
+    }
+    if (config.end) {
+      opts.end = config.end;
+    }
+    const view = chart.view(opts);
 
     if (!config.viewId) {
       throw new Error('you must set viewId');

@@ -15,6 +15,8 @@ export interface IView {
   guide?: IGuide;
   series?: ISeries;
   tooltip?: ITooltip;
+  start?: any;
+  end?: any;
 }
 
 type IViewConfig = IView | IView[];
