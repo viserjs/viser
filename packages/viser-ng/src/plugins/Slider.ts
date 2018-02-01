@@ -22,6 +22,7 @@ class Slider extends PluginComponent {
   @Input() yAxis?: any;
   @Input() scales?: any;
   @Input() onChange?: any;
+  @Input() backgroundChart?: any;
   // constructor(context: PluginContext, vcRef: ViewContainerRef) {
   //   super(context, vcRef);
   // }
