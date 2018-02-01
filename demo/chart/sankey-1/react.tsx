@@ -1,5 +1,4 @@
 import { Chart, Tooltip, Axis, StackBar, Sankey, View, Polygon } from '../../../packages/viser-react/src/index';
-import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 import { data, scale } from './data'
 const DataSet = require('@antv/data-set');
@@ -16,7 +15,7 @@ dv.transform({
   nodePadding: 0.02,
 });
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -44,5 +43,3 @@ class App extends React.Component {
     );
   }
 }
-
-ReactDOM.render(<App />, document.getElementById('mount'));

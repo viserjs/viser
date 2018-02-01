@@ -1,5 +1,4 @@
 import { Chart, Tooltip, Edge, View, Polygon, Coord } from '../../../packages/viser-react/src/index';
-import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 import { data, scale } from './data';
 const DataSet = require('@antv/data-set');
@@ -65,5 +64,3 @@ class App extends React.Component {
     );
   }
 }
-
-ReactDOM.render(<App />, document.getElementById('mount'));

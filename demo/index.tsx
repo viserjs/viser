@@ -1,33 +1,65 @@
 import list from './chart/index';
+
 import Vue from 'vue';
-import ViserVue from '../packages/viser-vue/src'
+import ViserVue from '../packages/viser-vue/src';
+
+import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+// store Vue Instance globally;
+let vm;
+Vue.use(ViserVue);
+
+let ngRef;
 
 function fetchData(state) {
   const type = state.type;
   const fileName = state.filename;
   const mount = document.getElementById('mount');
+
+  // Unmount React;
   ReactDOM.unmountComponentAtNode(mount);
+  // Unmount Vue
+  if (vm && vm.existed) {
+    vm.existed = false;
+  }
+  // Unmount Angular
+  if (ngRef) {
+    const mountParent = mount.parentNode;
+    ngRef.destroy();
+    ngRef = undefined;
+    const newMount = document.createElement('div');
+    newMount.setAttribute('id', 'mount');
+    mountParent.appendChild(newMount);
+  }
+  // Remove Dom
   mount.innerHTML = '';
 
-  // TODO: Vue Angular add unmount
   if (['json', 'react', 'vue', 'angular'].indexOf(fileName) > -1) {
     if (fileName === 'react') {
       delete require.cache[`./chart/${type}/${fileName}.tsx`];
-      require(`./chart/${type}/${fileName}`);
-    } else {
+      const App = require(`./chart/${type}/${fileName}`).default;
+      ReactDOM.render(<App />, document.getElementById('mount'));
+    }
+
+    if (fileName === 'angular')  {
       delete require.cache[`./chart/${type}/${fileName}.ts`];
-      require(`./chart/${type}/${fileName}`);
+      const AppModule = require(`./chart/${type}/${fileName}`).default;
+      platformBrowserDynamic().bootstrapModule(AppModule).then((ref) => { ngRef = ref; });
     }
 
     if (fileName === 'vue') {
       const App = require(`./chart/${type}/${fileName}.vue`).default;
-      const container = document.createElement('div')
-      document.getElementById('mount').appendChild(container)
-      Vue.use(ViserVue)
-      new Vue({
+      const container = document.createElement('div');
+      document.getElementById('mount').appendChild(container);
+      vm = new Vue({
+        data: {
+          existed: true
+        },
         el: container,
-        template: '<App />',
+        template: '<App v-if="existed"/>',
         components: { App }
       });
     }

@@ -36,16 +36,24 @@ const baseChartComponent = {
   // Why use null? See https://github.com/vuejs/vue/issues/4792.
   props: typedProps,
   methods: {
-    repaint() {
-      const d2Json = this.createRootD2Json();
-      this.chart.repaint(d2Json);
+    checkIsContainer(componentInstance: Vue) {
+      if (
+        (componentInstance as any).isViser
+        &&
+        rootCharts
+          .concat(['v-view', 'v-facet', 'v-facet-view', 'v-plugin'])
+          .indexOf(((componentInstance as any).$options as any)._componentTag) > -1
+      ) {
+        return true;
+      } else {
+        return false;
+      }
     },
     /**
      * find nearest parent rechart component
      */
     findNearestRootComponent(componentInstance: Vue) {
-      if ((componentInstance as any).isViser
-        && rootCharts.concat(['v-view', 'v-facet', 'v-facet-view', 'v-plugin']).indexOf(((componentInstance as any).$options as any)._componentTag) > -1) {
+      if (this.checkIsContainer(componentInstance)) {
         if ((componentInstance.$options as any)._componentTag === 'v-lite-chart') {
           throw Error('v-lite-chart should be no child elements.')
         }
@@ -64,6 +72,7 @@ const baseChartComponent = {
           ...this.jsonForD2,
         };
       }
+
       const d2Json = {
         ...cleanUndefined(normalizeProps(this._props, rootChartProps)),
         chart: {
@@ -92,42 +101,64 @@ const baseChartComponent = {
       return d2Json;
     },
     freshChart(isUpdate: boolean) {
+      /**
+       * refresh plugin
+       */
       if (rootPlugin.indexOf(this.$options._componentTag) > -1) {
         const d2Json = this.createRootD2Json();
         if (!isUpdate) {
           this.plugins = Plugin(d2Json);
         }
-
-      } else if (rootCharts.indexOf(this.$options._componentTag) > -1) { // hit top
+      }
+      /**
+       * refresh chart
+       */
+      else if (rootCharts.indexOf(this.$options._componentTag) > -1) { // hit top
         const d2Json = this.createRootD2Json();
+
         if (!isUpdate || !this.chart) {
           this.chart = viser.default(d2Json);
         } else {
           this.chart.repaint(d2Json);
         }
-      } else if (this.$options._componentTag === 'v-view') {
+      }
+      /**
+       * refresh view
+       */
+      else if (this.$options._componentTag === 'v-view') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
         oneObjectMoreArray(nearestRootComponent.jsonForD2, 'views', {
           ...cleanUndefined(normalizeProps(this._props)),
           ...this.jsonForD2,
-          viewId: this._uid, //this._props.viewId || generateRandomNum(),
+          viewId: this._uid,
         });
-
-      } else if (this.$options._componentTag === 'v-facet-view') {
+      }
+      /**
+       * refresh facet-view
+       */
+      else if (this.$options._componentTag === 'v-facet-view') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
         nearestRootComponent.jsonForD2.views = {
           ...cleanUndefined(normalizeProps(this._props)),
           ...this.jsonForD2,
         };
-      } else if (this.$options._componentTag === 'v-facet') {
+      }
+      /**
+       * refresh facet
+       */
+      else if (this.$options._componentTag === 'v-facet') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
         nearestRootComponent.jsonForD2.facet = {
           ...cleanUndefined(normalizeProps(this._props)),
           ...this.jsonForD2,
         };
-      } else if (this.$options._componentTag === 'v-slider') {
+      }
+      /**
+       * refresh slider
+       */
+      else if (this.$options._componentTag === 'v-slider') {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
         const sliderOpts = cleanUndefined(normalizeProps(this._props));
         if (!cleanUndefined(normalizeProps(this._props)).container) {
@@ -141,8 +172,11 @@ const baseChartComponent = {
           ...sliderOpts,
           ...this.jsonForD2,
         };
-
-      } else {
+      }
+      /**
+       * refresh others like axis, coord, guide, etc.
+       */
+      else {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
         if (!nearestRootComponent) {
@@ -160,13 +194,15 @@ const baseChartComponent = {
             ...cleanUndefined(normalizeProps(this._props)),
           });
         } else {
-          oneObjectMoreArray(nearestRootComponent.jsonForD2, rechartName, cleanUndefined(normalizeProps(this._props)));
+          oneObjectMoreArray(nearestRootComponent.jsonForD2, rechartName, {
+            ...cleanUndefined(normalizeProps(this._props)),
+            componentId: this._uid,
+          });
         }
       }
     }
   },
   created() { // bubble from parent to child
-    // debugger;
   },
   mounted() { // bubble from child to parent
     this.freshChart(false);
@@ -174,8 +210,15 @@ const baseChartComponent = {
   updated() { // bubble from child to parent
     this.freshChart(true);
   },
-  render(h: any) {
-    return h('div', null, this.$slots.default);
+  render(createElement: any) {
+    const isContainer = this.checkIsContainer(this);
+    if (isContainer) {
+      return createElement('div', null, this.$slots.default);
+    }
+    const props = cleanUndefined(normalizeProps(this._props));
+    return createElement('div', { style: { display: 'none' } }, Object.keys(props).map((key) => {
+      return props[key];
+    }));
   },
 };
 
@@ -190,41 +233,41 @@ export default {
     Vue.component('v-view', baseChartComponent);
     Vue.component('v-coord', baseChartComponent);
     Vue.component('v-series', baseChartComponent);
-    Vue.component('v-facet', baseChartComponent)
-    Vue.component('v-facet-view', baseChartComponent)
-    Vue.component('v-lite-chart', baseChartComponent)
-    Vue.component('v-guide', baseChartComponent)
+    Vue.component('v-facet', baseChartComponent);
+    Vue.component('v-facet-view', baseChartComponent);
+    Vue.component('v-lite-chart', baseChartComponent);
+    Vue.component('v-guide', baseChartComponent);
 
     Vue.component('v-edge', baseChartComponent);
     Vue.component('v-point', baseChartComponent);
     Vue.component('v-pie', baseChartComponent);
     Vue.component('v-bar', baseChartComponent);
-    Vue.component('v-stack-bar', baseChartComponent)
-    Vue.component('v-dodge-bar', baseChartComponent)
+    Vue.component('v-stack-bar', baseChartComponent);
+    Vue.component('v-dodge-bar', baseChartComponent);
     Vue.component('v-interval', baseChartComponent);
-    Vue.component('v-stack-interval', baseChartComponent)
-    Vue.component('v-dodge-interval', baseChartComponent)
+    Vue.component('v-stack-interval', baseChartComponent);
+    Vue.component('v-dodge-interval', baseChartComponent);
     Vue.component('v-schema', baseChartComponent);
     Vue.component('v-line', baseChartComponent);
     Vue.component('v-smooth-line', baseChartComponent);
-    Vue.component('v-dash-line', baseChartComponent)
-    Vue.component('v-sector', baseChartComponent)
-    Vue.component('v-area', baseChartComponent)
-    Vue.component('v-stack-area', baseChartComponent)
-    Vue.component('v-smooth-area', baseChartComponent)
-    Vue.component('v-funnel', baseChartComponent)
-    Vue.component('v-pyramid', baseChartComponent)
-    Vue.component('v-box', baseChartComponent)
-    Vue.component('v-candle', baseChartComponent)
-    Vue.component('v-polygon', baseChartComponent)
-    Vue.component('v-contour', baseChartComponent)
-    Vue.component('v-heatmap', baseChartComponent)
-    Vue.component('v-sankey', baseChartComponent)
-    Vue.component('v-error-bar', baseChartComponent)
-    Vue.component('v-jitter-point', baseChartComponent)
+    Vue.component('v-dash-line', baseChartComponent);
+    Vue.component('v-sector', baseChartComponent);
+    Vue.component('v-area', baseChartComponent);
+    Vue.component('v-stack-area', baseChartComponent);
+    Vue.component('v-smooth-area', baseChartComponent);
+    Vue.component('v-funnel', baseChartComponent);
+    Vue.component('v-pyramid', baseChartComponent);
+    Vue.component('v-box', baseChartComponent);
+    Vue.component('v-candle', baseChartComponent);
+    Vue.component('v-polygon', baseChartComponent);
+    Vue.component('v-contour', baseChartComponent);
+    Vue.component('v-heatmap', baseChartComponent);
+    Vue.component('v-sankey', baseChartComponent);
+    Vue.component('v-error-bar', baseChartComponent);
+    Vue.component('v-jitter-point', baseChartComponent);
 
-    Vue.component('v-plugin', baseChartComponent)
-    Vue.component('v-slider', baseChartComponent)
+    Vue.component('v-plugin', baseChartComponent);
+    Vue.component('v-slider', baseChartComponent);
   }
 };
 
@@ -248,20 +291,28 @@ function oneObjectMoreArray(obj: any, key: string, value: any) {
     obj[key] = [obj[key]];
   }
 
-  let isExisted = false;
-  if (key === 'views') {
-    obj[key] = obj[key].map((view: any, i: number) => {
-      if (view.viewId === value.viewId) {
-        isExisted = true;
-        return value;
-      } else {
-        return view;
+  let indexOfSameObject = -1;
+  if (value && value.viewId) {
+    obj[key].forEach((o: any, i: number) => {
+      if (o && o.viewId && o.viewId === value.viewId) {
+        indexOfSameObject = i;
       }
     });
-
+  } else if (value && value.componentId) {
+    obj[key].forEach((o: any, i: number) => {
+      if (o && o.componentId && o.componentId === value.componentId) {
+        indexOfSameObject = i;
+      }
+    });
   }
-  if (!isExisted) {
+
+  if (indexOfSameObject === -1) {
     obj[key].push(value);
+  } else {
+    obj[key][indexOfSameObject] = {
+      ...obj[key][indexOfSameObject],
+      ...value,
+    };
   }
 }
 
