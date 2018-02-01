@@ -91,6 +91,15 @@ export default class Chart extends React.Component<IRChart, any> {
     if (props.scale) {
       config.scale = props.scale;
     }
+
+    if (props.start) {
+      config.start = props.start;
+    }
+
+    if (props.end) {
+      config.end = props.end;
+    }
+
   }
 
   combineContentConfig(displayName: string, props: IRChart, config: any) {
