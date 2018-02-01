@@ -184,7 +184,6 @@ class CommonChart {
   }
 
   private setFacet(chart: any, config: IMainConfig) {
-    debugger;
     let cFacet = _.cloneDeep(config.facet);
 
     if (_.isNil(cFacet) || _.isEmpty(cFacet)) { return; }
