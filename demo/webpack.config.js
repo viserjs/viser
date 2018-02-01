@@ -5,7 +5,7 @@ const vueLoaderConfig = require('./vue-loader.config')
 module.exports = {
   context: __dirname,
   devtool: '#inline-source-map',
-  entry: ['./index.ts'],
+  entry: ['./index.tsx'],
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
