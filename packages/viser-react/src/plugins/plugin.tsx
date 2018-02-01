@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as _ from 'lodash';
-import { Plugin } from '../../../viser/src/index';
+import { Plugin } from 'viser';
 
 function firstLowerCase(str: string) {
   return str.replace(/^\S/, (s: any) => {
@@ -9,7 +9,7 @@ function firstLowerCase(str: string) {
   });
 }
 
-function generateRandomNum() {
+function generateRasndomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
 }
 

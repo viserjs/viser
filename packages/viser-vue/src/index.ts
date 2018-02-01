@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import typedProps from './typed';
 import * as viser from 'viser';
-import { Plugin } from '../../viser/src/index';
+import { Plugin } from 'viser';
 
 const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area', 'point', 'stackarea',
   'smootharea', 'bar', 'stackbar', 'dodgebar', 'interval', 'stackinterval', 'dodgeinterval',

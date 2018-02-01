@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
 import {PluginContext} from './PluginService';
-import { Plugin } from '../../../viser/src/index';
+import { Plugin } from 'viser';
 import {Slider} from './Slider';
 
 function firstLowerCase(str: string) {
