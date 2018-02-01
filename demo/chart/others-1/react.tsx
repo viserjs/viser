@@ -1,5 +1,4 @@
 import { Chart, Tooltip, Legend, Axis, Plugin, Slider, FacetView, Facet, Line } from '../../../packages/viser-react/src/index';
-import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 import { sourceData, scale } from './data'
 const DataSet = require('@antv/data-set');
@@ -33,7 +32,7 @@ const facetOpts = {
   }
 };
 
-class App extends React.Component {
+export default class App extends React.Component {
 
   state = {
     start: '2009/7/20 0:00',
@@ -127,5 +126,3 @@ class App extends React.Component {
     );
   }
 }
-
-ReactDOM.render(<App />, document.getElementById('mount'));

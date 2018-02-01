@@ -1,7 +1,6 @@
 import 'zone.js';
 import 'reflect-metadata';
 import { Component, enableProdMode, NgModule } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserModule } from '@angular/platform-browser';
 import { ViserModule } from '../../../packages/viser-ng/src/index';
 import { sourceData, scale } from './data';
@@ -59,8 +58,7 @@ const facetOpts = {
   </div>
   `
 })
-
-export class AppComponent {
+class AppComponent {
   forceFit: boolean = true;
   height: number = 600;
   data = sourceData;
@@ -142,5 +140,4 @@ export class AppComponent {
   bootstrap: [AppComponent]
 })
 
-export class AppModule { }
-platformBrowserDynamic().bootstrapModule(AppModule);
+export default class AppModule {}

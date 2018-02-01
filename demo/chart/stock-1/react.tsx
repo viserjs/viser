@@ -1,5 +1,4 @@
 import { Chart, Tooltip, Legend, Axis, Line, Plugin, Slider, View, Candle, Bar } from '../../../packages/viser-react/src/index';
-import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 import { data, scale1, scale2 } from './data'
 const DataSet = require('@antv/data-set');
@@ -11,7 +10,7 @@ const tooltipOpts = {
   + '{name}{value}</li>',
 };
 
-class App extends React.Component {
+export default class App extends React.Component {
 
   state = {
     start: '2015-07-07',
@@ -132,5 +131,3 @@ class App extends React.Component {
     );
   }
 }
-
-ReactDOM.render(<App />, document.getElementById('mount'));

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "viser demo",
   "scripts": {
-    "start": "node run.js"
+    "start": "UV_THREADPOOL_SIZE=100 && node --max_old_space_size=8192 run.js"
   },
   "dependencies": {
     "@angular/common": "^4.0.0",
