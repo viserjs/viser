@@ -180,7 +180,7 @@ const baseChartComponent = {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
         if (!nearestRootComponent) {
-          throw Error(`${this.$options._componentTag} must be wrapped into v-chart`);
+          throw Error(`${this.$options._componentTag} must be wrapped into v-chart or v-plugin`);
         }
 
         const rechartName = this.$options._componentTag.replace(/-/g, '').slice(1);
