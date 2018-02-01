@@ -90,12 +90,19 @@ const generateBaseChartComponent = (isContainer?: boolean) => {
         return d2Json;
       },
       freshChart(isUpdate: boolean) {
+        /**
+         * refresh plugin
+         */
         if (rootPlugin.indexOf(this.$options._componentTag) > -1) {
           const d2Json = this.createRootD2Json();
           if (!isUpdate) {
             this.plugins = Plugin(d2Json);
           }
-        } else if (rootCharts.indexOf(this.$options._componentTag) > -1) { // hit top
+        }
+        /**
+         * refresh chart
+         */
+        else if (rootCharts.indexOf(this.$options._componentTag) > -1) { // hit top
           const d2Json = this.createRootD2Json();
 
           if (!isUpdate || !this.chart) {
@@ -103,7 +110,11 @@ const generateBaseChartComponent = (isContainer?: boolean) => {
           } else {
             this.chart.repaint(d2Json);
           }
-        } else if (this.$options._componentTag === 'v-view') {
+        }
+        /**
+         * refresh view
+         */
+        else if (this.$options._componentTag === 'v-view') {
           const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
           oneObjectMoreArray(nearestRootComponent.jsonForD2, 'views', {
@@ -111,20 +122,32 @@ const generateBaseChartComponent = (isContainer?: boolean) => {
             ...this.jsonForD2,
             viewId: this._uid,
           });
-        } else if (this.$options._componentTag === 'v-facet-view') {
+        }
+        /**
+         * refresh facet-view
+         */
+        else if (this.$options._componentTag === 'v-facet-view') {
           const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
           nearestRootComponent.jsonForD2.views = {
             ...cleanUndefined(normalizeProps(this._props)),
             ...this.jsonForD2,
           };
-        } else if (this.$options._componentTag === 'v-facet') {
+        }
+        /**
+         * refresh facet
+         */
+        else if (this.$options._componentTag === 'v-facet') {
           const nearestRootComponent = this.findNearestRootComponent(this.$parent);
           nearestRootComponent.jsonForD2.facet = {
             ...cleanUndefined(normalizeProps(this._props)),
             ...this.jsonForD2,
           };
-        } else if (this.$options._componentTag === 'v-slider') {
+        }
+        /**
+         * refresh slider
+         */
+        else if (this.$options._componentTag === 'v-slider') {
           const nearestRootComponent = this.findNearestRootComponent(this.$parent);
           const sliderOpts = cleanUndefined(normalizeProps(this._props));
           if (!cleanUndefined(normalizeProps(this._props)).container) {
@@ -138,7 +161,11 @@ const generateBaseChartComponent = (isContainer?: boolean) => {
             ...sliderOpts,
             ...this.jsonForD2,
           };
-        } else {
+        }
+        /**
+         * refresh others like axis, coord, guide, etc.
+         */
+        else {
           const nearestRootComponent = this.findNearestRootComponent(this.$parent);
 
           if (!nearestRootComponent) {
@@ -165,7 +192,6 @@ const generateBaseChartComponent = (isContainer?: boolean) => {
       }
     },
     created() { // bubble from parent to child
-      // debugger;
     },
     mounted() { // bubble from child to parent
       this.freshChart(false);
