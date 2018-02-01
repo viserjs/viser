@@ -211,7 +211,7 @@ const baseChartComponent = {
     this.freshChart(true);
   },
   render(createElement: any) {
-    const isContainer = this.checkIsContainer(this.$parent);
+    const isContainer = this.checkIsContainer(this);
     if (isContainer) {
       return createElement('div', null, this.$slots.default);
     }
