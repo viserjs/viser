@@ -39,6 +39,8 @@ export interface ILegend {
   selectedMode?: string;
   reversed?: boolean;
   slidable?: boolean;
+  width?: number;
+  height?: number;
   legendMarker?: any;
   legendListItem?: any;
   onHover?: eventFunc;
