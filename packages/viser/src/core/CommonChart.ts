@@ -164,6 +164,7 @@ class CommonChart {
     if (!_.isNil(item.coord)) { this.setCoord(view, item); }
     if (!_.isNil(item.tooltip)) { this.setTooltip(view, item); }
     if (!_.isNil(item.axis)) { this.setAxis(view, item); }
+    if (!_.isNil(item.guide)) { this.setGuide(view, item); }
 
     this.setContent(view, item);
 
