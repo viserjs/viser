@@ -132,7 +132,7 @@ class CommonChart {
   }
 
   private setDefaultTooltip(chart: any, config: IMainConfig) {
-    return setTooltipConfig.setDefault(chart, config);
+    return setTooltipConfig.setDefaultPoint(chart, config);
   }
 
   private setGuide(chart: any, config: IMainConfig) {
