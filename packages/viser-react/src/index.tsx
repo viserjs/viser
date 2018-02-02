@@ -5,7 +5,7 @@ import { Coord, Tooltip, Legend, Guide, Axis, Series, Brush, Line,
  Pie, Sector, SmoothLine, DashLine, Area, StackArea, SmoothArea,
  Bar, StackBar, DodgeBar, Interval, StackInterval, DodgeInterval,
  Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap,
- Edge, Sankey, JitterPoint } from './components/SubComponent';
+ Edge, Sankey, JitterPoint, Path } from './components/SubComponent';
 
  import { Slider } from './plugins/SubPlugin';
 
@@ -24,7 +24,7 @@ export {
   Pie, Sector, SmoothLine, DashLine, Area, StackArea, SmoothArea,
   Bar, StackBar, DodgeBar, Interval, StackInterval, DodgeInterval,
   Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap,
-  Edge, Sankey, JitterPoint
+  Edge, Sankey, JitterPoint, Path
 };
 
 export { default as Plugin } from './plugins/plugin';
