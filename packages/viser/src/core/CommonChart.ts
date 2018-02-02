@@ -58,6 +58,7 @@ class CommonChart {
 
     chart.render();
 
+    this.setDefaultTooltip(chart, config);
     this.setBrush(chart, config);
   }
 
@@ -128,6 +129,10 @@ class CommonChart {
 
   private setTooltip(chart: any, config: IMainConfig) {
     return setTooltipConfig.process(chart, config);
+  }
+
+  private setDefaultTooltip(chart: any, config: IMainConfig) {
+    return setTooltipConfig.setDefaultPoint(chart, config);
   }
 
   private setGuide(chart: any, config: IMainConfig) {

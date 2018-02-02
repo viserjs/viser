@@ -21,3 +21,18 @@ export const process = (chart: any, config: any) => {
 
   return chart.tooltip(cTooltip);
 };
+
+export const setDefaultPoint = (chart: any, config: any) => {
+  let cTooltip = _.cloneDeep(config.tooltip);
+
+  if (
+    !_.isNil(cTooltip) && cTooltip !== false && cTooltip.show !== false
+    && cTooltip.defaultPoint
+  ) {
+    const defaultPoint = cTooltip.defaultPoint;
+    const xyPoint = chart.getXY(defaultPoint);
+    if (!!xyPoint) {
+      chart.showTooltip(xyPoint);
+    }
+  }
+};
