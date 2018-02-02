@@ -53,6 +53,8 @@ class Legend extends Chart {
   @Input() selectedMode?: string;
   @Input() reversed?: boolean;
   @Input() slidable?: boolean;
+  @Input() width?: number;
+  @Input() height?: number;
   @Input() legendMarker?: any;
   @Input() legendListItem?: any;
   @Input() custom?: boolean;
