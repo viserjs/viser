@@ -1,6 +1,6 @@
 import { Component, Input, ViewContainerRef } from '@angular/core';
 import { PluginComponent } from './Plugin';
-import {PluginContext} from './PluginService';
+import { PluginContext } from './PluginService';
 
 function generateRandomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
@@ -10,7 +10,6 @@ function generateRandomNum() {
   selector: 'v-slider',
   template: `<div id="{{context.container}}"></div>`,
 })
-
 class Slider extends PluginComponent {
   @Input() height?: any;
   @Input() width?: any;
@@ -23,7 +22,6 @@ class Slider extends PluginComponent {
   @Input() scales?: any;
   @Input() onChange?: any;
   @Input() backgroundChart?: any;
-
 }
 
 export { Slider };

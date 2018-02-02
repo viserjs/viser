@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as _ from 'lodash';
-import { Plugin } from 'viser';
+import * as viser from 'viser';
 
 function firstLowerCase(str: string) {
   return str.replace(/^\S/, (s: any) => {
@@ -56,7 +56,7 @@ export default class PluginComponent extends React.Component<any, any> {
   };
 
   createSliderInstance(config: any) {
-    Plugin(config);
+    viser.Plugin(config);
   }
 
   clearConfigData() {

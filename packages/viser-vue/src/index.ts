@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import typedProps from './typed';
 import * as viser from 'viser';
-import { Plugin } from 'viser';
 
 const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area', 'point', 'stackarea',
   'smootharea', 'bar', 'stackbar', 'dodgebar', 'interval', 'stackinterval', 'dodgeinterval',
@@ -107,7 +106,7 @@ const baseChartComponent = {
       if (rootPlugin.indexOf(this.$options._componentTag) > -1) {
         const d2Json = this.createRootD2Json();
         if (!isUpdate) {
-          this.plugins = Plugin(d2Json);
+          this.plugins = viser.Plugin(d2Json);
         }
       }
       /**

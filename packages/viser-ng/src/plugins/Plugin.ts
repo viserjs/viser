@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
-import {PluginContext} from './PluginService';
-import { Plugin } from 'viser';
-import {Slider} from './Slider';
+import { PluginContext } from './PluginService';
+import * as viser from 'viser';
+import { Slider } from './Slider';
 
 function firstLowerCase(str: string) {
   return str.replace(/^\S/, (s: any) => {
@@ -75,6 +75,6 @@ export class PluginComponent implements AfterViewInit, OnChanges {
   }
 
   renderPlugin(rerender?: boolean) {
-    Plugin(this.config);
+    viser.Plugin(this.config);
   }
 }
