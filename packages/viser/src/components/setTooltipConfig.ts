@@ -14,6 +14,11 @@ export const process = (chart: any, config: any) => {
       cTooltip = _.omit(cTooltip, 'g2Tooltip');
     }
 
+    if (item === 'g2TooltipList') {
+      cTooltip['g2-tooltip-list'] = cTooltip[item];
+      cTooltip = _.omit(cTooltip, 'g2TooltipList');
+    }
+
     if (cTooltip.hasOwnProperty(item)) {
       EventUtils.setEvent(chart, 'tooltip', item);
     }

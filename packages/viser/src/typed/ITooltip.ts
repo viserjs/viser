@@ -27,6 +27,7 @@ export interface ITooltip {
   enterable?: boolean;
   position?: string;
   g2Tooltip?: any;
+  g2TooltipList?: any;
   onShow?: eventFunc;
   onHide?: eventFunc;
   onChange?: eventFunc;
