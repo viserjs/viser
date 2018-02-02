@@ -42,8 +42,8 @@ class Guide extends Chart {
   @Input() height?: number;
   @Input() offsetX?: number;
   @Input() offsetY?: number;
-  @Input() alignX?: 'left' | 'middle' | 'right';
-  @Input() alignY?: 'top' | 'middle' | 'bottom';
+  @Input() alignX?: string;
+  @Input() alignY?: string;
   @Input() html?: string;
   @Input() onMouseDown?: eventFunc;
   @Input() onMouseMove?: eventFunc;

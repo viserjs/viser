@@ -16,7 +16,19 @@ export default [
     case: ['json', 'react', 'vue', 'angular']
   },
   {
+    type: 'guage-1',
+    case: ['react', 'vue', 'angular']
+  },
+  {
     type: 'map-1',
     case: ['json']
+  },
+  {
+    type: 'stock-1',
+    case: ['json', 'react', 'vue', 'angular']
+  },
+  {
+    type: 'others-1',
+    case: ['json', 'react', 'vue', 'angular']
   },
 ];

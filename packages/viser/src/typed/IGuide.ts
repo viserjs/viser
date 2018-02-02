@@ -77,8 +77,8 @@ export interface IRegionGuide {
 export interface IHtmlGuide {
   type?: 'html';
   position?: object | (number | string)[] | func;
-  alignX?: 'left' | 'middle' | 'right';
-  alignY?: 'top' | 'middle' | 'bottom';
+  alignX?: string;
+  alignY?: string;
   offsetX?: number;
   offsetY?: number;
   html?: string;

@@ -1,5 +1,4 @@
 import { Chart, Tooltip, Axis, StackBar, LiteChart, Guide } from '../../../packages/viser-react/src/index';
-import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 import { data, scale } from './data'
 const DataSet = require('@antv/data-set');
@@ -25,7 +24,7 @@ export const repaintData = [
 
 const ds = new DataSet();
 
-class App extends React.Component {
+export default class App extends React.Component {
   dv: any;
   ds: any;
 
@@ -81,5 +80,3 @@ class App extends React.Component {
     );
   }
 }
-
-ReactDOM.render(<App />, document.getElementById('mount'));

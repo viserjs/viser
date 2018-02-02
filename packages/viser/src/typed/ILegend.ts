@@ -3,12 +3,11 @@ import * as IStyle from './IStyle';
 type func = () => void;
 type formatterFunc = (val: number) => string | number;
 type eventFunc = (ev: any, chart: any) => void;
-type Position = 'top' | 'right' | 'bottom' | 'left';
 
 export interface ILegend {
   dataKey?: string;
   show?: boolean;
-  position?: Position;
+  position?: string;
   title?: null | object;
   custom?: boolean;
   offset?: number;
@@ -19,7 +18,7 @@ export interface ILegend {
   titleGap?: number;
   itemMarginBottom?: number;
   itemsGroup?: object[];
-  layout?: 'horizontal' | 'vertical';
+  layout?: string;
   allowAllCanceled?: boolean;
   backPadding?: number[];
   itemWidth?: number;
@@ -37,9 +36,11 @@ export interface ILegend {
   container?: any;
   containerTpl?: string;
   itemTpl?: string | func;
-  selectedMode?: 'single' | 'multiple';
+  selectedMode?: string;
   reversed?: boolean;
+  slidable?: boolean;
   legendMarker?: any;
+  legendListItem?: any;
   onHover?: eventFunc;
   onClick?: eventFunc;
   onTitleMouseDown?: eventFunc;
