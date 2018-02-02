@@ -203,6 +203,7 @@ export class Chart implements AfterViewInit, OnChanges {
       'sankey',
       'errorBar',
       'jitterPoint',
+      'path',
     ];
 
     if (regSeries.indexOf(realName) < 0 && isOwnEmpty(props)) {

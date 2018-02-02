@@ -852,6 +852,36 @@ class JitterPoint extends Chart {
   @Input() onTouchEnd?: eventFunc;
 }
 
+@Component({
+  selector: 'v-path',
+  template: `<div #chartDom></div>`,
+})
+class Path extends Chart {
+  @Input() quickType?: string;
+  @Input() position?: string | string[];
+  @Input() gemo?: string;
+  @Input() adjust?: string | string[] | object[];
+  @Input() color?: any;
+  @Input() shape?: any;
+  @Input() size?: any;
+  @Input() opacity?: any;
+  @Input() label?: any;
+  @Input() tooltip?: any;
+  @Input() style?: object;
+  @Input() select?: any;
+  @Input() active?: boolean;
+  @Input() animate?: boolean | object;
+  @Input() onMouseDown?: eventFunc;
+  @Input() onMouseMove?: eventFunc;
+  @Input() onMouseLeave?: eventFunc;
+  @Input() onMouseUp?: eventFunc;
+  @Input() onClick?: eventFunc;
+  @Input() onDbClick?: eventFunc;
+  @Input() onTouchStart?: eventFunc;
+  @Input() onTouchMove?: eventFunc;
+  @Input() onTouchEnd?: eventFunc;
+}
+
 export {
   Series,
   Pie,
@@ -881,4 +911,5 @@ export {
   Sankey,
   ErrorBar,
   JitterPoint,
+  Path,
 };

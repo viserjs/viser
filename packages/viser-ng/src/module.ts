@@ -5,7 +5,7 @@ import { Slider } from './plugins/Slider';
 import { Chart } from './Chart';
 import { LiteChart } from './LiteChart';
 import { Axis, Brush, Coord, Facet, Guide, Legend, Tooltip, View, FacetView, Series, Pie, Sector, Line, SmoothLine, DashLine, Area, StackArea, SmoothArea,
- Bar, StackBar, DodgeBar, Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap, Edge, Sankey, ErrorBar, JitterPoint, StackInterval, DodgeInterval, Interval } from './components/index';
+ Bar, StackBar, DodgeBar, Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap, Edge, Sankey, ErrorBar, JitterPoint, StackInterval, DodgeInterval, Interval, Path } from './components/index';
 import * as viser from 'viser';
 
 
@@ -51,6 +51,7 @@ import * as viser from 'viser';
     StackInterval,
     DodgeInterval,
     Interval,
+    Path,
     PluginComponent,
     Slider,
   ],
@@ -94,6 +95,7 @@ import * as viser from 'viser';
     StackInterval,
     DodgeInterval,
     Interval,
+    Path,
     PluginComponent,
     Slider,
   ],
