@@ -55,6 +55,7 @@ class Legend extends Chart {
   @Input() slidable?: boolean;
   @Input() legendMarker?: any;
   @Input() legendListItem?: any;
+  @Input() custom?: boolean;
   @Input() onHover?: eventFunc;
   @Input() onClick?: eventFunc;
   @Input() onTitleMouseDown?: eventFunc;
