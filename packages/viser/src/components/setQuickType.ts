@@ -199,6 +199,12 @@ const QUICK_TYPE = [
       adjust: 'jitter',
     },
   },
+  {
+    type: 'path',
+    series: {
+      gemo: 'path',
+    },
+  },
 ];
 
 export const process = (series: any, coord: any) => {

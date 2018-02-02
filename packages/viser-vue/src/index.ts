@@ -4,7 +4,8 @@ import * as viser from 'viser';
 
 const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area', 'point', 'stackarea',
   'smootharea', 'bar', 'stackbar', 'dodgebar', 'interval', 'stackinterval', 'dodgeinterval',
-  'funnel', 'pyramid', 'schema', 'box', 'candle', 'polygon', 'contour', 'heatmap', 'edge', 'sankey', 'errorbar', 'jitterpoint'];
+  'funnel', 'pyramid', 'schema', 'box', 'candle', 'polygon', 'contour', 'heatmap', 'edge', 'sankey', 'errorbar',
+  'jitterpoint', 'path'];
 
 const rootCharts = ['v-chart', 'v-lite-chart'];
 
@@ -264,6 +265,7 @@ export default {
     Vue.component('v-sankey', baseChartComponent);
     Vue.component('v-error-bar', baseChartComponent);
     Vue.component('v-jitter-point', baseChartComponent);
+    Vue.component('v-path', baseChartComponent);
 
     Vue.component('v-plugin', baseChartComponent);
     Vue.component('v-slider', baseChartComponent);

@@ -7,7 +7,7 @@ import { Tooltip } from './Tooltip';
 import { Brush } from './Brush';
 import { View, FacetView } from './View';
 import { Series, Pie, Sector, Line, SmoothLine, DashLine, Area, StackArea, SmoothArea, Bar, StackBar, DodgeBar,
-  Interval, StackInterval, DodgeInterval, Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap, Edge, Sankey, ErrorBar, JitterPoint } from './Series';
+  Interval, StackInterval, DodgeInterval, Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap, Edge, Sankey, ErrorBar, JitterPoint, Path } from './Series';
 
 export {
   Axis,
@@ -47,4 +47,5 @@ export {
   Sankey,
   ErrorBar,
   JitterPoint,
+  Path,
 };
