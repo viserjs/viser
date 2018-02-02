@@ -30,6 +30,16 @@ export const process = (chart: any, config: any) => {
     }
 
     for (const item in res) {
+      // Due to lack of legend:click event support in G2.chart,
+      // unlike other component,
+      // we have to use onClick on Legend.
+      if (item === 'onClick') {
+        const content = res['onClick'];
+        res['onClick'] = (ev?: any) => {
+          content(ev, chart);
+        };
+      }
+
       if (res.hasOwnProperty(item)) {
         EventUtils.setSEvent(chart, 'legend', item, res[item]);
       }
