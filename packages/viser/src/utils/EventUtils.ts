@@ -2,6 +2,12 @@ import * as _ from 'lodash';
 
 const regEventName = /on(.+)(MouseEnter|MouseMove|MouseLeave|Click|DdlClick|MouseDown|MouseUp|TouchStart|TouchMove|TouchEnd)/;
 
+/**
+ * [setSEvent]
+ * ref: https://antv.alipay.com/zh-cn/g2/3.x/tutorial/chart-event.html
+ * Set event for single element of components, like 'onTitleClick' on Tooltip.
+ * Notice that the component's event like 'onClick' will not be include in this method. Please use 'setEvent' instead.
+ */
 export function setSEvent (chart: any, itemname: string, keyname: string, content: any) {
   if (_.isEmpty(keyname)) { return; }
 
@@ -19,6 +25,11 @@ export function setSEvent (chart: any, itemname: string, keyname: string, conten
   });
 }
 
+/**
+ * [setEvent]
+ * ref: https://antv.alipay.com/zh-cn/g2/3.x/tutorial/chart-event.html
+ * Set event for whole component, like 'onClick' on Tooltip.
+ */
 export function setEvent (chart: any, name: string, item: any) {
   if (_.isEmpty(item)) { return; }
 

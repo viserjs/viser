@@ -24,6 +24,7 @@ class Legend extends Chart {
   @Input() show?: boolean;
   @Input() position?: string;
   @Input() title?: null | object;
+  @Input() custom?: boolean;
   @Input() offset?: number;
   @Input() offsetX?: number;
   @Input() offsetY?: number;

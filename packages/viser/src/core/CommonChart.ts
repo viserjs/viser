@@ -10,7 +10,7 @@ import * as setCoordConfig from '../components/setCoordConfig';
 import * as setAxisConfig from '../components/setAxisConfig';
 import * as setSeriesConfig from '../components/setSeriesConfig';
 import * as setCustomFormatter from '../components/setCustomFormatter';
-import * as setLengendConfig from '../components/setLengendConfig';
+import * as setLegendConfig from '../components/setLegendConfig';
 import * as setGuideConfig from '../components/setGuideConfig';
 import * as setTooltipConfig from '../components/setTooltipConfig';
 import * as setScaleConfig from '../components/setScaleConfig';
@@ -140,7 +140,7 @@ class CommonChart {
   }
 
   private setLegend(chart: any, config: IMainConfig) {
-    return setLengendConfig.process(chart, config);
+    return setLegendConfig.process(chart, config);
   }
 
   private setContent(chart: any, config: IMainConfig) {

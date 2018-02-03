@@ -33,6 +33,7 @@ class Tooltip extends Chart {
   @Input() enterable?: boolean;
   @Input() position?: string;
   @Input() g2Tooltip?: any;
+  @Input() g2TooltipList?: any;
   @Input() onShow?: eventFunc;
   @Input() onHide?: eventFunc;
   @Input() onChange?: eventFunc;
