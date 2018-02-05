@@ -164,6 +164,11 @@ export default class Chart extends React.Component<IRChart, any> {
         config.guide = [];
       }
       config.guide.push(props);
+    } else if (nameLowerCase === 'legend') {
+      if (!config.legend) {
+        config.legend = [];
+      }
+      config.legend.push(props);
     } else {
       config[nameLowerCase] = props;
     }
