@@ -217,7 +217,7 @@ const baseChartComponent = {
     }
     const props = cleanUndefined(normalizeProps(this._props));
     return createElement('div', { style: { display: 'none' } }, Object.keys(props).map((key) => {
-      return props[key];
+      return '' + key + ':' + JSON.stringify(props[key]);
     }));
   },
 };
