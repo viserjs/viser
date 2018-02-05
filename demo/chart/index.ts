@@ -31,4 +31,8 @@ export default [
     type: 'others-1',
     case: ['json', 'react', 'vue', 'angular']
   },
+  {
+    type: 'waffle',
+    case: ['react', 'vue', 'angular']
+  },
 ];
