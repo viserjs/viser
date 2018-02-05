@@ -24,6 +24,7 @@ class Legend extends Chart {
   @Input() show?: boolean;
   @Input() position?: string;
   @Input() title?: null | object;
+  @Input() custom?: boolean;
   @Input() offset?: number;
   @Input() offsetX?: number;
   @Input() offsetY?: number;
@@ -57,9 +58,6 @@ class Legend extends Chart {
   @Input() height?: number;
   @Input() legendMarker?: any;
   @Input() legendListItem?: any;
-  @Input() custom?: boolean;
-  @Input() width?: number;
-  @Input() height?: number;
   @Input() onHover?: eventFunc;
   @Input() onClick?: eventFunc;
   @Input() onTitleMouseDown?: eventFunc;
