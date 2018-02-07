@@ -17,6 +17,9 @@ import * as setScaleConfig from '../components/setScaleConfig';
 const G2 = require('@antv/g2');
 const Brush = require('@antv/g2-brush');
 
+// Disable G2 Track
+G2.track(false);
+
 function firstUpperCase(str: string) {
   return str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase());
 }
