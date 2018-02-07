@@ -245,6 +245,15 @@ export class Chart implements AfterViewInit, OnChanges {
         componentId: this.componentId
       });
       config.guide = uniqComponentIdArray(config.guide);
+    } else if (nameLowerCase === 'legend') {
+      if (!config.legend) {
+        config.legend = [];
+      }
+      config.legend.push({
+        ...props,
+        componentId: this.componentId
+      });
+      config.legend = uniqComponentIdArray(config.legend);
     } else {
       config[nameLowerCase] = props;
     }

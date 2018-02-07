@@ -186,6 +186,12 @@ class CommonChart {
 
   private setFacetViews(chart: any, facet: any, views: IMainConfig) {
     this.setDataSource(chart, views.data);
+
+    if (!_.isNil(views.coord)) { this.setCoord(chart, views); }
+    if (!_.isNil(views.tooltip)) { this.setTooltip(chart, views); }
+    if (!_.isNil(views.axis)) { this.setAxis(chart, views); }
+    if (!_.isNil(views.guide)) { this.setGuide(chart, views); }
+
     this.setContent(chart, views);
   }
 

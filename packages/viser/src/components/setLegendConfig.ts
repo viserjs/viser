@@ -56,11 +56,15 @@ export const process = (chart: any, config: any) => {
     res = _.omit(res, ['legendMarker', 'legendListItem']);
 
     if (res.dataKey) {
-      if (res.show === false) { return chart.legend(res.dataKey, false); }
-      const option = _.omit(res, ['dataKey', 'show']);
-      return chart.legend(res.dataKey, option);
+      if (res.show === false) {
+        chart.legend(res.dataKey, false);
+      } else {
+        const option = _.omit(res, ['dataKey', 'show']);
+        chart.legend(res.dataKey, option);
+      }
     } else {
-      return chart.legend(res);
+      chart.legend(res);
     }
   }
+  return chart;
 };
