@@ -13,6 +13,7 @@ import IScale from './typed/IScale';
 import IMain from './typed/IMain';
 import * as CustomizeUtils from './utils/CustomizeUtils';
 import * as _ from 'lodash';
+declare const require: any;
 const G2 = require('@antv/g2');
 
 export {

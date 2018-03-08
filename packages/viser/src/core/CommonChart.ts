@@ -14,6 +14,7 @@ import * as setLegendConfig from '../components/setLegendConfig';
 import * as setGuideConfig from '../components/setGuideConfig';
 import * as setTooltipConfig from '../components/setTooltipConfig';
 import * as setScaleConfig from '../components/setScaleConfig';
+declare const require: any;
 const G2 = require('@antv/g2');
 const Brush = require('@antv/g2-brush');
 
