@@ -1,3 +1,4 @@
+declare const require: any;
 const G2 = require('@antv/g2');
 
 export const registerShape = (geoName: string, shapeName: string, shapeFun: any) => {

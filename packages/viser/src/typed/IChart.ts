@@ -12,7 +12,7 @@ interface IBackground {
 export interface IChart {
   id?: any;
   container?: any;
-  height: number;
+  height?: number;
   width?: number;
   animate?: boolean | object;
   forceFit?: boolean;
