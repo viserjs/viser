@@ -20,8 +20,8 @@ function firstLowerCase(str: string) {
 export class PluginComponent implements AfterViewInit, OnChanges {
   config: any = {};
   private vcRef: any;
-
-  constructor(private context: PluginContext, vcRef: ViewContainerRef) {
+  public context: PluginContext;
+  constructor(context: PluginContext, vcRef: ViewContainerRef) {
     this.context = context;
     this.vcRef = vcRef;
   }
