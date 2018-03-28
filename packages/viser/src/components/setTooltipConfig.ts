@@ -26,7 +26,7 @@ export const process = (chart: any, config: any) => {
 
     if (item === 'g2TooltipListItem') {
       cTooltip['g2-tooltip-list-item'] = cTooltip[item];
-      cTooltip = _.omit(cTooltip, 'g2Tooltip');
+      cTooltip = _.omit(cTooltip, 'g2TooltipListItem');
     }
 
     if (item === 'g2TooltipMaker') {
