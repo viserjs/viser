@@ -18,11 +18,9 @@ export const process = (chart: any, config: any) => {
       cTooltip['g2-tooltip-list'] = cTooltip[item];
       cTooltip = _.omit(cTooltip, 'g2TooltipList');
     }
-
-    if (cTooltip.hasOwnProperty(item)) {
-      EventUtils.setEvent(chart, 'tooltip', item);
-    }
   }
+
+  EventUtils.setEvent(chart, 'tooltip', cTooltip);
 
   return chart.tooltip(cTooltip);
 };
