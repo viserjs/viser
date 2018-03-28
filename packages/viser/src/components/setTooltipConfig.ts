@@ -14,9 +14,24 @@ export const process = (chart: any, config: any) => {
       cTooltip = _.omit(cTooltip, 'g2Tooltip');
     }
 
+    if (item === 'g2TooltipTitle') {
+      cTooltip['g2-tooltip-title'] = cTooltip[item];
+      cTooltip = _.omit(cTooltip, 'g2TooltipTitle');
+    }
+
     if (item === 'g2TooltipList') {
       cTooltip['g2-tooltip-list'] = cTooltip[item];
       cTooltip = _.omit(cTooltip, 'g2TooltipList');
+    }
+
+    if (item === 'g2TooltipListItem') {
+      cTooltip['g2-tooltip-list-item'] = cTooltip[item];
+      cTooltip = _.omit(cTooltip, 'g2Tooltip');
+    }
+
+    if (item === 'g2TooltipMaker') {
+      cTooltip['g2-tooltip-maker'] = cTooltip[item];
+      cTooltip = _.omit(cTooltip, 'g2TooltipMaker');
     }
   }
 

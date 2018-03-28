@@ -21,7 +21,7 @@ dv.transform({
   template: `
   <div>
     <v-chart [forceFit]="forceFit" [height]="height" [data]="data" [scale]="scale">
-      <v-tooltip></v-tooltip>
+      <v-tooltip [onShow]="onTooltipShow" [onHide]="onTooltipHide" [onChange]="onTooltipChange"></v-tooltip>
       <v-axis></v-axis>
       <v-stack-bar position='year*percent' color='country' [style]="{ stroke: '#fff', lineWidth: 1 }" ></v-stack-bar>
     </v-chart>
@@ -34,6 +34,9 @@ class AppComponent {
   data = dv.rows;
   scale = scale;
   fields = ['cut', 'clarity'];
+  onTooltipShow = () => { console.log('show'); };
+  onTooltipHide = () => { console.log('hide'); };
+  onTooltipChange = () => { console.log('change'); };
 }
 
 @NgModule({
