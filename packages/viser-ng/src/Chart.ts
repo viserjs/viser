@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild, ElementRef, ViewContainerRef } from '@angular/core';
 import viser, { IScale } from 'viser';
 import { ChartContext } from './chartService';
 import { IRChart } from './typed/IRChart';
@@ -114,14 +114,17 @@ export class Chart implements AfterViewInit, OnChanges {
   config: any = {};
   private viewId: string = generateRandomNum();
   private componentId = generateRandomNum();
+  private elem: any;
   private vcRef: any;
 
-  constructor(private context: ChartContext, vcRef: ViewContainerRef) {
+  constructor(private context: ChartContext, elem: ElementRef, vcRef: ViewContainerRef) {
     this.context = context;
+    this.elem = elem;
     this.vcRef = vcRef;
 
-    const name = this.constructor.name;
+    const name = this.getComponentName();
     const viewType = this.getViewType();
+
     const hasInViews = ['v-facet-view', 'v-view'].indexOf(viewType) !== -1;
     if (['FacetView', 'View'].indexOf(name) > -1) {
       this.context.lastFacetId = this.viewId || this.componentId;
@@ -295,10 +298,10 @@ export class Chart implements AfterViewInit, OnChanges {
   }
 
   getProps(allProps: any) {
-    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId','facetviews', 'componentId', 'vcRef',
+    const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'viewId','facetviews', 'componentId', 'elem', 'vcRef',
       'constructor', 'combineViewConfig', 'convertValueToNum', 'combineChartConfig', 'combineContentConfig',
       'ngOnInit', 'ngAfterViewInit', 'getProps', 'changeViewConfig', 'getViewType', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
-    if (['FacetView', 'View'].indexOf(this.constructor.name) < 0) {
+    if (['FacetView', 'View'].indexOf(this.getComponentName()) < 0) {
       strippingProperties.push('viewId');
     }
     if (allProps) {
@@ -338,8 +341,22 @@ export class Chart implements AfterViewInit, OnChanges {
     return this.vcRef.parentInjector.elDef.element.name;
   }
 
+  /**
+   * 获取当前组件的类名
+   * https://github.com/angular/angular-cli/issues/5168
+   */
+  getComponentName() {
+    const viewName = this.elem.nativeElement.tagName.toLowerCase();
+    const names = viewName.split('-');
+    names.shift(); // 去掉v-
+    const upperCaseNames = names.map((name: string) => {
+      return name.charAt(0).toUpperCase() + name.slice(1);
+    });
+    return upperCaseNames.join('');
+  }
+
   initChart(rerender?: boolean) {
-    const name = this.constructor.name;
+    const name = this.getComponentName();
     const props = this.getProps(this);
     const config = this.context.config;
     const views = this.context.views;
@@ -396,7 +413,7 @@ export class Chart implements AfterViewInit, OnChanges {
 
   renderChart(rerender?: boolean) {
     this.changeViewConfig();
-    const name = this.constructor.name;
+    const name = this.getComponentName();
 
     if (rerender) {
       if (this.context.timer) {
