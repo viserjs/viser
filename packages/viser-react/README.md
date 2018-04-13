@@ -14,8 +14,9 @@ $ npm install --save viser-react
 import { Chart, SmoothLine, Point, Tooltip, Legend, Axis } from 'viser-react';
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
+const DataSet = require('@antv/data-set');
 
-const data = [
+const sourceData = [
   { month: 'Jan', Tokyo: 7.0, London: 3.9 },
   { month: 'Feb', Tokyo: 6.9, London: 4.2 },
   { month: 'Mar', Tokyo: 9.5, London: 5.7 },
@@ -27,35 +28,23 @@ const data = [
   { month: 'Sep', Tokyo: 23.3, London: 14.2 },
   { month: 'Oct', Tokyo: 18.3, London: 10.3 },
   { month: 'Nov', Tokyo: 13.9, London: 6.6 },
-  { month: 'Dec', Tokyo: 9.6, London: 4.8 }
+  { month: 'Dec', Tokyo: 9.6, London: 4.8 },
 ];
 
-const dataPre = {
-  transform: [{
-    type: 'fold',
-    fields: ['Tokyo', 'London'],
-    key: 'city',
-    value: 'temperature',
-  }]
-};
+const dv = new DataSet.View().source(sourceData);
+dv.transform({
+  type: 'fold',
+  fields: ['Tokyo', 'London'],
+  key: 'city',
+  value: 'temperature',
+});
+const data = dv.rows;
 
-const dataDef = [
-  {
-    key: 'month',
-    mark: 'column',
-    scale: {
-      range: [0, 1],
-    },
-  }, {
-    key: 'city',
-    mark: 'color',
-    scale: {},
-  }, {
-    key: 'temperature',
-    mark: 'row',
-    scale: {},
-  },
-];
+const scale = [{
+  dataKey: 'percent',
+  min: 0,
+  formatter: '.2%',
+}];
 
 class App extends React.Component {
   constructor(props) {
@@ -65,8 +54,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Chart forceFit height={400} data={data} dataPre={dataPre} dataMapping={dataMapping} scale={scale}>
-          <StackBar style={{ stroke: '#fff', lineWidth: 1 }} />
+        <Chart forceFit height={400} data={data} scale={scale}>
+          <SmoothLine position="month*temperature" color="city" size="2" />
           <Tooltip />
           <Legend />
           <Axis />
