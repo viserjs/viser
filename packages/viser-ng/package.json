@@ -1,6 +1,6 @@
 {
   "name": "viser-ng",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "viser-ng is angular of viser.",
   "repository": "viserjs/viser-ng",
   "license": "MIT",
@@ -52,8 +52,9 @@
     "rxjs": "^5.3.0",
     "tslint": "^5.5.0",
     "typescript": "^2.6.1",
-    "webpack": "^3.3.0",
-    "webpack-bundle-analyzer": "^2.9.0",
+    "webpack": "^4.5.0",
+    "webpack-bundle-analyzer": "^2.11.0",
+    "webpack-cli": "^2.0.14",
     "zone.js": "^0.8.5"
   },
   "keywords": [
