@@ -2,7 +2,9 @@ declare const require: any;
 const G2 = require('@antv/g2');
 const Slider = require('@antv/g2-plugin-slider');
 
-export default (config: any) => {
+import ISliderConfig  from '../typed/ISlider';
+
+export default (config: ISliderConfig) => {
   if (!document.getElementById(config.container)) {
     console.error('plugin slider container not defined');
     return;

@@ -70,7 +70,7 @@ export default class App extends React.Component {
     return (
       <div>
         <button onClick={this.handleClick}>Click</button>
-        <Chart forceFit height={this.state.height} data={this.state.data} scale={scale}>
+        <Chart forceFit height={this.state.height} data={this.state.data} scale={scale} >
           <Tooltip />
           <Axis />
           <StackBar position='year*percent' color='country' style={{ stroke: '#fff', lineWidth: this.state.lineWidth }} />

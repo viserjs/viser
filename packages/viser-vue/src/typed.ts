@@ -26,7 +26,7 @@ const props: any = [
   'canvas', 'startPoint', 'brushing', 'dragging', 'brushShape', 'container', 'polygonPath', 'type', 'dragable', 'dragoffX', 'dragoffY', 'inPlot', 'xField', 'yField', 'filter',
   'onBrushstart', 'onBrushmove', 'onBrushend', 'onDragstart', 'onDragmove', 'onDragend',
   // slider
-  'xAxis', 'yAxis', 'onChange', 'backgroundChart',
+  'xAxis', 'yAxis', 'data', 'width', 'height', 'padding', 'start', 'end', 'minSpan', 'maxSpan', 'scales', 'backgroundChart', 'onChange',
   // view
   'start', 'end',
   // event

@@ -113,6 +113,7 @@ export default class App extends React.Component {
       },
       onChange: this.slideChange.bind(this)
     };
+
     return (
       <div>
         <Chart forceFit height={400} animate={false} padding={[ 20, 20, 0, 80]} data={chartDv} scale={scale}>
