@@ -13,16 +13,18 @@ $ npm install --save viser-vue
 ```vue
 <template>
   <div>
-    <v-chart :force-fit="true" :height="height" :data="data" :data-pre="dataPre" :data-mapping="dataMapping" :scale="scale">
+    <v-chart :force-fit="true" :height="height" :data="data" :scale="scale">
       <v-tooltip />
       <v-axis />
-      <v-stack-bar :v-style="stackBarStyle" />
+      <v-smooth-line position="month*temperature" color="city" :size="2" />
     </v-chart>
   </div>
 </template>
 
 <script>
-const data = [
+const DataSet = require('@antv/data-set');
+
+const sourceData = [
   { month: 'Jan', Tokyo: 7.0, London: 3.9 },
   { month: 'Feb', Tokyo: 6.9, London: 4.2 },
   { month: 'Mar', Tokyo: 9.5, London: 5.7 },
@@ -34,30 +36,17 @@ const data = [
   { month: 'Sep', Tokyo: 23.3, London: 14.2 },
   { month: 'Oct', Tokyo: 18.3, London: 10.3 },
   { month: 'Nov', Tokyo: 13.9, London: 6.6 },
-  { month: 'Dec', Tokyo: 9.6, London: 4.8 }
+  { month: 'Dec', Tokyo: 9.6, London: 4.8 },
 ];
 
-const dataPre = {
-  transform: [{
-    type: 'fold',
-    fields: ['Tokyo', 'London'],
-    key: 'city',
-    value: 'temperature',
-  }]
-};
-
-const dataMapping = [
-  {
-    key: 'month',
-    mark: 'column',
-  }, {
-    key: 'city',
-    mark: 'color',
-  }, {
-    key: 'temperature',
-    mark: 'row',
-  },
-];
+const dv = new DataSet.View().source(sourceData);
+dv.transform({
+  type: 'fold',
+  fields: ['Tokyo', 'London'],
+  key: 'city',
+  value: 'temperature',
+});
+const data = dv.rows;
 
 const scale = [{
   dataKey: 'percent',
@@ -69,14 +58,8 @@ export default {
   data() {
     return {
       data,
-      dataMapping,
-      dataPre,
       scale,
       height: 400,
-      stackBarStyle: {
-        stroke: "#fff",
-        lineWidth: 1
-      }
     };
   }
 };
