@@ -70,8 +70,12 @@ export default class App extends React.Component {
     return (
       <div>
         <button onClick={this.handleClick}>Click</button>
-        <Chart forceFit height={this.state.height} data={this.state.data} scale={scale} >
-          <Tooltip />
+        <Chart forceFit height={this.state.height} data={this.state.data} scale={scale}>
+          <Tooltip
+            onShow={() => { console.log('show'); }}
+            onHide={() => { console.log('hide'); }}
+            onChange={() => { console.log('change'); }}
+          />
           <Axis />
           <StackBar position='year*percent' color='country' style={{ stroke: '#fff', lineWidth: this.state.lineWidth }} />
         </Chart>

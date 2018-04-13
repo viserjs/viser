@@ -18,7 +18,8 @@ const props: any = [
   // series
   'quickType', 'position', 'gemo', 'adjust', 'color', 'shape', 'size', 'opacity', 'label', 'tooltip', 'vStyle', 'select', 'active', 'animate',
   // tooltip
-  'x', 'y', 'items', 'showTitle', 'offset', 'timeStamp', 'crosshairs', 'containerTpl', 'itemTpl', 'inPlot', 'plotRange', 'follow', 'shared', 'position', 'enterable', 'g2Tooltip', 'g2TooltipList', 'onShow', 'onHide', 'onChange', 'defaultPoint',
+  'x', 'y', 'items', 'show', 'triggerOn', 'showTitle', 'title', 'crosshairs', 'offset', 'inPlot', 'follow', 'shared', 'enterable', 'position', 'hideMarkers', 'containerTpl', 'itemTpl',
+  'g2Tooltip', 'g2TooltipTitle', 'g2TooltipList', 'g2TooltipListItem', 'g2TooltipMarker', 'onShow', 'onHide', 'onChange', 'defaultPoint', 'timeStamp', 'plotRange',
   // lite
   'pie', 'sector', 'line', 'smoothLine', 'dashLine', 'area', 'stackArea', 'smoothArea', 'bar', 'stackBar', 'dodgeBar', 'interval', 'stackInterval', 'dodgeInterval',
   'point', 'funnel', 'pyramid', 'schema', 'box', 'candle', 'polygon', 'contour', 'heatmap', 'edge', 'sankey', 'errorBar', 'jitterPoint',
