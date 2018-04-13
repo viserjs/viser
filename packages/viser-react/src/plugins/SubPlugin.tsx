@@ -1,6 +1,8 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
+import { ISlider } from 'viser';
+
 function generateRandomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
 }
@@ -45,4 +47,4 @@ class SubPlugin<T = {}> extends React.Component<Props & T, any> {
   }
 }
 
-export class Slider extends SubPlugin<any> { displayName = 'Slider'; }
+export class Slider extends SubPlugin<ISlider> { displayName = 'Slider'; }

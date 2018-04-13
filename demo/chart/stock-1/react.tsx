@@ -74,6 +74,8 @@ export default class App extends React.Component {
           nice: false,
         }
       },
+      minSpan: 30 * 24 * 60 * 60 * 1000,
+      maxSpan: 120 * 24 * 60 * 60 * 1000,
       onChange: this.slideChange.bind(this)
     };
     return (

@@ -11,6 +11,7 @@ import ITooltipConfig, { ITooltip } from './typed/ITooltip';
 import IViewConfig, { IView } from './typed/IView';
 import IScale from './typed/IScale';
 import IMain from './typed/IMain';
+import ISlider from './typed/ISlider';
 import * as CustomizeUtils from './utils/CustomizeUtils';
 import * as _ from 'lodash';
 declare const require: any;
@@ -42,6 +43,7 @@ export {
   IViewConfig,
   IScale,
   IMain,
+  ISlider,
 };
 
 export const registerAnimation = CustomizeUtils.registerAnimation;
