@@ -9,7 +9,7 @@ function firstLowerCase(str: string) {
   });
 }
 
-function generateRasndomNum() {
+function generateRandomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
 }
 
