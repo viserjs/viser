@@ -45,17 +45,9 @@ async function build() {
     });
   });
 
-  await spinner('Building UMD modules', async () => {
-    await exec('webpack --progress --config webpack.config.js', {
-      BABEL_ENV: 'umd',
-      NODE_ENV: 'development'
-    });
-  });
-
   await spinner('Building UMD Min modules', async () => {
-    await exec('webpack --progress --config webpack.config.js', {
+    await exec('webpack --config webpack.config.js', {
       BABEL_ENV: 'umd',
-      NODE_ENV: 'production'
     });
   });
 
