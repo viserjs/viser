@@ -79,6 +79,11 @@ export default class Chart extends React.Component<IRChart, any> {
     const chartRetain = [
       'height', 'width', 'animate', 'forceFit',
       'background', 'plotBackground', 'padding',
+      'onMouseDown', 'onMouseMove', 'onMouseUp',
+      'onClick', 'onDbClick',
+      'onTouchStart', 'onTouchMove', 'onTouchEnd',
+      'onPlotEnter', 'onPlotMove', 'onPlotLeave',
+      'onPlotClick', 'onPlotDbClick'
     ];
     config.chart = retain(props, chartRetain);
   }
