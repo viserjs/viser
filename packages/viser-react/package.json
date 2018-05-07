@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@types/react": "*",
-    "@types/react-dom": "16.0.4",
+    "@types/react-dom": "*",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-dev-expression": "^0.2.1",
