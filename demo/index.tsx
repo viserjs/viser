@@ -42,15 +42,11 @@ function fetchData(state) {
       delete require.cache[`./chart/${type}/${fileName}.tsx`];
       const App = require(`./chart/${type}/${fileName}`).default;
       ReactDOM.render(<App />, document.getElementById('mount'));
-    }
-
-    if (fileName === 'angular')  {
+    } else if (fileName === 'angular')  {
       delete require.cache[`./chart/${type}/${fileName}.ts`];
       const AppModule = require(`./chart/${type}/${fileName}`).default;
       platformBrowserDynamic().bootstrapModule(AppModule).then((ref) => { ngRef = ref; });
-    }
-
-    if (fileName === 'vue') {
+    } else if (fileName === 'vue') {
       const App = require(`./chart/${type}/${fileName}.vue`).default;
       const container = document.createElement('div');
       document.getElementById('mount').appendChild(container);
@@ -62,6 +58,9 @@ function fetchData(state) {
         template: '<App v-if="existed"/>',
         components: { App }
       });
+    } else {
+      delete require.cache[`./chart/${type}/${fileName}.tsx`];
+      require(`./chart/${type}/${fileName}`);
     }
   }
 }
