@@ -1,67 +1,56 @@
-# viser [![npm](https://img.shields.io/npm/v/viser.svg)](https://www.npmjs.com/package/viser) [![Dependency Status](https://david-dm.org/viserjs/viser.svg?path=packages/viser)](https://david-dm.org/viserjs/viser.svg?path=packages/viser)
+# viser-cell [![npm](https://img.shields.io/npm/v/viser-cell.svg)](https://www.npmjs.com/package/viser-cell) [![Dependency Status](https://david-dm.org/viserjs/viser-cell.svg?path=packages/viser)](https://david-dm.org/viserjs/viser-cell.svg?path=packages/viser)
 
 > A toolkit fit for data vis engineer.
 
 ## Install
 
 ```sh
-$ npm install --save viser
+$ npm install --save viser-cell
 ```
 
 ## Usage
 
-```jsx
-import viser from 'viser';
-const DataSet = require('@antv/data-set');
+```js
+import viser from 'viser-cell';
 
-const sourceData = [
-  { month: 'Jan', Tokyo: 7.0, London: 3.9 },
-  { month: 'Feb', Tokyo: 6.9, London: 4.2 },
-  { month: 'Mar', Tokyo: 9.5, London: 5.7 },
-  { month: 'Apr', Tokyo: 14.5, London: 8.5 },
-  { month: 'May', Tokyo: 18.4, London: 11.9 },
-  { month: 'Jun', Tokyo: 21.5, London: 15.2 },
-  { month: 'Jul', Tokyo: 25.2, London: 17.0 },
-  { month: 'Aug', Tokyo: 26.5, London: 16.6 },
-  { month: 'Sep', Tokyo: 23.3, London: 14.2 },
-  { month: 'Oct', Tokyo: 18.3, London: 10.3 },
-  { month: 'Nov', Tokyo: 13.9, London: 6.6 },
-  { month: 'Dec', Tokyo: 9.6, London: 4.8 },
+const data = [
+  { name: 'London', 月份: 'Jan.', 月均降雨量: 18.9 },
+  { name: 'London', 月份: 'Feb.', 月均降雨量: 28.8 },
+  { name: 'London', 月份: 'Mar.', 月均降雨量: 39.3 },
+  { name: 'London', 月份: 'Apr.', 月均降雨量: 81.4 },
+  { name: 'London', 月份: 'May.', 月均降雨量: 47 },
+  { name: 'London', 月份: 'Jun.', 月均降雨量: 20.3 },
+  { name: 'London', 月份: 'Jul.', 月均降雨量: 24 },
+  { name: 'London', 月份: 'Aug.', 月均降雨量: 35.6 },
+  { name: 'Berlin', 月份: 'Jan.', 月均降雨量: 12.4 },
+  { name: 'Berlin', 月份: 'Feb.', 月均降雨量: 23.2 },
+  { name: 'Berlin', 月份: 'Mar.', 月均降雨量: 34.5 },
+  { name: 'Berlin', 月份: 'Apr.', 月均降雨量: 99.7 },
+  { name: 'Berlin', 月份: 'May.', 月均降雨量: 52.6 },
+  { name: 'Berlin', 月份: 'Jun.', 月均降雨量: 35.5 },
+  { name: 'Berlin', 月份: 'Jul.', 月均降雨量: 37.4 },
+  { name: 'Berlin', 月份: 'Aug.', 月均降雨量: 42.4 }
 ];
 
-const dv = new DataSet.View().source(sourceData);
-dv.transform({
-  type: 'fold',
-  fields: ['Tokyo', 'London'],
-  key: 'city',
-  value: 'temperature',
-});
-const data = dv.rows;
-
 viser({
-  data,
+  data: data,
   axis: true,
-  legend: true,
   tooltip: true,
+  legend: true,
   series: [{
-    quickType: 'smoothLine',
-    position: 'month*temperature',
-    color: "city",
-    size: 2,
-  }, {
-    quickType: 'point',
-    position: 'month*temperature',
-    color: "city",
-    size: 4,
-    style: {
-      stroke: '#fff',
-      lineWidth: 1,
+    quickType: 'bar',
+    position: '月份*月均降雨量',
+    color: 'name',
+    adjust: {
+      type: 'dodge',
+      marginRatio: 0.05,
     },
   }],
   chart: {
-    container: 'mountNode',
-    width: 800,
+    id: 'mountNode',
     height: 400,
+    width: 200,
+    pixelRatio: window.devicePixelRatio,
   },
 });
 ```
