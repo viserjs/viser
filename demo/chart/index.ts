@@ -37,6 +37,6 @@ export default [
   },
   {
     type: 'cell-bar-1',
-    case: ['json']
+    case: ['json', 'vueCell']
   },
 ];
