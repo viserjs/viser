@@ -1,5 +1,6 @@
-import * as React from 'react';
+/* tslint:disable */
 import * as PropTypes from 'prop-types';
+import * as React from 'react';
 
 import { ISlider } from 'viser';
 
@@ -10,15 +11,15 @@ function generateRandomNum() {
 class Props {}
 
 class SubPlugin<T = {}> extends React.Component<Props & T, any> {
-  static childContextTypes = {
+  public static childContextTypes = {
     containerId: PropTypes.string,
   };
 
-  static contextTypes = {
+  public static contextTypes = {
     centralizedUpdates: PropTypes.func,
   };
 
-  displayName = 'SubPlugin';
+  public displayName = 'SubPlugin';
 
   constructor(props: Props & T) {
     super(props);
@@ -27,24 +28,24 @@ class SubPlugin<T = {}> extends React.Component<Props & T, any> {
     };
   }
 
-  getChildContext() {
+  public getChildContext() {
     return {
       containerId: this.state.containerId,
     };
   }
 
-  componentDidUpdate() {
+  public componentDidUpdate() {
     this.context.centralizedUpdates(this);
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     this.context.centralizedUpdates(this);
   }
 
-  render() {
+  public render() {
     const containerId = this.state.containerId;
     return <div id={containerId}></div> as React.ReactElement<any>;
   }
 }
 
-export class Slider extends SubPlugin<ISlider> { displayName = 'Slider'; }
+export class Slider extends SubPlugin<ISlider> { public displayName = 'Slider'; }

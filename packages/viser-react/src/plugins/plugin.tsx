@@ -1,6 +1,5 @@
-import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import * as _ from 'lodash';
+import * as React from 'react';
 import * as viser from 'viser';
 
 function firstLowerCase(str: string) {
@@ -14,67 +13,69 @@ function generateRandomNum() {
 }
 
 export default class PluginComponent extends React.Component<any, any> {
-  static childContextTypes = {
+  public static childContextTypes = {
     centralizedUpdates: PropTypes.func,
   };
 
-  container: any;
-  config: any = {};
+  public container: any;
+  public config: any = {};
 
   constructor(props: any) {
     super(props);
   }
 
-  getChildContext() {
+  public getChildContext() {
     return {
       centralizedUpdates: this.centralizedUpdates,
     };
   }
 
-  combineContentConfig(displayName: string, props: any, config: any) {
+  public combineContentConfig(displayName: string, props: any, config: any) {
     const realName = firstLowerCase(displayName);
     const nameLowerCase = displayName.toLowerCase();
 
     config[nameLowerCase] = props;
   }
 
-  centralizedUpdates = (unit: any) => {
+  public centralizedUpdates = (unit: any) => {
     const config = this.config;
-    const props = _.clone(unit.props);
+    const props = unit.props;
     const displayName = unit.displayName;
+
     if (displayName === 'Slider') {
       const container = props.container;
       if (!container || !document.getElementById(container)) {
         props.container = unit.state.containerId;
       }
     }
+
     this.combineContentConfig(
       displayName,
       props,
-      config
+      config,
     );
-  };
+  }
 
-  createSliderInstance(config: any) {
+  public createSliderInstance(config: any) {
     viser.Plugin(config);
   }
 
-  clearConfigData() {
+  public clearConfigData() {
     this.config = {};
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     this.createSliderInstance(this.config);
     this.clearConfigData();
   }
 
-  portalRef = (container: any) => {
+  public portalRef = (container: any) => {
     if (!this.container) {
       this.container = container;
     }
-  };
+  }
 
-  render() {
+  public render() {
     return <div ref={this.portalRef}>{this.props.children}</div>;
   }
 }

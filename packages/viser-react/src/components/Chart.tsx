@@ -1,5 +1,5 @@
-import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import * as React from 'react';
 import viser from 'viser';
 import IRChart from '../typed/IRChart';
 
@@ -51,23 +51,23 @@ function isOwnEmpty(obj: object) {
 }
 
 export default class Chart extends React.Component<IRChart, any> {
-  static childContextTypes = {
+  public static childContextTypes = {
     centralizedUpdates: PropTypes.func,
     hasInViews: PropTypes.bool,
-    viewType: PropTypes.string
+    viewType: PropTypes.string,
   };
 
-  chart: any;
-  container: any;
-  config: any = {};
-  views: any = {};
-  facetviews: any = {};
+  public chart: any;
+  public container: any;
+  public config: any = {};
+  public views: any = {};
+  public facetviews: any = {};
 
   constructor(props: IRChart) {
     super(props);
   }
 
-  getChildContext() {
+  public getChildContext() {
     return {
       centralizedUpdates: this.centralizedUpdates,
       hasInViews: false,
@@ -75,7 +75,7 @@ export default class Chart extends React.Component<IRChart, any> {
     };
   }
 
-  combineChartConfig(props: IRChart, config: any) {
+  public combineChartConfig(props: IRChart, config: any) {
     const chartRetain = [
       'height', 'width', 'animate', 'forceFit',
       'background', 'plotBackground', 'padding',
@@ -83,12 +83,12 @@ export default class Chart extends React.Component<IRChart, any> {
       'onClick', 'onDbClick',
       'onTouchStart', 'onTouchMove', 'onTouchEnd',
       'onPlotEnter', 'onPlotMove', 'onPlotLeave',
-      'onPlotClick', 'onPlotDbClick'
+      'onPlotClick', 'onPlotDbClick',
     ];
     config.chart = retain(props, chartRetain);
   }
 
-  combineViewConfig(props: IRChart, config: any) {
+  public combineViewConfig(props: IRChart, config: any) {
     if (props.data) {
       config.data = props.data;
     }
@@ -107,7 +107,7 @@ export default class Chart extends React.Component<IRChart, any> {
 
   }
 
-  combineContentConfig(displayName: string, props: IRChart, config: any) {
+  public combineContentConfig(displayName: string, props: IRChart, config: any) {
     const realName = firstLowerCase(displayName);
     const nameLowerCase = displayName.toLowerCase();
 
@@ -181,7 +181,7 @@ export default class Chart extends React.Component<IRChart, any> {
     return config;
   }
 
-  centralizedUpdates = (unit: any) => {
+  public centralizedUpdates = (unit: any) => {
     const config = this.config;
     const views = this.views;
     const props = unit.props;
@@ -222,14 +222,14 @@ export default class Chart extends React.Component<IRChart, any> {
           this.combineContentConfig(
             displayName,
             props,
-            this.facetviews[viewId]
+            this.facetviews[viewId],
           );
         }
       }
     }
-  };
+  }
 
-  changeViewConfig() {
+  public changeViewConfig() {
     const views = this.views;
     const facetviews = this.facetviews;
     const config = this.config;
@@ -255,7 +255,7 @@ export default class Chart extends React.Component<IRChart, any> {
     }
   }
 
-  createChartInstance(config: any) {
+  public createChartInstance(config: any) {
     if (this.chart) {
       this.chart.destroy();
     }
@@ -269,7 +269,7 @@ export default class Chart extends React.Component<IRChart, any> {
     this.chart = viser(config);
   }
 
-  repaintChartInstance(config: any) {
+  public repaintChartInstance(config: any) {
     this.combineChartConfig(this.props, this.config);
     this.combineViewConfig(this.props, this.config);
 
@@ -283,26 +283,22 @@ export default class Chart extends React.Component<IRChart, any> {
     }
   }
 
-  clearConfigData() {
+  public clearConfigData() {
     this.config = {};
     this.views = {};
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     this.createChartInstance(this.config);
     this.clearConfigData();
   }
 
-  componentDidUpdate(props: IRChart) {
+  public componentDidUpdate(props: IRChart) {
     this.repaintChartInstance(this.config);
     this.clearConfigData();
   }
 
-  componentWillReceiveProps() {
-
-  }
-
-  componentWillUnmount() {
+  public componentWillUnmount() {
     if (this.chart) {
       this.chart.destroy();
       this.chart = null;
@@ -310,13 +306,13 @@ export default class Chart extends React.Component<IRChart, any> {
     this.container = null;
   }
 
-  portalRef = (container: any) => {
+  public portalRef = (container: any) => {
     if (!this.container) {
       this.container = container;
     }
-  };
+  }
 
-  render() {
+  public render() {
     return <div ref={this.portalRef}>{this.props.children}</div>;
   }
 }

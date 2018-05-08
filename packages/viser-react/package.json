@@ -1,6 +1,6 @@
 {
   "name": "viser-react",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "viser-react is react of viser.",
   "repository": "viserjs/viser-react",
   "license": "MIT",
@@ -17,7 +17,7 @@
   "scripts": {
     "build": "node ./tools/build.js",
     "clean": "git clean -fdX .",
-    "lint": "tslint src",
+    "lint": "tslint src/**/*",
     "analyse": "NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "peerDependencies": {
