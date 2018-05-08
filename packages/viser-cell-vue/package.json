@@ -1,6 +1,6 @@
 {
   "name": "viser-cell-vue",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "viser-cell-vue is vue of viser-cell.",
   "repository": "viserjs/viser-cell-vue",
   "license": "MIT",
@@ -24,9 +24,10 @@
     "vue": ">=1"
   },
   "dependencies": {
+    "@types/node": "*",
     "viser-cell": "^2.0.0",
     "vue": "^2.5.3",
-    "@types/node": "*"
+    "vue-class-component": "^6.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

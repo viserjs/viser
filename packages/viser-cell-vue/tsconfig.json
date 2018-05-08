@@ -3,9 +3,12 @@
     "module": "es2015",
     "moduleResolution": "Node",
     "outDir": "es",
+    "strict": true,
     "noImplicitAny": true,
+    "noUnusedLocals": true,
     "removeComments": true,
     "preserveConstEnums": true,
+    "experimentalDecorators": true,
     "sourceMap": true,
     "lib": [
       "es6",

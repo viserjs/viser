@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue, { VNode } from 'vue';
 import typedProps from './typed';
 import * as viser from 'viser-cell';
 
@@ -23,7 +23,21 @@ const camelCase: any = (() => {
   };
 })();
 
-const baseChartComponent = {
+declare module 'vue/types/vue' {
+  interface Vue {
+    chart: any;
+    _props?: object;
+    _uid?: string;
+  }
+}
+
+declare module 'vue/types/options' {
+  interface ComponentOptions<V extends Vue> {
+    _componentTag?: any;
+  }
+}
+
+const baseChartComponent = Vue.extend({
   data() {
     return {
       isViser: true,
@@ -48,7 +62,7 @@ const baseChartComponent = {
     /**
      * find nearest parent rechart component
      */
-    findNearestRootComponent(componentInstance: Vue) {
+    findNearestRootComponent(componentInstance: Vue): any {
       if (this.checkIsContainer(componentInstance)) {
         if ((componentInstance.$options as any)._componentTag === 'v-lite-chart') {
           throw Error('v-lite-chart should be no child elements.')
@@ -61,7 +75,8 @@ const baseChartComponent = {
       }
       return null;
     },
-    createRootD2Json() {
+
+    createRootD2Json(): any {
       const d2Json = {
         ...cleanUndefined(normalizeProps(this._props, rootChartProps)),
         chart: {
@@ -131,25 +146,29 @@ const baseChartComponent = {
       }
     }
   },
+
   created() { // bubble from parent to child
   },
+
   mounted() { // bubble from child to parent
     this.freshChart(false);
   },
+
   updated() { // bubble from child to parent
     this.freshChart(true);
   },
-  render(createElement: any) {
+
+  render(createElement): VNode {
     const isContainer = this.checkIsContainer(this);
     if (isContainer) {
-      return createElement('canvas', null, this.$slots.default);
+      return createElement('canvas', undefined, this.$slots.default);
     }
     const props = cleanUndefined(normalizeProps(this._props));
     return createElement('canvas', { style: { display: 'none' } }, Object.keys(props).map((key) => {
       return '' + key + ':' + JSON.stringify(props[key]);
     }));
   },
-};
+});
 
 export default {
   // tslint:disable-next-line:no-shadowed-variable
@@ -251,7 +270,7 @@ function isAllUndefined(value: any) {
 /**
  * special props for vue
  */
-function normalizeProps(props: any, include: string[] = null, expect: string[] = null) {
+function normalizeProps(props: any, include: string[] | null = null, expect: string[] | null = null) {
   const newProps = { ...props };
 
   if (newProps.vStyle) {
