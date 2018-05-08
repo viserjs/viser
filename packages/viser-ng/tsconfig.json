@@ -5,6 +5,7 @@
     "outDir": "es",
     "emitDecoratorMetadata": true,
     "noImplicitAny": true,
+    "strict": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "experimentalDecorators": true,

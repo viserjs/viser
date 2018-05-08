@@ -11,19 +11,19 @@ function generateRandomNum() {
   template: `<div id="{{context.container}}"></div>`,
 })
 class Slider extends PluginComponent {
-  @Input() xAxis: any;
-  @Input() yAxis: any;
-  @Input() data: any;
-  @Input() width?: number | string;
-  @Input() height?: number | string;
-  @Input() padding?: number | number[];
-  @Input() start?: string;
-  @Input() end?: string;
-  @Input() minSpan?: number;
-  @Input() maxSpan?: number;
-  @Input() scales?: any;
-  @Input() backgroundChart?: any;
-  @Input() onChange?: any;
+  @Input() public xAxis: any;
+  @Input() public yAxis: any;
+  @Input() public data: any;
+  @Input() public width?: number | string;
+  @Input() public height?: number | string;
+  @Input() public padding?: number | number[];
+  @Input() public start?: string;
+  @Input() public end?: string;
+  @Input() public minSpan?: number;
+  @Input() public maxSpan?: number;
+  @Input() public scales?: any;
+  @Input() public backgroundChart?: any;
+  @Input() public onChange?: any;
 }
 
 export { Slider };

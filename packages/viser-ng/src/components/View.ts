@@ -1,36 +1,37 @@
 import { Component, Input } from '@angular/core';
-import { Chart } from '../Chart';
 import { IScale } from 'viser';
+import { Chart } from '../Chart';
 
 @Component({
   selector: 'v-view',
   template: `<div #chartDom></div>`,
 })
 class View extends Chart {
-  @Input() data?: any;
-  @Input() dataPre?: {
+  @Input() public data?: any;
+  @Input() public dataPre?: {
     connector?: string;
     source?: any;
     transform?: object[] | object;
   };
-  @Input() scale?: object[];
-  @Input() dataView?: any;
-  @Input() start?: any;
-  @Input() end?: any;
+  @Input() public scale?: object[];
+  @Input() public dataView?: any;
+  @Input() public start?: any;
+  @Input() public end?: any;
 }
 
+// tslint:disable-next-line:max-classes-per-file
 @Component({
   selector: 'v-facet-view',
   template: `<div #chartDom></div>`,
 })
 class FacetView extends Chart {
-  @Input() dataPre?: {
+  @Input() public dataPre?: {
     connector?: string;
     source?: any;
     transform?: object[] | object;
   };
-  @Input() dataView?: any;
-  @Input() scale?: IScale;
+  @Input() public dataView?: any;
+  @Input() public scale?: IScale;
 }
 
 export { View, FacetView };

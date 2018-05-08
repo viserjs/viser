@@ -1,6 +1,6 @@
 {
   "name": "viser-ng",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "description": "viser-ng is angular of viser.",
   "repository": "viserjs/viser-ng",
   "license": "MIT",
@@ -22,6 +22,7 @@
   },
   "peerDependencies": {
     "@angular/core": "^2.4.0",
+    "@angular/common": "^5.2.1",
     "reflect-metadata": "^0.1.8",
     "rxjs": "^5.0.3",
     "zone.js": "^0.7.2"
