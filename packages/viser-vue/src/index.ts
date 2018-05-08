@@ -1,6 +1,6 @@
+import * as viser from 'viser';
 import Vue from 'vue';
 import typedProps from './typed';
-import * as viser from 'viser';
 
 const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area', 'point', 'stackarea',
   'smootharea', 'bar', 'stackbar', 'dodgebar', 'interval', 'stackinterval', 'dodgeinterval',
@@ -55,7 +55,7 @@ const baseChartComponent = {
     findNearestRootComponent(componentInstance: Vue) {
       if (this.checkIsContainer(componentInstance)) {
         if ((componentInstance.$options as any)._componentTag === 'v-lite-chart') {
-          throw Error('v-lite-chart should be no child elements.')
+          throw Error('v-lite-chart should be no child elements.');
         }
 
         return componentInstance;
@@ -200,7 +200,7 @@ const baseChartComponent = {
           });
         }
       }
-    }
+    },
   },
   created() { // bubble from parent to child
   },
@@ -210,12 +210,13 @@ const baseChartComponent = {
   updated() { // bubble from child to parent
     this.freshChart(true);
   },
-  render(createElement: any) {
+  render(createElement: any): any {
     const isContainer = this.checkIsContainer(this);
     if (isContainer) {
       return createElement('div', null, this.$slots.default);
     }
     const props = cleanUndefined(normalizeProps(this._props));
+
     return createElement('div', { style: { display: 'none' } }, Object.keys(props).map((key) => {
       return '' + key + ':' + JSON.stringify(props[key]);
     }));
@@ -269,7 +270,7 @@ export default {
 
     Vue.component('v-plugin', baseChartComponent);
     Vue.component('v-slider', baseChartComponent);
-  }
+  },
 };
 
 function safePush(obj: any, key: string, value: any) {
@@ -331,7 +332,7 @@ function cleanUndefined(value: any) {
 }
 
 function isAllUndefined(value: any) {
-  return Object.keys(value).every(key => value[key] === undefined);
+  return Object.keys(value).every((key: string) => value[key] === undefined);
 }
 
 function camelize(str: string) {
@@ -343,7 +344,7 @@ function camelize(str: string) {
 /**
  * special props for vue
  */
-function normalizeProps(props: any, include: string[] = null, expect: string[] = null) {
+function normalizeProps(props: any, include: string[] | null = null, expect: string[] | null = null) {
   const newProps = { ...props };
 
   if (newProps.vStyle) {
@@ -352,17 +353,17 @@ function normalizeProps(props: any, include: string[] = null, expect: string[] =
   }
 
   if (expect !== null) {
-    expect.forEach(propsKey => {
+    expect.forEach((propsKey: string) => {
       delete newProps[propsKey];
-    })
+    });
   }
 
   if (include !== null) {
-    Object.keys(newProps).forEach(propsKey => {
+    Object.keys(newProps).forEach((propsKey: string) => {
       if (include.indexOf(propsKey) === -1) {
         delete newProps[propsKey];
       }
-    })
+    });
   }
 
   return newProps;
