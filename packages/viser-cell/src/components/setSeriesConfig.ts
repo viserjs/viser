@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
-import * as setQuickType from './setQuickType';
-import { ISeries } from '../typed/ISeries';
 import IMainConfig from '../typed/IMain';
+import { ISeries } from '../typed/ISeries';
+import * as setQuickType from './setQuickType';
 
 function setSeriesGemo(chart: any, currSeries: ISeries) {
   const gemo = currSeries.gemo;

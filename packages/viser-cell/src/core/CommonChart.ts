@@ -2,26 +2,22 @@
  * @file Common Chart
  * @description instantiation of chart, include base functions
  */
-import IMainConfig from '../typed/IMain';
 import * as _ from 'lodash';
-import * as setCoordConfig from '../components/setCoordConfig';
 import * as setAxisConfig from '../components/setAxisConfig';
-import * as setSeriesConfig from '../components/setSeriesConfig';
-import * as setCustomFormatter from '../components/setCustomFormatter';
-import * as setLegendConfig from '../components/setLegendConfig';
+import * as setCoordConfig from '../components/setCoordConfig';
 import * as setGuideConfig from '../components/setGuideConfig';
-import * as setTooltipConfig from '../components/setTooltipConfig';
+import * as setLegendConfig from '../components/setLegendConfig';
 import * as setScaleConfig from '../components/setScaleConfig';
+import * as setSeriesConfig from '../components/setSeriesConfig';
+import * as setTooltipConfig from '../components/setTooltipConfig';
+import IMainConfig from '../typed/IMain';
 declare const require: any;
+// tslint:disable-next-line:no-var-requires
 const F2 = require('@antv/f2');
 
-function firstUpperCase(str: string) {
-  return str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase());
-}
-
 class CommonChart {
-  chartInstance: any;
-  config: any;
+  public chartInstance: any;
+  public config: any;
 
   constructor(config: IMainConfig) {
     this.config = _.cloneDeep(config);
@@ -38,7 +34,7 @@ class CommonChart {
   }
 
   public render() {
-    let config = this.config;
+    const config = this.config;
     const chart = this.chartInstance;
 
     this.setDataSource(chart, config.data);
@@ -58,16 +54,20 @@ class CommonChart {
   }
 
   public destroy(chart: any) {
-    chart && chart.destroy();
+    if (chart) {
+      chart.destroy();
+    }
   }
 
   public clear(chart: any) {
-    chart && chart.clear();
+    if (chart) {
+      chart.clear();
+    }
   }
 
   private checkChartConfig(config: IMainConfig) {
     const chart = config.chart;
-    if (_.isNil(chart.height)) {
+    if (!chart || !chart.height) {
       throw new Error('please set correct chart option');
     }
   }

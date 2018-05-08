@@ -13,14 +13,14 @@ export const process = (chart: any, config: any) => {
 
   const arrLegend = isArr ? cLegend : [cLegend];
 
-  for (let res of arrLegend) {
+  for (const res of arrLegend) {
     for (const item in res) {
       // Due to lack of legend:click event support in F2.chart,
       // unlike other component,
       // we have to use onClick on Legend.
       if (item === 'onClick') {
-        const content = res['onClick'];
-        res['onClick'] = (ev?: any) => {
+        const content = res.onClick;
+        res.onClick = (ev?: any) => {
           content(ev, chart);
         };
       }

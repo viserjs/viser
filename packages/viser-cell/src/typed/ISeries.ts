@@ -1,5 +1,3 @@
-import * as IStyle from './IStyle';
-
 export interface ISeries {
   quickType?: string;
   position?: string | string[];

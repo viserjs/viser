@@ -1,16 +1,17 @@
+import * as _ from 'lodash';
 import CommonChart from './core/CommonChart';
 import IAxisConfig, { IAxis } from './typed/IAxis';
 import IChart from './typed/IChart';
 import ICoord, { IPolarCoord, IRectCoord } from './typed/ICoord';
-import IGuideConfig, { IGuide, ILineGuide, ITextGuide, ITagGuide, IRectGuide, IArcGuide } from './typed/IGuide';
+import IGuideConfig, { IArcGuide, IGuide, ILineGuide, IRectGuide, ITagGuide, ITextGuide } from './typed/IGuide';
 import ILegendConfig, { ILegend } from './typed/ILegend';
+import IMain from './typed/IMain';
+import IScale from './typed/IScale';
 import ISeriesConfig, { ISeries } from './typed/ISeries';
 import ITooltipConfig, { ITooltip } from './typed/ITooltip';
-import IScale from './typed/IScale';
-import IMain from './typed/IMain';
 import * as CustomizeUtils from './utils/CustomizeUtils';
-import * as _ from 'lodash';
 declare const require: any;
+// tslint:disable-next-line:no-var-requires
 const F2 = require('@antv/f2');
 
 export {
@@ -55,7 +56,7 @@ function hasDataCondition(config: any) {
     }
 
     if (_.isArray(config.views)) {
-      for (let item of config.views) {
+      for (const item of config.views) {
         if (!_.isEmpty(item.data)) {
           hasData = true;
         }

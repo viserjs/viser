@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 
 export const process = (chart: any, config: any) => {
-  let cTooltip = _.cloneDeep(config.tooltip);
+  const cTooltip = _.cloneDeep(config.tooltip);
 
   if (_.isNil(cTooltip) || cTooltip === false || cTooltip.show === false) {
     return chart.tooltip(false);
@@ -12,7 +12,7 @@ export const process = (chart: any, config: any) => {
       const content = cTooltip[item];
       cTooltip[item] = (ev: any) => {
         content(ev, chart);
-      }
+      };
     }
   }
 

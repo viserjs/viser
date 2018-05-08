@@ -1,5 +1,5 @@
-import * as setCustomFormatter from './setCustomFormatter';
 import * as _ from 'lodash';
+import * as setCustomFormatter from './setCustomFormatter';
 
 export const process = (chart: any, config: any) => {
   const cAxis = _.cloneDeep(config.axis);
@@ -13,7 +13,6 @@ export const process = (chart: any, config: any) => {
   if (cAxis === true) { return chart.axis(true); }
 
   const arrAxis = isArr ? cAxis : [cAxis];
-  const { coord, data } = config;
 
   for (const res of arrAxis) {
     if (res.label) {

@@ -1,5 +1,5 @@
-import { degreeToRadian } from '../utils/PolarUtils';
 import * as _ from 'lodash';
+import { degreeToRadian } from '../utils/PolarUtils';
 
 function setPolarCoord(chart: any, coord: any) {
   let newCoord = {};

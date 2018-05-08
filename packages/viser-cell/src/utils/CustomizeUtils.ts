@@ -1,4 +1,5 @@
 declare const require: any;
+// tslint:disable-next-line:no-var-requires
 const F2 = require('@antv/f2');
 
 export const registerShape = (geoName: string, shapeName: string, shapeFun: any) => {

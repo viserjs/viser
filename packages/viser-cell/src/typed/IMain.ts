@@ -1,11 +1,11 @@
-import IChart from './IChart';
-import ILegend from './ILegend';
-import ICoord from './ICoord';
-import ISeries from './ISeries';
 import IAxis from './IAxis';
+import IChart from './IChart';
+import ICoord from './ICoord';
 import IGuide from './IGuide';
-import ITooltip from './ITooltip';
+import ILegend from './ILegend';
 import IScale from './IScale';
+import ISeries from './ISeries';
+import ITooltip from './ITooltip';
 
 interface ISMain {
   data?: any;
