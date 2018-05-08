@@ -56,7 +56,7 @@ viser({
     }],
   }],
   chart: {
-    id: 'mount',
+    container: 'mount',
     forceFit: true,
     height: 600,
   },
