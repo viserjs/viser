@@ -6,7 +6,7 @@ interface IBackground {
   lineWidth?: number;
   fill?: string;
   fillOpactiy?: number;
-  radius?: number
+  radius?: number;
 }
 
 export interface IChart {

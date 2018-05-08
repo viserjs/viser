@@ -1,5 +1,5 @@
-import * as CustomizeUtils from '../utils/CustomizeUtils';
 import IShapePoints from '../typed/IShapePoints';
+import * as CustomizeUtils from '../utils/CustomizeUtils';
 
 const DEFAULT_ERRORBAR_SHAPE = 'errorbar';
 
@@ -8,8 +8,8 @@ function renderBarPath(points: IShapePoints[]) {
     ['M', points[1].x, points[1].y],
     ['L', points[2].x, points[2].y],
     ['Z'],
-    ['M', (points[1].x + points[2].x) / 2, (points[1].y + points[2].y) / 2],
-    ['L', (points[0].x + points[3].x) / 2, (points[0].y + points[3].y) / 2],
+    ['M', ((points[1].x || 0) + (points[2].x || 0)) / 2, ((points[1].y || 0) + (points[2].y || 0)) / 2],
+    ['L', ((points[0].x || 0) + (points[3].x || 0)) / 2, ((points[0].y || 0) + (points[3].y || 0)) / 2],
     ['Z'],
     ['M', points[0].x, points[0].y],
     ['L', points[3].x, points[3].y],
@@ -18,17 +18,16 @@ function renderBarPath(points: IShapePoints[]) {
 }
 
 export const registerShape = () => {
-  let barWidth = 1;
-  let hasPoint = false;
+  const barWidth = 1;
+  const hasPoint = false;
 
   CustomizeUtils.registerShape('schema', DEFAULT_ERRORBAR_SHAPE, {
-    getPoints({ x, y, size }: IShapePoints) {
-      // 1 -> 2
-      // |    |
-      // 5<-4 |
-      // |    |
-      // 0    3
-
+    // 1 -> 2
+    // |    |
+    // 5<-4 |
+    // |    |
+    // 0    3
+    getPoints({ x = 0, y = [0, 0, 0], size = 0 }: IShapePoints) {
       return [
         { x: x - (size / 2) * barWidth, y: y[0] },
         { x: x - (size / 2) * barWidth, y: y[2] },
@@ -51,7 +50,7 @@ export const registerShape = () => {
           opacity: cfg.opacity || 1,
           path: this.parsePath(renderBarPath(points)),
           ...cfg.style,
-        }
+        },
       });
       if (hasPoint) {
         newGroup.addShape('circle', {
@@ -65,11 +64,11 @@ export const registerShape = () => {
             y: this.parsePoint(points[4]).y,
             r: cfg.style.lineWidth + 0.5 || 1.5,
             ...cfg.style,
-          }
+          },
         });
       }
 
       return newGroup;
-    }
+    },
   });
 };

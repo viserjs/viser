@@ -9,7 +9,7 @@ const QUICK_TYPE = [
     },
     coord: {
       type: 'theta',
-    }
+    },
   },
   {
     type: 'sector',
@@ -18,13 +18,13 @@ const QUICK_TYPE = [
     },
     coord: {
       type: 'polar',
-    }
+    },
   },
   {
     type: 'line',
     series: {
       gemo: 'line',
-    }
+    },
   },
   {
     type: 'smoothLine',
@@ -71,7 +71,7 @@ const QUICK_TYPE = [
     type: 'interval',
     series: {
       gemo: 'interval',
-    }
+    },
   },
   {
     type: 'stackInterval',
@@ -92,7 +92,7 @@ const QUICK_TYPE = [
     type: 'bar',
     series: {
       gemo: 'interval',
-    }
+    },
   },
   {
     type: 'stackBar',

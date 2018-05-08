@@ -1,15 +1,17 @@
 declare const require: any;
-const G2 = require('@antv/g2');
+// tslint:disable-next-line:no-var-requires
 const Slider = require('@antv/g2-plugin-slider');
 
-import ISliderConfig  from '../typed/ISlider';
+import ISliderConfig from '../typed/ISlider';
 
 export default (config: ISliderConfig) => {
-  if (!document.getElementById(config.container)) {
+  const container = document.getElementById(config.container);
+  if (!container) {
     console.error('plugin slider container not defined');
     return;
   }
-  document.getElementById(config.container).innerHTML = '';
+
+  container.innerHTML = '';
   const sliderInstance = new Slider(config);
   sliderInstance.render();
-}
+};

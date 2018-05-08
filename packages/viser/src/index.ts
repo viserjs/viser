@@ -1,20 +1,21 @@
+import * as _ from 'lodash';
 import CommonChart from './core/CommonChart';
 import IAxisConfig, { IAxis } from './typed/IAxis';
 import IBrush from './typed/IBrush';
 import IChart from './typed/IChart';
 import ICoord, { IPolarCoord, IRectCoord } from './typed/ICoord';
 import IFacet from './typed/IFacet';
-import IGuideConfig, { IGuide, ILineGuide, ITextGuide, IImageGuide, IRegionGuide, IArcGuide } from './typed/IGuide';
+import IGuideConfig, { IArcGuide, IGuide, IImageGuide, ILineGuide, IRegionGuide, ITextGuide } from './typed/IGuide';
 import ILegendConfig, { ILegend } from './typed/ILegend';
+import IMain from './typed/IMain';
+import IScale from './typed/IScale';
 import ISeriesConfig, { ISeries } from './typed/ISeries';
+import ISlider from './typed/ISlider';
 import ITooltipConfig, { ITooltip } from './typed/ITooltip';
 import IViewConfig, { IView } from './typed/IView';
-import IScale from './typed/IScale';
-import IMain from './typed/IMain';
-import ISlider from './typed/ISlider';
 import * as CustomizeUtils from './utils/CustomizeUtils';
-import * as _ from 'lodash';
 declare const require: any;
+// tslint:disable-next-line:no-var-requires
 const G2 = require('@antv/g2');
 
 export {
@@ -63,7 +64,7 @@ function hasDataCondition(config: any) {
     }
 
     if (_.isArray(config.views)) {
-      for (let item of config.views) {
+      for (const item of config.views) {
         if (!_.isEmpty(item.data)) {
           hasData = true;
         }

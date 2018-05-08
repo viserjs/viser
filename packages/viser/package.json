@@ -1,6 +1,6 @@
 {
   "name": "viser",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "viser is a toolkit fit for data vis engineer.",
   "repository": "viserjs/viser",
   "license": "MIT",
@@ -17,7 +17,7 @@
   "scripts": {
     "build": "node ./tools/build.js",
     "clean": "git clean -fdX .",
-    "lint": "tslint src",
+    "lint": "tslint src/**/*",
     "analyse": "NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "dependencies": {

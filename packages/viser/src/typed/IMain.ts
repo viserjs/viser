@@ -1,7 +1,7 @@
-import IViewConfig, { IView } from './IView';
 import IChart from './IChart';
 import IFacet from './IFacet';
 import ILegend from './ILegend';
+import IViewConfig, { IView } from './IView';
 
 interface ISMain {
   data?: any;

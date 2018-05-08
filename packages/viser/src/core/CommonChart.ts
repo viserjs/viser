@@ -2,20 +2,21 @@
  * @file Common Chart
  * @description instantiation of chart, include base functions
  */
+import * as _ from 'lodash';
+import * as setAxisConfig from '../components/setAxisConfig';
+import * as setCoordConfig from '../components/setCoordConfig';
+import * as setGuideConfig from '../components/setGuideConfig';
+import * as setLegendConfig from '../components/setLegendConfig';
+import * as setScaleConfig from '../components/setScaleConfig';
+import * as setSeriesConfig from '../components/setSeriesConfig';
+import * as setTooltipConfig from '../components/setTooltipConfig';
 import loadShapes from '../shapes/loadShapes';
 import IMainConfig from '../typed/IMain';
-import * as _ from 'lodash';
 import * as EventUtils from '../utils/EventUtils';
-import * as setCoordConfig from '../components/setCoordConfig';
-import * as setAxisConfig from '../components/setAxisConfig';
-import * as setSeriesConfig from '../components/setSeriesConfig';
-import * as setCustomFormatter from '../components/setCustomFormatter';
-import * as setLegendConfig from '../components/setLegendConfig';
-import * as setGuideConfig from '../components/setGuideConfig';
-import * as setTooltipConfig from '../components/setTooltipConfig';
-import * as setScaleConfig from '../components/setScaleConfig';
 declare const require: any;
+// tslint:disable-next-line:no-var-requires
 const G2 = require('@antv/g2');
+// tslint:disable-next-line:no-var-requires
 const Brush = require('@antv/g2-brush');
 
 // Disable G2 Track
@@ -26,9 +27,9 @@ function firstUpperCase(str: string) {
 }
 
 class CommonChart {
-  chartInstance: any;
-  viewInstance: any = {};
-  config: any;
+  private chartInstance: any;
+  private viewInstance: any = {};
+  private config: any;
 
   constructor(config: IMainConfig) {
     this.config = _.cloneDeep(config);
@@ -45,7 +46,7 @@ class CommonChart {
   }
 
   public render() {
-    let config = this.config;
+    const config = this.config;
     const chart = this.chartInstance;
 
     loadShapes();
@@ -73,16 +74,20 @@ class CommonChart {
   }
 
   public destroy(chart: any) {
-    chart && chart.destroy();
+    if (chart) {
+      chart.destroy();
+    }
   }
 
   public clear(chart: any) {
-    chart && chart.clear();
+    if (chart) {
+      chart.clear();
+    }
   }
 
   private checkChartConfig(config: IMainConfig) {
     const chart = config.chart;
-    if (_.isNil(chart.height)) {
+    if (!chart || !chart.height) {
       throw new Error('please set correct chart option');
     }
   }
@@ -106,7 +111,7 @@ class CommonChart {
   }
 
   private setEvents(chart: any, config: IMainConfig) {
-    EventUtils.setEvent(chart, null, config.chart);
+    EventUtils.setEvent(chart, '', config.chart);
   }
 
   private setDataSource(chart: any, data: any) {
@@ -155,13 +160,7 @@ class CommonChart {
 
   private setView(item: any, chart: any, config: IMainConfig) {
     const view = this.createView(chart, item);
-
-    let viewData;
-    if (item.data) {
-      viewData = item.data;
-    } else {
-      viewData = config.data;
-    }
+    const viewData = item.data ? item.data : config.data;
 
     this.setDataSource(view, viewData);
 
@@ -176,14 +175,14 @@ class CommonChart {
   }
 
   private setViews(chart: any, config: IMainConfig) {
-    let cViews = _.cloneDeep(config.views);
+    const cViews = _.cloneDeep(config.views);
     const isArr = Array.isArray(cViews);
 
     if (_.isNil(cViews) || _.isEmpty(cViews)) { return; }
 
     const arrViews: any = isArr ? cViews : [cViews];
 
-    for (let item of arrViews) {
+    for (const item of arrViews) {
       this.setView(item, chart, config);
     }
   }
@@ -200,7 +199,7 @@ class CommonChart {
   }
 
   private setFacet(chart: any, config: IMainConfig) {
-    let cFacet = _.cloneDeep(config.facet);
+    const cFacet = _.cloneDeep(config.facet);
 
     if (_.isNil(cFacet) || _.isEmpty(cFacet)) { return; }
 
@@ -212,14 +211,13 @@ class CommonChart {
 
     if (_.isFunction(cFacet.views)) {
       options.eachView = (v: any, f: any) => {
-        const options = cFacet.views(v, f);
-        this.setFacetViews(v, f, options);
-      }
+        this.setFacetViews(v, f, cFacet.views(v, f));
+      };
     } else {
       cFacet.views = Array.isArray(cFacet.views) ? cFacet.views : [cFacet.views];
       options.eachView = (v: any, f: any) => {
         this.setFacetViews(v, f, cFacet.views[0]);
-      }
+      };
     }
 
     return chart.facet(cFacet.type, options);
@@ -239,14 +237,18 @@ class CommonChart {
     const regEvents = /on(BrushStart|BrushMove|BrushEnd|DragStart|DragMove|DragEnd)/;
     const events = Object.keys(brush).filter((entry) => regEvents.test(entry));
 
-    events.forEach(entry => {
+    events.forEach((entry: any) => {
       const item = regEvents.exec(entry);
-      const oriEventName = 'on' + firstUpperCase(item[0]);
-      brushConfig[oriEventName] = (ev: any) => {
-        brush[entry](ev, chart);
-      };
+
+      if (item && item.length) {
+        const oriEventName = 'on' + firstUpperCase(item[0]);
+        brushConfig[oriEventName] = (ev: any) => {
+          brush[entry](ev, chart);
+        };
+      }
     });
 
+    // tslint:disable-next-line:no-unused-expression
     new Brush(brushConfig);
   }
 

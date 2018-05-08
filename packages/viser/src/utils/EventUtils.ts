@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 
+// tslint:disable-next-line:max-line-length
 const regEventName = /on(.+)(MouseEnter|MouseMove|MouseLeave|Click|DdlClick|MouseDown|MouseUp|TouchStart|TouchMove|TouchEnd)/;
 
 /**
@@ -8,7 +9,7 @@ const regEventName = /on(.+)(MouseEnter|MouseMove|MouseLeave|Click|DdlClick|Mous
  * Set event for single element of components, like 'onTitleClick' on Tooltip.
  * Notice that the component's event like 'onClick' will not be include in this method. Please use 'setEvent' instead.
  */
-export function setSEvent (chart: any, itemname: string, keyname: string, content: any) {
+export function setSEvent(chart: any, itemname: string, keyname: string, content: any) {
   if (_.isEmpty(keyname)) { return; }
 
   const parseEventItem = regEventName.exec(keyname);
@@ -30,13 +31,13 @@ export function setSEvent (chart: any, itemname: string, keyname: string, conten
  * ref: https://antv.alipay.com/zh-cn/g2/3.x/tutorial/chart-event.html
  * Set event for whole component, like 'onClick' on Tooltip.
  */
-export function setEvent (chart: any, name: string, item: any) {
+export function setEvent(chart: any, name: string, item: any) {
   if (_.isEmpty(item)) { return; }
 
   const events = Object.keys(item).filter((entry) => /^on/.test(entry));
   if (_.isEmpty(events)) { return; }
 
-  events.forEach(entry => {
+  events.forEach((entry: any) => {
     const eventName = entry.slice(2, entry.length);
     const eventLowerCase = eventName.toLowerCase();
     const content = item[entry];

@@ -1,6 +1,6 @@
-import * as setCustomFormatter from './setCustomFormatter';
 import * as _ from 'lodash';
 import * as EventUtils from '../utils/EventUtils';
+import * as setCustomFormatter from './setCustomFormatter';
 
 function setRotatePolarAxis(chart: any, axisItem: any, coord: any, data: any) {
   const polarLabel = _.get(axisItem, 'polarLabel');
@@ -63,7 +63,7 @@ export const process = (chart: any, config: any) => {
 
     for (const item in res) {
       if (res.hasOwnProperty(item)) {
-        let name = item === 'tickLine' ? 'ticks' : item;
+        const name = item === 'tickLine' ? 'ticks' : item;
         EventUtils.setSEvent(chart, 'axis', name, res[item]);
       }
     }

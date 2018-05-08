@@ -3,7 +3,7 @@ import * as setCustomFormatter from './setCustomFormatter';
 
 export const process = (chart: any, config: any) => {
   const cScale = _.cloneDeep(config.scale);
-  let isArr = _.isArray(cScale);
+  const isArr = _.isArray(cScale);
 
   if (_.isEmpty(cScale)) { return; }
 
