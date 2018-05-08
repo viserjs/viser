@@ -26,8 +26,7 @@
   "dependencies": {
     "@types/node": "*",
     "viser-cell": "^2.0.0",
-    "vue": "^2.5.3",
-    "vue-class-component": "^6.2.0"
+    "vue": "^2.5.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
