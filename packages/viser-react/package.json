@@ -1,6 +1,6 @@
 {
   "name": "viser-react",
-  "version": "2.0.5",
+  "version": "2.2.5",
   "description": "viser-react is react of viser.",
   "repository": "viserjs/viser-react",
   "license": "MIT",
@@ -17,7 +17,7 @@
   "scripts": {
     "build": "node ./tools/build.js",
     "clean": "git clean -fdX .",
-    "lint": "tslint src",
+    "lint": "tslint src/**/*",
     "analyse": "NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "peerDependencies": {
@@ -48,8 +48,9 @@
     "rimraf": "^2.6.2",
     "tslint": "^5.5.0",
     "typescript": "^2.6.1",
-    "webpack": "^3.3.0",
-    "webpack-bundle-analyzer": "^2.9.0"
+    "webpack": "^4.5.0",
+    "webpack-bundle-analyzer": "^2.11.0",
+    "webpack-cli": "^2.0.14"
   },
   "keywords": [
     "g2",

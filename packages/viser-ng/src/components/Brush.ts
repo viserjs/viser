@@ -9,28 +9,28 @@ type eventFunc = (ev: any, chart: any) => void;
 })
 
 class Brush extends Chart {
-  @Input() canvas: any;
-  @Input() startPoint?: object;
-  @Input() brushing?: boolean;
-  @Input() dragging?: boolean;
-  @Input() brushShape?: any;
-  @Input() container?: any;
-  @Input() polygonPath?: string;
-  @Input() style?: object;
-  @Input() type?: string;
-  @Input() dragable?: boolean;
-  @Input() dragoffX?: number;
-  @Input() dragoffY?: number;
-  @Input() inPlot?: boolean;
-  @Input() xField?: string;
-  @Input() yField?: string;
-  @Input() filter?: boolean;
-  @Input() onBrushstart?: eventFunc;
-  @Input() onBrushmove?: eventFunc;
-  @Input() onBrushend?: eventFunc;
-  @Input() onDragstart?: eventFunc;
-  @Input() onDragmove?: eventFunc;
-  @Input() onDragend?: eventFunc;
+  @Input() public canvas: any;
+  @Input() public startPoint?: object;
+  @Input() public brushing?: boolean;
+  @Input() public dragging?: boolean;
+  @Input() public brushShape?: any;
+  @Input() public container?: any;
+  @Input() public polygonPath?: string;
+  @Input() public style?: object;
+  @Input() public type?: string;
+  @Input() public dragable?: boolean;
+  @Input() public dragoffX?: number;
+  @Input() public dragoffY?: number;
+  @Input() public inPlot?: boolean;
+  @Input() public xField?: string;
+  @Input() public yField?: string;
+  @Input() public filter?: boolean;
+  @Input() public onBrushstart?: eventFunc;
+  @Input() public onBrushmove?: eventFunc;
+  @Input() public onBrushend?: eventFunc;
+  @Input() public onDragstart?: eventFunc;
+  @Input() public onDragmove?: eventFunc;
+  @Input() public onDragend?: eventFunc;
 }
 
-export default Brush;
+export { Brush };

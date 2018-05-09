@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "es2015",
     "outDir": "es",
-    "noImplicitAny": true,
+    "strict": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true

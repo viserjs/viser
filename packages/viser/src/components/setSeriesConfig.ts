@@ -1,8 +1,8 @@
 import * as _ from 'lodash';
-import * as setQuickType from './setQuickType';
-import * as EventUtils from '../utils/EventUtils';
-import { ISeries } from '../typed/ISeries';
 import IMainConfig from '../typed/IMain';
+import { ISeries } from '../typed/ISeries';
+import * as EventUtils from '../utils/EventUtils';
+import * as setQuickType from './setQuickType';
 
 function setSeriesGemo(chart: any, currSeries: ISeries) {
   const gemo = currSeries.gemo;
@@ -35,6 +35,9 @@ function setSeriesGemo(chart: any, currSeries: ISeries) {
       break;
     case 'edge':
       chart = chart.edge();
+      break;
+    case 'path':
+      chart = chart.path();
       break;
     default:
       chart = chart.line();

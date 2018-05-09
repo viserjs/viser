@@ -45,15 +45,9 @@ async function build() {
     });
   });
 
-  await spinner('Building UMD Viser Angular', async () => {
-    await exec('webpack --progress --config webpack.config.js', {
-      NODE_ENV: 'development'
-    });
-  });
-
   await spinner('Building UMD Viser Angular Min', async () => {
-    await exec('webpack --progress --config webpack.config.js', {
-      NODE_ENV: 'production'
+    await exec('webpack --config webpack.config.js', {
+      BABEL_ENV: 'umd',
     });
   });
 

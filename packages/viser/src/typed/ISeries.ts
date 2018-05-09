@@ -1,5 +1,3 @@
-import * as IStyle from './IStyle';
-
 type eventFunc = (ev: any, chart: any) => void;
 
 export interface ISeries {

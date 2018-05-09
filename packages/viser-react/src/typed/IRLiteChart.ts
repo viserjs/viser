@@ -32,7 +32,7 @@ interface ISLite {
 }
 
 type IRLiteChart = ISLite & IMain & {
-  [key:string]: any
+  [key: string]: any,
 };
 
 export default IRLiteChart;

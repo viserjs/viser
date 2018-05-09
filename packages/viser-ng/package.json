@@ -1,6 +1,6 @@
 {
   "name": "viser-ng",
-  "version": "2.0.6",
+  "version": "2.2.7",
   "description": "viser-ng is angular of viser.",
   "repository": "viserjs/viser-ng",
   "license": "MIT",
@@ -22,23 +22,23 @@
   },
   "peerDependencies": {
     "@angular/core": "^2.4.0",
+    "@angular/common": "^2.4.0",
     "reflect-metadata": "^0.1.8",
     "rxjs": "^5.0.3",
     "zone.js": "^0.7.2"
   },
   "dependencies": {
     "viser": "^2.0.0",
-    "@types/core-js": "^0.9.43",
-    "@types/node": "7.0.7"
+    "@types/core-js": "*",
+    "@types/node": "*"
   },
   "devDependencies": {
+    "@angular/common": "^5.2.1",
     "@angular/compiler": "^4.0.1",
     "@angular/compiler-cli": "^4.0.1",
-    "@angular/core": "^4.0.1",
+    "@angular/core": "^4.4.6",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
-    "@types/core-js": "^0.9.43",
-    "@types/node": "7.0.7",
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.1",
@@ -51,8 +51,9 @@
     "rxjs": "^5.3.0",
     "tslint": "^5.5.0",
     "typescript": "^2.6.1",
-    "webpack": "^3.3.0",
-    "webpack-bundle-analyzer": "^2.9.0",
+    "webpack": "^4.5.0",
+    "webpack-bundle-analyzer": "^2.11.0",
+    "webpack-cli": "^2.0.14",
     "zone.js": "^0.8.5"
   },
   "keywords": [

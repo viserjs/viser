@@ -8,23 +8,28 @@ const props: any = [
   // facet
   'type', 'fields', 'rowField', 'colField', 'colValue', 'rowValue', 'colIndex', 'rowIndex', 'showTitle', 'autoSetAxis', 'padding', 'colTitle', 'rowTitle', 'eachView', 'cols', 'rows', 'padding', 'line', 'lineSmooth', 'transpose', 'views',
   // guide
-  'type', 'position', 'autoRotate', 'vStyle', 'content', 'offsetX', 'offsetY', 'top', 'zIndex', 'start', 'end', 'lineStyle', 'text', 'src', 'width', 'heigth', 'alignX', 'alignY', 'html',
+  'type', 'position', 'autoRotate', 'vStyle', 'content', 'offsetX', 'offsetY', 'top', 'zIndex', 'start', 'end', 'lineStyle', 'line', 'text', 'src', 'width', 'heigth', 'alignX', 'alignY', 'html',
   // legend
-  'dataKey', 'show', 'position', 'title', 'titleGap', 'offset', 'offsetX', 'offsetY', 'items', 'itemGap', 'itemsGroup', 'itemMarginBottom', 'itemWidth', 'unCheckColor', 'background',
+  'dataKey', 'show', 'position', 'title', 'titleGap', 'custom', 'offset', 'offsetX', 'offsetY', 'items', 'itemGap', 'itemsGroup', 'itemMarginBottom', 'itemWidth', 'unCheckColor', 'background',
   'allowAllCanceled', 'itemFormatter', 'marker', 'textStyle', 'clickable', 'hoverable', 'selectedMode', 'onHover', 'onClick', 'reversed', 'layout', 'backPadding', 'useHtml',
-  'autoWrap', 'autoPosition', 'container', 'containerTpl', 'itemTpl', 'legendMarker',
+  'autoWrap', 'autoPosition', 'container', 'containerTpl', 'itemTpl', 'legendMarker', 'legendListItem', 'slidable',
   // main
   'data', 'viewId', 'scale', 'forceFit',
   // series
   'quickType', 'position', 'gemo', 'adjust', 'color', 'shape', 'size', 'opacity', 'label', 'tooltip', 'vStyle', 'select', 'active', 'animate',
   // tooltip
-  'x', 'y', 'items', 'showTitle', 'offset', 'timeStamp', 'crosshairs', 'containerTpl', 'itemTpl', 'inPlot', 'plotRange', 'follow', 'shared', 'position', 'enterable', 'g2Tooltip', 'onShow', 'onHide', 'onChange',
+  'x', 'y', 'items', 'show', 'triggerOn', 'showTitle', 'title', 'crosshairs', 'offset', 'inPlot', 'follow', 'shared', 'enterable', 'position', 'hideMarkers', 'containerTpl', 'itemTpl',
+  'g2Tooltip', 'g2TooltipTitle', 'g2TooltipList', 'g2TooltipListItem', 'g2TooltipMarker', 'onShow', 'onHide', 'onChange', 'defaultPoint', 'timeStamp', 'plotRange',
   // lite
   'pie', 'sector', 'line', 'smoothLine', 'dashLine', 'area', 'stackArea', 'smoothArea', 'bar', 'stackBar', 'dodgeBar', 'interval', 'stackInterval', 'dodgeInterval',
   'point', 'funnel', 'pyramid', 'schema', 'box', 'candle', 'polygon', 'contour', 'heatmap', 'edge', 'sankey', 'errorBar', 'jitterPoint',
   // brush
   'canvas', 'startPoint', 'brushing', 'dragging', 'brushShape', 'container', 'polygonPath', 'type', 'dragable', 'dragoffX', 'dragoffY', 'inPlot', 'xField', 'yField', 'filter',
   'onBrushstart', 'onBrushmove', 'onBrushend', 'onDragstart', 'onDragmove', 'onDragend',
+  // slider
+  'xAxis', 'yAxis', 'data', 'width', 'height', 'padding', 'start', 'end', 'minSpan', 'maxSpan', 'scales', 'backgroundChart', 'onChange',
+  // view
+  'start', 'end',
   // event
   'onMouseDown', 'onMouseMove', 'onMouseLeave', 'onMouseUp', 'onClick', 'onDbClick', 'onTouchStart', 'onTouchMove', 'onTouchEnd', 'onPlotEnter', 'onPlotMove', 'onPlotLeave', 'onPlotClick', 'onPlotDbClick',
   'onTitleMouseDown', 'onTitleMouseMove', 'onTitleMouseLeave', 'onTitleMouseUp', 'onTitleClick', 'onTitleDbClick', 'onTitleTouchStart', 'onTitleTouchMove', 'onTitleTouchEnd',

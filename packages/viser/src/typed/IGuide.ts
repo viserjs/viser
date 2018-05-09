@@ -29,8 +29,8 @@ export interface ILineGuide {
   type?: 'line';
   top?: boolean;
   zIndex?: number;
-  start?: object | (number | string)[] | func;
-  end?: object | (number | string)[] | func;
+  start?: object | Array<number | string> | func;
+  end?: object | Array<number | string> | func;
   lineStyle?: IStyle.ILineStyle;
   text?: ILineText;
 }
@@ -39,7 +39,7 @@ export interface ITextGuide {
   type?: 'text';
   top?: boolean;
   zIndex?: number;
-  position?: object | (number | string)[] | func;
+  position?: object | Array<number | string> | func;
   content?: string;
   style?: IStyle.ITextStyle;
   offsetX?: number;
@@ -50,8 +50,8 @@ export interface IImageGuide {
   type?: 'image';
   top?: boolean;
   zIndex?: number;
-  start?: object | (number | string)[] | func;
-  end?: object | (number | string)[] | func;
+  start?: object | Array<number | string> | func;
+  end?: object | Array<number | string> | func;
   src?: string;
   width?: number;
   height?: number;
@@ -69,16 +69,16 @@ interface IRegionStyle {
 export interface IRegionGuide {
   type?: 'region';
   top?: boolean;
-  start?: object | (number | string)[] | func;
-  end?: object | (number | string)[] | func;
+  start?: object | Array<number | string> | func;
+  end?: object | Array<number | string> | func;
   style?: IRegionStyle;
 }
 
 export interface IHtmlGuide {
   type?: 'html';
-  position?: object | (number | string)[] | func;
-  alignX?: 'left' | 'middle' | 'right';
-  alignY?: 'top' | 'middle' | 'bottom';
+  position?: object | Array<number | string> | func;
+  alignX?: string;
+  alignY?: string;
   offsetX?: number;
   offsetY?: number;
   html?: string;
@@ -88,8 +88,8 @@ export interface IHtmlGuide {
 export interface IArcGuide {
   type?: 'arc';
   top?: boolean;
-  start?: object | (number | string)[] | func;
-  end?: object | (number | string)[] | func;
+  start?: object | Array<number | string> | func;
+  end?: object | Array<number | string> | func;
   style?: object;
 }
 

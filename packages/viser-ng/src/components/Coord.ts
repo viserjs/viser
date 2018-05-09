@@ -7,12 +7,12 @@ import { Chart } from '../Chart';
 })
 
 class Coord extends Chart {
-  @Input() type?: 'polar' | 'theta' | 'helix' | 'rect';
-  @Input() direction?: string;
-  @Input() radius?: number;
-  @Input() innerRadius?: number;
-  @Input() startAngle?: number;
-  @Input() endAngle?: number;
+  @Input() public type?: 'polar' | 'theta' | 'helix' | 'rect';
+  @Input() public direction?: string;
+  @Input() public radius?: number;
+  @Input() public innerRadius?: number;
+  @Input() public startAngle?: number;
+  @Input() public endAngle?: number;
 }
 
-export default Coord;
+export { Coord };

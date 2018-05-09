@@ -31,20 +31,40 @@ export const process = (chart: any, config: any) => {
 
     for (const item in res) {
       if (res.hasOwnProperty(item)) {
+        // Due to lack of legend:click event support in G2.chart,
+        // unlike other component,
+        // we have to use onClick on Legend.
+        if (item === 'onClick') {
+          const content = res.onClick;
+          res.onClick = (ev?: any) => {
+            content(ev, chart);
+          };
+        }
+
         EventUtils.setSEvent(chart, 'legend', item, res[item]);
       }
     }
-    res = {
-      ...res,
-      ...res.legendMarker || {},
-    };
-    res = _.omit(res, ['legendMarker']);
+
+    if (!_.isNil(res.legendMarker)) {
+      res['g2-legend-marker'] = res.legendMarker;
+    }
+
+    if (!_.isNil(res.legendListItem)) {
+      res['g2-legend-list-item'] = res.legendListItem;
+    }
+
+    res = _.omit(res, ['legendMarker', 'legendListItem']);
+
     if (res.dataKey) {
-      if (res.show === false) { return chart.legend(res.dataKey, false); }
-      const option = _.omit(res, ['dataKey', 'show']);
-      return chart.legend(res.dataKey, option);
+      if (res.show === false) {
+        chart.legend(res.dataKey, false);
+      } else {
+        const option = _.omit(res, ['dataKey', 'show']);
+        chart.legend(res.dataKey, option);
+      }
     } else {
-      return chart.legend(res);
+      chart.legend(res);
     }
   }
+  return chart;
 };

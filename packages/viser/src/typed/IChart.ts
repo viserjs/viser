@@ -6,13 +6,13 @@ interface IBackground {
   lineWidth?: number;
   fill?: string;
   fillOpactiy?: number;
-  radius?: number
+  radius?: number;
 }
 
 export interface IChart {
   id?: any;
   container?: any;
-  height: number;
+  height?: number;
   width?: number;
   animate?: boolean | object;
   forceFit?: boolean;

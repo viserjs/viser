@@ -1,3 +1,4 @@
+/* tslint:disable:max-classes-per-file */
 import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
 
@@ -8,38 +9,38 @@ type eventFunc = (ev: any, chart: any) => void;
   template: `<div #chartDom></div>`,
 })
 class Series extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
-  @Input() onLabelMouseDown?: eventFunc;
-  @Input() onLabelMouseMove?: eventFunc;
-  @Input() onLabelMouseLeave?: eventFunc;
-  @Input() onLabelMouseUp?: eventFunc;
-  @Input() onLabelClick?: eventFunc;
-  @Input() onLabelDbClick?: eventFunc;
-  @Input() onLabelTouchStart?: eventFunc;
-  @Input() onLabelTouchMove?: eventFunc;
-  @Input() onLabelTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
+  @Input() public onLabelMouseDown?: eventFunc;
+  @Input() public onLabelMouseMove?: eventFunc;
+  @Input() public onLabelMouseLeave?: eventFunc;
+  @Input() public onLabelMouseUp?: eventFunc;
+  @Input() public onLabelClick?: eventFunc;
+  @Input() public onLabelDbClick?: eventFunc;
+  @Input() public onLabelTouchStart?: eventFunc;
+  @Input() public onLabelTouchMove?: eventFunc;
+  @Input() public onLabelTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -47,29 +48,29 @@ class Series extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Pie extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -77,29 +78,29 @@ class Pie extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Sector extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -107,29 +108,29 @@ class Sector extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Line extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -137,29 +138,29 @@ class Line extends Chart {
   template: `<div #chartDom></div>`,
 })
 class SmoothLine extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -167,29 +168,29 @@ class SmoothLine extends Chart {
   template: `<div #chartDom></div>`,
 })
 class DashLine extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -197,29 +198,29 @@ class DashLine extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Area extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -227,29 +228,29 @@ class Area extends Chart {
   template: `<div #chartDom></div>`,
 })
 class StackArea extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -257,29 +258,29 @@ class StackArea extends Chart {
   template: `<div #chartDom></div>`,
 })
 class SmoothArea extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -287,29 +288,29 @@ class SmoothArea extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Bar extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -317,29 +318,29 @@ class Bar extends Chart {
   template: `<div #chartDom></div>`,
 })
 class StackBar extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -347,29 +348,29 @@ class StackBar extends Chart {
   template: `<div #chartDom></div>`,
 })
 class DodgeBar extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -377,29 +378,29 @@ class DodgeBar extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Interval extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -407,29 +408,29 @@ class Interval extends Chart {
   template: `<div #chartDom></div>`,
 })
 class StackInterval extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -437,29 +438,29 @@ class StackInterval extends Chart {
   template: `<div #chartDom></div>`,
 })
 class DodgeInterval extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -467,29 +468,29 @@ class DodgeInterval extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Point extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -497,29 +498,29 @@ class Point extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Funnel extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -527,29 +528,29 @@ class Funnel extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Pyramid extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -557,29 +558,29 @@ class Pyramid extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Schema extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -587,29 +588,29 @@ class Schema extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Box extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -617,29 +618,29 @@ class Box extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Candle extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -647,29 +648,29 @@ class Candle extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Polygon extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -677,29 +678,29 @@ class Polygon extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Contour extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -707,29 +708,29 @@ class Contour extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Heatmap extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -737,29 +738,29 @@ class Heatmap extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Edge extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -767,29 +768,29 @@ class Edge extends Chart {
   template: `<div #chartDom></div>`,
 })
 class Sankey extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -797,29 +798,29 @@ class Sankey extends Chart {
   template: `<div #chartDom></div>`,
 })
 class ErrorBar extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 @Component({
@@ -827,29 +828,59 @@ class ErrorBar extends Chart {
   template: `<div #chartDom></div>`,
 })
 class JitterPoint extends Chart {
-  @Input() quickType?: string;
-  @Input() position?: string | string[];
-  @Input() gemo?: string;
-  @Input() adjust?: string | string[] | object[];
-  @Input() color?: any;
-  @Input() shape?: any;
-  @Input() size?: any;
-  @Input() opacity?: any;
-  @Input() label?: any;
-  @Input() tooltip?: any;
-  @Input() style?: object;
-  @Input() select?: any;
-  @Input() active?: boolean;
-  @Input() animate?: boolean | object;
-  @Input() onMouseDown?: eventFunc;
-  @Input() onMouseMove?: eventFunc;
-  @Input() onMouseLeave?: eventFunc;
-  @Input() onMouseUp?: eventFunc;
-  @Input() onClick?: eventFunc;
-  @Input() onDbClick?: eventFunc;
-  @Input() onTouchStart?: eventFunc;
-  @Input() onTouchMove?: eventFunc;
-  @Input() onTouchEnd?: eventFunc;
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
+}
+
+@Component({
+  selector: 'v-path',
+  template: `<div #chartDom></div>`,
+})
+class Path extends Chart {
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean;
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDbClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
 }
 
 export {
@@ -881,4 +912,5 @@ export {
   Sankey,
   ErrorBar,
   JitterPoint,
+  Path,
 };

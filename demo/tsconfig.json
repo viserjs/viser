@@ -20,7 +20,7 @@
     ]
   },
   "include": [
-    "./index.ts"
+    "./index.tsx"
   ],
   "exclude": ["node_modules", "build"]
 }

@@ -1,11 +1,13 @@
-import * as IStyle from './Style';
 import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
+import * as IStyle from './Style';
 
 type eventFunc = (ev: any, chart: any) => void;
 
+type triggerType = 'mousemove' | 'click' | 'none';
+
 interface ICrosshairs {
-  type?: string,
+  type?: string;
   style?: IStyle.ILineStyle;
 }
 
@@ -14,27 +16,39 @@ interface ICrosshairs {
   template: `<div #chartDom></div>`,
 })
 class Tooltip extends Chart {
-  @Input() x?: number;
-  @Input() y?: number;
-  @Input() items?: object[];
-  @Input() title?: string;
-  @Input() show?: boolean;
-  @Input() showTitle?: boolean;
-  @Input() offset?: number;
-  @Input() timeStamp?: number;
-  @Input() crosshairs?: boolean | ICrosshairs;
-  @Input() plotRange?: object;
-  @Input() containerTpl?: string;
-  @Input() itemTpl?: string;
-  @Input() inPlot?: boolean;
-  @Input() follow?: boolean;
-  @Input() shared?: boolean;
-  @Input() enterable?: boolean;
-  @Input() position?: 'left' | 'right' | 'top' | 'bottom';
-  @Input() g2Tooltip?: any;
-  @Input() onShow?: eventFunc;
-  @Input() onHide?: eventFunc;
-  @Input() onChange?: eventFunc;
+  @Input() public x?: number;
+  @Input() public y?: number;
+  @Input() public items?: object[];
+  @Input() public show?: boolean;
+
+  @Input() public triggerOn?: triggerType;
+  @Input() public showTitle?: boolean;
+  @Input() public title?: string;
+  @Input() public crosshairs?: boolean | ICrosshairs;
+  @Input() public offset?: number;
+  @Input() public inPlot?: boolean;
+  @Input() public follow?: boolean;
+  @Input() public shared?: boolean;
+  @Input() public enterable?: boolean;
+  @Input() public position?: string;
+  @Input() public hideMarkers?: boolean;
+  @Input() public containerTpl?: string;
+  @Input() public itemTpl?: string;
+  @Input() public g2Tooltip?: any;
+  @Input() public g2TooltipTitle?: any;
+  @Input() public g2TooltipList?: any;
+  @Input() public g2TooltipListItem?: any;
+  @Input() public g2TooltipMarker?: any;
+
+  @Input() public onShow?: eventFunc;
+  @Input() public onHide?: eventFunc;
+  @Input() public onChange?: eventFunc;
+
+  @Input() public defaultPoint?: any;
+
+  // Deprecated
+  @Input() public timeStamp?: number;
+  @Input() public plotRange?: object;
 }
 
-export default Tooltip;
+export { Tooltip };

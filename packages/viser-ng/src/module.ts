@@ -1,11 +1,18 @@
-import { NgModule, enableProdMode } from '@angular/core';
-import { Chart } from './Chart';
-import { LiteChart } from './LiteChart';
-import { Axis, Brush, Coord, Facet, Guide, Legend, Tooltip, View, FacetView, Series, Pie, Sector, Line, SmoothLine, DashLine, Area, StackArea, SmoothArea,
- Bar, StackBar, DodgeBar, Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap, Edge, Sankey, ErrorBar, JitterPoint, StackInterval, Interval } from './components/index';
+import { CommonModule } from '@angular/common';
+import { enableProdMode, NgModule } from '@angular/core';
 import * as viser from 'viser';
+import { Chart } from './Chart';
+import { Area, Axis, Bar, Box, Brush, Candle, Contour, Coord, DashLine, DodgeBar, DodgeInterval,
+  Edge, ErrorBar, Facet, FacetView, Funnel, Guide, Heatmap,
+ Interval, JitterPoint, Legend, Line, Path, Pie, Point, Polygon,
+ Pyramid, Sankey, Schema, Sector, Series, SmoothArea, SmoothLine,
+ StackArea, StackBar, StackInterval, Tooltip, View } from './components/index';
+import { LiteChart } from './LiteChart';
+import { PluginComponent } from './plugins/Plugin';
+import { Slider } from './plugins/Slider';
 
 @NgModule({
+  imports: [CommonModule],
   declarations: [
     Chart,
     LiteChart,
@@ -44,7 +51,11 @@ import * as viser from 'viser';
     ErrorBar,
     JitterPoint,
     StackInterval,
+    DodgeInterval,
     Interval,
+    Path,
+    PluginComponent,
+    Slider,
   ],
   exports: [
     Chart,
@@ -84,7 +95,11 @@ import * as viser from 'viser';
     ErrorBar,
     JitterPoint,
     StackInterval,
+    DodgeInterval,
     Interval,
+    Path,
+    PluginComponent,
+    Slider,
   ],
 })
 export class ViserModule {

@@ -12,8 +12,9 @@ $ npm install --save viser
 
 ```jsx
 import viser from 'viser';
+const DataSet = require('@antv/data-set');
 
-const data = [
+const sourceData = [
   { month: 'Jan', Tokyo: 7.0, London: 3.9 },
   { month: 'Feb', Tokyo: 6.9, London: 4.2 },
   { month: 'Mar', Tokyo: 9.5, London: 5.7 },
@@ -25,58 +26,32 @@ const data = [
   { month: 'Sep', Tokyo: 23.3, London: 14.2 },
   { month: 'Oct', Tokyo: 18.3, London: 10.3 },
   { month: 'Nov', Tokyo: 13.9, London: 6.6 },
-  { month: 'Dec', Tokyo: 9.6, London: 4.8 }
+  { month: 'Dec', Tokyo: 9.6, London: 4.8 },
 ];
 
-const dataPre = {
-  transform: [{
-    type: 'fold',
-    fields: ['Tokyo', 'London'],
-    key: 'city',
-    value: 'temperature',
-  }]
-};
-
-const dataDef = [
-  {
-    key: 'month',
-    mark: 'column',
-    scale: {
-      range: [0, 1],
-    },
-  }, {
-    key: 'city',
-    mark: 'color',
-    scale: {},
-  }, {
-    key: 'temperature',
-    mark: 'row',
-    scale: {},
-  },
-];
+const dv = new DataSet.View().source(sourceData);
+dv.transform({
+  type: 'fold',
+  fields: ['Tokyo', 'London'],
+  key: 'city',
+  value: 'temperature',
+});
+const data = dv.rows;
 
 viser({
   data,
-  dataPre,
-  dataDef,
-  axis: [{
-    show: true,
-    dataKey: 'temperature',
-    label: {
-      formatter: val => (val + '°C'),
-    }
-  }],
+  axis: true,
   legend: true,
-  tooltip: {
-    crosshairs: {
-      type: 'line'
-    }
-  },
+  tooltip: true,
   series: [{
     quickType: 'smoothLine',
+    position: 'month*temperature',
+    color: "city",
     size: 2,
   }, {
     quickType: 'point',
+    position: 'month*temperature',
+    color: "city",
     size: 4,
     style: {
       stroke: '#fff',

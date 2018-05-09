@@ -4,59 +4,35 @@ const env = process.env.NODE_ENV;
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 let config = {
+  mode: 'production',
+
   entry: './lib/index',
 
   output: {
-    filename: './umd/viser-ng.js',
+    path: path.resolve(__dirname, 'umd'),
+    filename: 'viser-ng.min.js',
     library: 'ViserNg',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
   },
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json']
+    extensions: ['.js', '.json']
   },
 
   externals: {},
 
   module: {
-    loaders: [
-      {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        loaders: [
-          {
-            loader: 'ts-loader'
-          }
-        ]
+    rules: [{
+      test: /\.js?$/,
+      exclude: /node_modules/,
+      use: {
+        loader: "babel-loader"
       }
-    ]
+    }],
   },
 
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(env)
-    })
-  ]
+  plugins: [],
 };
-
-if (env === 'production') {
-  config.plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        pure_getters: true,
-        unsafe: true,
-        unsafe_comps: true,
-        warnings: false
-      },
-      output: {
-        comments: false
-      },
-      sourceMap: false
-    })
-  );
-
-  config.output.filename = './umd/viser-ng.min.js';
-}
 
 if (env === 'analyse') {
   config.plugins.push(new BundleAnalyzerPlugin());

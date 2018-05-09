@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
-import viser, { IViewConfig, ICoord, IScale, IAxis, IGuide, ISeries, ITooltip, IFacet, ILegend } from 'viser';
+import viser, { IAxis, ICoord, IFacet, IGuide, ILegend, IScale, ISeries, ITooltip, IViewConfig } from 'viser';
 
 function generateRandomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
@@ -24,63 +24,60 @@ function retain(obj: any, attr: string[]) {
 @Component({
   providers: [],
   selector: 'v-liteChart',
-  template: `<div #chartDom></div>`
+  template: `<div #chartDom></div>`,
 })
 
 export class LiteChart implements AfterViewInit, OnChanges {
-  @Input() data: any;
-  @Input() width?: number;
-  @Input() height?: number;
-  @Input() gemo?: string;
-  @Input() color?: any[];
-  @Input() label?: boolean;
-  @Input() radius?: number;
-  @Input() innerRadius?: number;
-  @Input() forceFit?: boolean;
-  @Input() fields?: any;
-  @Input() type?: any;
-  @Input() opacity?: any;
-  @Input() size?: any;
-  @Input() coord?: ICoord;
-  @Input() scale?: IScale;
-  @Input() axis?: IAxis;
-  @Input() guide?: IGuide;
-  @Input() series?: ISeries;
-  @Input() tooltip?: ITooltip;
-  @Input() facet?: IFacet;
-  @Input() legend?: ILegend;
-  @Input() pie?: boolean;
-  @Input() sector?: boolean;
-  @Input() line?: boolean;
-  @Input() smoothLine?: boolean;
-  @Input() dashLine?: boolean;
-  @Input() area?: boolean;
-  @Input() stackArea?: boolean;
-  @Input() smoothArea?: boolean;
-  @Input() bar?: boolean;
-  @Input() stackBar?: boolean;
-  @Input() dodgeBar?: boolean;
-  @Input() point?: boolean;
-  @Input() funnel?: boolean;
-  @Input() pyramid?: boolean;
-  @Input() schema?: boolean;
-  @Input() box?: boolean;
-  @Input() candle?: boolean;
-  @Input() polygon?: boolean;
-  @Input() contour?: boolean;
-  @Input() heatmap?: boolean;
-  @Input() edge?: boolean;
-  @Input() sankey?: boolean;
-  @Input() errorBar?: boolean;
-  @ViewChild('chartDom') chartDiv?: any;
-  config: any = {};
-  views: IViewConfig = {};
-  chart: any = null;
+  @Input() public data: any;
+  @Input() public width?: number;
+  @Input() public height?: number;
+  @Input() public gemo?: string;
+  @Input() public color?: any[];
+  @Input() public label?: boolean;
+  @Input() public radius?: number;
+  @Input() public innerRadius?: number;
+  @Input() public forceFit?: boolean;
+  @Input() public fields?: any;
+  @Input() public type?: any;
+  @Input() public opacity?: any;
+  @Input() public size?: any;
+  @Input() public coord?: ICoord;
+  @Input() public scale?: IScale;
+  @Input() public axis?: IAxis;
+  @Input() public guide?: IGuide;
+  @Input() public series?: ISeries;
+  @Input() public tooltip?: ITooltip;
+  @Input() public facet?: IFacet;
+  @Input() public legend?: ILegend;
+  @Input() public pie?: boolean;
+  @Input() public sector?: boolean;
+  @Input() public line?: boolean;
+  @Input() public smoothLine?: boolean;
+  @Input() public dashLine?: boolean;
+  @Input() public area?: boolean;
+  @Input() public stackArea?: boolean;
+  @Input() public smoothArea?: boolean;
+  @Input() public bar?: boolean;
+  @Input() public stackBar?: boolean;
+  @Input() public dodgeBar?: boolean;
+  @Input() public point?: boolean;
+  @Input() public funnel?: boolean;
+  @Input() public pyramid?: boolean;
+  @Input() public schema?: boolean;
+  @Input() public box?: boolean;
+  @Input() public candle?: boolean;
+  @Input() public polygon?: boolean;
+  @Input() public contour?: boolean;
+  @Input() public heatmap?: boolean;
+  @Input() public edge?: boolean;
+  @Input() public sankey?: boolean;
+  @Input() public errorBar?: boolean;
+  @ViewChild('chartDom') public chartDiv?: any;
+  public config: any = {};
+  public views: IViewConfig = {};
+  public chart: any = null;
 
-  constructor() {
-  }
-
-  combineViewConfig(props: any, config: any) {
+  public combineViewConfig(props: any, config: any) {
     if (props.data) {
       config.data = props.data;
     }
@@ -89,32 +86,18 @@ export class LiteChart implements AfterViewInit, OnChanges {
       config.scale = props.scale;
     }
 
-    if (props.tooltip) {
-      config.tooltip = props.tooltip;
-    } else {
-      config.tooltip = true;
-    }
-
-    if (props.legend) {
-      config.legend = props.legend;
-    } else {
-      config.legend = true;
-    }
-
-    if (props.axis) {
-      config.axis = props.axis;
-    } else {
-      config.axis = true;
-    }
-
     if (props.guide) {
       config.guide = props.guide;
     }
 
+    config.tooltip = props.tooltip ? props.tooltip : true;
+    config.legend = props.legend ? props.legend : true;
+    config.axis = props.axis ? props.axis : true;
+
     return config;
   }
 
-  combineChartConfig(props: any, config: any) {
+  public combineChartConfig(props: any, config: any) {
     const chartRetain = [
       'height', 'width', 'animate', 'forceFit',
       'background', 'plotBackground', 'padding',
@@ -125,7 +108,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
     return config;
   }
 
-  combineSeriesConfig(props: any, config: any) {
+  public combineSeriesConfig(props: any, config: any) {
     const regSeries = [
       'pie',
       'sector',
@@ -169,21 +152,21 @@ export class LiteChart implements AfterViewInit, OnChanges {
     return config;
   }
 
-  ngAfterViewInit() {
+  public ngAfterViewInit() {
     if (this.chart) {
       this.chart.destroy();
     }
     this.initChart();
   }
 
-  getProps(allProps: any) {
+  public getProps(allProps: any) {
     const strippingProperties = ['chart', 'chartDiv', 'config', 'context', 'constructor',
       'combineViewConfig', 'combineChartConfig', 'combineContentConfig', 'ngAfterViewInit', 'getProps',
       'combineSeriesConfig', 'getViewChartConfig', 'initChart', 'ngOnChanges', 'renderChart'];
 
     if (allProps) {
       const properties: {
-        [key: string]: any
+        [key: string]: any,
       } = {};
       for (const key in allProps) {
         if (strippingProperties.indexOf(key) === -1) {
@@ -195,11 +178,12 @@ export class LiteChart implements AfterViewInit, OnChanges {
     return allProps;
   }
 
-  getViewChartConfig(config: any) {
+  public getViewChartConfig(config: any) {
     const chartProperties = ['forceFit', 'height', 'width', 'container'];
     const chart: {
-      [key: string]: any
+      [key: string]: any,
     } = {};
+
     if (config.chart) {
       for (const key in config.chart) {
         if (chartProperties.indexOf(key) > -1) {
@@ -210,7 +194,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
     return chart;
   }
 
-  initChart(rerender?: any) {
+  public initChart(rerender?: any) {
     const name = this.constructor.name;
     const props = this.getProps(this);
     this.combineChartConfig(props, this.config);
@@ -220,14 +204,14 @@ export class LiteChart implements AfterViewInit, OnChanges {
     this.renderChart(rerender);
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  public ngOnChanges(changes: SimpleChanges) {
     if (!this.chart) {
       return;
     }
     this.initChart(true);
   }
 
-  renderChart(rerender?: any) {
+  public renderChart(rerender?: any) {
     this.config.chart.container = this.chartDiv.nativeElement;
     if (rerender) {
       this.chart.repaint(this.config);
