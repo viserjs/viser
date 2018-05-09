@@ -1,16 +1,45 @@
-import Vue, { VNode } from 'vue';
+import Vue, { VNode, ComponentOptions } from 'vue';
 import typedProps from './typed';
 import * as viser from 'viser-cell';
 
-const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area', 'point', 'stackarea',
-  'smootharea', 'bar', 'stackbar', 'dodgebar', 'interval', 'stackinterval', 'dodgeinterval',
-  'schema', 'box', 'candle', 'polygon', 'path'];
+const regSeries = [
+  'pie',
+  'sector',
+  'line',
+  'smoothline',
+  'dashline',
+  'area',
+  'point',
+  'stackarea',
+  'smootharea',
+  'bar',
+  'stackbar',
+  'dodgebar',
+  'interval',
+  'stackinterval',
+  'dodgeinterval',
+  'schema',
+  'box',
+  'candle',
+  'polygon',
+  'path',
+];
 
 const rootCharts = ['v-chart', 'v-lite-chart'];
 
 const rootChartProps = ['data', 'scale'];
 
-const seriesProps = ['position', 'quickType', 'gemo', 'adjust', 'color', 'shape', 'size', 'style', 'animate'];
+const seriesProps = [
+  'position',
+  'quickType',
+  'gemo',
+  'adjust',
+  'color',
+  'shape',
+  'size',
+  'style',
+  'animate',
+];
 
 const camelCase: any = (() => {
   const DEFAULT_REGEX = /[-_]+(.)?/g;
@@ -19,7 +48,10 @@ const camelCase: any = (() => {
     return group1 ? group1.toUpperCase() : '';
   }
   return (str: string, delimiters?: string) => {
-    return str.replace(delimiters ? new RegExp('[' + delimiters + ']+(.)?', 'g') : DEFAULT_REGEX, toUpper);
+    return str.replace(
+      delimiters ? new RegExp('[' + delimiters + ']+(.)?', 'g') : DEFAULT_REGEX,
+      toUpper
+    );
   };
 })();
 
@@ -37,7 +69,7 @@ declare module 'vue/types/options' {
   }
 }
 
-const baseChartComponent = Vue.extend({
+const baseChartComponent = {
   data() {
     return {
       isViser: true,
@@ -49,10 +81,10 @@ const baseChartComponent = Vue.extend({
   methods: {
     checkIsContainer(componentInstance: Vue) {
       if (
-        (componentInstance as any).isViser
-        &&
-        rootCharts
-          .indexOf(((componentInstance as any).$options as any)._componentTag) > -1
+        (componentInstance as any).isViser &&
+        rootCharts.indexOf(
+          ((componentInstance as any).$options as any)._componentTag
+        ) > -1
       ) {
         return true;
       } else {
@@ -64,8 +96,10 @@ const baseChartComponent = Vue.extend({
      */
     findNearestRootComponent(componentInstance: Vue): any {
       if (this.checkIsContainer(componentInstance)) {
-        if ((componentInstance.$options as any)._componentTag === 'v-lite-chart') {
-          throw Error('v-lite-chart should be no child elements.')
+        if (
+          (componentInstance.$options as any)._componentTag === 'v-lite-chart'
+        ) {
+          throw Error('v-lite-chart should be no child elements.');
         }
 
         return componentInstance;
@@ -90,7 +124,7 @@ const baseChartComponent = Vue.extend({
       if (this.$options._componentTag === 'v-lite-chart') {
         const existProps = cleanUndefined(this._props);
         Object.keys(existProps).forEach(propsKey => {
-          const lowerCasePropsKey = propsKey.toLowerCase()
+          const lowerCasePropsKey = propsKey.toLowerCase();
           if (regSeries.indexOf(lowerCasePropsKey) > -1) {
             safePush(d2Json, 'series', {
               quickType: propsKey,
@@ -108,7 +142,8 @@ const baseChartComponent = Vue.extend({
       /**
        * refresh chart
        */
-      if (rootCharts.indexOf(this.$options._componentTag) > -1) { // hit top
+      if (rootCharts.indexOf(this.$options._componentTag) > -1) {
+        // hit top
         const d2Json = this.createRootD2Json();
 
         if (!isUpdate || !this.chart) {
@@ -116,19 +151,26 @@ const baseChartComponent = Vue.extend({
         } else {
           this.chart.repaint(d2Json);
         }
-      }
-      /**
-       * refresh others like axis, coord, guide, etc.
-       */
-      else {
-        const nearestRootComponent = this.findNearestRootComponent(this.$parent);
+      } else {
+        /**
+         * refresh others like axis, coord, guide, etc.
+         */
+        const nearestRootComponent = this.findNearestRootComponent(
+          this.$parent
+        );
 
         if (!nearestRootComponent) {
-          throw Error(`${this.$options._componentTag} must be wrapped into v-chart`);
+          throw Error(
+            `${this.$options._componentTag} must be wrapped into v-chart`
+          );
         }
 
-        const rechartName = this.$options._componentTag.replace(/-/g, '').slice(1);
-        const rechartNameCamelCase = camelCase(this.$options._componentTag.slice(2));
+        const rechartName = this.$options._componentTag
+          .replace(/-/g, '')
+          .slice(1);
+        const rechartNameCamelCase = camelCase(
+          this.$options._componentTag.slice(2)
+        );
 
         if (isAllUndefined(this._props)) {
           nearestRootComponent.jsonForD2[rechartName] = true;
@@ -144,31 +186,38 @@ const baseChartComponent = Vue.extend({
           });
         }
       }
-    }
+    },
   },
 
-  created() { // bubble from parent to child
+  created() {
+    // bubble from parent to child
   },
 
-  mounted() { // bubble from child to parent
-    this.freshChart(false);
+  mounted() {
+    // bubble from child to parent
+    (this as any).freshChart(false);
   },
 
-  updated() { // bubble from child to parent
-    this.freshChart(true);
+  updated() {
+    // bubble from child to parent
+    (this as any).freshChart(true);
   },
 
   render(createElement): VNode {
-    const isContainer = this.checkIsContainer(this);
+    const isContainer = (this as any).checkIsContainer(this);
     if (isContainer) {
-      return createElement('canvas', undefined, this.$slots.default);
+      return createElement('canvas', undefined, (this as any).$slots.default);
     }
-    const props = cleanUndefined(normalizeProps(this._props));
-    return createElement('canvas', { style: { display: 'none' } }, Object.keys(props).map((key) => {
-      return '' + key + ':' + JSON.stringify(props[key]);
-    }));
+    const props = cleanUndefined(normalizeProps((this as any)._props));
+    return createElement(
+      'canvas',
+      { style: { display: 'none' } },
+      Object.keys(props).map(key => {
+        return '' + key + ':' + JSON.stringify(props[key]);
+      })
+    );
   },
-});
+} as ComponentOptions<any>;
 
 export default {
   // tslint:disable-next-line:no-shadowed-variable
@@ -202,7 +251,7 @@ export default {
     Vue.component('v-candle', baseChartComponent);
     Vue.component('v-box', baseChartComponent);
     Vue.component('v-path', baseChartComponent);
-  }
+  },
 };
 
 function safePush(obj: any, key: string, value: any) {
@@ -270,7 +319,11 @@ function isAllUndefined(value: any) {
 /**
  * special props for vue
  */
-function normalizeProps(props: any, include: string[] | null = null, expect: string[] | null = null) {
+function normalizeProps(
+  props: any,
+  include: string[] | null = null,
+  expect: string[] | null = null
+) {
   const newProps = { ...props };
 
   if (newProps.vStyle) {
@@ -281,7 +334,7 @@ function normalizeProps(props: any, include: string[] | null = null, expect: str
   if (expect !== null) {
     expect.forEach(propsKey => {
       delete newProps[propsKey];
-    })
+    });
   }
 
   if (include !== null) {
@@ -289,7 +342,7 @@ function normalizeProps(props: any, include: string[] | null = null, expect: str
       if (include.indexOf(propsKey) === -1) {
         delete newProps[propsKey];
       }
-    })
+    });
   }
 
   return newProps;
