@@ -4,6 +4,7 @@
     "moduleResolution": "Node",
     "outDir": "es",
     "strict": true,
+    "noUnusedLocals": true,
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
