@@ -1,13 +1,6 @@
-import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, OnChanges, SimpleChanges, ViewContainerRef } from '@angular/core';
 import * as viser from 'viser';
 import { PluginContext } from './PluginService';
-import { Slider } from './Slider';
-
-function firstLowerCase(str: string) {
-  return str.replace(/^\S/, (s: any) => {
-    return s.toLowerCase();
-  });
-}
 
 @Component({
   providers: [PluginContext],
@@ -16,11 +9,10 @@ function firstLowerCase(str: string) {
     <v-slider></v-slider>
   </div>`,
 })
-
 export class PluginComponent implements AfterViewInit, OnChanges {
   public context: PluginContext;
+  public vcRef: any;
   private config: any = {};
-  private vcRef: any;
 
   constructor(context: PluginContext, vcRef: ViewContainerRef) {
     this.context = context;
@@ -36,7 +28,6 @@ export class PluginComponent implements AfterViewInit, OnChanges {
   }
 
   private combineContentConfig(displayName: string, props: any, config: any) {
-    const realName = firstLowerCase(displayName);
     const nameLowerCase = displayName.toLowerCase();
 
     config[nameLowerCase] = props;

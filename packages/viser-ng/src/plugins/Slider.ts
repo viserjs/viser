@@ -1,10 +1,5 @@
-import { Component, Input, ViewContainerRef } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PluginComponent } from './Plugin';
-import { PluginContext } from './PluginService';
-
-function generateRandomNum() {
-  return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
-}
 
 @Component({
   selector: 'v-slider',

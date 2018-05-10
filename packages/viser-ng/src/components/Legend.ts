@@ -1,4 +1,4 @@
-import { Component, Input, NgModule } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
 import * as IStyle from './Style';
 

@@ -1,10 +1,6 @@
 import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import viser, { IAxis, ICoord, IFacet, IGuide, ILegend, IScale, ISeries, ITooltip, IViewConfig } from 'viser';
 
-function generateRandomNum() {
-  return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
-}
-
 function retain(obj: any, attr: string[]) {
   const newObj = Object.create(null);
 
@@ -195,7 +191,6 @@ export class LiteChart implements AfterViewInit, OnChanges {
   }
 
   public initChart(rerender?: any) {
-    const name = this.constructor.name;
     const props = this.getProps(this);
     this.combineChartConfig(props, this.config);
     this.combineViewConfig(props, this.config);

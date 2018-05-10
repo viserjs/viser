@@ -112,7 +112,6 @@ export class Chart implements AfterViewInit, OnChanges {
   @Input() public onPlotClick?: eventFunc;
   @Input() public onPlotDbClick?: eventFunc;
   @ViewChild('chartDom') public chartDiv?: any;
-  private config: any = {};
   private viewId: string = generateRandomNum();
   private componentId = generateRandomNum();
   private elem: any;
@@ -336,21 +335,6 @@ export class Chart implements AfterViewInit, OnChanges {
     return allProps;
   }
 
-  private getViewChartConfig(config: any) {
-    const chartProperties = ['forceFit', 'height', 'width', 'container'];
-    const chart: {
-      [key: string]: string,
-    } = {};
-    if (config.chart) {
-      for (const key in config.chart) {
-        if (chartProperties.indexOf(key) > -1) {
-          chart[key] = config.chart[key];
-        }
-      }
-    }
-    return chart;
-  }
-
   private getViewType() {
     return this.vcRef.parentInjector.elDef.element.name;
   }
@@ -373,7 +357,6 @@ export class Chart implements AfterViewInit, OnChanges {
     const name = this.getComponentName();
     const props = this.getProps(this);
     const config = this.context.config;
-    const views = this.context.views;
     const viewType = this.getViewType();
     const hasInViews = ['v-facet-view', 'v-view'].indexOf(viewType) !== -1;
     const viewId = this.viewId || this.componentId;
