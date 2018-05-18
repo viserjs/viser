@@ -13,7 +13,10 @@
     "skipLibCheck": true,
     "allowJs": true,
     "sourceMap": true,
-    "lib": ["es2017", "dom"]
+    "lib": [
+      "dom",
+      "es2017"
+    ]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

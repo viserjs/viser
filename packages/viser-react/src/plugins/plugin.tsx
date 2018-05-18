@@ -8,10 +8,6 @@ function firstLowerCase(str: string) {
   });
 }
 
-function generateRandomNum() {
-  return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
-}
-
 export default class PluginComponent extends React.Component<any, any> {
   public static childContextTypes = {
     centralizedUpdates: PropTypes.func,
@@ -31,7 +27,6 @@ export default class PluginComponent extends React.Component<any, any> {
   }
 
   public combineContentConfig(displayName: string, props: any, config: any) {
-    const realName = firstLowerCase(displayName);
     const nameLowerCase = displayName.toLowerCase();
 
     config[nameLowerCase] = props;

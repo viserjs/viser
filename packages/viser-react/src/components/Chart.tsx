@@ -183,7 +183,6 @@ export default class Chart extends React.Component<IRChart, any> {
 
   public centralizedUpdates = (unit: any) => {
     const config = this.config;
-    const views = this.views;
     const props = unit.props;
     const displayName = unit.displayName;
     const hasInViews = unit.context.hasInViews;

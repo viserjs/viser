@@ -1,6 +1,8 @@
 {
-  "name": "viser",
-  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "description": "viser is a toolkit fit for data vis engineer.",
   "bugs": {
     "url": "https://github.com/viserjs/viser/issues"
@@ -11,7 +13,19 @@
     "publish": "./scripts/publish.sh"
   },
   "devDependencies": {
-    "lerna": "^2.5.0"
+    "lerna": "^2.5.0",
+    "lerna-changelog": "^0.6.0",
+    "lint-staged": "^7.0.5",
+    "prettier": "1.6.1"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --parser typescript --trailing-comma --single-quote --write",
+      "git add"
+    ],
+    "yarn.lock": [
+      "git rm --cached"
+    ]
   },
   "engines": {
     "node": ">=8"

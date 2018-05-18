@@ -15,7 +15,10 @@
   "module": "es/index.js",
   "types": "src/index.tsx",
   "scripts": {
-    "build": "node ./tools/build.js",
+    "build": "npm run build:ts && npm run build:cjs && npm run build:umd",
+    "build:ts": "rimraf es && tsc",
+    "build:cjs": "rimraf lib && NODE_ENV=commonjs BABEL_ENV=cjs babel ./es -d lib",
+    "build:umd": "rimraf umd && BABEL_ENV=umd webpack --config webpack.config.js",
     "clean": "git clean -fdX .",
     "lint": "tslint src",
     "analyse": "NODE_ENV=analyse webpack --progress --config webpack.config.js"
@@ -29,6 +32,7 @@
     "vue": "^2.5.3"
   },
   "devDependencies": {
+    "prepublish": "npm run build",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-dev-expression": "^0.2.1",
