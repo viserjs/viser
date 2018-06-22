@@ -37,7 +37,7 @@ function fetchData(state) {
   }
   // Remove Dom
   mount.innerHTML = '';
-  console.log(fileName);
+
   if (['json', 'react', 'vue', 'vueCell', 'vueGraph', 'angular'].indexOf(fileName) > -1) {
     if (fileName === 'react') {
       delete require.cache[`./chart/${type}/${fileName}.tsx`];
