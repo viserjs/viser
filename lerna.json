@@ -1,5 +1,5 @@
 {
-  "lerna": "2.11.0",
+  "lerna": "2.10.1",
   "npmClient": "yarn",
   "useWorkspaces": true,
   "version": "independent",
@@ -18,5 +18,8 @@
     "publish": {
       "message": "chore(release): publish %s"
     }
-  }
+  },
+  "packages": [
+    "packages/*"
+  ]
 }

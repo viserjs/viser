@@ -1,8 +1,8 @@
 {
-  "name": "viser-cell-vue",
-  "version": "2.0.2",
-  "description": "viser-cell-vue is vue of viser-cell.",
-  "repository": "viserjs/viser-cell-vue",
+  "name": "viser-graph-vue",
+  "version": "0.1.8",
+  "description": "viser-graph-vue is vue of viser.",
+  "repository": "viserjs/viser-graph-vue",
   "license": "MIT",
   "authors": "DT-FE",
   "files": [
@@ -15,13 +15,12 @@
   "module": "es/index.js",
   "types": "src/index.tsx",
   "scripts": {
-    "prepublish": "npm run build",
     "build": "npm run build:ts && npm run build:cjs && npm run build:umd",
     "build:ts": "rimraf es && tsc",
     "build:cjs": "rimraf lib && NODE_ENV=commonjs BABEL_ENV=cjs babel ./es -d lib",
     "build:umd": "rimraf umd && BABEL_ENV=umd webpack --config webpack.config.js",
     "clean": "git clean -fdX .",
-    "lint": "tslint src",
+    "lint": "tslint src/**/*",
     "analyse": "NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "peerDependencies": {
@@ -29,7 +28,7 @@
   },
   "dependencies": {
     "@types/node": "*",
-    "viser-cell": "^2.0.0",
+    "viser-graph": "*",
     "vue": "^2.5.3"
   },
   "devDependencies": {
@@ -51,9 +50,9 @@
     "webpack-cli": "^2.0.14"
   },
   "keywords": [
-    "f2",
+    "g2",
     "chart",
-    "vue",
+    "react",
     "datavis"
   ]
 }
