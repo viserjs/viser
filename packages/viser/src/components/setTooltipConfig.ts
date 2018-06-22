@@ -1,5 +1,5 @@
-import * as EventUtils from '../utils/EventUtils';
 import * as _ from 'lodash';
+import * as EventUtils from '../utils/EventUtils';
 
 export const process = (chart: any, config: any) => {
   let cTooltip = _.cloneDeep(config.tooltip);
@@ -9,29 +9,31 @@ export const process = (chart: any, config: any) => {
   }
 
   for (const item in cTooltip) {
-    if (item === 'g2Tooltip') {
-      cTooltip['g2-tooltip'] = cTooltip[item];
-      cTooltip = _.omit(cTooltip, 'g2Tooltip');
-    }
+    if (cTooltip.hasOwnProperty(item)) {
+      if (item === 'g2Tooltip') {
+        cTooltip['g2-tooltip'] = cTooltip[item];
+        cTooltip = _.omit(cTooltip, 'g2Tooltip');
+      }
 
-    if (item === 'g2TooltipTitle') {
-      cTooltip['g2-tooltip-title'] = cTooltip[item];
-      cTooltip = _.omit(cTooltip, 'g2TooltipTitle');
-    }
+      if (item === 'g2TooltipTitle') {
+        cTooltip['g2-tooltip-title'] = cTooltip[item];
+        cTooltip = _.omit(cTooltip, 'g2TooltipTitle');
+      }
 
-    if (item === 'g2TooltipList') {
-      cTooltip['g2-tooltip-list'] = cTooltip[item];
-      cTooltip = _.omit(cTooltip, 'g2TooltipList');
-    }
+      if (item === 'g2TooltipList') {
+        cTooltip['g2-tooltip-list'] = cTooltip[item];
+        cTooltip = _.omit(cTooltip, 'g2TooltipList');
+      }
 
-    if (item === 'g2TooltipListItem') {
-      cTooltip['g2-tooltip-list-item'] = cTooltip[item];
-      cTooltip = _.omit(cTooltip, 'g2TooltipListItem');
-    }
+      if (item === 'g2TooltipListItem') {
+        cTooltip['g2-tooltip-list-item'] = cTooltip[item];
+        cTooltip = _.omit(cTooltip, 'g2TooltipListItem');
+      }
 
-    if (item === 'g2TooltipMaker') {
-      cTooltip['g2-tooltip-maker'] = cTooltip[item];
-      cTooltip = _.omit(cTooltip, 'g2TooltipMaker');
+      if (item === 'g2TooltipMaker') {
+        cTooltip['g2-tooltip-maker'] = cTooltip[item];
+        cTooltip = _.omit(cTooltip, 'g2TooltipMaker');
+      }
     }
   }
 
@@ -41,7 +43,7 @@ export const process = (chart: any, config: any) => {
 };
 
 export const setDefaultPoint = (chart: any, config: any) => {
-  let cTooltip = _.cloneDeep(config.tooltip);
+  const cTooltip = _.cloneDeep(config.tooltip);
 
   if (
     !_.isNil(cTooltip) && cTooltip !== false && cTooltip.show !== false

@@ -1,6 +1,6 @@
 {
   "name": "viser-vue",
-  "version": "2.2.3",
+  "version": "2.2.5",
   "description": "viser-vue is vue of viser.",
   "repository": "viserjs/viser-vue",
   "license": "MIT",
@@ -15,7 +15,11 @@
   "module": "es/index.js",
   "types": "src/index.tsx",
   "scripts": {
-    "build": "node ./tools/build.js",
+    "prepublish": "npm run build",
+    "build": "npm run build:ts && npm run build:cjs && npm run build:umd",
+    "build:ts": "rimraf es && tsc",
+    "build:cjs": "rimraf lib && NODE_ENV=commonjs BABEL_ENV=cjs babel ./es -d lib",
+    "build:umd": "rimraf umd && BABEL_ENV=umd webpack --config webpack.config.js",
     "clean": "git clean -fdX .",
     "lint": "tslint src",
     "analyse": "NODE_ENV=analyse webpack --progress --config webpack.config.js"

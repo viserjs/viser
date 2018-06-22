@@ -1,13 +1,11 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import * as viser from 'viser';
-import { Coord, Tooltip, Legend, Guide, Axis, Series, Brush, Line,
- Pie, Sector, SmoothLine, DashLine, Area, StackArea, SmoothArea,
- Bar, StackBar, DodgeBar, Interval, StackInterval, DodgeInterval,
- Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap,
- Edge, Sankey, JitterPoint, Path } from './components/SubComponent';
+import { Area, Axis, Bar, Box, Brush, Candle, Contour, Coord,
+ DashLine, DodgeBar, DodgeInterval, Edge, Funnel, Guide, Heatmap,
+ Interval, JitterPoint, Legend, Line, Path, Pie,
+ Point, Polygon, Pyramid, Sankey, Schema, Sector, Series, SmoothArea, SmoothLine,
+ StackArea, StackBar, StackInterval, Tooltip } from './components/SubComponent';
 
- import { Slider } from './plugins/SubPlugin';
+import { Slider } from './plugins/SubPlugin';
 
 export const registerAnimation = viser.registerAnimation;
 export const registerShape = viser.registerShape;
@@ -24,7 +22,7 @@ export {
   Pie, Sector, SmoothLine, DashLine, Area, StackArea, SmoothArea,
   Bar, StackBar, DodgeBar, Interval, StackInterval, DodgeInterval,
   Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap,
-  Edge, Sankey, JitterPoint, Path
+  Edge, Sankey, JitterPoint, Path,
 };
 
 export { default as Plugin } from './plugins/plugin';

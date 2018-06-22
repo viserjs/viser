@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import IRLiteChart from '../typed/IRLiteChart';
 import viser from 'viser';
+import IRLiteChart from '../typed/IRLiteChart';
 
 function retain(obj: any, attr: any) {
   const newObj = Object.create(null);
@@ -20,17 +20,17 @@ function retain(obj: any, attr: any) {
 }
 
 export default class LiteChart extends React.Component<IRLiteChart, any> {
-  chart: any;
-  elm: any;
-  container: any;
-  config: object = {};
-  displayName: string = '';
+  public chart: any;
+  public elm: any;
+  public container: any;
+  public config: object = {};
+  public displayName: string = '';
 
   constructor(props: IRLiteChart) {
     super(props);
   }
 
-  combineChartConfig(props: IRLiteChart, config: any) {
+  public combineChartConfig(props: IRLiteChart, config: any) {
     const chartRetain = [
       'height',
       'width',
@@ -38,7 +38,7 @@ export default class LiteChart extends React.Component<IRLiteChart, any> {
       'forceFit',
       'background',
       'plotBackground',
-      'padding'
+      'padding',
     ];
 
     config.chart = retain(props, chartRetain);
@@ -46,7 +46,7 @@ export default class LiteChart extends React.Component<IRLiteChart, any> {
     return config;
   }
 
-  combineViewConfig(props: IRLiteChart, config: any) {
+  public combineViewConfig(props: IRLiteChart, config: any) {
     if (props.data) {
       config.data = props.data;
     }
@@ -59,32 +59,18 @@ export default class LiteChart extends React.Component<IRLiteChart, any> {
       config.scale = props.scale;
     }
 
-    if (props.tooltip) {
-      config.tooltip = props.tooltip;
-    } else {
-      config.tooltip = true;
-    }
-
-    if (props.legend) {
-      config.legend = props.legend;
-    } else {
-      config.legend = true;
-    }
-
-    if (props.axis) {
-      config.axis = props.axis;
-    } else {
-      config.axis = true;
-    }
-
     if (props.guide) {
       config.guide = props.guide;
     }
 
+    config.tooltip = props.tooltip ? props.tooltip : true;
+    config.legend = props.legend ? props.legend : true;
+    config.axis = props.axis ? props.axis : true;
+
     return config;
   }
 
-  combineSeriesConfig(props: IRLiteChart, config: any) {
+  public combineSeriesConfig(props: IRLiteChart, config: any) {
     const regSeries = [
       'pie',
       'sector',
@@ -119,7 +105,7 @@ export default class LiteChart extends React.Component<IRLiteChart, any> {
       if (props[res]) {
         config.series = {
           ...config.series,
-          quickType: res
+          quickType: res,
         };
         break;
       }
@@ -128,8 +114,8 @@ export default class LiteChart extends React.Component<IRLiteChart, any> {
     return config;
   }
 
-  createChartInstance(config: any) {
-    let elm = this.elm;
+  public createChartInstance(config: any) {
+    const elm = this.elm;
 
     if (elm) {
       ReactDOM.unmountComponentAtNode(elm);
@@ -154,7 +140,7 @@ export default class LiteChart extends React.Component<IRLiteChart, any> {
     this.chart = viser(config);
   }
 
-  repaintChartInstance(config: any) {
+  public repaintChartInstance(config: any) {
     this.combineChartConfig(this.props, this.config);
     this.combineViewConfig(this.props, this.config);
     this.combineSeriesConfig(this.props, this.config);
@@ -167,21 +153,21 @@ export default class LiteChart extends React.Component<IRLiteChart, any> {
     }
   }
 
-  clearConfigData() {
+  public clearConfigData() {
     this.config = {};
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     this.createChartInstance(this.config);
     this.clearConfigData();
   }
 
-  componentDidUpdate() {
+  public componentDidUpdate() {
     this.repaintChartInstance(this.config);
     this.clearConfigData();
   }
 
-  componentWillUnmount() {
+  public componentWillUnmount() {
     if (this.chart) {
       this.chart.destroy();
       this.chart = null;
@@ -189,13 +175,13 @@ export default class LiteChart extends React.Component<IRLiteChart, any> {
     this.elm = this.container = null;
   }
 
-  portalRef = (container: any) => {
+  public portalRef = (container: any) => {
     if (!this.container) {
       this.container = container;
     }
-  };
+  }
 
-  render() {
+  public render() {
     return <div ref={this.portalRef}>{this.props.children}</div>;
   }
 }

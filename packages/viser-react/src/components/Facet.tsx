@@ -1,34 +1,34 @@
-import * as React from 'react';
-import * as ReactDOM from "react-dom";
 import * as PropTypes from 'prop-types';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { IFacet } from 'viser';
 
 const isReact16 = (ReactDOM as any).createPortal !== undefined;
 
 export default class Facet extends React.Component<IFacet, any> {
-  static contextTypes = {
+  public static contextTypes = {
     centralizedUpdates: PropTypes.func,
     hasInViews: PropTypes.bool,
     viewId: PropTypes.string,
   };
 
-  displayName = 'Facet';
+  public displayName = 'Facet';
 
   constructor(props: IFacet) {
     super(props);
   }
 
-  componentDidUpdate() {
+  public componentDidUpdate() {
     this.context.centralizedUpdates(this);
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     this.context.centralizedUpdates(this);
   }
 
-  render() {
+  public render() {
     if (!this.props.children) {
-      return null as React.ReactElement<any>;
+      return null;
     }
 
     if (isReact16) {

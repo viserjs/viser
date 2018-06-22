@@ -5,12 +5,18 @@
     "outDir": "es",
     "emitDecoratorMetadata": true,
     "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "strict": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "experimentalDecorators": true,
+    "skipLibCheck": true,
     "allowJs": true,
     "sourceMap": true,
-    "lib": ["es2017", "dom"]
+    "lib": [
+      "dom",
+      "es2017"
+    ]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

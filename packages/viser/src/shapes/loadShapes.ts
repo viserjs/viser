@@ -1,5 +1,5 @@
-import * as Sankey from './Sankey';
 import * as ErrorBar from './ErrorBar';
+import * as Sankey from './Sankey';
 
 export default function() {
   Sankey.registerShape();

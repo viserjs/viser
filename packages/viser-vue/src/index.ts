@@ -1,11 +1,37 @@
-import Vue from 'vue';
-import typedProps from './typed';
 import * as viser from 'viser';
+import Vue, { ComponentOptions } from 'vue';
+import typedProps from './typed';
 
-const regSeries = ['pie', 'sector', 'line', 'smoothline', 'dashline', 'area', 'point', 'stackarea',
-  'smootharea', 'bar', 'stackbar', 'dodgebar', 'interval', 'stackinterval', 'dodgeinterval',
-  'funnel', 'pyramid', 'schema', 'box', 'candle', 'polygon', 'contour', 'heatmap', 'edge', 'sankey', 'errorbar',
-  'jitterpoint', 'path'];
+const regSeries = [
+  'pie',
+  'sector',
+  'line',
+  'smoothline',
+  'dashline',
+  'area',
+  'point',
+  'stackarea',
+  'smootharea',
+  'bar',
+  'stackbar',
+  'dodgebar',
+  'interval',
+  'stackinterval',
+  'dodgeinterval',
+  'funnel',
+  'pyramid',
+  'schema',
+  'box',
+  'candle',
+  'polygon',
+  'contour',
+  'heatmap',
+  'edge',
+  'sankey',
+  'errorbar',
+  'jitterpoint',
+  'path',
+];
 
 const rootCharts = ['v-chart', 'v-lite-chart'];
 
@@ -13,7 +39,20 @@ const rootPlugin = ['v-plugin'];
 
 const rootChartProps = ['data', 'scale', 'viewId'];
 
-const seriesProps = ['position', 'quickType', 'gemo', 'adjust', 'color', 'shape', 'size', 'opacity', 'label', 'tooltip', 'style', 'animate'];
+const seriesProps = [
+  'position',
+  'quickType',
+  'gemo',
+  'adjust',
+  'color',
+  'shape',
+  'size',
+  'opacity',
+  'label',
+  'tooltip',
+  'style',
+  'animate',
+];
 
 const camelCase: any = (() => {
   const DEFAULT_REGEX = /[-_]+(.)?/g;
@@ -22,7 +61,10 @@ const camelCase: any = (() => {
     return group1 ? group1.toUpperCase() : '';
   }
   return (str: string, delimiters?: string) => {
-    return str.replace(delimiters ? new RegExp('[' + delimiters + ']+(.)?', 'g') : DEFAULT_REGEX, toUpper);
+    return str.replace(
+      delimiters ? new RegExp('[' + delimiters + ']+(.)?', 'g') : DEFAULT_REGEX,
+      toUpper
+    );
   };
 })();
 
@@ -38,11 +80,11 @@ const baseChartComponent = {
   methods: {
     checkIsContainer(componentInstance: Vue) {
       if (
-        (componentInstance as any).isViser
-        &&
+        (componentInstance as any).isViser &&
         rootCharts
           .concat(['v-view', 'v-facet', 'v-facet-view', 'v-plugin'])
-          .indexOf(((componentInstance as any).$options as any)._componentTag) > -1
+          .indexOf(((componentInstance as any).$options as any)._componentTag) >
+          -1
       ) {
         return true;
       } else {
@@ -54,8 +96,10 @@ const baseChartComponent = {
      */
     findNearestRootComponent(componentInstance: Vue) {
       if (this.checkIsContainer(componentInstance)) {
-        if ((componentInstance.$options as any)._componentTag === 'v-lite-chart') {
-          throw Error('v-lite-chart should be no child elements.')
+        if (
+          (componentInstance.$options as any)._componentTag === 'v-lite-chart'
+        ) {
+          throw Error('v-lite-chart should be no child elements.');
         }
 
         return componentInstance;
@@ -86,7 +130,7 @@ const baseChartComponent = {
       if (this.$options._componentTag === 'v-lite-chart') {
         const existProps = cleanUndefined(this._props);
         Object.keys(existProps).forEach(propsKey => {
-          const lowerCasePropsKey = propsKey.toLowerCase()
+          const lowerCasePropsKey = propsKey.toLowerCase();
           if (regSeries.indexOf(lowerCasePropsKey) > -1) {
             safePush(d2Json, 'series', {
               quickType: propsKey,
@@ -109,11 +153,11 @@ const baseChartComponent = {
         if (!isUpdate) {
           this.plugins = viser.Plugin(d2Json);
         }
-      }
-      /**
-       * refresh chart
-       */
-      else if (rootCharts.indexOf(this.$options._componentTag) > -1) { // hit top
+      } else if (rootCharts.indexOf(this.$options._componentTag) > -1) {
+        /**
+         * refresh chart
+         */
+        // hit top
         const d2Json = this.createRootD2Json();
 
         if (!isUpdate || !this.chart) {
@@ -121,45 +165,49 @@ const baseChartComponent = {
         } else {
           this.chart.repaint(d2Json);
         }
-      }
-      /**
-       * refresh view
-       */
-      else if (this.$options._componentTag === 'v-view') {
-        const nearestRootComponent = this.findNearestRootComponent(this.$parent);
+      } else if (this.$options._componentTag === 'v-view') {
+        /**
+         * refresh view
+         */
+        const nearestRootComponent = this.findNearestRootComponent(
+          this.$parent
+        );
 
         oneObjectMoreArray(nearestRootComponent.jsonForD2, 'views', {
           ...cleanUndefined(normalizeProps(this._props)),
           ...this.jsonForD2,
           viewId: this._uid,
         });
-      }
-      /**
-       * refresh facet-view
-       */
-      else if (this.$options._componentTag === 'v-facet-view') {
-        const nearestRootComponent = this.findNearestRootComponent(this.$parent);
+      } else if (this.$options._componentTag === 'v-facet-view') {
+        /**
+         * refresh facet-view
+         */
+        const nearestRootComponent = this.findNearestRootComponent(
+          this.$parent
+        );
 
         nearestRootComponent.jsonForD2.views = {
           ...cleanUndefined(normalizeProps(this._props)),
           ...this.jsonForD2,
         };
-      }
-      /**
-       * refresh facet
-       */
-      else if (this.$options._componentTag === 'v-facet') {
-        const nearestRootComponent = this.findNearestRootComponent(this.$parent);
+      } else if (this.$options._componentTag === 'v-facet') {
+        /**
+         * refresh facet
+         */
+        const nearestRootComponent = this.findNearestRootComponent(
+          this.$parent
+        );
         nearestRootComponent.jsonForD2.facet = {
           ...cleanUndefined(normalizeProps(this._props)),
           ...this.jsonForD2,
         };
-      }
-      /**
-       * refresh slider
-       */
-      else if (this.$options._componentTag === 'v-slider') {
-        const nearestRootComponent = this.findNearestRootComponent(this.$parent);
+      } else if (this.$options._componentTag === 'v-slider') {
+        /**
+         * refresh slider
+         */
+        const nearestRootComponent = this.findNearestRootComponent(
+          this.$parent
+        );
         const sliderOpts = cleanUndefined(normalizeProps(this._props));
         if (!cleanUndefined(normalizeProps(this._props)).container) {
           sliderOpts.container = 'viser-slider-' + generateRandomNum();
@@ -172,19 +220,28 @@ const baseChartComponent = {
           ...sliderOpts,
           ...this.jsonForD2,
         };
-      }
-      /**
-       * refresh others like axis, coord, guide, etc.
-       */
-      else {
-        const nearestRootComponent = this.findNearestRootComponent(this.$parent);
+      } else {
+        /**
+         * refresh others like axis, coord, guide, etc.
+         */
+        const nearestRootComponent = this.findNearestRootComponent(
+          this.$parent
+        );
 
         if (!nearestRootComponent) {
-          throw Error(`${this.$options._componentTag} must be wrapped into v-chart or v-plugin`);
+          throw Error(
+            `${
+              this.$options._componentTag
+            } must be wrapped into v-chart or v-plugin`
+          );
         }
 
-        const rechartName = this.$options._componentTag.replace(/-/g, '').slice(1);
-        const rechartNameCamelCase = camelCase(this.$options._componentTag.slice(2));
+        const rechartName = this.$options._componentTag
+          .replace(/-/g, '')
+          .slice(1);
+        const rechartNameCamelCase = camelCase(
+          this.$options._componentTag.slice(2)
+        );
 
         if (isAllUndefined(this._props)) {
           nearestRootComponent.jsonForD2[rechartName] = true;
@@ -200,27 +257,35 @@ const baseChartComponent = {
           });
         }
       }
-    }
+    },
   },
-  created() { // bubble from parent to child
+  created() {
+    // bubble from parent to child
   },
-  mounted() { // bubble from child to parent
-    this.freshChart(false);
+  mounted() {
+    // bubble from child to parent
+    (this as any).freshChart(false);
   },
-  updated() { // bubble from child to parent
-    this.freshChart(true);
+  updated() {
+    // bubble from child to parent
+    (this as any).freshChart(true);
   },
-  render(createElement: any) {
-    const isContainer = this.checkIsContainer(this);
+  render(createElement: any): any {
+    const isContainer = (this as any).checkIsContainer(this);
     if (isContainer) {
-      return createElement('div', null, this.$slots.default);
+      return createElement('div', null, (this as any).$slots.default);
     }
-    const props = cleanUndefined(normalizeProps(this._props));
-    return createElement('div', { style: { display: 'none' } }, Object.keys(props).map((key) => {
-      return '' + key + ':' + JSON.stringify(props[key]);
-    }));
+    const props = cleanUndefined(normalizeProps((this as any)._props));
+
+    return createElement(
+      'div',
+      { style: { display: 'none' } },
+      Object.keys(props).map(key => {
+        return '' + key + ':' + JSON.stringify(props[key]);
+      })
+    );
   },
-};
+} as ComponentOptions<any>;
 
 export default {
   // tslint:disable-next-line:no-shadowed-variable
@@ -269,7 +334,7 @@ export default {
 
     Vue.component('v-plugin', baseChartComponent);
     Vue.component('v-slider', baseChartComponent);
-  }
+  },
 };
 
 function safePush(obj: any, key: string, value: any) {
@@ -331,19 +396,17 @@ function cleanUndefined(value: any) {
 }
 
 function isAllUndefined(value: any) {
-  return Object.keys(value).every(key => value[key] === undefined);
-}
-
-function camelize(str: string) {
-  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, (letter, index) => {
-    return index === 0 ? letter.toLowerCase() : letter.toUpperCase();
-  }).replace(/\s+/g, '');
+  return Object.keys(value).every((key: string) => value[key] === undefined);
 }
 
 /**
  * special props for vue
  */
-function normalizeProps(props: any, include: string[] = null, expect: string[] = null) {
+function normalizeProps(
+  props: any,
+  include: string[] | null = null,
+  expect: string[] | null = null
+) {
   const newProps = { ...props };
 
   if (newProps.vStyle) {
@@ -352,17 +415,17 @@ function normalizeProps(props: any, include: string[] = null, expect: string[] =
   }
 
   if (expect !== null) {
-    expect.forEach(propsKey => {
+    expect.forEach((propsKey: string) => {
       delete newProps[propsKey];
-    })
+    });
   }
 
   if (include !== null) {
-    Object.keys(newProps).forEach(propsKey => {
+    Object.keys(newProps).forEach((propsKey: string) => {
       if (include.indexOf(propsKey) === -1) {
         delete newProps[propsKey];
       }
-    })
+    });
   }
 
   return newProps;
@@ -375,9 +438,25 @@ function setIfNotExist(obj: any, key: string, value: any) {
 }
 
 function generateRandomNum() {
-  return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
+  return Math.floor(new Date().getTime() + Math.random() * 10000).toString();
 }
 
 export const registerAnimation = viser.registerAnimation;
 export const registerShape = viser.registerShape;
 export const Global = viser.Global;
+
+declare module 'vue/types/vue' {
+  interface Vue {
+    chart: any;
+    _props?: object;
+    _uid?: string;
+    jsonForD2: any;
+    plugins: any;
+  }
+}
+
+declare module 'vue/types/options' {
+  interface ComponentOptions<V extends Vue> {
+    _componentTag?: any;
+  }
+}

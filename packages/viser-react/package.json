@@ -1,6 +1,6 @@
 {
   "name": "viser-react",
-  "version": "2.2.3",
+  "version": "2.2.6",
   "description": "viser-react is react of viser.",
   "repository": "viserjs/viser-react",
   "license": "MIT",
@@ -15,9 +15,13 @@
   "module": "es/index.js",
   "types": "src/index.tsx",
   "scripts": {
-    "build": "node ./tools/build.js",
+    "prepublish": "npm run build",
+    "build": "npm run build:ts && npm run build:cjs && npm run build:umd",
+    "build:ts": "rimraf es && tsc",
+    "build:cjs": "rimraf lib && NODE_ENV=commonjs BABEL_ENV=cjs babel ./es -d lib",
+    "build:umd": "rimraf umd && BABEL_ENV=umd webpack --config webpack.config.js",
     "clean": "git clean -fdX .",
-    "lint": "tslint src",
+    "lint": "tslint src/**/*",
     "analyse": "NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "peerDependencies": {
@@ -25,14 +29,14 @@
     "react-dom": ">15"
   },
   "dependencies": {
-    "viser": "^2.0.0",
-    "prop-types": "^15.6.0",
     "@types/node": "*",
-    "@types/prop-types": "*"
+    "@types/prop-types": "*",
+    "prop-types": "^15.6.0",
+    "viser": "^2.0.0"
   },
   "devDependencies": {
     "@types/react": "*",
-    "@types/react-dom": "16.0.4",
+    "@types/react-dom": "*",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-dev-expression": "^0.2.1",

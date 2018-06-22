@@ -35,4 +35,8 @@ export default [
     type: 'waffle',
     case: ['react', 'vue', 'angular']
   },
+  {
+    type: 'cell-bar-1',
+    case: ['json', 'vueCell']
+  },
 ];

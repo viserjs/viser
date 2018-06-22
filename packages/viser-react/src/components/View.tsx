@@ -1,6 +1,6 @@
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import * as PropTypes from 'prop-types';
 import { IView } from 'viser';
 
 const isReact16 = (ReactDOM as any).createPortal !== undefined;
@@ -10,17 +10,17 @@ function generateRandomNum() {
 }
 
 export default class View extends React.Component<IView, any> {
-  static childContextTypes = {
+  public static childContextTypes = {
     hasInViews: PropTypes.bool,
     viewId: PropTypes.string,
   };
 
-  static contextTypes = {
+  public static contextTypes = {
     centralizedUpdates: PropTypes.func,
     hasInViews: PropTypes.bool,
   };
 
-  displayName = 'View';
+  public displayName = 'View';
 
   constructor(props: IView) {
     super(props);
@@ -31,22 +31,22 @@ export default class View extends React.Component<IView, any> {
     };
   }
 
-  getChildContext() {
+  public getChildContext() {
     return {
       hasInViews: this.state.hasInViews,
       viewId: this.state.viewId,
     };
   }
 
-  componentDidUpdate() {
+  public componentDidUpdate() {
     this.context.centralizedUpdates(this);
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     this.context.centralizedUpdates(this);
   }
 
-  render() {
+  public render() {
     if (isReact16) {
       return this.props.children as React.ReactElement<any>;
     } else {

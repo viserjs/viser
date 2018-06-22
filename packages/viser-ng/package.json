@@ -1,6 +1,6 @@
 {
   "name": "viser-ng",
-  "version": "2.2.5",
+  "version": "2.2.8",
   "description": "viser-ng is angular of viser.",
   "repository": "viserjs/viser-ng",
   "license": "MIT",
@@ -15,29 +15,32 @@
   "module": "es/index.js",
   "types": "src/index.ts",
   "scripts": {
-    "build": "node ./tools/build.js",
+    "prepublish": "npm run build",
+    "build": "npm run build:ts && npm run build:cjs && npm run build:umd",
+    "build:ts": "rimraf es && tsc",
+    "build:cjs": "rimraf lib && NODE_ENV=commonjs BABEL_ENV=cjs babel ./es -d lib",
+    "build:umd": "rimraf umd && BABEL_ENV=umd webpack --config webpack.config.js",
     "clean": "git clean -fdX .",
     "lint": "tslint src",
     "analyse": "cross-env NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "peerDependencies": {
     "@angular/core": "^2.4.0",
+    "@angular/common": "^2.4.0",
     "reflect-metadata": "^0.1.8",
     "rxjs": "^5.0.3",
     "zone.js": "^0.7.2"
   },
   "dependencies": {
     "viser": "^2.0.0",
-    "@types/core-js": "^0.9.43",
-    "@types/node": "7.0.7"
+    "@types/core-js": "*",
+    "@types/node": "*"
   },
   "devDependencies": {
     "@angular/common": "^5.2.1",
     "@angular/compiler": "^4.0.1",
     "@angular/compiler-cli": "^4.0.1",
     "@angular/core": "^4.4.6",
-    "@types/core-js": "^0.9.43",
-    "@types/node": "7.0.7",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-dev-expression": "^0.2.1",

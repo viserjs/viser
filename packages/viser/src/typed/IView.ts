@@ -1,9 +1,9 @@
 import IAxis from './IAxis';
 import ICoord from './ICoord';
 import IGuide from './IGuide';
+import IScale from './IScale';
 import ISeries from './ISeries';
 import ITooltip from './ITooltip';
-import IScale from './IScale';
 
 export interface IView {
   data?: any;

@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
     "module": "es2015",
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "outDir": "es",
+    "strict": true,
+    "noUnusedLocals": true,
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
@@ -13,10 +15,6 @@
       "dom"
     ]
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

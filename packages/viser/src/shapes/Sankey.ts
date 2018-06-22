@@ -1,5 +1,5 @@
-import * as CustomizeUtils from '../utils/CustomizeUtils';
 import IShapePoints from '../typed/IShapePoints';
+import * as CustomizeUtils from '../utils/CustomizeUtils';
 
 const DEFAULT_SANKEY_SHAPE = 'sankey';
 
@@ -27,7 +27,7 @@ function getCurvePath(from: any, to: any, curvature: number) {
 function getEdgePath(points: IShapePoints[], curvature: number) {
   const path = [
     ['M', points[0].x, points[0].y],
-    ['L', points[1].x, points[1].y]
+    ['L', points[1].x, points[1].y],
   ];
   const c1 = getCurvePath(points[1], points[3], curvature);
   path.push(c1);
@@ -55,6 +55,6 @@ export const registerShape = () => {
         },
       });
       return shape;
-    }
+    },
   });
 };

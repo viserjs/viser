@@ -1,49 +1,45 @@
-import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
-import { PluginContext } from './PluginService';
+import { AfterViewInit, Component, OnChanges, SimpleChanges, ViewContainerRef } from '@angular/core';
 import * as viser from 'viser';
-import { Slider } from './Slider';
-
-function firstLowerCase(str: string) {
-  return str.replace(/^\S/, (s: any) => {
-    return s.toLowerCase();
-  });
-}
+import { PluginContext } from './PluginService';
 
 @Component({
   providers: [PluginContext],
   selector: 'v-plugin',
   template: `<div>
     <v-slider></v-slider>
-  </div>`
+  </div>`,
 })
-
 export class PluginComponent implements AfterViewInit, OnChanges {
-  config: any = {};
-  private vcRef: any;
   public context: PluginContext;
+  public vcRef: any;
+  private config: any = {};
+
   constructor(context: PluginContext, vcRef: ViewContainerRef) {
     this.context = context;
     this.vcRef = vcRef;
   }
 
-  ngAfterViewInit() {
+  public ngAfterViewInit() {
     this.initPlugin();
   }
 
-  combineContentConfig(displayName: string, props: any, config: any) {
-    const realName = firstLowerCase(displayName);
+  public ngOnChanges(changes: SimpleChanges) {
+    this.initPlugin();
+  }
+
+  private combineContentConfig(displayName: string, props: any, config: any) {
     const nameLowerCase = displayName.toLowerCase();
 
     config[nameLowerCase] = props;
   }
 
-  getProps(allProps: any) {
+  private getProps(allProps: any) {
     const strippingProperties = ['chartDiv', 'combineContentConfig', 'config', 'constructor', 'context', 'vcRef',
       'getProps', 'initPlugin', 'renderPlugin',
       'ngOnInit', 'ngAfterViewInit', 'ngOnChanges'];
     if (allProps) {
       const properties: {
-        [key: string]: string
+        [key: string]: string,
       } = {};
       for (const key in allProps) {
         if (strippingProperties.indexOf(key) === -1) {
@@ -56,25 +52,20 @@ export class PluginComponent implements AfterViewInit, OnChanges {
     return allProps;
   }
 
-  initPlugin() {
+  private initPlugin() {
     const name = this.constructor.name;
     const props = this.getProps(this);
     this.config = this.context.config;
 
-    if (name === 'PluginComponent'){
+    if (name === 'PluginComponent') {
       this.renderPlugin(true);
-    }else if (name === 'Slider') {
+    } else if (name === 'Slider') {
       props.container = this.context.container;
       this.combineContentConfig(name, props, this.config);
     }
-
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.initPlugin();
-  }
-
-  renderPlugin(rerender?: boolean) {
+  private renderPlugin(rerender?: boolean) {
     viser.Plugin(this.config);
   }
 }

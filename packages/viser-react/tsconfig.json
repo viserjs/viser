@@ -4,6 +4,8 @@
     "moduleResolution": "node",
     "outDir": "es",
     "jsx": "react",
+    "strict": true,
+    "noUnusedLocals": true,
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,

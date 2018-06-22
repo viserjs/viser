@@ -1,6 +1,6 @@
-import * as IStyle from './Style';
 import { Component, Input } from '@angular/core';
 import { Chart } from '../Chart';
+import * as IStyle from './Style';
 
 interface IColTitleProps {
   offsetY?: number;
@@ -17,26 +17,26 @@ interface IRowTitleProps {
   template: `<div #chartDom></div>`,
 })
 class Facet extends Chart {
-  @Input() type: string;
-  @Input() fields?: string[];
-  @Input() cols?: number;
-  @Input() rows?: number;
-  @Input() colField?: string | string[];
-  @Input() rowField?: string | string[];
-  @Input() colValue?: number;
-  @Input() rowValue?: number;
-  @Input() colIndex?: number;
-  @Input() rowIndex?: number;
-  @Input() showTitle?: boolean;
-  @Input() colTitle?: IColTitleProps;
-  @Input() rowTitle?: IRowTitleProps;
-  @Input() autoSetAxis?: boolean;
-  @Input() padding?: number | number[];
-  @Input() transpose?: boolean;
-  @Input() lineSmooth?: boolean;
-  @Input() line?: IStyle.ILineStyle;
-  @Input() views?: any;
-  @Input() eachView?: (views: any, facet: any) => void;
+  @Input() public type?: string;
+  @Input() public fields?: string[];
+  @Input() public cols?: number;
+  @Input() public rows?: number;
+  @Input() public colField?: string | string[];
+  @Input() public rowField?: string | string[];
+  @Input() public colValue?: number;
+  @Input() public rowValue?: number;
+  @Input() public colIndex?: number;
+  @Input() public rowIndex?: number;
+  @Input() public showTitle?: boolean;
+  @Input() public colTitle?: IColTitleProps;
+  @Input() public rowTitle?: IRowTitleProps;
+  @Input() public autoSetAxis?: boolean;
+  @Input() public padding?: number | number[];
+  @Input() public transpose?: boolean;
+  @Input() public lineSmooth?: boolean;
+  @Input() public line?: IStyle.ILineStyle;
+  @Input() public views?: any;
+  @Input() public eachView?: (views: any, facet: any) => void;
 }
 
 export { Facet };
