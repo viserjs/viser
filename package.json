@@ -13,7 +13,7 @@
     "publish": "./scripts/publish.sh"
   },
   "devDependencies": {
-    "lerna": "^2.5.0",
+    "lerna": "^2.11.0",
     "lerna-changelog": "^0.6.0",
     "lint-staged": "^7.0.5",
     "prettier": "1.6.1"

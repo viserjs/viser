@@ -39,4 +39,31 @@ export default [
     type: 'cell-bar-1',
     case: ['json', 'vueCell']
   },
+  {
+    type: 'graph',
+    case: ['json', 'react', 'angular', 'vueGraph']
+  },{
+    type: 'tree',
+    case: ['json', 'react', 'angular', 'vueGraph']
+  },
+  {
+    type: 'compactBoxTree',
+    case: ['json', 'react', 'angular', 'vueGraph']
+  },
+  {
+    type: 'dendrogram',
+    case: ['json', 'react', 'angular', 'vueGraph']
+  },
+  {
+    type: 'mindmap',
+    case: ['json', 'react', 'angular', 'vueGraph']
+  },
+  {
+    type: 'functionTree',
+    case: ['json', 'react', 'angular', 'vueGraph']
+  },
+  {
+    type: 'indentedTree',
+    case: ['json', 'react', 'angular', 'vueGraph']
+  },
 ];
