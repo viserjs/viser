@@ -4,7 +4,6 @@ import { IConfig } from './typed';
 export class ViserGraph {
   public config: any;
   public graph: any;
-
   constructor(config: IConfig) {
     this.config = config;
   }

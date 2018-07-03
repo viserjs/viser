@@ -1,6 +1,6 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { ViserGraph } from '../../../viser-graph/src';
+import { ViserGraph } from 'viser-graph';
 import IGraph from '../typed/IGraph';
 
 function firstLowerCase(str: string) {
