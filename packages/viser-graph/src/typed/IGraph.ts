@@ -1,13 +1,8 @@
-type voidFunc = () => void;
-type calFunc = (nodes: any[], edges: any[]) => {
-  // nodes 节点集
-  // edges 边集
-  // 在此处进行布局
-};
+type calFunc = (nodes: any[], edges: any[]) => {};
 
 interface ILayoutObject {
-  auto: boolean; // 是否在画布数据变更后自动布局 默认 是true
-  processer: voidFunc | any; // 布局处理器
+  auto: boolean;
+  processer: any;
 }
 
 export default interface IGraph {

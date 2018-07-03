@@ -1,7 +1,7 @@
 {
   "name": "viser-graph-ng",
   "version": "0.1.8",
-  "description": "viser-graph-ng is angular of viser.",
+  "description": "viser-graph-ng is angular of viser-graph.",
   "repository": "viserjs/viser-graph-ng",
   "license": "MIT",
   "authors": "DT-FE",
@@ -60,7 +60,7 @@
     "zone.js": "^0.8.5"
   },
   "keywords": [
-    "g2",
+    "g6",
     "chart",
     "angular",
     "datavis"
