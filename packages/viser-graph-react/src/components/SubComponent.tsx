@@ -1,6 +1,6 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { IEdge, INode, IZoom } from '../../../viser-graph/src';
+import { IEdge, INode, IZoom } from 'viser-graph';
 
 class Props {}
 

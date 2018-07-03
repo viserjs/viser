@@ -1,4 +1,4 @@
-import { Layouts, registerEdge, registerGuide, registerNode, Util } from '../../viser-graph/src';
+import { Layouts, registerEdge, registerGuide, registerNode, Util } from 'viser-graph';
 import { default as Graph } from './components/Graph';
 import { Edge, Node, Zoom } from './components/SubComponent';
 

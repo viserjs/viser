@@ -21,7 +21,7 @@ export class ViserGraph {
 
   public setGraph() {
     if (!this.config.graph.container) {
-      console.error('请设置容器');
+      console.error('please set container');
       return;
     }
     let graphConfig = {};
@@ -55,7 +55,7 @@ export class ViserGraph {
 
   public setData() {
     if (!this.config.data) {
-      console.error('请设置数据');
+      console.error('please set container');
       return ;
     }
     this.graph.read(this.config.data);
@@ -97,7 +97,6 @@ export class ViserGraph {
       });
     });
   }
-
 }
 
 export const registerNode = G6.registerNode;
