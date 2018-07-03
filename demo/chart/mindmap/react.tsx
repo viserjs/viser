@@ -33,7 +33,6 @@ var layout = new Layouts.Mindmap({
 });
 
 const graph = {
-  container: 'mount',
   width: 500,
   height: 500,
   fitView: 'autoZoom',

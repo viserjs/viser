@@ -1,5 +1,6 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
+import { IEdge, INode, IZoom } from '../../../viser-graph/src';
 
 class Props {}
 
@@ -32,8 +33,8 @@ class SubComponent<T = {}> extends React.Component<Props & T, any> {
 }
 
 // tslint:disable-next-line:max-classes-per-file
-export class Zoom extends SubComponent<any> { public displayName = 'Zoom'; }
+export class Zoom extends SubComponent<IZoom> { public displayName = 'Zoom'; }
 // tslint:disable-next-line:max-classes-per-file
-export class Node extends SubComponent<any> { public displayName = 'Node'; }
+export class Node extends SubComponent<INode> { public displayName = 'Node'; }
 // tslint:disable-next-line:max-classes-per-file
-export class Edge extends SubComponent<any> { public displayName = 'Edge'; }
+export class Edge extends SubComponent<IEdge> { public displayName = 'Edge'; }

@@ -35,6 +35,7 @@ new ViserGraph({
   zoom: {
     min: 1,
     max: 10,
+    current: 0.5,
   },
 }).render();
 

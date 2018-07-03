@@ -18,23 +18,6 @@ const data = {
   }]
 };
 
-const graph = {
-  width: 500,
-  height: 500,
-  fitView: 'cc',
-  fitViewPadding: true,
-  animate: true,
-  type: 'graph',
-  data,
-  onClick: function(ev, graph) {
-    console.log('click', ev, graph);
-  }
-};
-const zoom = {
-  min: 1,
-  max: 10,
-};
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -43,8 +26,17 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <Graph {...graph}>
-          <Zoom {...zoom}/>
+        <Graph width={500} height={500}
+          fitView='cc'
+          fitViewPadding={true}
+          animate={true}
+          type='graph'
+          data={data}
+          test={1}
+          onClick={(ev, graph) =>{
+            console.log('click', ev, graph);
+          }}>
+          <Zoom min={1} max={10} current={2}/>
         </Graph>
       </div>
     );

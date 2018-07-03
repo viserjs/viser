@@ -32,7 +32,6 @@ var layout = new Layouts.CompactBoxTree({
 });
 
 const graph = {
-  container: 'mount',
   width: 500,
   height: 500,
   fitView: 'autoZoom',

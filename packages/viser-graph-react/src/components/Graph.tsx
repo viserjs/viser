@@ -1,6 +1,7 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import { ViserGraph } from '../../../viser-graph/src';
+import IGraph from '../typed/IGraph';
 
 function firstLowerCase(str: string) {
   return str.replace(/^\S/, (s: any) => {
@@ -42,7 +43,7 @@ export default class Graph extends React.Component<any, any> {
   public container: any;
   public config: any = {};
 
-  constructor(props: any) {
+  constructor(props: IGraph) {
     super(props);
     this.config.data = props.data;
   }

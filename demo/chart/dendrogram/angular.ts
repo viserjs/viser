@@ -33,7 +33,6 @@ var DEFAULT_NODE_SIZE = layoutCfg.nodeSize;
 var layout = new Layouts.Dendrogram(layoutCfg);
 
 const graph = {
-  container: 'mount',
   width: 500,
   height: 500,
   fitView: 'autoZoom',
