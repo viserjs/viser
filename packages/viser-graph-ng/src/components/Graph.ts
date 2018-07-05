@@ -93,6 +93,8 @@ export class Graph implements AfterViewInit, OnChanges {
     ];
 
     config.events = retain(props, eventRetain);
+
+    config.data = props.data;
   }
 
   private convertValueToNum(props: any) {

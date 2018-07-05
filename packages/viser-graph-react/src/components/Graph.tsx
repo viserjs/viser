@@ -72,6 +72,8 @@ export default class Graph extends React.Component<any, any> {
     ];
 
     this.config.events = retain(props, eventRetain);
+
+    this.config.data = props.data;
   }
 
   public combineContentConfig(displayName: string, props: any, config: any) {
@@ -140,7 +142,7 @@ export default class Graph extends React.Component<any, any> {
 
   public componentWillUnmount() {
     if (this.chart) {
-      this.chart.destroy();
+      this.chart.graph.destroy();
       this.chart = null;
     }
     this.container = null;
