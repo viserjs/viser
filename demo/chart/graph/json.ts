@@ -15,6 +15,7 @@ const data = {
     source: 'node1'
   }]
 };
+var lastPoint = void 0;
 
 new ViserGraph({
   graph: {
@@ -30,6 +31,26 @@ new ViserGraph({
   events: {
     onClick: function(ev, graph) {
       console.log('click', ev, graph);
+    },
+    onDragstart: (ev, graph) => {
+      graph.css({
+        cursor: '-webkit-grabbing'
+      });
+    },
+    onDrag: (ev, graph) => {
+      if (lastPoint) {
+        graph.translate(ev.domX - lastPoint.x, ev.domY - lastPoint.y);
+      }
+      lastPoint = {
+        x: ev.domX,
+        y: ev.domY
+      };
+    },
+    onDragend:(ev, graph) => {
+      lastPoint = undefined;
+      graph.css({
+        cursor: '-webkit-grab'
+      });
     }
   },
   zoom: {

@@ -20,6 +20,7 @@ const data = {
   }]
 };
 
+var lastPoint = void 0;
 const graph = {
   width: 500,
   height: 500,
@@ -30,13 +31,32 @@ const graph = {
   data,
   onClick: function(ev, graph) {
     console.log('click', ev, graph);
+  },
+  onDragstart: (ev, graph) => {
+    graph.css({
+      cursor: '-webkit-grabbing'
+    });
+  },
+  onDrag: (ev, graph) => {
+    if (lastPoint) {
+      graph.translate(ev.domX - lastPoint.x, ev.domY - lastPoint.y);
+    }
+    lastPoint = {
+      x: ev.domX,
+      y: ev.domY
+    };
+  },
+  onDragend:(ev, graph) => {
+    lastPoint = undefined;
+    graph.css({
+      cursor: '-webkit-grab'
+    });
   }
 };
 const zoom = {
   min: 1,
   max: 10,
 };
-
 
 @Component({
   selector: '#mount',
@@ -45,7 +65,8 @@ const zoom = {
     <v-graph [width]="graph.width" [height]="graph.height"
       [fitView]="graph.fitView" [fitViewPadding]="graph.fitViewPadding"
       [animate]="graph.animate" [type]="graph.type"
-      [data]="data" [onClick]="graph.onClick">
+      [data]="data" [onClick]="graph.onClick"
+      [onDragstart]="graph.onDragstart" [onDrag]="graph.onDrag" [onDragend]="graph.onDragend">
       <v-zoom [max]="zoom.max" [min]="zoom.min"></v-zoom>
     </v-graph>
   </div>

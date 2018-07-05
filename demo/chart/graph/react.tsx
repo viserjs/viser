@@ -18,6 +18,8 @@ const data = {
   }]
 };
 
+var lastPoint = void 0;
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -35,6 +37,26 @@ export default class App extends React.Component {
           test={1}
           onClick={(ev, graph) =>{
             console.log('click', ev, graph);
+          }}
+          onDragstart={(ev: any, graph: any) => {
+            graph.css({
+              cursor: '-webkit-grabbing'
+            });
+          }}
+          onDrag={(ev:any, graph: any) => {
+            if (lastPoint) {
+              graph.translate(ev.domX - lastPoint.x, ev.domY - lastPoint.y);
+            }
+            lastPoint = {
+              x: ev.domX,
+              y: ev.domY
+            };
+          }}
+          onDragend={(ev:any, graph: any) => {
+            lastPoint = undefined;
+            graph.css({
+              cursor: '-webkit-grab'
+            });
           }}>
           <Zoom min={1} max={10} current={2}/>
         </Graph>

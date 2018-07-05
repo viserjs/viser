@@ -42,4 +42,7 @@ export default interface IGraph {
   onPlotleave?: func;
   onPlotclick?: func;
   onPlotdblclick?: func;
+  onDragstart?: func;
+  onDrag?: func;
+  onDragend?: func;
 }

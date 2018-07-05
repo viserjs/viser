@@ -19,8 +19,23 @@ export class Graph implements AfterViewInit, OnChanges {
   @Input() public fitViewPadding?: any;
   @Input() public type?: any;
   @Input() public layout?: any;
+  @Input() public onMouseDown?: any;
+  @Input() public onMouseMove?: any;
+  @Input() public onMouseUp?: any;
   @Input() public onClick?: any;
+  @Input() public onDbClick?: any;
+  @Input() public onTouchStart?: any;
+  @Input() public onTouchMove?: any;
+  @Input() public onTouchEnd?: any;
+  @Input() public onPlotEnter?: any;
+  @Input() public onPlotMove?: any;
+  @Input() public onPlotLeave?: any;
+  @Input() public onPlotClick?: any;
+  @Input() public onPlotDbClick?: any;
   @Input() public onAfterchange?: any;
+  @Input() public onDragstart?: any;
+  @Input() public onDrag?: any;
+  @Input() public onDragend?: any;
 
   @ViewChild('GraphDom') public graphDiv?: any;
   private componentId = generateRandomNum();
@@ -74,9 +89,12 @@ export class Graph implements AfterViewInit, OnChanges {
       'onPlotEnter', 'onPlotMove', 'onPlotLeave',
       'onPlotClick', 'onPlotDbClick',
       'onAfterchange',
+      'onDragstart', 'onDrag', 'onDragend',
     ];
 
     config.events = retain(props, eventRetain);
+
+    config.data = props.data;
   }
 
   private convertValueToNum(props: any) {
@@ -113,11 +131,13 @@ export class Graph implements AfterViewInit, OnChanges {
   }
 
   private getProps(allProps: any) {
-    const strippingProperties = ['Graph', 'graphDiv', 'config', 'context', 'viewId', 'facetviews',
+    const strippingProperties = [
+      'Graph', 'graphDiv', 'config', 'context',
       'componentId', 'elem', 'vcRef', 'constructor', 'combineViewConfig', 'convertValueToNum',
       'combineGraphConfig', 'combineContentConfig', 'ngOnInit', 'ngAfterViewInit', 'getProps',
       'changeViewConfig', 'getViewType', 'getViewGraphConfig', 'initGraph', 'ngOnChanges', 'renderGraph',
-      'getComponentName'];
+      'getComponentName',
+    ];
 
     if (allProps) {
       const properties: {
@@ -178,7 +198,7 @@ export class Graph implements AfterViewInit, OnChanges {
       }
       this.context.timer = setTimeout(() => {
         if (this.context.graph) {
-          this.context.graph.repaint(this.context.config);
+          this.context.graph.reRender();
         } else {
           this.context.config.graph.container = this.context.graphDivElement;
           this.context.graph = new ViserGraph(this.context.config).render();

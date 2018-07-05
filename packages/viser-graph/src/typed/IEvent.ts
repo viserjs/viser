@@ -16,4 +16,7 @@ export default interface IEvent {
   onPlotleave?: func;
   onPlotclick?: func;
   onPlotdblclick?: func;
+  onDragstart?: func;
+  onDrag?: func;
+  onDragend?: func;
 }
