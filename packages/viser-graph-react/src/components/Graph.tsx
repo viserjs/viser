@@ -68,6 +68,7 @@ export default class Graph extends React.Component<any, any> {
       'onPlotEnter', 'onPlotMove', 'onPlotLeave',
       'onPlotClick', 'onPlotDbClick',
       'onAfterchange',
+      'onDragstart', 'onDrag', 'onDragend',
     ];
 
     this.config.events = retain(props, eventRetain);
@@ -107,17 +108,19 @@ export default class Graph extends React.Component<any, any> {
     this.combineChartConfig(this.props);
 
     this.config.graph.container = this.container;
-    this.chart = new ViserGraph(this.config).render();
+    this.chart = new ViserGraph(this.config);
+    this.chart.render();
   }
 
   public repaintChartInstance() {
     this.combineChartConfig(this.props);
 
     if (this.chart) {
-      this.chart.repaint(this.config);
+      this.chart.graph.reRender();
     } else {
       this.config.graph.container = this.container;
-      this.chart = new ViserGraph(this.config).render();
+      this.chart = new ViserGraph(this.config);
+      this.chart.render();
     }
   }
 

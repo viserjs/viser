@@ -55,7 +55,7 @@ export class ViserGraph {
 
   public setData() {
     if (!this.config.data) {
-      console.error('please set container');
+      console.error('please set data');
       return ;
     }
     this.graph.read(this.config.data);
