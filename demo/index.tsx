@@ -3,6 +3,7 @@ import list from './chart/index';
 import Vue from 'vue';
 import ViserVue from '../packages/viser-vue/src';
 import ViserCellVue from '../packages/viser-cell-vue/src';
+import ViserGraphVue from '../packages/viser-graph-vue/src';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -37,7 +38,7 @@ function fetchData(state) {
   // Remove Dom
   mount.innerHTML = '';
 
-  if (['json', 'react', 'vue', 'vueCell', 'angular'].indexOf(fileName) > -1) {
+  if (['json', 'react', 'vue', 'vueCell', 'vueGraph', 'angular'].indexOf(fileName) > -1) {
     if (fileName === 'react') {
       delete require.cache[`./chart/${type}/${fileName}.tsx`];
       const App = require(`./chart/${type}/${fileName}`).default;
@@ -61,6 +62,19 @@ function fetchData(state) {
       });
     } else if (fileName === 'vueCell') {
       Vue.use(ViserCellVue);
+      const App = require(`./chart/${type}/${fileName}.vue`).default;
+      const container = document.createElement('div');
+      document.getElementById('mount').appendChild(container);
+      vm = new Vue({
+        data: {
+          existed: true
+        },
+        el: container,
+        template: '<App v-if="existed"/>',
+        components: { App }
+      });
+    } else if (fileName === 'vueGraph') {
+      Vue.use(ViserGraphVue);
       const App = require(`./chart/${type}/${fileName}.vue`).default;
       const container = document.createElement('div');
       document.getElementById('mount').appendChild(container);
