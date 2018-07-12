@@ -20,6 +20,7 @@ viser({
   tooltip: true,
   legend: {
     dataKey: 'country',
+    position: 'top-left',
     onItemMouseEnter: (ev) => {
       console.log(5, ev);
     }
@@ -49,6 +50,7 @@ viser({
     container: 'mount',
     forceFit: true,
     height: 400,
+    padding: [100, 80, 80, 80],
     onPlotdblclick: (ev: any, chart: any) => {
       chart.get('options').filters = {};
       chart.repaint();
