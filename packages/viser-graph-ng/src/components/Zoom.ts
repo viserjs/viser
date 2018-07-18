@@ -8,6 +8,7 @@ import { Graph } from './Graph';
 class Zoom extends Graph {
   @Input() public max?: number;
   @Input() public min?: number;
+  @Input() public current?: number;
 }
 
 export { Zoom };

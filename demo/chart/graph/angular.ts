@@ -59,11 +59,11 @@ const zoom = {
   current: 2,
 };
 
-
 @Component({
   selector: '#mount',
   template: `
   <div>
+    <button (click)="change()">click</button>
     <v-graph [width]="graph.width" [height]="graph.height"
       [fitView]="graph.fitView" [fitViewPadding]="graph.fitViewPadding"
       [animate]="graph.animate" [type]="graph.type"
@@ -71,7 +71,6 @@ const zoom = {
       [onDragstart]="graph.onDragstart" [onDrag]="graph.onDrag" [onDragend]="graph.onDragend">
       <v-zoom [max]="zoom.max" [min]="zoom.min" [current]="zoom.current"></v-zoom>
     </v-graph>
-    <button [onClick]="change"></button>
   </div>
   `
 })
@@ -81,8 +80,32 @@ class AppComponent {
   graph = graph;
   zoom = zoom;
 
-  change = () => {
-    console.log(this)
+  change() {
+    this.data = Object.assign({}, {
+      nodes: [{
+        id: 'node4',
+        x: 100,
+        y: 200
+      },{
+        id: 'node5',
+        x: 300,
+        y: 200
+      },{
+        id: 'node6',
+        x: 400,
+        y: 200
+      }],
+      edges: [{
+        id: 'edge5',
+        target: 'node4',
+        source: 'node5'
+      }]
+    });
+    this.zoom = Object.assign({}, {
+      min: 1,
+      max: 10,
+      current: 1,
+    });
   }
 }
 

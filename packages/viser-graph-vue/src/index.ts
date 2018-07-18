@@ -54,9 +54,10 @@ const baseChartComponent = {
       if (rootCharts.indexOf(this.$options._componentTag) > -1) { // hit top
         const d2Json = this.createRootD2Json();
         if (!isUpdate || !this.chart) {
-          this.chart = new ViserGraph(d2Json).render();
+          this.chart = new ViserGraph(d2Json);
+          this.chart.render();
         } else {
-          this.chart.graph.reRender(d2Json);
+          this.chart.reRender(d2Json);
         }
       } else {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);

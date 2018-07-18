@@ -2,7 +2,7 @@ const graphProps = [
   'id', 'container', 'height', 'width', 'animate', 'fitView', 'fitViewPadding',
   'type', 'data', 'layout',
 ];
-const zoomProps = ['min', 'max'];
+const zoomProps = ['min', 'max', 'current'];
 const nodePros = ['shape', 'size', 'label'];
 const edgeProps = ['shape'];
 const eventProps = [
