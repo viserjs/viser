@@ -8,6 +8,12 @@ export class ViserGraph {
     this.config = config;
   }
 
+  public reRender(config: any) {
+    this.config = config;
+    this.setData();
+    this.setZoom();
+  }
+
   public render() {
     this.setGraph();
     this.setNode();
@@ -58,6 +64,7 @@ export class ViserGraph {
       console.error('please set data');
       return ;
     }
+
     this.graph.read(this.config.data);
   }
 
