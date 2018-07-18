@@ -10,8 +10,8 @@ let config = {
 
   output: {
     path: path.resolve(__dirname, 'umd'),
-    filename: 'viser-vue.min.js',
-    library: 'ViserVue',
+    filename: 'viser-cell-vue.min.js',
+    library: 'ViserCellVue',
     libraryTarget: 'umd',
   },
 

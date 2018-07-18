@@ -18,6 +18,8 @@ module.exports = {
       'viser-react': path.resolve(__dirname, '../packages/viser-react/src/index'),
       'viser-vue': path.resolve(__dirname, '../packages/viser-vue/src/index'),
       'viser-ng': path.resolve(__dirname, '../packages/viser-ng/src/index'),
+      'viser-cell-vue': path.resolve(__dirname, '../packages/viser-cell-vue/src/index'),
+      'viser-cell': path.resolve(__dirname, '../packages/viser-cell/src/index'),
       'vue$': 'vue/dist/vue.esm.js'
     },
     modules: [path.resolve(__dirname, '../packages/viser-ng/node_modules'), 'node_modules']
