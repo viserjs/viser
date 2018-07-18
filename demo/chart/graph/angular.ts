@@ -56,7 +56,9 @@ const graph = {
 const zoom = {
   min: 1,
   max: 10,
+  current: 2,
 };
+
 
 @Component({
   selector: '#mount',
@@ -67,8 +69,9 @@ const zoom = {
       [animate]="graph.animate" [type]="graph.type"
       [data]="data" [onClick]="graph.onClick"
       [onDragstart]="graph.onDragstart" [onDrag]="graph.onDrag" [onDragend]="graph.onDragend">
-      <v-zoom [max]="zoom.max" [min]="zoom.min"></v-zoom>
+      <v-zoom [max]="zoom.max" [min]="zoom.min" [current]="zoom.current"></v-zoom>
     </v-graph>
+    <button [onClick]="change"></button>
   </div>
   `
 })
@@ -77,6 +80,10 @@ class AppComponent {
   data = data;
   graph = graph;
   zoom = zoom;
+
+  change = () => {
+    console.log(this)
+  }
 }
 
 @NgModule({

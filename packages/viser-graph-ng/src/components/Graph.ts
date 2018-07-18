@@ -198,7 +198,7 @@ export class Graph implements AfterViewInit, OnChanges {
       }
       this.context.timer = setTimeout(() => {
         if (this.context.graph) {
-          this.context.graph.reRender();
+          this.context.graph.reRender(this.context.config);
         } else {
           this.context.config.graph.container = this.context.graphDivElement;
           this.context.graph = new ViserGraph(this.context.config).render();

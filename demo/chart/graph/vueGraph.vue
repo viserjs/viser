@@ -6,8 +6,9 @@
       :data="data"
       :on-click="graph.onClick"
       :on-dragstart="graph.onDragstart" :on-drag="graph.onDrag" :on-dragend="graph.onDragend">
-      <v-zoom :max="zoom.max" :min="zoom.min"></v-zoom>
+      <v-zoom :max="zoom.max" :min="zoom.min" :current="zoom.current"></v-zoom>
     </v-graph>
+    <button v-on:click="change">click</button>
   </div>
 </template>
 
@@ -65,6 +66,7 @@ const graph = {
 const zoom = {
   min: 1,
   max: 10,
+  current: 2,
 };
 
 export default {
@@ -76,7 +78,34 @@ export default {
     };
   },
   methods: {
-
+    change: () =>{
+      console.log(this);
+      this.a.data().data = {
+        nodes: [{
+          id: 'node4',
+          x: 100,
+          y: 200
+        },{
+          id: 'node5',
+          x: 300,
+          y: 200
+        },{
+          id: 'node6',
+          x: 400,
+          y: 200
+        }],
+        edges: [{
+          id: 'edge5',
+          target: 'node4',
+          source: 'node5'
+        }]
+      };
+      this.a.data().zoom = {
+        min: 1,
+        max: 10,
+        current: 1,
+      };
+    }
   }
 };
 </script>

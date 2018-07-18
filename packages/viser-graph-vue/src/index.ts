@@ -56,7 +56,7 @@ const baseChartComponent = {
         if (!isUpdate || !this.chart) {
           this.chart = new ViserGraph(d2Json).render();
         } else {
-          this.chart.graph.reRender();
+          this.chart.graph.reRender(d2Json);
         }
       } else {
         const nearestRootComponent = this.findNearestRootComponent(this.$parent);
