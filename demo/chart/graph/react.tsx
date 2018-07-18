@@ -21,13 +21,48 @@ const data = {
 var lastPoint = void 0;
 
 export default class App extends React.Component {
+  state = {
+    data,
+    currentZoom: 2,
+  };
+
+  graph;
+
   constructor(props) {
     super(props);
   }
 
+  handleClick = () => {
+    this.setState({
+      data: {
+        nodes: [{
+          id: 'node4',
+          x: 100,
+          y: 200
+        },{
+          id: 'node5',
+          x: 300,
+          y: 200
+        },{
+          id: 'node6',
+          x: 400,
+          y: 200
+        }],
+        edges: [{
+          id: 'edge5',
+          target: 'node4',
+          source: 'node5'
+        }]
+      },
+      currentZoom: 1
+    });
+  }
+
   render() {
+    const { data, currentZoom } = this.state;
     return (
       <div>
+        <button onClick={this.handleClick}>Click</button>
         <Graph width={500} height={500}
           fitView='cc'
           fitViewPadding={true}
@@ -35,6 +70,9 @@ export default class App extends React.Component {
           type='graph'
           data={data}
           test={1}
+          ref={(graph) => {
+            this.graph = graph;
+          }}
           onClick={(ev, graph) =>{
             console.log('click', ev, graph);
           }}
@@ -58,7 +96,7 @@ export default class App extends React.Component {
               cursor: '-webkit-grab'
             });
           }}>
-          <Zoom min={1} max={10} current={2}/>
+          <Zoom min={1} max={10} current={currentZoom}/>
         </Graph>
       </div>
     );

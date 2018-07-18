@@ -116,9 +116,8 @@ export default class Graph extends React.Component<any, any> {
 
   public repaintChartInstance() {
     this.combineChartConfig(this.props);
-
     if (this.chart) {
-      this.chart.graph.reRender();
+      this.chart.reRender(this.config);
     } else {
       this.config.graph.container = this.container;
       this.chart = new ViserGraph(this.config);

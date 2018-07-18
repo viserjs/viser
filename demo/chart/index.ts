@@ -42,7 +42,8 @@ export default [
   {
     type: 'graph',
     case: ['json', 'react', 'angular', 'vueGraph']
-  },{
+  },
+  {
     type: 'tree',
     case: ['json', 'react', 'angular', 'vueGraph']
   },

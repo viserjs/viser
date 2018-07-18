@@ -1,12 +1,13 @@
 <template>
   <div>
+    <button v-on:click="change">click</button>
     <v-graph :width="graph.width" :height="graph.width"
       :fit-view="graph.fitView" :fit-view-padding="graph.fitViewPadding"
       :animate="graph.animate" :type="graph.type"
       :data="data"
       :on-click="graph.onClick"
       :on-dragstart="graph.onDragstart" :on-drag="graph.onDrag" :on-dragend="graph.onDragend">
-      <v-zoom :max="zoom.max" :min="zoom.min"></v-zoom>
+      <v-zoom :max="zoom.max" :min="zoom.min" :current="zoom.current"></v-zoom>
     </v-graph>
   </div>
 </template>
@@ -65,6 +66,7 @@ const graph = {
 const zoom = {
   min: 1,
   max: 10,
+  current: 2,
 };
 
 export default {
@@ -76,7 +78,34 @@ export default {
     };
   },
   methods: {
-
+    change: function (){
+      console.log(this, this.$set);
+      this.data = Object.assign({}, {
+        nodes: [{
+          id: 'node4',
+          x: 100,
+          y: 200
+        },{
+          id: 'node5',
+          x: 300,
+          y: 200
+        },{
+          id: 'node6',
+          x: 400,
+          y: 200
+        }],
+        edges: [{
+          id: 'edge5',
+          target: 'node4',
+          source: 'node5'
+        }]
+      });
+      this.zoom = Object.assign({}, {
+        min: 1,
+        max: 10,
+        current: 1,
+      });
+    }
   }
 };
 </script>

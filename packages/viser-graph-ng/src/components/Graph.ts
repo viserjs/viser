@@ -198,16 +198,18 @@ export class Graph implements AfterViewInit, OnChanges {
       }
       this.context.timer = setTimeout(() => {
         if (this.context.graph) {
-          this.context.graph.reRender();
+          this.context.graph.reRender(this.context.config);
         } else {
           this.context.config.graph.container = this.context.graphDivElement;
-          this.context.graph = new ViserGraph(this.context.config).render();
+          this.context.graph = new ViserGraph(this.context.config);
+          this.context.graph.render();
         }
       }, 90);
     } else if (!this.context.graph && name === 'Graph') {
       this.context.config.graph.container = this.graphDiv.nativeElement;
       this.context.graphDivElement = this.graphDiv.nativeElement;
-      this.context.graph = new ViserGraph(this.context.config).render();
+      this.context.graph = new ViserGraph(this.context.config);
+      this.context.graph.render();
     }
   }
 }
