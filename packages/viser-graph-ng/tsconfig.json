@@ -19,6 +19,11 @@
       "es2017"
     ]
   },
+  "angularCompilerOptions": {
+    "genDir": "es",
+    "skipTemplateCodegen": true,
+    "debug": false
+  },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }
