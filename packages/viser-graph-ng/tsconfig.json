@@ -4,6 +4,7 @@
     "moduleResolution": "node",
     "outDir": "es",
     "emitDecoratorMetadata": true,
+    "declaration": true,
     "noImplicitAny": false,
     "noUnusedLocals": true,
     "strict": true,
@@ -11,7 +12,7 @@
     "preserveConstEnums": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,
-    "allowJs": true,
+    "allowJs": false,
     "sourceMap": true,
     "lib": [
       "dom",

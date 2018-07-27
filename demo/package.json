@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "viser demo",
   "scripts": {
-    "start": "UV_THREADPOOL_SIZE=100 && node --max_old_space_size=8192 run.js"
+    "start": "cross-env UV_THREADPOOL_SIZE=100 && node --max_old_space_size=8192 run.js"
   },
   "dependencies": {
     "@angular/common": "^4.0.0",
@@ -34,7 +34,7 @@
     "ts-loader": "^2.3.0",
     "tslint": "^5.5.0",
     "tsutils": "^2.8.0",
-    "typescript": "^2.4.1",
+    "typescript": "^2.9.1",
     "vue-loader": "^13.5.0",
     "vue-template-compiler": "^2.5.0",
     "webpack": "^3.3.0",
