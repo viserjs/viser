@@ -7,7 +7,7 @@ import IScale from './IScale';
 import ISeries from './ISeries';
 import ITooltip from './ITooltip';
 
-interface ISMain {
+export interface ISMain {
   data?: any;
   chart?: IChart;
   legend?: ILegend;

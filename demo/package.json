@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "description": "viser demo",
   "scripts": {
-    "start": "UV_THREADPOOL_SIZE=100 && node --max_old_space_size=8192 run.js"
+    "start": "cross-env UV_THREADPOOL_SIZE=100 && node --max_old_space_size=8192 run.js"
   },
   "dependencies": {
-    "@angular/common": "^4.0.0",
-    "@angular/compiler": "^4.0.0",
-    "@angular/compiler-cli": "^4.0.0",
-    "@angular/core": "^4.0.0",
-    "@angular/platform-browser": "^4.0.0",
-    "@angular/platform-browser-dynamic": "^4.0.0",
+    "@angular/common": "^6.0.0",
+    "@angular/compiler": "^6.0.0",
+    "@angular/compiler-cli": "^6.0.0",
+    "@angular/core": "^6.0.0",
+    "@angular/platform-browser": "^6.0.0",
+    "@angular/platform-browser-dynamic": "^6.0.0",
     "@antv/data-set": "^0.8.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -22,8 +22,6 @@
   },
   "devDependencies": {
     "@types/node": "*",
-    "@types/react": "*",
-    "@types/react-dom": "*",
     "colors": "^1.1.2",
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.7",
@@ -34,7 +32,7 @@
     "ts-loader": "^2.3.0",
     "tslint": "^5.5.0",
     "tsutils": "^2.8.0",
-    "typescript": "^2.4.1",
+    "typescript": "^2.9.1",
     "vue-loader": "^13.5.0",
     "vue-template-compiler": "^2.5.0",
     "webpack": "^3.3.0",

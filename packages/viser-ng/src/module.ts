@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { enableProdMode, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import * as viser from 'viser';
 import { Chart } from './Chart';
 import { Area, Axis, Bar, Box, Brush, Candle, Contour, Coord, DashLine, DodgeBar, DodgeInterval,
@@ -104,7 +104,6 @@ import { Slider } from './plugins/Slider';
 })
 export class ViserModule {
 }
-enableProdMode();
 export const registerAnimation = viser.registerAnimation;
 export const registerShape = viser.registerShape;
 export const Global = viser.Global;

@@ -9,6 +9,7 @@
     "sourceMap": true,
     "moduleResolution": "node",
     "noImplicitAny": false,
+    "declaration": true,
     "lib": [
       "dom",
       "es2015"

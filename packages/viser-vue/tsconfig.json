@@ -9,6 +9,7 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
+    "declaration": true,
     "lib": [
       "es6",
       "scripthost",

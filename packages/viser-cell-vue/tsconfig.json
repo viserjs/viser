@@ -10,6 +10,7 @@
     "preserveConstEnums": true,
     "experimentalDecorators": true,
     "sourceMap": true,
+    "declaration": true,
     "lib": [
       "es6",
       "scripthost",
