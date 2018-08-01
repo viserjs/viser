@@ -1,4 +1,6 @@
 declare const require: any;
+// g2-plugin-slider need G2 loaded first
+import '@antv/g2';
 // tslint:disable-next-line:no-var-requires
 const Slider = require('@antv/g2-plugin-slider');
 
