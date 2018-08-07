@@ -1,6 +1,6 @@
 {
   "name": "viser-graph-vue",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "viser-graph-vue is vue of viser-graph.",
   "repository": "viserjs/viser-graph-vue",
   "license": "MIT",
@@ -8,20 +8,20 @@
   "files": [
     "umd",
     "es",
-    "lib",
-    "src"
+    "lib"
   ],
   "main": "lib/index.js",
   "module": "es/index.js",
-  "types": "src/index.tsx",
+  "types": "es/index.d.ts",
   "scripts": {
+    "prepublish": "npm run build",
     "build": "npm run build:ts && npm run build:cjs && npm run build:umd",
     "build:ts": "rimraf es && tsc",
-    "build:cjs": "rimraf lib && NODE_ENV=commonjs BABEL_ENV=cjs babel ./es -d lib",
-    "build:umd": "rimraf umd && BABEL_ENV=umd webpack --config webpack.config.js",
+    "build:cjs": "rimraf lib && cross-env NODE_ENV=commonjs BABEL_ENV=cjs babel ./es -d lib",
+    "build:umd": "rimraf umd && cross-env BABEL_ENV=umd webpack --config webpack.config.js",
     "clean": "git clean -fdX .",
     "lint": "tslint src/**/*",
-    "analyse": "NODE_ENV=analyse webpack --progress --config webpack.config.js"
+    "analyse": "cross-env NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "peerDependencies": {
     "vue": ">=1"
@@ -38,13 +38,14 @@
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.1",
     "colors": "^1.1.2",
+    "cross-env": "^5.2.0",
     "gzip-size": "^4.0.0",
     "ora": "^1.3.0",
     "pretty-bytes": "^4.0.2",
     "rimraf": "^2.6.2",
     "ts-loader": "^3.1.1",
     "tslint": "^5.5.0",
-    "typescript": "^2.6.1",
+    "typescript": "^2.9.1",
     "webpack": "^4.5.0",
     "webpack-bundle-analyzer": "^2.11.0",
     "webpack-cli": "^2.0.14"
