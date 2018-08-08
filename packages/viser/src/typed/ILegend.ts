@@ -43,6 +43,7 @@ export interface ILegend {
   height?: number;
   legendMarker?: any;
   legendListItem?: any;
+  attachLast?: boolean;
   onHover?: eventFunc;
   onClick?: eventFunc;
   onTitleMouseDown?: eventFunc;

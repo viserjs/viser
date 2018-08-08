@@ -18,7 +18,8 @@ export interface IChart {
   forceFit?: boolean;
   background?: IBackground;
   plotBackground?: IBackground;
-  padding?: number | object | number[];
+  padding?: number | object | number[] | string;
+  theme?: string;
   onMouseDown?: eventFunc;
   onMouseMove?: eventFunc;
   onMouseLeave?: eventFunc;

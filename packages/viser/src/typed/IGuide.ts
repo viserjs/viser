@@ -84,7 +84,6 @@ export interface IHtmlGuide {
   html?: string;
   zIndex?: number;
 }
-
 export interface IArcGuide {
   type?: 'arc';
   top?: boolean;
@@ -92,8 +91,40 @@ export interface IArcGuide {
   end?: object | Array<number | string> | func;
   style?: object;
 }
+export interface IDataRegionGuide {
+  type?: 'dataRegion';
+  top?: boolean;
+  start?: object | Array<number | string> | func;
+  end?: object | Array<number | string> | func;
+  content?: string;
+  style?: object;
+  display?: object;
+  lineLength?: number;
+  direction?: 'upward' | 'downward';
+}
 
-export type IGuide = IGuideEvent & (ILineGuide | ITextGuide | IImageGuide | IRegionGuide | IArcGuide | IHtmlGuide);
+export interface IDataMarkerGuide {
+  type?: 'dataMarker';
+  top?: boolean;
+  content?: string;
+  style?: object;
+  display?: object;
+  lineLength?: number;
+  direction?: 'upward' | 'downward';
+}
+
+export interface IRegionFilter {
+  type?: 'regionFilter';
+  top?: boolean;
+  start?: object | Array<number | string> | func;
+  end?: object | Array<number | string> | func;
+  color?: string;
+  apply?: string[];
+}
+
+export type IGuide = IGuideEvent &
+  (ILineGuide | ITextGuide | IImageGuide | IRegionGuide | IArcGuide | IHtmlGuide
+    | IDataRegionGuide | IDataMarkerGuide | IRegionFilter);
 type IGuideConfig = IGuide | IGuide[];
 
 export default IGuideConfig;
