@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input,
   OnChanges, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
-import viser, { IScale } from '../../viser/src';
+import viser, { IScale } from 'viser';
 import { ChartContext } from './chartService';
 import { IRChart } from './typed/IRChart';
 
