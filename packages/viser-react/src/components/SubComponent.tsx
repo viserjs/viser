@@ -1,7 +1,7 @@
 /* tslint:disable */
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { IAxis, IBrush, ICoord, IGuide, ILegend, ISeries, ITooltip } from '../../../viser/src';
+import { IAxis, IBrush, ICoord, IGuide, ILegend, ISeries, ITooltip } from 'viser';
 
 class Props {}
 

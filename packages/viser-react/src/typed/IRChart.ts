@@ -1,4 +1,4 @@
-import { IChart, ICoord, IScale } from '../../../viser/src';
+import { IChart, ICoord, IScale } from 'viser';
 
 interface ISChartProps {
   data?: any;
