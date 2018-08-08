@@ -45,6 +45,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
   @Input() public tooltip?: ITooltip;
   @Input() public facet?: IFacet;
   @Input() public legend?: ILegend;
+  @Input() public theme?: string;
   @Input() public pie?: boolean;
   @Input() public sector?: boolean;
   @Input() public line?: boolean;
