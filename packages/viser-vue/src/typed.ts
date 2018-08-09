@@ -2,17 +2,20 @@ const props: any = [
   // axis
   'dataKey', 'position', 'title', 'tick', 'subTick', 'grid', 'labels', 'line', 'tickLine', 'subTickCount', 'subTickLine',
   // chart
-  'id', 'container', 'height', 'width', 'animate', 'forceFit', 'background', 'plotBackground', 'padding',
+  'id', 'container', 'height', 'width', 'animate', 'forceFit', 'background', 'plotBackground', 'padding', 'theme',
   // coord
   'type', 'direction', 'radius', 'innerRadius', 'startAngle', 'endAngle',
   // facet
   'type', 'fields', 'rowField', 'colField', 'colValue', 'rowValue', 'colIndex', 'rowIndex', 'showTitle', 'autoSetAxis', 'padding', 'colTitle', 'rowTitle', 'eachView', 'cols', 'rows', 'padding', 'line', 'lineSmooth', 'transpose', 'views',
   // guide
-  'type', 'position', 'autoRotate', 'vStyle', 'content', 'offsetX', 'offsetY', 'top', 'zIndex', 'start', 'end', 'lineStyle', 'line', 'text', 'src', 'width', 'heigth', 'alignX', 'alignY', 'html',
+  'type', 'position', 'autoRotate', 'vStyle', 'content', 'offsetX', 'offsetY', 'top', 'zIndex', 'start', 'end',
+  'lineStyle', 'line', 'text', 'src', 'width', 'heigth', 'alignX', 'alignY', 'html', 'color', 'apply', 'lineLength',
+  'direction', 'display',
   // legend
   'dataKey', 'show', 'position', 'title', 'titleGap', 'custom', 'offset', 'offsetX', 'offsetY', 'items', 'itemGap', 'itemsGroup', 'itemMarginBottom', 'itemWidth', 'unCheckColor', 'background',
   'allowAllCanceled', 'itemFormatter', 'marker', 'textStyle', 'clickable', 'hoverable', 'selectedMode', 'onHover', 'onClick', 'reversed', 'layout', 'backPadding', 'useHtml',
   'autoWrap', 'autoPosition', 'container', 'containerTpl', 'itemTpl', 'legendMarker', 'legendListItem', 'slidable',
+  'attachLast',
   // main
   'data', 'viewId', 'scale', 'forceFit',
   // series

@@ -27,7 +27,7 @@ export const registerShape = () => {
     // 5<-4 |
     // |    |
     // 0    3
-    getPoints({ x = 0, y = [0, 0, 0], size = 0 }: IShapePoints) {
+    getPoints({ x = 0, y = [0, 0, 0] as number & number[], size = 0 }: IShapePoints) {
       return [
         { x: x - (size / 2) * barWidth, y: y[0] },
         { x: x - (size / 2) * barWidth, y: y[2] },

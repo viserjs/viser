@@ -73,6 +73,12 @@ export const process = (chart: any, config: any) => {
       chart.guide().image(res);
     } else if (res.type === 'html') {
       chart.guide().html(res);
+    } else if (res.type === 'dataMarker') {
+      chart.guide().dataMarker(res);
+    } else if (res.type === 'regionFilter') {
+      chart.guide().regionFilter(res);
+    } else if (res.type === 'dataRegion') {
+      chart.guide().dataRegion(res);
     }
   });
 

@@ -27,7 +27,7 @@ interface IRegionStyle {
   template: `<div #chartDom></div>`,
 })
 class Guide extends Chart {
-  @Input() public type?: 'line' | 'text' | 'image' | 'region' | 'arc';
+  @Input() public type?: 'line' | 'text' | 'image' | 'region' | 'arc' | 'regionFilter' | 'dataMarker' | 'dataRegion';
   @Input() public top?: boolean;
   @Input() public zIndex?: number;
   @Input() public start?: object | Array<number | string> | func;
@@ -45,6 +45,11 @@ class Guide extends Chart {
   @Input() public alignX?: string;
   @Input() public alignY?: string;
   @Input() public html?: string;
+  @Input() public color?: string;
+  @Input() public apply?: string[];
+  @Input() public lineLength?: number;
+  @Input() public direction?: string;
+  @Input() public display?: object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
   @Input() public onMouseLeave?: eventFunc;

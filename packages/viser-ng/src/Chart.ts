@@ -97,6 +97,7 @@ export class Chart implements AfterViewInit, OnChanges {
   @Input() public plotBackground?: IBackground;
   @Input() public padding?: number | object | number[];
   @Input() public scale?: IScale;
+  @Input() public theme?: string;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
   @Input() public onMouseLeave?: eventFunc;
@@ -165,7 +166,7 @@ export class Chart implements AfterViewInit, OnChanges {
   private combineChartConfig(props: any, config: any) {
     const chartRetain = [
       'height', 'width', 'animate', 'forceFit',
-      'background', 'plotBackground', 'padding',
+      'background', 'plotBackground', 'padding', 'theme',
       'onMouseDown', 'onMouseMove', 'onMouseUp',
       'onClick', 'onDbClick',
       'onTouchStart', 'onTouchMove', 'onTouchEnd',

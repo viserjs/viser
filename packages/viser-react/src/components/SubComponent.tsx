@@ -28,7 +28,7 @@ class SubComponent<T = {}> extends React.Component<Props & T, any> {
   }
 
   public render() {
-    return null;
+    return null as any;
   }
 }
 
