@@ -1,5 +1,4 @@
 type eventFunc = (ev: any, chart: any) => void;
-
 interface IBackground {
   stroke?: string;
   strokeOpacity?: number;
@@ -20,6 +19,7 @@ export interface IChart {
   plotBackground?: IBackground;
   padding?: number | object | number[] | string;
   theme?: string;
+  renderer?: string;
   onMouseDown?: eventFunc;
   onMouseMove?: eventFunc;
   onMouseLeave?: eventFunc;

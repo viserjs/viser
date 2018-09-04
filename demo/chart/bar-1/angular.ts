@@ -20,7 +20,7 @@ dv.transform({
   selector: '#mount',
   template: `
   <div>
-    <v-chart [forceFit]="forceFit" [height]="height" [data]="data" [scale]="scale">
+    <v-chart [forceFit]="forceFit" [height]="height" [data]="data" [scale]="scale" renderer="svg">
       <v-tooltip [onShow]="onTooltipShow" [onHide]="onTooltipHide" [onChange]="onTooltipChange"></v-tooltip>
       <v-axis></v-axis>
       <v-stack-bar position='year*percent' color='country' [style]="{ stroke: '#fff', lineWidth: 1 }" ></v-stack-bar>

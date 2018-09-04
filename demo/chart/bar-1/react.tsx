@@ -70,7 +70,7 @@ export default class App extends React.Component {
     return (
       <div>
         <button onClick={this.handleClick}>Click</button>
-        <Chart forceFit height={this.state.height} data={this.state.data} scale={scale}>
+        <Chart forceFit height={this.state.height} data={this.state.data} scale={scale} renderer={'svg'}>
           <Tooltip
             onShow={() => { console.log('show'); }}
             onHide={() => { console.log('hide'); }}

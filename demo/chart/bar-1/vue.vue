@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <button v-on:click="handleClick">Click</button> -->
-    <v-chart :force-fit="true" :height="height" :data="data" :scale="scale">
+    <v-chart :force-fit="true" :height="height" :data="data" :scale="scale" renderer="svg">
       <v-tooltip :on-show="onTooltipShow" :on-hide="onTooltipHide" :on-change="onTooltipChange"></v-tooltip>
       <v-axis></v-axis>
       <v-stack-bar :position="'year*percent'" :color="'country'" :v-style="stackBarStyle"></v-stack-bar>

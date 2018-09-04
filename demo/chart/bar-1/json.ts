@@ -51,6 +51,7 @@ viser({
     forceFit: true,
     height: 400,
     padding: [100, 80, 80, 80],
+    renderer: 'svg',
     onPlotdblclick: (ev: any, chart: any) => {
       chart.get('options').filters = {};
       chart.repaint();
