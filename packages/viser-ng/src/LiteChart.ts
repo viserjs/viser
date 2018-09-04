@@ -46,6 +46,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
   @Input() public facet?: IFacet;
   @Input() public legend?: ILegend;
   @Input() public theme?: string;
+  @Input() public renderer?: string;
   @Input() public pie?: boolean;
   @Input() public sector?: boolean;
   @Input() public line?: boolean;
@@ -97,7 +98,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
   public combineChartConfig(props: any, config: any) {
     const chartRetain = [
       'height', 'width', 'animate', 'forceFit',
-      'background', 'plotBackground', 'padding',
+      'background', 'plotBackground', 'padding', 'renderer',
     ];
 
     config.chart = retain(props, chartRetain);
