@@ -288,7 +288,7 @@ const baseChartComponent = {
   },
 } as ComponentOptions<any>;
 
-const installMaps = {
+const installMaps: any = {
   'v-chart': baseChartComponent,
   'v-tooltip': baseChartComponent,
   'v-legend': baseChartComponent,
@@ -332,18 +332,18 @@ const installMaps = {
   'v-plugin': baseChartComponent,
   'v-slider': baseChartComponent,
 };
-      
+
 export default {
-  install: (Vue: any, options: any) => {
+  install: (Vue: any, options: string[] | undefined) => {
     if (!options) {
       options = Object.keys(installMaps);
     }
-    options.forEach((key: String) => {
+    options.forEach((key: string) => {
       Vue.component(key, installMaps[key]);
     });
   },
 };
-      
+
 function safePush(obj: any, key: string, value: any) {
   if (!obj[key]) {
     obj[key] = [];
