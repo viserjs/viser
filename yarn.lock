@@ -56,7 +56,7 @@
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@antv/g2-plugin-slider/-/g2-plugin-slider-2.0.3.tgz#34a298642a945be3f2f11703bc7a2b3fbc9b32bc"
 
-"@antv/g2@^3.1.2", "@antv/g2@^3.2.0":
+"@antv/g2@^3.2.0":
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/@antv/g2/-/g2-3.2.4.tgz#0241d0d4f9e0defc19cd4d56dc3cfff3f1f74e02"
   dependencies:
