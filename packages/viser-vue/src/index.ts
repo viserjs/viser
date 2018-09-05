@@ -288,53 +288,59 @@ const baseChartComponent = {
   },
 } as ComponentOptions<any>;
 
+const installMaps: any = {
+  'v-chart': baseChartComponent,
+  'v-tooltip': baseChartComponent,
+  'v-legend': baseChartComponent,
+  'v-axis': baseChartComponent,
+  'v-brush': baseChartComponent,
+  'v-view': baseChartComponent,
+  'v-coord': baseChartComponent,
+  'v-series': baseChartComponent,
+  'v-facet': baseChartComponent,
+  'v-facet-view': baseChartComponent,
+  'v-lite-chart': baseChartComponent,
+  'v-guide': baseChartComponent,
+  'v-edge': baseChartComponent,
+  'v-point': baseChartComponent,
+  'v-pie': baseChartComponent,
+  'v-bar': baseChartComponent,
+  'v-stack-bar': baseChartComponent,
+  'v-dodge-bar': baseChartComponent,
+  'v-interval': baseChartComponent,
+  'v-stack-interval': baseChartComponent,
+  'v-dodge-interval': baseChartComponent,
+  'v-schema': baseChartComponent,
+  'v-line': baseChartComponent,
+  'v-smooth-line': baseChartComponent,
+  'v-dash-line': baseChartComponent,
+  'v-sector': baseChartComponent,
+  'v-area': baseChartComponent,
+  'v-stack-area': baseChartComponent,
+  'v-smooth-area': baseChartComponent,
+  'v-funnel': baseChartComponent,
+  'v-pyramid': baseChartComponent,
+  'v-box': baseChartComponent,
+  'v-candle': baseChartComponent,
+  'v-polygon': baseChartComponent,
+  'v-contour': baseChartComponent,
+  'v-heatmap': baseChartComponent,
+  'v-sankey': baseChartComponent,
+  'v-error-bar': baseChartComponent,
+  'v-jitter-point': baseChartComponent,
+  'v-path': baseChartComponent,
+  'v-plugin': baseChartComponent,
+  'v-slider': baseChartComponent,
+};
+
 export default {
-  // tslint:disable-next-line:no-shadowed-variable
-  install: (Vue: any, options: any) => {
-    Vue.component('v-chart', baseChartComponent);
-    Vue.component('v-tooltip', baseChartComponent);
-    Vue.component('v-legend', baseChartComponent);
-    Vue.component('v-axis', baseChartComponent);
-    Vue.component('v-brush', baseChartComponent);
-    Vue.component('v-view', baseChartComponent);
-    Vue.component('v-coord', baseChartComponent);
-    Vue.component('v-series', baseChartComponent);
-    Vue.component('v-facet', baseChartComponent);
-    Vue.component('v-facet-view', baseChartComponent);
-    Vue.component('v-lite-chart', baseChartComponent);
-    Vue.component('v-guide', baseChartComponent);
-
-    Vue.component('v-edge', baseChartComponent);
-    Vue.component('v-point', baseChartComponent);
-    Vue.component('v-pie', baseChartComponent);
-    Vue.component('v-bar', baseChartComponent);
-    Vue.component('v-stack-bar', baseChartComponent);
-    Vue.component('v-dodge-bar', baseChartComponent);
-    Vue.component('v-interval', baseChartComponent);
-    Vue.component('v-stack-interval', baseChartComponent);
-    Vue.component('v-dodge-interval', baseChartComponent);
-    Vue.component('v-schema', baseChartComponent);
-    Vue.component('v-line', baseChartComponent);
-    Vue.component('v-smooth-line', baseChartComponent);
-    Vue.component('v-dash-line', baseChartComponent);
-    Vue.component('v-sector', baseChartComponent);
-    Vue.component('v-area', baseChartComponent);
-    Vue.component('v-stack-area', baseChartComponent);
-    Vue.component('v-smooth-area', baseChartComponent);
-    Vue.component('v-funnel', baseChartComponent);
-    Vue.component('v-pyramid', baseChartComponent);
-    Vue.component('v-box', baseChartComponent);
-    Vue.component('v-candle', baseChartComponent);
-    Vue.component('v-polygon', baseChartComponent);
-    Vue.component('v-contour', baseChartComponent);
-    Vue.component('v-heatmap', baseChartComponent);
-    Vue.component('v-sankey', baseChartComponent);
-    Vue.component('v-error-bar', baseChartComponent);
-    Vue.component('v-jitter-point', baseChartComponent);
-    Vue.component('v-path', baseChartComponent);
-
-    Vue.component('v-plugin', baseChartComponent);
-    Vue.component('v-slider', baseChartComponent);
+  install: (Vue: any, options: string[] | undefined) => {
+    if (!options) {
+      options = Object.keys(installMaps);
+    }
+    options.forEach((key: string) => {
+      Vue.component(key, installMaps[key]);
+    });
   },
 };
 
