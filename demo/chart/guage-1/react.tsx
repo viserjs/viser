@@ -75,7 +75,7 @@ export default class App extends React.Component {
       clearTimeout(this.timer);
     }
 
-    console.log('react-timeout');
+    // console.log('react-timeout');
 
     const delta = Math.random();
     const prevVal = this.state.data[0].value;
