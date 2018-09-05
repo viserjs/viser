@@ -52,12 +52,16 @@ class App extends React.Component {
         <button onClick={this.handleClick}>Click</button>
         <Chart forceFit height={600} scale={scale}>
           <View viewId='2' data={dv.edges}>
-            <Coord type="polar" direction="yReverse" />
-            <Edge position='x*y' color='source' shape='arc' opacity={0.5} tooltip={'source*target*value'} />
+            <g>
+              <Coord type="polar" direction="yReverse" rotate={90}/>
+              <Edge position='x*y' color='source' shape='arc' opacity={0.5} tooltip={'source*target*value'} />
+            </g>
           </View>
           <View viewId='3' data={dv.nodes}>
-            <Coord type="polar" direction="yReverse" />
-            <Polygon position='x*y' color='id' label={this.state.label} />
+            <g>
+              <Coord type="polar" direction="yReverse" rotate={90}/>
+              <Polygon position='x*y' color='id' label={this.state.label} />
+            </g>
           </View>
         </Chart>
       </div>

@@ -13,6 +13,7 @@ class Coord extends Chart {
   @Input() public innerRadius?: number;
   @Input() public startAngle?: number;
   @Input() public endAngle?: number;
+  @Input() public rotate?: number;
 }
 
 export { Coord };

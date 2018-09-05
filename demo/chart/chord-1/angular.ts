@@ -26,11 +26,11 @@ dv.transform({
   <div>
     <v-chart [forceFit]="forceFit" [height]="height" [data]="data" [scale]="scale">
       <v-view viewId="2" [data]="edgesData">
-        <v-coord type="polar" direction="yReverse"></v-coord>
+        <v-coord type="polar" direction="yReverse" [rotate]="90"></v-coord>
         <v-edge position="x*y" color="source" shape="arc" opacity="0.5" tooltip="source*target*value"></v-edge>
       </v-view>
       <v-view viewId="3" [data]="nodesData">
-        <v-coord type="polar" direction="yReverse" ></v-coord>
+        <v-coord type="polar" direction="yReverse" [rotate]="90"></v-coord>
         <v-polygon position="x*y" color="id" [label]="label" ></v-polygon>
       </v-view>
     </v-chart>

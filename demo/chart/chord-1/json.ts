@@ -26,6 +26,7 @@ viser({
     coord: {
       type: 'polar',
       direction: 'yReverse',
+      rotate: 90,
     },
     series: [{
       quickType: 'edge',
@@ -42,6 +43,7 @@ viser({
     coord: {
       type: 'polar',
       direction: 'yReverse',
+      rotate: 90,
     },
     series: [{
       quickType: 'polygon',

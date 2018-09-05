@@ -10,6 +10,7 @@ export interface IPolarCoord {
   innerRadius?: number;
   startAngle?: number;
   endAngle?: number;
+  rotate?: number;
 }
 
 type ICoord = IRectCoord | IPolarCoord;

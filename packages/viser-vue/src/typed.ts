@@ -4,7 +4,7 @@ const props: any = [
   // chart
   'id', 'container', 'height', 'width', 'animate', 'forceFit', 'background', 'plotBackground', 'padding', 'theme', 'renderer',
   // coord
-  'type', 'direction', 'radius', 'innerRadius', 'startAngle', 'endAngle',
+  'type', 'direction', 'radius', 'innerRadius', 'startAngle', 'endAngle', 'rotate',
   // facet
   'type', 'fields', 'rowField', 'colField', 'colValue', 'rowValue', 'colIndex', 'rowIndex', 'showTitle', 'autoSetAxis', 'padding', 'colTitle', 'rowTitle', 'eachView', 'cols', 'rows', 'padding', 'line', 'lineSmooth', 'transpose', 'views',
   // guide

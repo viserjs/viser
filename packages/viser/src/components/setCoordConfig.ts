@@ -56,6 +56,10 @@ function setPolarCoord(chart: any, coord: any) {
       break;
   }
 
+  if (coord.rotate) {
+    polarCoord.rotate(coord.rotate);
+  }
+
   return polarCoord;
 }
 
@@ -106,7 +110,7 @@ export const process = (chart: any, config: any) => {
 
   const type = cCoord.type;
 
-  if (type === 'polar' || type === 'theta') {
+  if (type === 'polar' || type === 'theta' || type === 'helix') {
     return setPolarCoord(chart, cCoord);
   }
 
