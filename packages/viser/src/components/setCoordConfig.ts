@@ -110,7 +110,7 @@ export const process = (chart: any, config: any) => {
 
   const type = cCoord.type;
 
-  if (type === 'polar' || type === 'theta') {
+  if (type === 'polar' || type === 'theta' || type === 'helix') {
     return setPolarCoord(chart, cCoord);
   }
 
