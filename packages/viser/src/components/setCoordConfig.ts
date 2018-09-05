@@ -56,6 +56,10 @@ function setPolarCoord(chart: any, coord: any) {
       break;
   }
 
+  if (coord.rotate) {
+    polarCoord.rotate(coord.rotate);
+  }
+
   return polarCoord;
 }
 
