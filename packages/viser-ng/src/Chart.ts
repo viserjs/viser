@@ -104,7 +104,7 @@ export class Chart implements AfterViewInit, OnChanges {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -112,7 +112,7 @@ export class Chart implements AfterViewInit, OnChanges {
   @Input() public onPlotMove?: eventFunc;
   @Input() public onPlotLeave?: eventFunc;
   @Input() public onPlotClick?: eventFunc;
-  @Input() public onPlotDbClick?: eventFunc;
+  @Input() public onPlotDblClick?: eventFunc;
   @ViewChild('chartDom') public chartDiv?: any;
   private viewId: string = generateRandomNum();
   private componentId = generateRandomNum();
@@ -169,10 +169,10 @@ export class Chart implements AfterViewInit, OnChanges {
       'height', 'width', 'animate', 'forceFit',
       'background', 'plotBackground', 'padding', 'theme', 'renderer',
       'onMouseDown', 'onMouseMove', 'onMouseUp',
-      'onClick', 'onDbClick',
+      'onClick', 'onDblClick',
       'onTouchStart', 'onTouchMove', 'onTouchEnd',
       'onPlotEnter', 'onPlotMove', 'onPlotLeave',
-      'onPlotClick', 'onPlotDbClick',
+      'onPlotClick', 'onPlotDblClick',
     ];
     config.chart = retain(props, chartRetain);
   }

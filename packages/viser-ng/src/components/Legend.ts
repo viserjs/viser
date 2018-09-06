@@ -66,7 +66,7 @@ class Legend extends Chart {
   @Input() public onTitleMouseLeave?: eventFunc;
   @Input() public onTitleMouseUp?: eventFunc;
   @Input() public onTitleClick?: eventFunc;
-  @Input() public onTitleDbClick?: eventFunc;
+  @Input() public onTitleDblClick?: eventFunc;
   @Input() public onTitleTouchStart?: eventFunc;
   @Input() public onTitleTouchMove?: eventFunc;
   @Input() public onTitleTouchEnd?: eventFunc;
@@ -75,7 +75,7 @@ class Legend extends Chart {
   @Input() public onItemMouseLeave?: eventFunc;
   @Input() public onItemMouseUp?: eventFunc;
   @Input() public onItemClick?: eventFunc;
-  @Input() public onItemDbClick?: eventFunc;
+  @Input() public onItemDblClick?: eventFunc;
   @Input() public onItemTouchStart?: eventFunc;
   @Input() public onItemTouchMove?: eventFunc;
   @Input() public onItemTouchEnd?: eventFunc;
@@ -84,7 +84,7 @@ class Legend extends Chart {
   @Input() public onMarkerMouseLeave?: eventFunc;
   @Input() public onMarkerMouseUp?: eventFunc;
   @Input() public onMarkerClick?: eventFunc;
-  @Input() public onMarkerDbClick?: eventFunc;
+  @Input() public onMarkerDblClick?: eventFunc;
   @Input() public onMarkerTouchStart?: eventFunc;
   @Input() public onMarkerTouchMove?: eventFunc;
   @Input() public onMarkerTouchEnd?: eventFunc;
@@ -93,7 +93,7 @@ class Legend extends Chart {
   @Input() public onTextMouseLeave?: eventFunc;
   @Input() public onTextMouseUp?: eventFunc;
   @Input() public onTextClick?: eventFunc;
-  @Input() public onTextDbClick?: eventFunc;
+  @Input() public onTextDblClick?: eventFunc;
   @Input() public onTextTouchStart?: eventFunc;
   @Input() public onTextTouchMove?: eventFunc;
   @Input() public onTextTouchEnd?: eventFunc;

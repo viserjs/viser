@@ -55,7 +55,7 @@ class Guide extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;

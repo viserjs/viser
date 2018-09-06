@@ -28,7 +28,7 @@ class Series extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -37,7 +37,7 @@ class Series extends Chart {
   @Input() public onLabelMouseLeave?: eventFunc;
   @Input() public onLabelMouseUp?: eventFunc;
   @Input() public onLabelClick?: eventFunc;
-  @Input() public onLabelDbClick?: eventFunc;
+  @Input() public onLabelDblClick?: eventFunc;
   @Input() public onLabelTouchStart?: eventFunc;
   @Input() public onLabelTouchMove?: eventFunc;
   @Input() public onLabelTouchEnd?: eventFunc;
@@ -67,7 +67,7 @@ class Pie extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -97,7 +97,7 @@ class Sector extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -127,7 +127,7 @@ class Line extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -157,7 +157,7 @@ class SmoothLine extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -187,7 +187,7 @@ class DashLine extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -217,7 +217,7 @@ class Area extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -247,7 +247,7 @@ class StackArea extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -277,7 +277,7 @@ class SmoothArea extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -307,7 +307,7 @@ class Bar extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -337,7 +337,7 @@ class StackBar extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -367,7 +367,7 @@ class DodgeBar extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -397,7 +397,7 @@ class Interval extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -427,7 +427,7 @@ class StackInterval extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -457,7 +457,7 @@ class DodgeInterval extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -487,7 +487,7 @@ class Point extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -517,7 +517,7 @@ class Funnel extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -547,7 +547,7 @@ class Pyramid extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -577,7 +577,7 @@ class Schema extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -607,7 +607,7 @@ class Box extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -637,7 +637,7 @@ class Candle extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -667,7 +667,7 @@ class Polygon extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -697,7 +697,7 @@ class Contour extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -727,7 +727,7 @@ class Heatmap extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -757,7 +757,7 @@ class Edge extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -787,7 +787,7 @@ class Sankey extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -817,7 +817,7 @@ class ErrorBar extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -847,7 +847,7 @@ class JitterPoint extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
@@ -877,7 +877,7 @@ class Path extends Chart {
   @Input() public onMouseLeave?: eventFunc;
   @Input() public onMouseUp?: eventFunc;
   @Input() public onClick?: eventFunc;
-  @Input() public onDbClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
   @Input() public onTouchStart?: eventFunc;
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;

@@ -58,7 +58,7 @@ export interface IAxis {
   onTitleMouseLeave?: eventFunc;
   onTitleMouseUp?: eventFunc;
   onTitleClick?: eventFunc;
-  onTitleDbClick?: eventFunc;
+  onTitleDblClick?: eventFunc;
   onTitleTouchStart?: eventFunc;
   onTitleTouchMove?: eventFunc;
   onTitleTouchEnd?: eventFunc;
@@ -67,7 +67,7 @@ export interface IAxis {
   onLabelMouseLeave?: eventFunc;
   onLabelMouseUp?: eventFunc;
   onLabelClick?: eventFunc;
-  onLabelDbClick?: eventFunc;
+  onLabelDblClick?: eventFunc;
   onLabelTouchStart?: eventFunc;
   onLabelTouchMove?: eventFunc;
   onLabelTouchEnd?: eventFunc;
@@ -76,7 +76,7 @@ export interface IAxis {
   onTicksMouseLeave?: eventFunc;
   onTicksMouseUp?: eventFunc;
   onTicksClick?: eventFunc;
-  onTicksDbClick?: eventFunc;
+  onTicksDblClick?: eventFunc;
   onTicksTouchStart?: eventFunc;
   onTicksTouchMove?: eventFunc;
   onTicksTouchEnd?: eventFunc;
@@ -85,7 +85,7 @@ export interface IAxis {
   onLineMouseLeave?: eventFunc;
   onLineMouseUp?: eventFunc;
   onLineClick?: eventFunc;
-  onLineDbClick?: eventFunc;
+  onLineDblClick?: eventFunc;
   onLineTouchStart?: eventFunc;
   onLineTouchMove?: eventFunc;
   onLineTouchEnd?: eventFunc;
@@ -94,7 +94,7 @@ export interface IAxis {
   onGridMouseLeave?: eventFunc;
   onGridMouseUp?: eventFunc;
   onGridClick?: eventFunc;
-  onGridDbClick?: eventFunc;
+  onGridDblClick?: eventFunc;
   onGridTouchStart?: eventFunc;
   onGridTouchMove?: eventFunc;
   onGridTouchEnd?: eventFunc;

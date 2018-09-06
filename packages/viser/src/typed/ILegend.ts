@@ -51,7 +51,7 @@ export interface ILegend {
   onTitleMouseLeave?: eventFunc;
   onTitleMouseUp?: eventFunc;
   onTitleClick?: eventFunc;
-  onTitleDbClick?: eventFunc;
+  onTitleDblClick?: eventFunc;
   onTitleTouchStart?: eventFunc;
   onTitleTouchMove?: eventFunc;
   onTitleTouchEnd?: eventFunc;
@@ -60,7 +60,7 @@ export interface ILegend {
   onItemMouseLeave?: eventFunc;
   onItemMouseUp?: eventFunc;
   onItemClick?: eventFunc;
-  onItemDbClick?: eventFunc;
+  onItemDblClick?: eventFunc;
   onItemTouchStart?: eventFunc;
   onItemTouchMove?: eventFunc;
   onItemTouchEnd?: eventFunc;
@@ -69,7 +69,7 @@ export interface ILegend {
   onMarkerMouseLeave?: eventFunc;
   onMarkerMouseUp?: eventFunc;
   onMarkerClick?: eventFunc;
-  onMarkerDbClick?: eventFunc;
+  onMarkerDblClick?: eventFunc;
   onMarkerTouchStart?: eventFunc;
   onMarkerTouchMove?: eventFunc;
   onMarkerTouchEnd?: eventFunc;
@@ -78,7 +78,7 @@ export interface ILegend {
   onTextMouseLeave?: eventFunc;
   onTextMouseUp?: eventFunc;
   onTextClick?: eventFunc;
-  onTextDbClick?: eventFunc;
+  onTextDblClick?: eventFunc;
   onTextTouchStart?: eventFunc;
   onTextTouchMove?: eventFunc;
   onTextTouchEnd?: eventFunc;

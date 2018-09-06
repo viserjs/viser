@@ -20,7 +20,7 @@ export interface ISeries {
   onMouseLeave?: eventFunc;
   onMouseUp?: eventFunc;
   onClick?: eventFunc;
-  onDbClick?: eventFunc;
+  onDblClick?: eventFunc;
   onTouchStart?: eventFunc;
   onTouchMove?: eventFunc;
   onTouchEnd?: eventFunc;
@@ -29,7 +29,7 @@ export interface ISeries {
   onLabelMouseLeave?: eventFunc;
   onLabelMouseUp?: eventFunc;
   onLabelClick?: eventFunc;
-  onLabelDbClick?: eventFunc;
+  onLabelDblClick?: eventFunc;
   onLableTouchStart?: eventFunc;
   onLabelTouchMove?: eventFunc;
   onLabelTouchEnd?: eventFunc;
