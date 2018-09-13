@@ -28,13 +28,16 @@ export default class PluginComponent extends React.Component<any, any> {
 
   public centralizedUpdates = (unit: any) => {
     const config = this.config;
-    const props = unit.props;
+    let props = unit.props;
     const displayName = unit.displayName;
 
     if (displayName === 'Slider') {
       const container = props.container;
       if (!container || !document.getElementById(container)) {
-        props.container = unit.state.containerId;
+        props = {
+          ...props,
+          container: unit.state.containerId,
+        };
       }
     }
 

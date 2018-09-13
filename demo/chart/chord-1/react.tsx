@@ -17,7 +17,7 @@ dv.transform({
   marginRatio: 0.3
 });
 
-class App extends React.Component {
+export default class App extends React.Component {
   state = {
     label: [
       'name', {
@@ -52,16 +52,12 @@ class App extends React.Component {
         <button onClick={this.handleClick}>Click</button>
         <Chart forceFit height={600} scale={scale}>
           <View viewId='2' data={dv.edges}>
-            <g>
-              <Coord type="polar" direction="yReverse" rotate={90}/>
-              <Edge position='x*y' color='source' shape='arc' opacity={0.5} tooltip={'source*target*value'} />
-            </g>
+            <Coord type="polar" direction="yReverse" rotate={90}/>
+            <Edge position='x*y' color='source' shape='arc' opacity={0.5} tooltip={'source*target*value'} />
           </View>
           <View viewId='3' data={dv.nodes}>
-            <g>
-              <Coord type="polar" direction="yReverse" rotate={90}/>
-              <Polygon position='x*y' color='id' label={this.state.label} />
-            </g>
+            <Coord type="polar" direction="yReverse" rotate={90}/>
+            <Polygon position='x*y' color='id' label={this.state.label} />
           </View>
         </Chart>
       </div>
