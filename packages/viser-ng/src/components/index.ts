@@ -6,7 +6,7 @@ import { Guide } from './Guide';
 import { Legend } from './Legend';
 import { Area, Bar, Box, Candle, Contour, DashLine, DodgeBar, DodgeInterval, Edge, ErrorBar, Funnel, Heatmap,
   Interval, JitterPoint, Line, Path, Pie, Point, Polygon, Pyramid, Sankey, Schema, Sector, Series, SmoothArea,
-  SmoothLine, StackArea, StackBar, StackInterval } from './Series';
+  SmoothLine, StackArea, StackBar, StackInterval, Venn } from './Series';
 import { Tooltip } from './Tooltip';
 import { FacetView, View } from './View';
 
@@ -49,4 +49,5 @@ export {
   ErrorBar,
   JitterPoint,
   Path,
+  Venn,
 };
