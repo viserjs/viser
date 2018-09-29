@@ -1,4 +1,4 @@
-import * as viser from '../../viser/src';
+import * as viser from 'viser';
 import Vue, { ComponentOptions } from 'vue';
 import typedProps from './typed';
 
