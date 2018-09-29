@@ -1,4 +1,4 @@
-import * as viser from 'viser';
+import * as viser from '../../viser/src';
 import Vue, { ComponentOptions } from 'vue';
 import typedProps from './typed';
 
@@ -31,6 +31,7 @@ const regSeries = [
   'errorbar',
   'jitterpoint',
   'path',
+  'venn',
 ];
 
 const rootCharts = ['v-chart', 'v-lite-chart'];
@@ -329,6 +330,7 @@ const installMaps: any = {
   'v-error-bar': baseChartComponent,
   'v-jitter-point': baseChartComponent,
   'v-path': baseChartComponent,
+  'v-venn': baseChartComponent,
   'v-plugin': baseChartComponent,
   'v-slider': baseChartComponent,
 };
