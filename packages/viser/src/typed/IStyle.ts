@@ -9,6 +9,7 @@ export interface ITextStyle {
   rotate?: number;
   shadowBlur?: number;
   shadowColor?: string;
+  opacity?: number;
 }
 
 export interface ILineStyle {

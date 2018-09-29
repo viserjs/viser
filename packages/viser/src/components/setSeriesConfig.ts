@@ -39,6 +39,9 @@ function setSeriesGemo(chart: any, currSeries: ISeries) {
     case 'path':
       chart = chart.path();
       break;
+    case 'venn':
+      chart = chart.venn();
+      break;
     default:
       chart = chart.line();
   }
@@ -203,7 +206,11 @@ function setSeriesSelect(chart: any, currSeries: ISeries) {
 function setSeriesActive(chart: any, currSeries: ISeries) {
   const active = currSeries.active;
 
-  if (_.isBoolean(active)) {
+  if (_.isArray(active)) {
+    return chart.active(...active);
+  }
+
+  if (_.isBoolean(active) || _.isPlainObject(active)) {
     return chart.active(active);
   }
 
