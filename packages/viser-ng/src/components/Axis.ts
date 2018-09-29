@@ -64,7 +64,7 @@ class Axis extends Chart {
   @Input() public onTitleMouseLeave?: eventFunc;
   @Input() public onTitleMouseUp?: eventFunc;
   @Input() public onTitleClick?: eventFunc;
-  @Input() public onTitleDbClick?: eventFunc;
+  @Input() public onTitleDblClick?: eventFunc;
   @Input() public onTitleTouchStart?: eventFunc;
   @Input() public onTitleTouchMove?: eventFunc;
   @Input() public onTitleTouchEnd?: eventFunc;
@@ -73,7 +73,7 @@ class Axis extends Chart {
   @Input() public onLabelMouseLeave?: eventFunc;
   @Input() public onLabelMouseUp?: eventFunc;
   @Input() public onLabelClick?: eventFunc;
-  @Input() public onLabelDbClick?: eventFunc;
+  @Input() public onLabelDblClick?: eventFunc;
   @Input() public onLabelTouchStart?: eventFunc;
   @Input() public onLabelTouchMove?: eventFunc;
   @Input() public onLabelTouchEnd?: eventFunc;
@@ -82,7 +82,7 @@ class Axis extends Chart {
   @Input() public onTicksMouseLeave?: eventFunc;
   @Input() public onTicksMouseUp?: eventFunc;
   @Input() public onTicksClick?: eventFunc;
-  @Input() public onTicksDbClick?: eventFunc;
+  @Input() public onTicksDblClick?: eventFunc;
   @Input() public onTicksTouchStart?: eventFunc;
   @Input() public onTicksTouchMove?: eventFunc;
   @Input() public onTicksTouchEnd?: eventFunc;
@@ -91,7 +91,7 @@ class Axis extends Chart {
   @Input() public onLineMouseLeave?: eventFunc;
   @Input() public onLineMouseUp?: eventFunc;
   @Input() public onLineClick?: eventFunc;
-  @Input() public onLineDbClick?: eventFunc;
+  @Input() public onLineDblClick?: eventFunc;
   @Input() public onLineTouchStart?: eventFunc;
   @Input() public onLineTouchMove?: eventFunc;
   @Input() public onLineTouchEnd?: eventFunc;
@@ -100,7 +100,7 @@ class Axis extends Chart {
   @Input() public onGridMouseLeave?: eventFunc;
   @Input() public onGridMouseUp?: eventFunc;
   @Input() public onGridClick?: eventFunc;
-  @Input() public onGridDbClick?: eventFunc;
+  @Input() public onGridDblClick?: eventFunc;
   @Input() public onGridTouchStart?: eventFunc;
   @Input() public onGridTouchMove?: eventFunc;
   @Input() public onGridTouchEnd?: eventFunc;

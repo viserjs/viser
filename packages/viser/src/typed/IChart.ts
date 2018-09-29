@@ -25,7 +25,7 @@ export interface IChart {
   onMouseLeave?: eventFunc;
   onMouseUp?: eventFunc;
   onClick?: eventFunc;
-  onDbClick?: eventFunc;
+  onDblClick?: eventFunc;
   onTouchStart?: eventFunc;
   onTouchMove?: eventFunc;
   onTouchEnd?: eventFunc;
