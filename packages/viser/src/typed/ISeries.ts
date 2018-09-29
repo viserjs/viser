@@ -13,7 +13,7 @@ export interface ISeries {
   tooltip?: any;
   style?: any;
   select?: any;
-  active?: boolean;
+  active?: boolean | object | [boolean, object];
   animate?: object;
   onMouseDown?: eventFunc;
   onMouseMove?: eventFunc;

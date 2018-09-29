@@ -205,6 +205,12 @@ const QUICK_TYPE = [
       gemo: 'path',
     },
   },
+  {
+    type: 'venn',
+    series: {
+      gemo: 'venn',
+    },
+  },
 ];
 
 export const process = (series: any, coord: any) => {

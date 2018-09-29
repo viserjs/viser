@@ -68,3 +68,4 @@ export class Sankey extends SubComponent<ISeries> { public displayName = 'Sankey
 export class ErrorBar extends SubComponent<ISeries> { public displayName = 'ErrorBar'; }
 export class JitterPoint extends SubComponent<ISeries> { public displayName = 'JitterPoint'; }
 export class Path extends SubComponent<ISeries> { public displayName = 'Path'; }
+export class Venn extends SubComponent<ISeries> { public displayName = 'Venn'; }

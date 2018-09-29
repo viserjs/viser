@@ -141,6 +141,7 @@ export default class Chart extends React.Component<IRChart, any> {
       'sankey',
       'jitterPoint',
       'path',
+      'venn',
     ];
 
     if (regSeries.indexOf(realName) < 0 && isOwnEmpty(props)) {
@@ -273,7 +274,6 @@ export default class Chart extends React.Component<IRChart, any> {
     this.combineViewConfig(this.props, this.config);
 
     this.changeViewConfig();
-
     if (this.chart) {
       this.chart.repaint(config);
     } else {

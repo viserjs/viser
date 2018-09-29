@@ -21,7 +21,7 @@ class Series extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -60,7 +60,7 @@ class Pie extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -90,7 +90,7 @@ class Sector extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -120,7 +120,7 @@ class Line extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -150,7 +150,7 @@ class SmoothLine extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -180,7 +180,7 @@ class DashLine extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -210,7 +210,7 @@ class Area extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -240,7 +240,7 @@ class StackArea extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -270,7 +270,7 @@ class SmoothArea extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -300,7 +300,7 @@ class Bar extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -330,7 +330,7 @@ class StackBar extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -360,7 +360,7 @@ class DodgeBar extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -390,7 +390,7 @@ class Interval extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -420,7 +420,7 @@ class StackInterval extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -450,7 +450,7 @@ class DodgeInterval extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -480,7 +480,7 @@ class Point extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -510,7 +510,7 @@ class Funnel extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -540,7 +540,7 @@ class Pyramid extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -570,7 +570,7 @@ class Schema extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -600,7 +600,7 @@ class Box extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -630,7 +630,7 @@ class Candle extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -660,7 +660,7 @@ class Polygon extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -690,7 +690,7 @@ class Contour extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -720,7 +720,7 @@ class Heatmap extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -750,7 +750,7 @@ class Edge extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -780,7 +780,7 @@ class Sankey extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -810,7 +810,7 @@ class ErrorBar extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -840,7 +840,7 @@ class JitterPoint extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -870,7 +870,7 @@ class Path extends Chart {
   @Input() public tooltip?: any;
   @Input() public style?: object;
   @Input() public select?: any;
-  @Input() public active?: boolean;
+  @Input() public active?: boolean | object | [boolean, object];
   @Input() public animate?: boolean | object;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
@@ -882,7 +882,35 @@ class Path extends Chart {
   @Input() public onTouchMove?: eventFunc;
   @Input() public onTouchEnd?: eventFunc;
 }
-
+@Component({
+  selector: 'v-venn',
+  template: `<div #chartDom></div>`,
+})
+class Venn extends Chart {
+  @Input() public quickType?: string;
+  @Input() public position?: string | string[];
+  @Input() public gemo?: string;
+  @Input() public adjust?: string | string[] | object[];
+  @Input() public color?: any;
+  @Input() public shape?: any;
+  @Input() public size?: any;
+  @Input() public opacity?: any;
+  @Input() public label?: any;
+  @Input() public tooltip?: any;
+  @Input() public style?: object;
+  @Input() public select?: any;
+  @Input() public active?: boolean | object | [boolean, object];
+  @Input() public animate?: boolean | object;
+  @Input() public onMouseDown?: eventFunc;
+  @Input() public onMouseMove?: eventFunc;
+  @Input() public onMouseLeave?: eventFunc;
+  @Input() public onMouseUp?: eventFunc;
+  @Input() public onClick?: eventFunc;
+  @Input() public onDblClick?: eventFunc;
+  @Input() public onTouchStart?: eventFunc;
+  @Input() public onTouchMove?: eventFunc;
+  @Input() public onTouchEnd?: eventFunc;
+}
 export {
   Series,
   Pie,
@@ -913,4 +941,5 @@ export {
   ErrorBar,
   JitterPoint,
   Path,
+  Venn,
 };
