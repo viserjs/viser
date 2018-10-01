@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const vueLoaderConfig = require('./vue-loader.config')
 
 module.exports = {
+  mode: 'development',
   context: __dirname,
   devtool: '#inline-source-map',
   entry: ['./index.tsx'],
@@ -26,7 +27,7 @@ module.exports = {
     modules: [path.resolve(__dirname, '../packages/viser-ng/node_modules'), 'node_modules']
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.vue$/,
         loader: 'vue-loader',

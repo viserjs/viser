@@ -115,7 +115,7 @@ function init() {
     });
 
     temp +=
-      `<div>
+    `<div>
       <a>${item.type}</a>
       <div className="example-container">${linkTemp}</div>
     </div>`;
