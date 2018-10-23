@@ -1,6 +1,7 @@
 import * as IStyle from './IStyle';
 
 type func = () => void;
+type itemTplFunc = (value: any, color: any, checked: any, index: any) => string;
 type formatterFunc = (val: number) => string | number;
 type eventFunc = (ev: any, chart: any) => void;
 
@@ -10,7 +11,7 @@ export interface ILegend {
   position?: string;
   title?: null | object;
   custom?: boolean;
-  offset?: number;
+  offset?: number | number[];
   offsetX?: number;
   offsetY?: number;
   items?: object[];
@@ -35,7 +36,7 @@ export interface ILegend {
   autoPosition?: boolean;
   container?: any;
   containerTpl?: string;
-  itemTpl?: string | func;
+  itemTpl?: string | itemTplFunc;
   selectedMode?: string;
   reversed?: boolean;
   slidable?: boolean;
@@ -43,7 +44,14 @@ export interface ILegend {
   height?: number;
   legendMarker?: any;
   legendListItem?: any;
+  legendTitle?: any;
+  legendList?: any;
   attachLast?: boolean;
+  flipPage?: boolean;
+  name?: boolean;
+  reactive?: boolean;
+  sizeType?: string;
+  isSegment?: boolean;
   onHover?: eventFunc;
   onClick?: eventFunc;
   onTitleMouseDown?: eventFunc;
