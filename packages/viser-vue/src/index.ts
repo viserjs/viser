@@ -1,4 +1,4 @@
-import * as viser from 'viser';
+import * as viser from '../../viser/src/index';
 import Vue, { ComponentOptions } from 'vue';
 import typedProps from './typed';
 
@@ -11,6 +11,7 @@ const regSeries = [
   'area',
   'point',
   'stackarea',
+  'stackline',
   'smootharea',
   'bar',
   'stackbar',
@@ -318,6 +319,7 @@ const installMaps: any = {
   'v-sector': baseChartComponent,
   'v-area': baseChartComponent,
   'v-stack-area': baseChartComponent,
+  'v-stack-line': baseChartComponent,
   'v-smooth-area': baseChartComponent,
   'v-funnel': baseChartComponent,
   'v-pyramid': baseChartComponent,
