@@ -1,7 +1,7 @@
 /* tslint:disable */
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { IAxis, IBrush, ICoord, IGuide, ILegend, ISeries, ITooltip } from 'viser';
+import { IAxis, IBrush, ICoord, IGuide, ILegend, ISeries, ITooltip } from '../../../viser/src/index';
 
 class Props {}
 
@@ -45,6 +45,7 @@ export class Pie extends SubComponent<ISeries> { public displayName = 'Pie'; }
 export class Sector extends SubComponent<ISeries> { public displayName = 'Sector'; }
 export class SmoothLine extends SubComponent<ISeries> { public displayName = 'SmoothLine'; }
 export class DashLine extends SubComponent<ISeries> { public displayName = 'DashLine'; }
+export class StackLine extends SubComponent<ISeries> { public displayName = 'StackLine'; }
 export class Area extends SubComponent<ISeries> { public displayName = 'Area'; }
 export class StackArea extends SubComponent<ISeries> { public displayName = 'StackArea'; }
 export class SmoothArea extends SubComponent<ISeries> { public displayName = 'SmoothArea'; }

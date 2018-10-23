@@ -1,9 +1,9 @@
-import * as viser from 'viser';
+import * as viser from '../../viser/src/index';
 import { Area, Axis, Bar, Box, Brush, Candle, Contour, Coord,
  DashLine, DodgeBar, DodgeInterval, Edge, Funnel, Guide, Heatmap,
  Interval, JitterPoint, Legend, Line, Path, Pie,
  Point, Polygon, Pyramid, Sankey, Schema, Sector, Series, SmoothArea, SmoothLine,
- StackArea, StackBar, StackInterval, Tooltip, Venn } from './components/SubComponent';
+ StackArea, StackBar, StackInterval, StackLine, Tooltip, Venn } from './components/SubComponent';
 
 import { Slider } from './plugins/SubPlugin';
 
@@ -22,7 +22,7 @@ export {
   Pie, Sector, SmoothLine, DashLine, Area, StackArea, SmoothArea,
   Bar, StackBar, DodgeBar, Interval, StackInterval, DodgeInterval,
   Point, Funnel, Pyramid, Schema, Box, Candle, Polygon, Contour, Heatmap,
-  Edge, Sankey, JitterPoint, Path, Venn,
+  Edge, Sankey, JitterPoint, Path, Venn, StackLine,
 };
 
 export { default as Plugin } from './plugins/plugin';

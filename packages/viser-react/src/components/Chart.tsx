@@ -1,6 +1,6 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import viser from 'viser';
+import viser from '../../../viser/src/index';
 import IRChart from '../typed/IRChart';
 
 function firstLowerCase(str: string) {
@@ -117,6 +117,7 @@ export default class Chart extends React.Component<IRChart, any> {
       'line',
       'smoothLine',
       'dashLine',
+      'stackLine',
       'area',
       'stackArea',
       'smoothArea',
