@@ -11,16 +11,4 @@ export default [
     type: 'facet-1',
     case: ['json', 'react', 'vue', 'angular'],
   },
-  {
-    type: 'example61',
-    case: ['json', 'react', 'vue', 'angular'],
-  },
-  {
-    type: 'example62',
-    case: ['json', 'react', 'vue', 'angular'],
-  },
-  {
-    type: 'example63',
-    case: ['json', 'react', 'vue', 'angular'],
-  },
 ];
