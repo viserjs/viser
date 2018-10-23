@@ -61,7 +61,7 @@ export const process = (chart: any, config: any) => {
       res['g2-legend-list'] = res.legendList;
     }
 
-    res = _.omit(res, ['legendMarker', 'legendListItem', 'legendTitle']);
+    res = _.omit(res, ['legendMarker', 'legendListItem', 'legendTitle', 'legendList']);
 
     if (res.dataKey) {
       if (res.show === false) {
