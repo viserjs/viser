@@ -32,7 +32,7 @@ interface IAxisGrid {
 }
 
 interface IAxisLabel {
-  offset?: number;
+  offset?: number | number[];
   formatter?: string | formatterFunc;
   autoRotate?: boolean;
   rotate?: number | 'normal' | 'parallel';

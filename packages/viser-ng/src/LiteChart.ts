@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
-import viser, { IAxis, ICoord, IFacet, IGuide, ILegend, IScale, ISeries, ITooltip, IViewConfig } from 'viser';
+import viser, { IAxis, ICoord, IFacet, IGuide, ILegend, IScale, ISeries, ITooltip, IViewConfig } from '../../viser/src';
 
 function retain(obj: any, attr: string[]) {
   const newObj = Object.create(null);
