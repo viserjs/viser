@@ -58,7 +58,14 @@ class Legend extends Chart {
   @Input() public height?: number;
   @Input() public legendMarker?: any;
   @Input() public legendListItem?: any;
+  @Input() public legendTitle?: any;
+  @Input() public legendList?: any;
   @Input() public attachLast?: boolean;
+  @Input() public flipPage?: boolean;
+  @Input() public name?: boolean;
+  @Input() public reactive?: boolean;
+  @Input() public sizeType?: string;
+  @Input() public isSegment?: boolean;
   @Input() public onHover?: eventFunc;
   @Input() public onClick?: eventFunc;
   @Input() public onTitleMouseDown?: eventFunc;

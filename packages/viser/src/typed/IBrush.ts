@@ -1,7 +1,7 @@
 type eventFunc = (ev: any, chart: any) => void;
 
 export interface IBrush {
-  canvas: any;
+  canvas?: any;
   startPoint?: object;
   brushing?: boolean;
   dragging?: boolean;

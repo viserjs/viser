@@ -14,15 +14,17 @@ const props: any = [
   // legend
   'dataKey', 'show', 'position', 'title', 'titleGap', 'custom', 'offset', 'offsetX', 'offsetY', 'items', 'itemGap', 'itemsGroup', 'itemMarginBottom', 'itemWidth', 'unCheckColor', 'background',
   'allowAllCanceled', 'itemFormatter', 'marker', 'textStyle', 'clickable', 'hoverable', 'selectedMode', 'onHover', 'onClick', 'reversed', 'layout', 'backPadding', 'useHtml',
-  'autoWrap', 'autoPosition', 'container', 'containerTpl', 'itemTpl', 'legendMarker', 'legendListItem', 'slidable',
-  'attachLast',
+  'autoWrap', 'autoPosition', 'container', 'containerTpl', 'itemTpl',
+  'legendMarker', 'legendListItem', 'legendTitle', 'legendList',
+  'slidable', 'attachLast', 'flipPage', 'name', 'reactive', 'sizeType', 'isSegment',
   // main
   'data', 'viewId', 'scale', 'forceFit',
   // series
   'quickType', 'position', 'gemo', 'adjust', 'color', 'shape', 'size', 'opacity', 'label', 'tooltip', 'vStyle', 'select', 'active', 'animate',
   // tooltip
   'x', 'y', 'items', 'show', 'triggerOn', 'showTitle', 'title', 'crosshairs', 'offset', 'inPlot', 'follow', 'shared', 'enterable', 'position', 'hideMarkers', 'containerTpl', 'itemTpl',
-  'g2Tooltip', 'g2TooltipTitle', 'g2TooltipList', 'g2TooltipListItem', 'g2TooltipMarker', 'onShow', 'onHide', 'onChange', 'defaultPoint', 'timeStamp', 'plotRange',
+  'g2Tooltip', 'g2TooltipTitle', 'g2TooltipList', 'g2TooltipListItem', 'g2TooltipMarker', 'onShow', 'onHide', 'onChange', 'defaultPoint',
+  'timeStamp', 'plotRange', 'htmlContent', 'useHtml', 'type',
   // lite
   'pie', 'sector', 'line', 'smoothLine', 'dashLine', 'area', 'stackArea', 'smoothArea', 'bar', 'stackBar', 'dodgeBar', 'interval', 'stackInterval', 'dodgeInterval',
   'point', 'funnel', 'pyramid', 'schema', 'box', 'candle', 'polygon', 'contour', 'heatmap', 'edge', 'sankey', 'errorBar', 'jitterPoint', 'venn',

@@ -24,7 +24,7 @@ class Tooltip extends Chart {
   @Input() public triggerOn?: triggerType;
   @Input() public showTitle?: boolean;
   @Input() public title?: string;
-  @Input() public crosshairs?: boolean | ICrosshairs;
+  @Input() public crosshairs?: boolean | string | ICrosshairs;
   @Input() public offset?: number;
   @Input() public inPlot?: boolean;
   @Input() public follow?: boolean;
@@ -39,6 +39,10 @@ class Tooltip extends Chart {
   @Input() public g2TooltipList?: any;
   @Input() public g2TooltipListItem?: any;
   @Input() public g2TooltipMarker?: any;
+
+  @Input() public htmlContent?: any;
+  @Input() public useHtml?: boolean;
+  @Input() public type?: string;
 
   @Input() public onShow?: eventFunc;
   @Input() public onHide?: eventFunc;

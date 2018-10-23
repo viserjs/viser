@@ -117,6 +117,7 @@ export default class Chart extends React.Component<IRChart, any> {
       'line',
       'smoothLine',
       'dashLine',
+      'stackLine',
       'area',
       'stackArea',
       'smoothArea',
