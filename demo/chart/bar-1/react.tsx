@@ -37,16 +37,16 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
 
-    const dv = ds.createView().source(data);
-    dv.transform({
-      type: 'percent',
-      field: 'value',
-      dimension: 'country',
-      groupBy: ['year'],
-      as: 'percent'
-    });
+    // const dv = ds.createView().source(data);
+    // dv.transform({
+    //   type: 'percent',
+    //   field: 'value',
+    //   dimension: 'country',
+    //   groupBy: ['year'],
+    //   as: 'percent'
+    // });
 
-    this.state.data = dv.rows;
+    // this.state.data = dv.rows;
   }
 
   handleClick = () => {
@@ -70,14 +70,36 @@ export default class App extends React.Component {
     return (
       <div>
         <button onClick={this.handleClick}>Click</button>
-        <Chart forceFit height={this.state.height} data={this.state.data} scale={scale} renderer={'svg'}>
+        <Chart forceFit height={this.state.height} padding={[80, 80]}
+          data={this.state.data} scale={scale} renderer={'svg'}>
           <Tooltip
-            onShow={() => { console.log('show'); }}
-            onHide={() => { console.log('hide'); }}
-            onChange={() => { console.log('change'); }}
+            onShow={() => {
+              // console.log('show');
+            }}
+            onHide={() => {
+              // console.log('hide');
+            }}
+            onChange={() => {
+              // console.log('change');
+            }}
           />
-          <Axis />
-          <StackBar position='year*percent' color='country' style={{ stroke: '#fff', lineWidth: this.state.lineWidth }} />
+          <Axis dataKey='year' label={{
+            density: 0.2,
+            formatter: ',.0f',
+            // formatter: (val: any, item: any, i: number) => {
+            //   return val;
+            // }
+          }}/>
+          <StackBar position='year*value' color='country'
+            style={{ stroke: '#fff', lineWidth: this.state.lineWidth }}
+            label={['value', {
+              density: 0.3,
+              // formatter: (val: any, item: any, i: number) => {
+              //   return '￥' + val;
+              // }
+              formatter: '$'
+            }]}
+          />
         </Chart>
         {/* <LiteChart height={400} data={dv.rows} forceFit stackBar /> */}
       </div>

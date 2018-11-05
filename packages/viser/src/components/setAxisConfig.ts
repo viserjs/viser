@@ -73,6 +73,23 @@ export const process = (chart: any, config: any) => {
         chart.axis(res.dataKey, false);
       } else {
         const options = _.omit(res, ['show', 'dataKey']);
+
+        // optimize , support config label density
+        const label = options.label;
+        if (label && _.isNumber(label.density)
+          && (0 < label.density) &&  (label.density < 1)
+          && _.isFunction(label.formatter)) {
+          const gap = Math.floor(1 / label.density);
+          const formatter = label.formatter;
+
+          options.label.formatter = (val: any, item: any, i: number) => {
+            if (i % gap) {
+              return ' ';
+            } else {
+              return formatter(val, item, i);
+            }
+          };
+        }
         chart.axis(res.dataKey, options);
       }
     } else {
