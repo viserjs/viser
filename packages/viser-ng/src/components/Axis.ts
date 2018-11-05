@@ -52,7 +52,7 @@ class Axis extends Chart {
   @Input() public title?: ITitle;
   @Input() public tick?: IAxisTick;
   @Input() public subTick?: IAxisTick;
-  @Input() public grid?: IAxisGrid;
+  @Input() public grid?: IAxisGrid | null;
   @Input() public zIndex?: number;
   @Input() public label?: boolean | IAxisLabel;
   @Input() public line?: IStyle.ILineStyle;
