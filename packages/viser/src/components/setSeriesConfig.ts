@@ -2,6 +2,7 @@ import * as _ from 'lodash';
 import IMainConfig from '../typed/IMain';
 import { ISeries } from '../typed/ISeries';
 import * as EventUtils from '../utils/EventUtils';
+import * as setCustomFormatter from './setCustomFormatter';
 import * as setQuickType from './setQuickType';
 
 function setSeriesGemo(chart: any, currSeries: ISeries) {
@@ -141,8 +142,22 @@ function setSeriesLabel(chart: any, currSeries: ISeries) {
   if (_.isString(label)) {
     return chart.label(label);
   }
-
-  if (_.isArray(label) && label.length >= 1) {
+  if (_.isArray(label) && label.length >= 2) {
+    // optimize , support config label density
+    if (_.isNumber(label[1].density)
+      && (0 < label[1].density) &&  (label[1].density < 1)
+      && (_.isFunction(label[1].formatter) || _.isString(label[1].formatter))) {
+      const gap = Math.floor(1 / label[1].density);
+      const formatter = _.isString(label[1].formatter) ?
+        setCustomFormatter.supportD3Formatter(label[1]).formatter : label[1].formatter;
+      label[1].formatter = (val: any, item: any, i: number) => {
+        if (i % gap) {
+          return ' ';
+        } else {
+          return formatter(val, item, i);
+        }
+      };
+    }
     return chart.label(...label);
   }
 
