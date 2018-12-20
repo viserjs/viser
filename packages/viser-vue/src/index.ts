@@ -343,7 +343,13 @@ export default {
       options = Object.keys(installMaps);
     }
     options.forEach((key: string) => {
-      Vue.component(key, installMaps[key]);
+      Vue.component(
+        key, 
+        {
+          installMaps[key],
+          name: key
+        }
+      );
     });
   },
 };
