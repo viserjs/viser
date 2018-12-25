@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input,
+import { AfterViewInit, Component, ElementRef, Input, NgZone,
   OnChanges, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
 import viser, { IScale } from 'viser';
 import { ChartContext } from './chartService';
@@ -119,7 +119,7 @@ export class Chart implements AfterViewInit, OnChanges {
   private elem: any;
   private vcRef: any;
 
-  constructor(private context: ChartContext, elem: ElementRef, vcRef: ViewContainerRef) {
+  constructor(private context: ChartContext, elem: ElementRef, vcRef: ViewContainerRef, private ngZone: NgZone) {
     this.context = context;
     this.elem = elem;
     this.vcRef = vcRef;
@@ -417,17 +417,21 @@ export class Chart implements AfterViewInit, OnChanges {
         this.context.timer = null;
       }
       this.context.timer = setTimeout(() => {
-        if (this.context.chart) {
-          this.context.chart.repaint(this.context.config);
-        } else {
-          this.context.config.chart.container = this.context.chartDivElement;
-          this.context.chart = viser(this.context.config);
-        }
+        this.ngZone.runOutsideAngular(() => {
+          if (this.context.chart) {
+            this.context.chart.repaint(this.context.config);
+          } else {
+            this.context.config.chart.container = this.context.chartDivElement;
+            this.context.chart = viser(this.context.config);
+          }
+        });
       }, 90);
     } else if (!this.context.chart && name === 'Chart') {
-      this.context.config.chart.container = this.chartDiv.nativeElement;
-      this.context.chartDivElement = this.chartDiv.nativeElement;
-      this.context.chart = viser(this.context.config);
+      this.ngZone.runOutsideAngular(() => {
+        this.context.config.chart.container = this.chartDiv.nativeElement;
+        this.context.chartDivElement = this.chartDiv.nativeElement;
+        this.context.chart = viser(this.context.config);
+      });
     }
   }
 }
