@@ -11,4 +11,8 @@ export default [
     type: 'facet-1',
     case: ['json', 'react', 'vue', 'angular'],
   },
+  {
+    type: 'viser-graph-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
 ];

@@ -73,12 +73,7 @@ export class ViserGraph {
       return;
     }
     delete this.config.node.componentId;
-    const nodes = this.graph.node(this.config.node);
-    if (this.config.node.label) {
-      nodes.label((obj) => {
-        return obj.name;
-      });
-    }
+    this.graph.node(this.config.node);
   }
 
   public setEdge() {
