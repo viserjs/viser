@@ -17,6 +17,10 @@ class Slider extends PluginComponent {
   @Input() public minSpan?: number;
   @Input() public maxSpan?: number;
   @Input() public scales?: any;
+  @Input() public fillerStyle?: any;
+  @Input() public backgroundStyle?: any;
+  @Input() public textStyle?: any;
+  @Input() public handleStyle?: any;
   @Input() public backgroundChart?: any;
   @Input() public onChange?: any;
 }

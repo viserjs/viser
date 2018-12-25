@@ -12,6 +12,10 @@ interface ISliderConfig {
   minSpan?: number;
   maxSpan?: number;
   scales?: any;
+  fillerStyle?: any;
+  backgroundStyle?: any;
+  textStyle?: any;
+  handleStyle?: any;
   backgroundChart?: any;
   onChange?: (opts: any) => {};
 }
