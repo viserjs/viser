@@ -2,7 +2,8 @@ const props: any = [
   // axis
   'dataKey', 'position', 'title', 'tick', 'subTick', 'grid', 'labels', 'line', 'tickLine', 'subTickCount', 'subTickLine',
   // chart
-  'id', 'container', 'height', 'width', 'animate', 'forceFit', 'background', 'plotBackground', 'padding', 'theme', 'renderer',
+  'id', 'container', 'height', 'width', 'animate', 'forceFit', 'background', 'plotBackground', 'padding',
+  'theme', 'renderer', 'filter',
   // coord
   'type', 'direction', 'radius', 'innerRadius', 'startAngle', 'endAngle', 'rotate',
   // facet

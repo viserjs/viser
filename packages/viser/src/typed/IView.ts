@@ -1,5 +1,6 @@
 import IAxis from './IAxis';
 import ICoord from './ICoord';
+import IFilter from './IFilter';
 import IGuide from './IGuide';
 import IScale from './IScale';
 import ISeries from './ISeries';
@@ -11,6 +12,7 @@ export interface IView {
   dataView?: any;
   coord?: ICoord;
   scale?: IScale;
+  filter?: IFilter;
   axis?: IAxis;
   guide?: IGuide;
   series?: ISeries;

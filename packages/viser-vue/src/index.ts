@@ -39,7 +39,7 @@ const rootCharts = ['v-chart', 'v-lite-chart'];
 
 const rootPlugin = ['v-plugin'];
 
-const rootChartProps = ['data', 'scale', 'viewId'];
+const rootChartProps = ['data', 'scale', 'filter', 'viewId'];
 
 const seriesProps = [
   'position',

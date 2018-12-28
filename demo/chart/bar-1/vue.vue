@@ -1,10 +1,13 @@
 <template>
   <div>
     <!-- <button v-on:click="handleClick">Click</button> -->
-    <v-chart :force-fit="true" :height="height" :data="data" :scale="scale" renderer="svg">
+    <v-chart :force-fit="true" :height="height" renderer="svg">
       <v-tooltip :on-show="onTooltipShow" :on-hide="onTooltipHide" :on-change="onTooltipChange"></v-tooltip>
       <v-axis></v-axis>
-      <v-stack-bar :position="'year*percent'" :color="'country'" :v-style="stackBarStyle"></v-stack-bar>
+      <v-legend></v-legend>
+      <v-view :data="data" :scale="scale" :filter="filter">
+        <v-stack-bar :position="'year*percent'" :color="'country'" :v-style="stackBarStyle"></v-stack-bar>
+      </v-view>
     </v-chart>
     <!-- <v-lite-chart :stack-bar="true" :height="400" :data="data" :data-pre="dataPre" :dataMapping="dataMapping" :forceFit="true" /> -->
   </div>
@@ -25,19 +28,33 @@ dv.transform({
   as: 'percent'
 });
 
+const filter = [{
+  dataKey: 'country',
+  callback: (ev) => {
+    return ev === 'Europe';
+  }
+}];
+
 export default {
   data() {
     return {
       data: dv.rows,
       scale,
       height: 400,
+      filter,
       stackBarStyle: {
         stroke: '#fff',
         lineWidth: 1
       },
-      onTooltipShow: () => { console.log('show'); },
-      onTooltipHide: () => { console.log('hide'); },
-      onTooltipChange: () => { console.log('change'); },
+      onTooltipShow: () => {
+        // console.log('show');
+      },
+      onTooltipHide: () => {
+        // console.log('hide');
+      },
+      onTooltipChange: () => {
+        // console.log('change');
+      },
     };
   },
   methods: {

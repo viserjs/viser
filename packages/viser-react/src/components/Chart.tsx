@@ -78,7 +78,8 @@ export default class Chart extends React.Component<IRChart, any> {
   public combineChartConfig(props: IRChart, config: any) {
     const chartRetain = [
       'height', 'width', 'animate', 'forceFit',
-      'background', 'plotBackground', 'padding', 'theme', 'renderer',
+      'background', 'plotBackground', 'padding', 'theme',
+      'renderer',
       'onMouseDown', 'onMouseMove', 'onMouseUp',
       'onClick', 'onDbClick',
       'onTouchStart', 'onTouchMove', 'onTouchEnd',
@@ -95,6 +96,10 @@ export default class Chart extends React.Component<IRChart, any> {
 
     if (props.scale) {
       config.scale = props.scale;
+    }
+
+    if (props.filter) {
+      config.filter = props.filter;
     }
 
     if (props.start) {

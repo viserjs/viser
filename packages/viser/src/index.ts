@@ -5,6 +5,7 @@ import IBrush from './typed/IBrush';
 import IChart from './typed/IChart';
 import ICoord, { IPolarCoord, IRectCoord } from './typed/ICoord';
 import IFacet from './typed/IFacet';
+import IFilter from './typed/IFilter';
 import IGuideConfig, { IArcGuide, IGuide, IImageGuide, ILineGuide, IRegionGuide, ITextGuide } from './typed/IGuide';
 import ILegendConfig, { ILegend } from './typed/ILegend';
 import IMain from './typed/IMain';
@@ -27,6 +28,7 @@ export {
   IRectCoord,
   IPolarCoord,
   IFacet,
+  IFilter,
   IGuide,
   IGuideConfig,
   ILineGuide,

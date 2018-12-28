@@ -16,11 +16,19 @@ dv.transform({
   as: 'percent'
 });
 
+const filter = [{
+  dataKey: 'country',
+  callback: (ev) => {
+    return ev === 'Europe';
+  }
+}];
+
 @Component({
   selector: '#mount',
   template: `
   <div>
-    <v-chart [forceFit]="forceFit" [height]="height" [data]="data" [scale]="scale" renderer="svg">
+    <v-chart [forceFit]="forceFit" [height]="height" [data]="data" [scale]="scale"
+      renderer="svg" [filter]="filter">
       <v-tooltip [onShow]="onTooltipShow" [onHide]="onTooltipHide" [onChange]="onTooltipChange"></v-tooltip>
       <v-axis></v-axis>
       <v-stack-bar position='year*percent' color='country' [style]="{ stroke: '#fff', lineWidth: 1 }" ></v-stack-bar>
@@ -34,6 +42,7 @@ class AppComponent {
   data = dv.rows;
   scale = scale;
   fields = ['cut', 'clarity'];
+  filter = filter;
   onTooltipShow = () => { console.log('show'); };
   onTooltipHide = () => { console.log('hide'); };
   onTooltipChange = () => { console.log('change'); };

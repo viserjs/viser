@@ -5,6 +5,7 @@
 import * as _ from 'lodash';
 import * as setAxisConfig from '../components/setAxisConfig';
 import * as setCoordConfig from '../components/setCoordConfig';
+import * as setFilterConfig from '../components/setFilterConfig';
 import * as setGuideConfig from '../components/setGuideConfig';
 import * as setLegendConfig from '../components/setLegendConfig';
 import * as setScaleConfig from '../components/setScaleConfig';
@@ -20,7 +21,7 @@ const G2 = require('@antv/g2');
 const Brush = require('@antv/g2-brush');
 
 // Disable G2 Track
-G2.track(false);
+// G2.track(false);
 
 function firstUpperCase(str: string) {
   return str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase());
@@ -120,6 +121,10 @@ class CommonChart {
     }
   }
 
+  private setFilter(chart: any, config: IMainConfig) {
+    return setFilterConfig.process(chart, config);
+  }
+
   private setScale(chart: any, config: IMainConfig) {
     return setScaleConfig.process(chart, config);
   }
@@ -154,6 +159,7 @@ class CommonChart {
 
   private setContent(chart: any, config: IMainConfig) {
     this.setScale(chart, config);
+    this.setFilter(chart, config);
     this.setSeries(chart, config);
     this.setGuide(chart, config);
   }
