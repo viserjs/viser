@@ -24,7 +24,7 @@ class Brush extends Chart {
   @Input() public inPlot?: boolean;
   @Input() public xField?: string;
   @Input() public yField?: string;
-  @Input() public filter?: boolean;
+  // @Input() public filter?: boolean;
   @Input() public onBrushstart?: eventFunc;
   @Input() public onBrushmove?: eventFunc;
   @Input() public onBrushend?: eventFunc;

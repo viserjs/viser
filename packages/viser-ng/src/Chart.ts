@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, NgZone,
   OnChanges, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
-import viser, { IScale } from 'viser';
+import viser, { IFilter, IScale } from 'viser';
 import { ChartContext } from './chartService';
 import { IRChart } from './typed/IRChart';
 
@@ -99,6 +99,7 @@ export class Chart implements AfterViewInit, OnChanges {
   @Input() public scale?: IScale;
   @Input() public theme?: string;
   @Input() public renderer?: string;
+  @Input() public filter?: IFilter;
   @Input() public onMouseDown?: eventFunc;
   @Input() public onMouseMove?: eventFunc;
   @Input() public onMouseLeave?: eventFunc;

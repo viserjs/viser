@@ -84,6 +84,10 @@ export class LiteChart implements AfterViewInit, OnChanges {
       config.scale = props.scale;
     }
 
+    if (props.filter) {
+      config.filter = props.filter;
+    }
+
     if (props.guide) {
       config.guide = props.guide;
     }
