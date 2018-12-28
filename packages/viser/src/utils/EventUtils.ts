@@ -41,6 +41,17 @@ export function setEvent(chart: any, name: string, item: any) {
     const eventName = entry.slice(2, entry.length);
     const eventLowerCase = eventName.toLowerCase();
     const content = item[entry];
+
+    // geom label event should be chart.on('label:xx')
+    if (item.gemo && eventLowerCase.indexOf('label') >= 0) {
+      const eventType = eventLowerCase.replace('label', '');
+      chart.on(`label:${eventType}`, (ev: any) => {
+        if (content) {
+          content(ev, chart);
+        }
+      });
+      return;
+    }
     if (name) {
       chart.on(`${name}:${eventLowerCase}`, (ev: any) => {
         if (content) {

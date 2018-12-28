@@ -5,6 +5,7 @@
 import * as _ from 'lodash';
 import * as setAxisConfig from '../components/setAxisConfig';
 import * as setCoordConfig from '../components/setCoordConfig';
+import * as setFilterConfig from '../components/setFilterConfig';
 import * as setGuideConfig from '../components/setGuideConfig';
 import * as setLegendConfig from '../components/setLegendConfig';
 import * as setScaleConfig from '../components/setScaleConfig';
@@ -120,6 +121,10 @@ class CommonChart {
     }
   }
 
+  private setFilter(chart: any, config: IMainConfig) {
+    return setFilterConfig.process(chart, config);
+  }
+
   private setScale(chart: any, config: IMainConfig) {
     return setScaleConfig.process(chart, config);
   }
@@ -154,6 +159,7 @@ class CommonChart {
 
   private setContent(chart: any, config: IMainConfig) {
     this.setScale(chart, config);
+    this.setFilter(chart, config);
     this.setSeries(chart, config);
     this.setGuide(chart, config);
   }

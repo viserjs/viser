@@ -1,3 +1,5 @@
+import IFilter from './IFilter';
+
 type eventFunc = (ev: any, chart: any) => void;
 interface IBackground {
   stroke?: string;
@@ -20,6 +22,7 @@ export interface IChart {
   padding?: number | object | number[] | string;
   theme?: string;
   renderer?: string;
+  filter?: IFilter;
   onMouseDown?: eventFunc;
   onMouseMove?: eventFunc;
   onMouseLeave?: eventFunc;
