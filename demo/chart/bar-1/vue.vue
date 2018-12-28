@@ -1,11 +1,13 @@
 <template>
   <div>
     <!-- <button v-on:click="handleClick">Click</button> -->
-    <v-chart :force-fit="true" :height="height" :data="data" :scale="scale" renderer="svg" :filter="filter">
+    <v-chart :force-fit="true" :height="height" renderer="svg">
       <v-tooltip :on-show="onTooltipShow" :on-hide="onTooltipHide" :on-change="onTooltipChange"></v-tooltip>
       <v-axis></v-axis>
       <v-legend></v-legend>
-      <v-stack-bar :position="'year*percent'" :color="'country'" :v-style="stackBarStyle"></v-stack-bar>
+      <v-view :data="data" :scale="scale" :filter="filter">
+        <v-stack-bar :position="'year*percent'" :color="'country'" :v-style="stackBarStyle"></v-stack-bar>
+      </v-view>
     </v-chart>
     <!-- <v-lite-chart :stack-bar="true" :height="400" :data="data" :data-pre="dataPre" :dataMapping="dataMapping" :forceFit="true" /> -->
   </div>

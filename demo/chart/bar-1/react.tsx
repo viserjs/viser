@@ -1,4 +1,4 @@
-import { Chart, Tooltip, Axis, StackBar, Legend } from '../../../packages/viser-react/src/index';
+import { Chart, Tooltip, Axis, StackBar, Legend, View } from '../../../packages/viser-react/src/index';
 import * as React from 'react';
 import { data, scale } from './data'
 const DataSet = require('@antv/data-set');
@@ -77,10 +77,7 @@ export default class App extends React.Component {
     return (
       <div>
         <button onClick={this.handleClick}>Click</button>
-        <Chart forceFit height={this.state.height} padding={[80, 80]}
-          data={this.state.data} scale={scale} renderer={'svg'}
-          filter={filter}
-        >
+        <Chart forceFit height={this.state.height} padding={[80, 80]} renderer={'svg'}>
           <Tooltip
             onShow={() => {
               // console.log('show');
@@ -93,28 +90,30 @@ export default class App extends React.Component {
             }}
           />
           <Axis dataKey='year'
-            // label={{
-              // density: 0.2,
-              // formatter: ',.0f',
+            label={{
+              density: 0.2,
+              formatter: ',.0f',
               // formatter: (val: any, item: any, i: number) => {
               //   return val;
               // }
-            // }}
-          />
-          <Legend />
-          <StackBar position='year*percent' color='country'
-            style={{ stroke: '#fff', lineWidth: this.state.lineWidth }}
-            label={['value', {
-              density: 0.3,
-              // formatter: (val: any, item: any, i: number) => {
-              //   return '￥' + val;
-              // }
-              formatter: '$'
-            }]}
-            onLabelClick={(ev)=>{
-              console.log('label click', ev);
             }}
           />
+          <Legend />
+          <View data={this.state.data} scale={scale} filter={filter}>
+            <StackBar position='year*percent' color='country'
+              style={{ stroke: '#fff', lineWidth: this.state.lineWidth }}
+              label={['value', {
+                density: 0.3,
+                // formatter: (val: any, item: any, i: number) => {
+                //   return '￥' + val;
+                // }
+                formatter: '$'
+              }]}
+              onLabelClick={(ev)=>{
+                console.log('label click', ev);
+              }}
+            />
+          </View>
         </Chart>
         {/* <LiteChart height={400} data={dv.rows} forceFit stackBar /> */}
       </div>
