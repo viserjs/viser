@@ -1,4 +1,4 @@
-import { Chart, Tooltip, Axis, StackBar, LiteChart, Guide } from '../../../packages/viser-react/src/index';
+import { Chart, Tooltip, Axis, StackBar, Legend } from '../../../packages/viser-react/src/index';
 import * as React from 'react';
 import { data, scale } from './data'
 const DataSet = require('@antv/data-set');
@@ -24,6 +24,13 @@ export const repaintData = [
 
 const ds = new DataSet();
 
+const filter = [{
+  dataKey: 'country',
+  callback: (ev) => {
+    return ev === 'Europe';
+  }
+}] as any;
+
 export default class App extends React.Component {
   dv: any;
   ds: any;
@@ -37,16 +44,16 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
 
-    // const dv = ds.createView().source(data);
-    // dv.transform({
-    //   type: 'percent',
-    //   field: 'value',
-    //   dimension: 'country',
-    //   groupBy: ['year'],
-    //   as: 'percent'
-    // });
+    const dv = ds.createView().source(data);
+    dv.transform({
+      type: 'percent',
+      field: 'value',
+      dimension: 'country',
+      groupBy: ['year'],
+      as: 'percent'
+    });
 
-    // this.state.data = dv.rows;
+    this.state.data = dv;
   }
 
   handleClick = () => {
@@ -71,7 +78,9 @@ export default class App extends React.Component {
       <div>
         <button onClick={this.handleClick}>Click</button>
         <Chart forceFit height={this.state.height} padding={[80, 80]}
-          data={this.state.data} scale={scale} renderer={'svg'}>
+          data={this.state.data} scale={scale} renderer={'svg'}
+          filter={filter}
+        >
           <Tooltip
             onShow={() => {
               // console.log('show');
@@ -83,14 +92,17 @@ export default class App extends React.Component {
               // console.log('change');
             }}
           />
-          <Axis dataKey='year' label={{
-            density: 0.2,
-            formatter: ',.0f',
-            // formatter: (val: any, item: any, i: number) => {
-            //   return val;
-            // }
-          }}/>
-          <StackBar position='year*value' color='country'
+          <Axis dataKey='year'
+            // label={{
+              // density: 0.2,
+              // formatter: ',.0f',
+              // formatter: (val: any, item: any, i: number) => {
+              //   return val;
+              // }
+            // }}
+          />
+          <Legend />
+          <StackBar position='year*percent' color='country'
             style={{ stroke: '#fff', lineWidth: this.state.lineWidth }}
             label={['value', {
               density: 0.3,
@@ -99,6 +111,9 @@ export default class App extends React.Component {
               // }
               formatter: '$'
             }]}
+            onLabelClick={(ev)=>{
+              console.log('label click', ev);
+            }}
           />
         </Chart>
         {/* <LiteChart height={400} data={dv.rows} forceFit stackBar /> */}

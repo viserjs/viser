@@ -29,7 +29,7 @@
     "ts-loader": "^5.2.0",
     "tslint": "^5.5.0",
     "tsutils": "^2.8.0",
-    "vue-loader": "^13.5.0",
+    "vue-loader": "^14.0.0",
     "vue-template-compiler": "^2.5.0",
     "typescript": "^3.1.0",
     "webpack": "^4.20.0",
