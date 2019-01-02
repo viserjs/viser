@@ -14,6 +14,8 @@ interface ILinearCommonScale {
   nice?: boolean;
   min?: number;
   max?: number;
+  minLimit?: number;
+  maxLimit?: number;
   tickInterval?: number;
 }
 
