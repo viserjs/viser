@@ -1,5 +1,7 @@
 import {
+  GlobalG6,
   Layouts,
+  Plugins,
   registerEdge,
   registerGuide,
   registerNode,
@@ -25,4 +27,6 @@ export {
   IGraph,
   INode,
   IZoom,
+  Plugins,
+  GlobalG6,
 };

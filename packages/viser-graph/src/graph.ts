@@ -1,4 +1,5 @@
 import * as G6 from '@antv/g6';
+import '@antv/g6/build/plugins';
 import { IConfig } from './typed';
 
 export class ViserGraph {
@@ -106,3 +107,5 @@ export const registerEdge = G6.registerEdge;
 export const registerGuide = G6.registerGuide;
 export const Layouts = G6.Layouts;
 export const Util = G6.Util;
+export const Plugins = G6.Plugins;
+export const GlobalG6 = G6;
