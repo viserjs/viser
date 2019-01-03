@@ -92,7 +92,7 @@
   dependencies:
     "@antv/util" "~1.2.5"
 
-"@antv/attr@~0.1.0", "@antv/attr@~0.1.2":
+"@antv/attr@~0.1.2":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@antv/attr/-/attr-0.1.2.tgz#2eeb122fcaaf851a2d8749abc7c60519d3f77e37"
   integrity sha512-QXjP+T2I+pJQcwZx1oCA4tipG43vgeCeKcGGKahlcxb71OBAzjJZm1QbF4frKXcnOqRkxVXtCr70X9TRair3Ew==
@@ -109,10 +109,10 @@
     "@antv/util" "~1.2.5"
     wolfy87-eventemitter "~5.1.0"
 
-"@antv/component@~0.2.1":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@antv/component/-/component-0.2.6.tgz#c1c5318e50d80847f1ec157e98bf1ecdf840ff5a"
-  integrity sha512-1Znb4DNDzNWumGeMtlebxJKFSRXO1ZnrDYu4Jg3sffN/1iyRlc3jQJHWd3xYrmX9ft8iSBIFHWxBTLZ7Yb0Fqw==
+"@antv/component@~0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@antv/component/-/component-0.3.1.tgz#25eb53e3ed3a0f413896be2f83e7e704bfb6b097"
+  integrity sha512-NH5CQNttfnCjQEGwEEYGS/2gD3L50gCcMV94PYVyvwmn8NoqNDNeF5ZHe9oUNB4DRZIoo1wvGF8M8HJ7ItFLJQ==
   dependencies:
     "@antv/attr" "~0.1.2"
     "@antv/g" "~3.3.5"
@@ -147,16 +147,16 @@
   resolved "https://registry.yarnpkg.com/@antv/g2-plugin-slider/-/g2-plugin-slider-2.1.0.tgz#7f2f5879d33dcfb14dd2b955092ca198ad9152b9"
   integrity sha512-VbCUK+WRFB1fW7dx3d/AixgLuXFuhfA7n9Ex08KQBM9QIgpWJICsBUdFMHdfRgwzXHw+eCkCNB2gTVPoyesquA==
 
-"@antv/g2@^3.3.0":
-  version "3.3.4"
-  resolved "https://registry.yarnpkg.com/@antv/g2/-/g2-3.3.4.tgz#caa96b644957ff97b18c9c1d7c34835009530496"
-  integrity sha512-DutvVSHARGrjDIt7wAm5FFG265HEZYV026BIX+bS/8XiYh6DVp4K1gtehOwNWbcxUuEdJqKXtwdx4VehA0dW0w==
+"@antv/g2@^3.4.0":
+  version "3.4.8"
+  resolved "https://registry.yarnpkg.com/@antv/g2/-/g2-3.4.8.tgz#d89a3e66f9257ad6ca020e3ca9563bd365698542"
+  integrity sha512-i2Fs5NUqGeeTFvOZ/3OIjdPt2BFJSKVRLN05Y6B+hfJCFjDop7dlpsqpjdYYNVPtnpXglwmtodTtpVDX9u6AGw==
   dependencies:
     "@antv/adjust" "~0.1.0"
-    "@antv/attr" "~0.1.0"
-    "@antv/component" "~0.2.1"
+    "@antv/attr" "~0.1.2"
+    "@antv/component" "~0.3.1"
     "@antv/coord" "~0.1.0"
-    "@antv/g" "~3.3.4"
+    "@antv/g" "~3.3.5"
     "@antv/scale" "~0.1.0"
     "@antv/util" "~1.3.1"
     venn.js "~0.2.20"
@@ -192,7 +192,7 @@
     d3-timer "~1.0.6"
     wolfy87-eventemitter "~5.1.0"
 
-"@antv/g@~3.3.0", "@antv/g@~3.3.4", "@antv/g@~3.3.5":
+"@antv/g@~3.3.0", "@antv/g@~3.3.5":
   version "3.3.5"
   resolved "https://registry.yarnpkg.com/@antv/g/-/g-3.3.5.tgz#9959baad1b85199614e591c9926879afb1fbb943"
   integrity sha512-VCfxmQ5ntIf4QHku6w7TnOWHVkfIzOkXVXx99WLYPau8HgLuM4iD9y7isG5T7VpRBAmV+Ow3RJHqL3vHFY2Low==
