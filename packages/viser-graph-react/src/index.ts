@@ -1,4 +1,4 @@
-import { GlobalG6, Layouts, Plugins, registerEdge, registerGuide, registerNode, Util } from '../../viser-graph/src';
+import { GlobalG6, Layouts, Plugins, registerEdge, registerGuide, registerNode, Util } from 'viser-graph';
 import { default as Graph } from './components/Graph';
 import { Edge, Node, Zoom } from './components/SubComponent';
 
