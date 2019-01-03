@@ -57,7 +57,7 @@ export default class Graph extends React.Component<any, any> {
   public combineChartConfig(props: any) {
     const chartRetain = [
       'height', 'width', 'animate',
-      'fitView', 'fitViewPadding', 'type', 'layout',
+      'fitView', 'fitViewPadding', 'type', 'layout', 'plugins',
     ];
     this.config.graph = retain(props, chartRetain);
 
@@ -69,6 +69,7 @@ export default class Graph extends React.Component<any, any> {
       'onPlotClick', 'onPlotDbClick',
       'onAfterchange',
       'onDragstart', 'onDrag', 'onDragend',
+      'onCanvas:mouseleave', 'onNode:mouseenter', 'onNode:mouseleave',
     ];
 
     this.config.events = retain(props, eventRetain);
