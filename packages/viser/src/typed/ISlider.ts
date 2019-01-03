@@ -17,7 +17,7 @@ interface ISliderConfig {
   textStyle?: any;
   handleStyle?: any;
   backgroundChart?: any;
-  onChange?: (opts: any) => {};
+  onChange?: (opts: any) => void;
 }
 
 export default ISliderConfig;
