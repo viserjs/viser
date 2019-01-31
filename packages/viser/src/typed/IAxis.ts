@@ -31,7 +31,7 @@ interface IAxisGrid {
 }
 
 interface IAxisLabel {
-  density: number;
+  density?: number;
   offset?: number | number[];
   formatter?: string | formatterFunc;
   autoRotate?: boolean;
