@@ -8,7 +8,9 @@ function generateRandomNum() {
   return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
 }
 
-class Props {}
+class Props {
+  container?: string;
+}
 
 class SubPlugin<T = {}> extends React.Component<Props & T, any> {
   public static childContextTypes = {
@@ -24,7 +26,7 @@ class SubPlugin<T = {}> extends React.Component<Props & T, any> {
   constructor(props: Props & T) {
     super(props);
     this.state = {
-      containerId: 'viser-slider-' + generateRandomNum(),
+      containerId: props.container || 'viser-slider-' + generateRandomNum(),
     };
   }
 

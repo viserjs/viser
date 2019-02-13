@@ -153,9 +153,7 @@ const baseChartComponent = {
        */
       if (rootPlugin.indexOf(this.$options._componentTag) > -1) {
         const d2Json = this.createRootD2Json();
-        if (!isUpdate) {
-          this.plugins = viser.Plugin(d2Json);
-        }
+        this.plugins = viser.Plugin(d2Json);
       } else if (rootCharts.indexOf(this.$options._componentTag) > -1) {
         /**
          * refresh chart

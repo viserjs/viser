@@ -15,4 +15,8 @@ export default [
     type: 'viser-graph-2',
     case: ['json', 'react', 'vue', 'angular'],
   },
+  {
+    type: 'slider',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
 ];
