@@ -14,7 +14,7 @@ class Props {
 
 class SubPlugin<T = {}> extends React.Component<Props & T, any> {
   public static childContextTypes = {
-    containerId: PropTypes.string,
+    container: PropTypes.string,
   };
 
   public static contextTypes = {
@@ -26,13 +26,13 @@ class SubPlugin<T = {}> extends React.Component<Props & T, any> {
   constructor(props: Props & T) {
     super(props);
     this.state = {
-      containerId: props.container || 'viser-slider-' + generateRandomNum(),
+      container: props.container || 'viser-slider-' + generateRandomNum(),
     };
   }
 
   public getChildContext() {
     return {
-      containerId: this.state.containerId,
+      container: this.state.container,
     };
   }
 
@@ -45,8 +45,8 @@ class SubPlugin<T = {}> extends React.Component<Props & T, any> {
   }
 
   public render() {
-    const containerId = this.state.containerId;
-    return <div id={containerId}></div> as React.ReactElement<any>;
+    const container = this.state.container;
+    return <div id={container}></div> as React.ReactElement<any>;
   }
 }
 
