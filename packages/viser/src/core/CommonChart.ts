@@ -268,6 +268,7 @@ class CommonChart {
 
   private renderDiffConfig(config: IMainConfig) {
     const chart = this.chartInstance;
+    // this.setEvents(chart, config);
 
     this.clear(chart);
     this.setScale(chart, config);

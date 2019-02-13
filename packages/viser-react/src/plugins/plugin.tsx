@@ -9,10 +9,7 @@ export default class PluginComponent extends React.Component<any, any> {
 
   public container: any;
   public config: any = {};
-
-  constructor(props: any) {
-    super(props);
-  }
+  public plugins: any = null;
 
   public getChildContext() {
     return {
@@ -46,19 +43,22 @@ export default class PluginComponent extends React.Component<any, any> {
       props,
       config,
     );
+
+    this.updateSliderInstance(config);
   }
 
-  public createSliderInstance(config: any) {
-    viser.Plugin(config);
+  public updateSliderInstance(config: any) {
+    if (!this.plugins) {
+      this.plugins = viser.Plugin(config);
+    }
+    if (this.plugins && this.plugins.slider && config.slider) {
+      this.plugins = viser.Plugin(config);
+    }
+
   }
 
   public clearConfigData() {
     this.config = {};
-  }
-
-  public componentDidMount() {
-    this.createSliderInstance(this.config);
-    this.clearConfigData();
   }
 
   public portalRef = (container: any) => {
@@ -68,6 +68,6 @@ export default class PluginComponent extends React.Component<any, any> {
   }
 
   public render() {
-    return <div ref={this.portalRef}>{this.props.children}</div>;
+    return <div ref={this.portalRef} >{this.props.children}</div>;
   }
 }

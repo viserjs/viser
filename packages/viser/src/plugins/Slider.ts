@@ -16,4 +16,5 @@ export default (config: ISliderConfig) => {
   container.innerHTML = '';
   const sliderInstance = new Slider(config);
   sliderInstance.render();
+  return sliderInstance;
 };
