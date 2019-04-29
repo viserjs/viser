@@ -46,6 +46,7 @@ export interface ILegend {
   legendListItem?: any;
   legendTitle?: any;
   legendList?: any;
+  legendStyle?: any;
   attachLast?: boolean;
   flipPage?: boolean;
   name?: boolean;
