@@ -37,7 +37,7 @@ const props: any = [
   // view
   'start', 'end',
   // event
-  'onMouseDown', 'onMouseMove', 'onMouseLeave', 'onMouseUp', 'onClick', 'onDblClick', 'onTouchStart', 'onTouchMove', 'onTouchEnd', 'onPlotEnter', 'onPlotMove', 'onPlotLeave', 'onPlotClick', 'onPlotDblClick',
+  'onMouseEnter', 'onMouseDown', 'onMouseMove', 'onMouseLeave', 'onMouseUp', 'onClick', 'onDblClick', 'onTouchStart', 'onTouchMove', 'onTouchEnd', 'onPlotEnter', 'onPlotMove', 'onPlotLeave', 'onPlotClick', 'onPlotDblClick',
   'onTitleMouseDown', 'onTitleMouseMove', 'onTitleMouseLeave', 'onTitleMouseUp', 'onTitleClick', 'onTitleDblClick', 'onTitleTouchStart', 'onTitleTouchMove', 'onTitleTouchEnd',
   'onItemMouseDown', 'onItemMouseMove', 'onItemMouseLeave', 'onItemMouseUp', 'onItemClick', 'onItemDblClick', 'onItemTouchStart', 'onItemTouchMove', 'onItemTouchEnd',
   'onMarkerMouseDown', 'onMarkerMouseMove', 'onMarkerMouseLeave', 'onMarkerMouseUp', 'onMarkerClick', 'onMarkerDblClick', 'onMarkerTouchStart', 'onMarkerTouchMove', 'onMarkerTouchEnd',
