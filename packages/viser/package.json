@@ -24,7 +24,7 @@
     "analyse": "cross-env NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "dependencies": {
-    "@antv/g2": "3.5.3",
+    "@antv/g2": "~3.5.3",
     "@antv/g2-brush": "^0.0.2",
     "@antv/g2-plugin-slider": "^2.1.0",
     "@types/d3-format": "*",
