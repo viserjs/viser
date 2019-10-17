@@ -1,3 +1,7 @@
+// Import angular dependencies first
+import 'reflect-metadata';
+import 'zone.js/dist/zone';
+
 import list from './chart/index';
 
 import Vue from 'vue';

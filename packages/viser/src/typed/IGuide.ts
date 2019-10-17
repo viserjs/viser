@@ -106,7 +106,7 @@ export interface IDataRegionGuide {
 export interface IDataMarkerGuide {
   type?: 'dataMarker';
   top?: boolean;
-  position?: object | Array<number | string> | func;  
+  position?: object | Array<number | string> | func;
   content?: string;
   style?: object;
   display?: object;
