@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import viser, { IAxis, ICoord, IFacet, IGuide, ILegend, IScale, ISeries, ITooltip, IViewConfig } from 'viser';
 
 function retain(obj: any, attr: string[]) {
@@ -70,7 +70,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
   @Input() public edge?: boolean;
   @Input() public sankey?: boolean;
   @Input() public errorBar?: boolean;
-  @ViewChild('chartDom') public chartDiv?: any;
+  @ViewChild('chartDom', { static: true }) public chartDiv!: ElementRef<HTMLDivElement>;
   public config: any = {};
   public views: IViewConfig = {};
   public chart: any = null;

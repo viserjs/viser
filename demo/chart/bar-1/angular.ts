@@ -1,9 +1,8 @@
-import 'zone.js';
-import 'reflect-metadata';
-import { Component, enableProdMode, NgModule } from '@angular/core';
+
+import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ViserModule } from '../../../packages/viser-ng/src/index';
-import { data, scale } from './data'
+import { data, scale } from './data';
 const DataSet = require('@antv/data-set');
 
 const ds: any = new DataSet();
@@ -37,7 +36,7 @@ const filter = [{
   `
 })
 class AppComponent {
-  forceFit: boolean= true;
+  forceFit: boolean = true;
   height: number = 400;
   data = dv.rows;
   scale = scale;
@@ -61,4 +60,4 @@ class AppComponent {
     AppComponent
   ]
 })
-export default class AppModule {}
+export default class AppModule { }

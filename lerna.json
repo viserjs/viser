@@ -14,7 +14,7 @@
     },
     "cacheDir": ".changelog"
   },
-  "commands": {
+  "command": {
     "publish": {
       "message": "chore(release): publish %s"
     }
