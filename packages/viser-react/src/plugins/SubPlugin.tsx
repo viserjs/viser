@@ -26,7 +26,7 @@ class SubPlugin<T = {}> extends React.Component<Props & T, any> {
   constructor(props: Props & T) {
     super(props);
     this.state = {
-      container: props.container || 'viser-slider-' + generateRandomNum(),
+      container: props.container,
     };
   }
 
