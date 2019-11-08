@@ -4,10 +4,6 @@ import * as React from 'react';
 
 import { ISlider } from 'viser';
 
-function generateRandomNum() {
-  return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
-}
-
 class Props {
   container?: string;
 }
