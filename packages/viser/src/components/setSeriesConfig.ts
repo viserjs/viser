@@ -242,7 +242,7 @@ function setSeriesAnimate(chart: any, currSeries: ISeries) {
   return chart;
 }
 
-export const process = (chart: any, config: IMainConfig) => {
+export const process = (chart: any, config: IMainConfig, isUpdate: boolean = false) => {
   const cSeries = _.cloneDeep(config.series);
   const isArr = _.isArray(cSeries);
 
@@ -253,11 +253,11 @@ export const process = (chart: any, config: IMainConfig) => {
 
   // add `zIndex` to comfirm overlay index
   arrSeries = _.sortBy(arrSeries, 'zIndex');
-
   let chartInstance;
   arrSeries.forEach((currSeries: any) => {
-    EventUtils.setEvent(chart, currSeries.gemo, currSeries);
-
+    if (!isUpdate) {
+      EventUtils.setEvent(chart, currSeries.gemo, currSeries);
+    }
     for (const item in currSeries) {
       if (currSeries.hasOwnProperty(item)) {
         EventUtils.setSEvent(chart, 'label', name, currSeries[item]);

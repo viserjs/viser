@@ -36,7 +36,6 @@ export function setEvent(chart: any, name: string, item: any) {
 
   const events = Object.keys(item).filter((entry) => /^on/.test(entry));
   if (_.isEmpty(events)) { return; }
-
   events.forEach((entry: any) => {
     const eventName = entry.slice(2, entry.length);
     const eventLowerCase = eventName.toLowerCase();

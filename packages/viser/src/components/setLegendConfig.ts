@@ -11,7 +11,7 @@ function setHighlight(item: any) {
   return item;
 }
 
-export const process = (chart: any, config: any) => {
+export const process = (chart: any, config: any, isUpdate: boolean = false) => {
   const cLegend = _.cloneDeep(config.legend);
   const isArr = Array.isArray(cLegend);
 
@@ -41,7 +41,9 @@ export const process = (chart: any, config: any) => {
           };
         }
 
-        EventUtils.setSEvent(chart, 'legend', item, res[item]);
+        if (!isUpdate) {
+          EventUtils.setSEvent(chart, 'legend', item, res[item]);
+        }
       }
     }
 

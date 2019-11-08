@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import * as EventUtils from '../utils/EventUtils';
 
-export const process = (chart: any, config: any) => {
+export const process = (chart: any, config: any, isUpdate: boolean = false) => {
   let cTooltip = _.cloneDeep(config.tooltip);
 
   if (_.isNil(cTooltip) || cTooltip === false || cTooltip.show === false) {
@@ -36,8 +36,9 @@ export const process = (chart: any, config: any) => {
       }
     }
   }
-
-  EventUtils.setEvent(chart, 'tooltip', cTooltip);
+  if (!isUpdate) {
+    EventUtils.setEvent(chart, 'tooltip', cTooltip);
+  }
 
   return chart.tooltip(cTooltip);
 };

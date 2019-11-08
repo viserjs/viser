@@ -133,54 +133,54 @@ class CommonChart {
     return setCoordConfig.process(chart, config);
   }
 
-  private setSeries(chart: any, config: IMainConfig) {
-    return setSeriesConfig.process(chart, config);
+  private setSeries(chart: any, config: IMainConfig, isUpdate: boolean = false) {
+    return setSeriesConfig.process(chart, config, isUpdate);
   }
 
-  private setAxis(chart: any, config: IMainConfig) {
-    return setAxisConfig.process(chart, config);
+  private setAxis(chart: any, config: IMainConfig, isUpdate: boolean = false) {
+    return setAxisConfig.process(chart, config, isUpdate);
   }
 
-  private setTooltip(chart: any, config: IMainConfig) {
-    return setTooltipConfig.process(chart, config);
+  private setTooltip(chart: any, config: IMainConfig, isUpdate: boolean = false) {
+    return setTooltipConfig.process(chart, config, isUpdate);
   }
 
   private setDefaultTooltip(chart: any, config: IMainConfig) {
     return setTooltipConfig.setDefaultPoint(chart, config);
   }
 
-  private setGuide(chart: any, config: IMainConfig) {
-    return setGuideConfig.process(chart, config);
+  private setGuide(chart: any, config: IMainConfig, isUpdate: boolean = false) {
+    return setGuideConfig.process(chart, config, isUpdate);
   }
 
-  private setLegend(chart: any, config: IMainConfig) {
-    return setLegendConfig.process(chart, config);
+  private setLegend(chart: any, config: IMainConfig, isUpdate: boolean = false) {
+    return setLegendConfig.process(chart, config, isUpdate);
   }
 
-  private setContent(chart: any, config: IMainConfig) {
+  private setContent(chart: any, config: IMainConfig, isUpdate: boolean = false) {
     this.setScale(chart, config);
     this.setFilter(chart, config);
-    this.setSeries(chart, config);
-    this.setGuide(chart, config);
+    this.setSeries(chart, config, isUpdate);
+    this.setGuide(chart, config, isUpdate);
   }
 
-  private setView(item: any, chart: any, config: IMainConfig) {
+  private setView(item: any, chart: any, config: IMainConfig, isUpdate: boolean = false) {
     const view = this.createView(chart, item);
     const viewData = item.data ? item.data : config.data;
 
     this.setDataSource(view, viewData);
 
     if (!_.isNil(item.coord)) { this.setCoord(view, item); }
-    if (!_.isNil(item.tooltip)) { this.setTooltip(view, item); }
-    if (!_.isNil(item.axis)) { this.setAxis(view, item); }
-    if (!_.isNil(item.guide)) { this.setGuide(view, item); }
+    if (!_.isNil(item.tooltip)) { this.setTooltip(view, item, isUpdate); }
+    if (!_.isNil(item.axis)) { this.setAxis(view, item, isUpdate); }
+    if (!_.isNil(item.guide)) { this.setGuide(view, item, isUpdate); }
 
-    this.setContent(view, item);
+    this.setContent(view, item, isUpdate);
 
     return view;
   }
 
-  private setViews(chart: any, config: IMainConfig) {
+  private setViews(chart: any, config: IMainConfig, isUpdate: boolean = false) {
     const cViews = _.cloneDeep(config.views);
     const isArr = Array.isArray(cViews);
 
@@ -189,22 +189,22 @@ class CommonChart {
     const arrViews: any = isArr ? cViews : [cViews];
 
     for (const item of arrViews) {
-      this.setView(item, chart, config);
+      this.setView(item, chart, config, isUpdate);
     }
   }
 
-  private setFacetViews(chart: any, facet: any, views: IMainConfig) {
+  private setFacetViews(chart: any, facet: any, views: IMainConfig, isUpdate: boolean = false) {
     this.setDataSource(chart, views.data);
 
     if (!_.isNil(views.coord)) { this.setCoord(chart, views); }
-    if (!_.isNil(views.tooltip)) { this.setTooltip(chart, views); }
-    if (!_.isNil(views.axis)) { this.setAxis(chart, views); }
-    if (!_.isNil(views.guide)) { this.setGuide(chart, views); }
+    if (!_.isNil(views.tooltip)) { this.setTooltip(chart, views, isUpdate); }
+    if (!_.isNil(views.axis)) { this.setAxis(chart, views, isUpdate); }
+    if (!_.isNil(views.guide)) { this.setGuide(chart, views, isUpdate); }
 
     this.setContent(chart, views);
   }
 
-  private setFacet(chart: any, config: IMainConfig) {
+  private setFacet(chart: any, config: IMainConfig, isUpdate: boolean = false) {
     const cFacet = _.cloneDeep(config.facet);
 
     if (_.isNil(cFacet) || _.isEmpty(cFacet)) { return; }
@@ -217,12 +217,12 @@ class CommonChart {
 
     if (_.isFunction(cFacet.views)) {
       options.eachView = (v: any, f: any) => {
-        this.setFacetViews(v, f, cFacet.views(v, f));
+        this.setFacetViews(v, f, cFacet.views(v, f), isUpdate);
       };
     } else {
       cFacet.views = Array.isArray(cFacet.views) ? cFacet.views : [cFacet.views];
       options.eachView = (v: any, f: any) => {
-        this.setFacetViews(v, f, cFacet.views[0]);
+        this.setFacetViews(v, f, cFacet.views[0], isUpdate);
       };
     }
 
@@ -269,17 +269,16 @@ class CommonChart {
   private renderDiffConfig(config: IMainConfig) {
     const chart = this.chartInstance;
     // this.setEvents(chart, config);
-
     this.clear(chart);
     this.setScale(chart, config);
     this.setCoord(chart, config);
-    this.setAxis(chart, config);
-    this.setSeries(chart, config);
-    this.setTooltip(chart, config);
-    this.setGuide(chart, config);
-    this.setViews(chart, config);
-    this.setLegend(chart, config);
-    this.setFacet(chart, config);
+    this.setAxis(chart, config, true);
+    this.setSeries(chart, config, true);
+    this.setTooltip(chart, config, true);
+    this.setGuide(chart, config, true);
+    this.setViews(chart, config, true);
+    this.setLegend(chart, config, true);
+    this.setFacet(chart, config, true);
 
     this.repaintWidthHeight(chart, config);
 
