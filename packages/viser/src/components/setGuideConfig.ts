@@ -50,7 +50,7 @@ function setGuideArc(chart: any, item: any) {
   }
 }
 
-export const process = (chart: any, config: any) => {
+export const process = (chart: any, config: any, isUpdate: boolean = false) => {
   const cGuide = _.cloneDeep(config.guide);
   const isArr = Array.isArray(cGuide);
 
@@ -59,7 +59,9 @@ export const process = (chart: any, config: any) => {
   const arrGuide = isArr ? cGuide : [cGuide];
 
   arrGuide.forEach((res: any) => {
-    EventUtils.setEvent(chart, `guide-${res.type}`, res);
+    if (!isUpdate) {
+      EventUtils.setEvent(chart, `guide-${res.type}`, res);
+    }
 
     if (res.type === 'line') {
       setGuideLine(chart, res);

@@ -3,7 +3,7 @@ interface ISliderConfig {
   xAxis: string;
   yAxis: string;
   data: any[];
-  container?: any;
+  container: string;
   width?: number | string;
   height?: number | string;
   padding?: number | number[];

@@ -4,10 +4,6 @@ import * as React from 'react';
 
 import { ISlider } from 'viser';
 
-function generateRandomNum() {
-  return (Math.floor(new Date().getTime() + Math.random() * 10000)).toString();
-}
-
 class Props {
   container?: string;
 }
@@ -26,7 +22,7 @@ class SubPlugin<T = {}> extends React.Component<Props & T, any> {
   constructor(props: Props & T) {
     super(props);
     this.state = {
-      container: props.container || 'viser-slider-' + generateRandomNum(),
+      container: props.container,
     };
   }
 

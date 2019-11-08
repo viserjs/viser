@@ -210,6 +210,7 @@ const baseChartComponent = {
           this.$parent
         );
         const sliderOpts = cleanUndefined(normalizeProps(this._props));
+        // reserve this logical to avoid not set container attribute
         if (!cleanUndefined(normalizeProps(this._props)).container) {
           sliderOpts.container = 'viser-slider-' + generateRandomNum();
         }

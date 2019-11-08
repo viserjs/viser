@@ -38,7 +38,7 @@ function setRotatePolarAxis(chart: any, axisItem: any, coord: any, data: any) {
   });
 }
 
-export const process = (chart: any, config: any) => {
+export const process = (chart: any, config: any, isUpdate: boolean = false) => {
   const cAxis = _.cloneDeep(config.axis);
   const isArr = _.isArray(cAxis);
 
@@ -61,10 +61,12 @@ export const process = (chart: any, config: any) => {
       res.label = setCustomFormatter.supportD3Formatter(res.label);
     }
 
-    for (const item in res) {
-      if (res.hasOwnProperty(item)) {
-        const name = item === 'tickLine' ? 'ticks' : item;
-        EventUtils.setSEvent(chart, 'axis', name, res[item]);
+    if (!isUpdate) {
+      for (const item in res) {
+        if (res.hasOwnProperty(item)) {
+          const name = item === 'tickLine' ? 'ticks' : item;
+          EventUtils.setSEvent(chart, 'axis', name, res[item]);
+        }
       }
     }
 
