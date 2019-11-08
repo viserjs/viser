@@ -60,6 +60,7 @@ export class PluginComponent implements AfterViewInit, OnChanges {
     if (name === 'PluginComponent') {
       this.renderPlugin(true);
     } else if (name === 'Slider') {
+      // reserve this logical to avoid not set container attribute
       props.container = this.context.container;
       this.combineContentConfig(name, props, this.config);
     }
