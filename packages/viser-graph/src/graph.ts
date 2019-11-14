@@ -1,4 +1,5 @@
 import * as G6 from '@antv/g6';
+// tslint:disable-next-line: no-submodule-imports
 import '@antv/g6/build/plugins';
 import { IConfig } from './typed';
 

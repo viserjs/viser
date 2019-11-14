@@ -114,7 +114,7 @@ export class Chart implements AfterViewInit, OnChanges {
   @Input() public onPlotLeave?: eventFunc;
   @Input() public onPlotClick?: eventFunc;
   @Input() public onPlotDblClick?: eventFunc;
-  @ViewChild('chartDom') public chartDiv?: any;
+  @ViewChild('chartDom', { static: true }) public chartDiv!: ElementRef<HTMLDivElement>;
   private viewId: string = generateRandomNum();
   private componentId = generateRandomNum();
   private elem: any;

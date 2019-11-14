@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, Input,
   OnChanges, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
 import { ViserGraph } from 'viser-graph';
 import { GraphContext } from './GraphService';
-import {generateRandomNum, retain} from './utils';
+import { generateRandomNum, retain } from './utils';
 
 @Component({
   providers: [GraphContext],
@@ -37,7 +37,7 @@ export class Graph implements AfterViewInit, OnChanges {
   @Input() public onDrag?: any;
   @Input() public onDragend?: any;
 
-  @ViewChild('GraphDom') public graphDiv?: any;
+  @ViewChild('GraphDom', { static: true }) public graphDiv!: ElementRef<HTMLDivElement>;
   private componentId = generateRandomNum();
   private elem: any;
 

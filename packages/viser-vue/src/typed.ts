@@ -16,8 +16,8 @@ const props: any = [
   'dataKey', 'show', 'position', 'title', 'titleGap', 'custom', 'offset', 'offsetX', 'offsetY', 'items', 'itemGap', 'itemsGroup', 'itemMarginBottom', 'itemWidth', 'unCheckColor', 'background',
   'allowAllCanceled', 'itemFormatter', 'marker', 'textStyle', 'clickable', 'hoverable', 'selectedMode', 'onHover', 'onClick', 'reversed', 'layout', 'backPadding', 'useHtml',
   'autoWrap', 'autoPosition', 'container', 'containerTpl', 'itemTpl',
-  'legendMarker', 'legendListItem', 'legendTitle', 'legendList',
-  'slidable', 'attachLast', 'flipPage', 'name', 'reactive', 'sizeType', 'isSegment',
+  'legendMarker', 'legendListItem', 'legendTitle', 'legendList', 'legendStyle',
+  'slidable', 'attachLast', 'flipPage', 'name', 'reactive', 'sizeType', 'isSegment', 'defaultClickHandlerEnabled',
   // main
   'data', 'viewId', 'scale', 'forceFit',
   // series
@@ -37,7 +37,7 @@ const props: any = [
   // view
   'start', 'end',
   // event
-  'onMouseDown', 'onMouseMove', 'onMouseLeave', 'onMouseUp', 'onClick', 'onDblClick', 'onTouchStart', 'onTouchMove', 'onTouchEnd', 'onPlotEnter', 'onPlotMove', 'onPlotLeave', 'onPlotClick', 'onPlotDblClick',
+  'onMouseEnter', 'onMouseDown', 'onMouseMove', 'onMouseLeave', 'onMouseUp', 'onClick', 'onDblClick', 'onTouchStart', 'onTouchMove', 'onTouchEnd', 'onPlotEnter', 'onPlotMove', 'onPlotLeave', 'onPlotClick', 'onPlotDblClick',
   'onTitleMouseDown', 'onTitleMouseMove', 'onTitleMouseLeave', 'onTitleMouseUp', 'onTitleClick', 'onTitleDblClick', 'onTitleTouchStart', 'onTitleTouchMove', 'onTitleTouchEnd',
   'onItemMouseDown', 'onItemMouseMove', 'onItemMouseLeave', 'onItemMouseUp', 'onItemClick', 'onItemDblClick', 'onItemTouchStart', 'onItemTouchMove', 'onItemTouchEnd',
   'onMarkerMouseDown', 'onMarkerMouseMove', 'onMarkerMouseLeave', 'onMarkerMouseUp', 'onMarkerClick', 'onMarkerDblClick', 'onMarkerTouchStart', 'onMarkerTouchMove', 'onMarkerTouchEnd',
@@ -45,7 +45,7 @@ const props: any = [
   'onLabelMouseDown', 'onLabelMouseMove', 'onLabelMouseLeave', 'onLabelMouseUp', 'onLabelClick', 'onLabelDblClick', 'onLabelTouchStart', 'onLabelTouchMove', 'onLabelTouchEnd',
   'onTicksMouseDown', 'onTicksMouseMove', 'onTicksMouseLeave', 'onTicksMouseUp', 'onTicksClick', 'onTicksDblClick', 'onTicksTouchStart', 'onTicksTouchMove', 'onTicksTouchEnd',
   'onLineMouseDown', 'onLineMouseMove', 'onLineMouseLeave', 'onLineMouseUp', 'onLineClick', 'onLineDblClick', 'onLineTouchStart', 'onLineTouchMove', 'onLineTouchEnd',
-  'onGridMouseDown', 'onGridMouseMove', 'onGridMouseLeave', 'onGridMouseUp', 'onGridClick', 'onGridDblClick', 'onGridTouchStart', 'onGridTouchMove', 'onGridTouchEnd',
+  'onGridMouseDown', 'onGridMouseMove', 'onGridMouseLeave', 'onGridMouseUp', 'onGridClick', 'onGridDblClick', 'onGridTouchStart', 'onGridTouchMove', 'onGridTouchEnd', 'onGuideRegionClick'
 ];
 
 function unique(array: any) {

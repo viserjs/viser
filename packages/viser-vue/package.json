@@ -1,6 +1,6 @@
 {
   "name": "viser-vue",
-  "version": "2.4.5",
+  "version": "2.4.7",
   "description": "viser-vue is vue of viser.",
   "repository": "viserjs/viser-vue",
   "license": "MIT",
@@ -51,9 +51,9 @@
     "rimraf": "^2.6.2",
     "ts-loader": "^3.1.1",
     "tslint": "^5.5.0",
-    "typescript": "^3.1.0",
+    "typescript": "~3.2.0",
     "webpack": "^4.20.0",
-    "webpack-bundle-analyzer": "^2.11.0",
+    "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.1.0"
   },
   "keywords": [

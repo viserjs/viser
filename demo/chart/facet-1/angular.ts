@@ -1,9 +1,7 @@
-import 'zone.js';
-import 'reflect-metadata';
-import { Component, enableProdMode, NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ViserModule } from '../../../packages/viser-ng/src/index';
-import { sourcedata } from './data'
+import { sourcedata } from './data';
 const DataSet = require('@antv/data-set');
 const { DataView } = DataSet;
 
@@ -20,10 +18,10 @@ const views = (view, facet) => {
   const dv = new DataView();
   dv.source(data).transform({
     type: 'aggregate',
-    fields: [ 'price' ],
-    operations: [ 'mean' ],
-    as: [ 'mean' ],
-    groupBy: [ 'cut' ]
+    fields: ['price'],
+    operations: ['mean'],
+    as: ['mean'],
+    groupBy: ['cut']
   });
 
   return {
@@ -72,4 +70,4 @@ class AppComponent {
   bootstrap: [AppComponent]
 })
 
-export default class AppModule {}
+export default class AppModule { }

@@ -60,6 +60,7 @@ class Legend extends Chart {
   @Input() public legendListItem?: any;
   @Input() public legendTitle?: any;
   @Input() public legendList?: any;
+  @Input() public legendStyle?: any;
   @Input() public attachLast?: boolean;
   @Input() public flipPage?: boolean;
   @Input() public name?: boolean;
