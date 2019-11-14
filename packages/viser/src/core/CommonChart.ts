@@ -272,6 +272,7 @@ class CommonChart {
     this.clear(chart);
     this.setScale(chart, config);
     this.setCoord(chart, config);
+    this.setFilter(chart, config);
     this.setAxis(chart, config, true);
     this.setSeries(chart, config, true);
     this.setTooltip(chart, config, true);
