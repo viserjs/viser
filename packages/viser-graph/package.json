@@ -23,8 +23,10 @@
     "analyse": "cross-env NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "dependencies": {
-    "@antv/g6": "^2.0.0",
-    "@types/node": "*"
+    "@antv/g6": "^3.0.0",
+    "@types/node": "*",
+    "csstype": "^2.6.7",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",

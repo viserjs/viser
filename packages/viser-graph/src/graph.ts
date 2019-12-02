@@ -1,6 +1,5 @@
 import * as G6 from '@antv/g6';
-// tslint:disable-next-line: no-submodule-imports
-import '@antv/g6/build/plugins';
+import * as _ from 'lodash';
 import { IConfig } from './typed';
 
 export class ViserGraph {
@@ -67,7 +66,7 @@ export class ViserGraph {
       return ;
     }
 
-    this.graph.read(this.config.data);
+    this.graph.data(this.config.data);
   }
 
   public setNode() {
@@ -75,7 +74,9 @@ export class ViserGraph {
       return;
     }
     delete this.config.node.componentId;
-    this.graph.node(this.config.node);
+    if (_.get(this.config.node.formatter)) {
+      this.graph.node(this.config.node.formatter);
+    }
   }
 
   public setEdge() {
@@ -83,7 +84,9 @@ export class ViserGraph {
       return;
     }
     delete this.config.edge.componentId;
-    this.graph.edge(this.config.edge);
+    if (_.get(this.config.edge.formatter)) {
+      this.graph.node(this.config.edge.formatter);
+    }
   }
 
   public setZoom() {
@@ -102,11 +105,3 @@ export class ViserGraph {
     });
   }
 }
-
-export const registerNode = G6.registerNode;
-export const registerEdge = G6.registerEdge;
-export const registerGuide = G6.registerGuide;
-export const Layouts = G6.Layouts;
-export const Util = G6.Util;
-export const Plugins = G6.Plugins;
-export const GlobalG6 = G6;

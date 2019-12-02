@@ -1,6 +1,8 @@
+import { INodeConfig } from './common';
+import IEvent from './IEvent';
 export default interface INode {
-  shape?: string;
-  size?: number;
-  label?: (obj: any) => {};
-  style?: any;
+  /** 生成node config */
+  formatter?: (node: any) => INodeConfig;
+
+  events?: IEvent;
 }

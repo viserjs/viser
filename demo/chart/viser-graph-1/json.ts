@@ -1,5 +1,5 @@
-import { Graph, Node, Edge, registerEdge, registerNode, GlobalG6 as G6 } from '../../../packages/viser-graph-react/src';
-import * as React from 'react';
+import { ViserGraph, registerNode, registerEdge, GlobalG6 as G6 } from '../../../packages/viser-graph/src/index';
+
 const data = {
   nodes: [
       {id: '7', x: 200, y: 200, size: 40, shape: 'circleNode',anchorPoints: [[1, 0.5], [1, 0]]},
@@ -94,33 +94,9 @@ registerEdge('line-arrow-self', {
 }, 'line');
 
 
-const graph = {
+new ViserGraph({
   data,
-  width: 500,
-  height: 500,
-  modes: {
-    // 支持的 behavior
-    default: [ 'drag-node'],
-  }
-};
-
-const node = {};
-
-const edge = {};
-
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <Graph {...graph}>
-          <Node {...node} />
-          <Edge {...edge} />
-        </Graph>
-      </div>
-    );
-  }
-}
+  graph: {
+    container: 'mount',
+  },
+}).render();
