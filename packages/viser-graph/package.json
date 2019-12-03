@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@antv/g6": "^3.0.0",
+    "@types/lodash": "^4.14.149",
     "@types/node": "*",
     "csstype": "^2.6.7",
     "lodash": "^4.17.15"

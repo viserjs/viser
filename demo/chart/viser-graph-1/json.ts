@@ -1,16 +1,6 @@
 import { ViserGraph, registerNode, registerEdge, GlobalG6 as G6 } from '../../../packages/viser-graph/src/index';
 
-const data = {
-  nodes: [
-      {id: '7', x: 200, y: 200, size: 40, shape: 'circleNode',anchorPoints: [[1, 0.5], [1, 0]]},
-      {id: '8', x: 400, y: 400, size: 40, shape: 'circleNode',anchorPoints: [[0, 0.5], [0, 1]]},
-  ],
-  edges: [
-      {source: '7', target: '8', shape: 'line-arrow-self',sourceAnchor: 0,targetAnchor: 0,}
-  ]
-};
-
-registerNode('circleNode', {
+G6.registerNode('circleNode', {
   drawShape(cfg, group) {
     const keyShape = group.addShape('circle', {
       attrs: {
@@ -25,78 +15,65 @@ registerNode('circleNode', {
   }
 }, 'circle');
 
-registerEdge('line-arrow', {
-  draw(cfg, group) {
-    const { startPoint, endPoint } = cfg
-    const keyShape = group.addShape('path', {
-      attrs: {
-          path: [
-              ['M', startPoint.x, startPoint.y],
-              ['L', endPoint.x / 3 + 2 / 3 * startPoint.x , startPoint.y],
-              ['L', endPoint.x / 3 + 2 / 3 * startPoint.x , endPoint.y],
-              ['L', endPoint.x, endPoint.y]
-          ],
-          stroke: '#BBB',
-          lineWidth: 1,
-          startArrow: {
-              path: 'M 6,0 L -6,-6 L -3,0 L -6,6 Z',
-              d: 6
-          },
-          endArrow: {
-              path: 'M 6,0 L -6,-6 L -3,0 L -6,6 Z',
-              d: 6
-          },
-          className: 'edge-shape'
-      }
-    });
-    return keyShape
-  }
-});
-
-registerEdge('line-arrow-self', {
-  getPath(points) {
-    const startPoint = points[0]
-    const endPoint = points[1]
-    return [
-        ['M', startPoint.x, startPoint.y],
-        ['L', endPoint.x / 3 + 2 / 3 * startPoint.x , startPoint.y],
-        ['L', endPoint.x / 3 + 2 / 3 * startPoint.x , endPoint.y],
-        ['L', endPoint.x, endPoint.y]
-    ]
-  },
-  getShapeStyle(cfg) {
-    const startPoint = cfg.startPoint;
-    const endPoint = cfg.endPoint;
-    const controlPoints = this.getControlPoints(cfg);
-    let points = [ startPoint ]; // 添加起始点
-    // 添加控制点
-    if (controlPoints) {
-      points = points.concat(controlPoints);
+G6.registerEdge('loop-growth', {
+    afterDraw(cfg, group) {
+        const shape = group.get('children')[0];
+        const length = shape.getTotalLength();
+        shape.animate({
+        onFrame(ratio) {
+            const startLen = ratio * length;
+            // 计算线的lineDash
+            const cfg = {
+            lineDash: [startLen, length - startLen]
+            };
+            return cfg;
+        },
+        repeat: true
+        }, 2000);
     }
-    // 添加结束点
-    points.push(endPoint);
-    const path = this.getPath(points);
-    const style = G6.Util.mix({}, G6.Global.defaultEdge.style, {
-      stroke: '#BBB',
-      lineWidth: 1,
-      path,
-      startArrow: {
-          path: 'M 6,0 L -6,-6 L -3,0 L -6,6 Z',
-          d: 6
+}, 'loop');
+
+const data = {
+  nodes: [{
+      x: 300,
+      y: 300,
+      shape: 'circleNode',
+      label: 'rect',
+      id:'node1',
+      labelCfg: {
+          position: 'bottom'
       },
-      endArrow: {
-          path: 'M 6,0 L -6,-6 L -3,0 L -6,6 Z',
-          d: 6
-      },
-    }, cfg.style);
-    return style;
-  },
-}, 'line');
+      anchorPoints: [
+          [0.5, 0, {type: 'circle', style: {stroke: 'red', fill: 'red'}}], 
+          [1, 0.5, {type: 'circle', style: {stroke: 'blue', fill: 'red'}}]
+      ]
+  }
+  ],
+  edges: [
+      {
+          source: 'node1',
+          target: 'node1',
+          label: 'loop',
+          shape:'loop-growth',
+          labelCfg: {
+              refY: 10
+          }
+      }
+  ]
+};
 
 
 new ViserGraph({
   data,
   graph: {
     container: 'mount',
+    width: 1000,
+    height: 600,
+    defaultEdge: {
+     color: '#bae7ff'
+   },
+    modes: {
+        default: ['drag-node']
+      }
   },
 }).render();

@@ -1,5 +1,14 @@
-import { Layouts, registerEdge, registerGuide, registerNode, Util, ViserGraph } from 'viser-graph';
 import Vue, { ComponentOptions } from 'vue';
+import {
+  GlobalG6,
+  registerBehavior,
+  registerEdge,
+  registerLayout,
+  registerNode,
+
+  Util,
+  version,
+  ViserGraph } from '../../viser-graph/src/index';
 import {cleanUndefined, isAllUndefined, normalizeProps, oneObjectMoreArray} from './utils';
 
 import { eventProps, graphProps, props } from './typed';
@@ -109,9 +118,12 @@ export default {
 };
 
 export {
-  registerNode,
+  GlobalG6,
+  registerBehavior,
   registerEdge,
-  registerGuide,
-  Layouts,
+  registerLayout,
+  registerNode,
+
   Util,
+  version,
 };

@@ -6,6 +6,7 @@ export class ViserGraph {
   public config: any;
   public graph: any;
   constructor(config: IConfig) {
+    console.log('config', config);
     this.config = config;
   }
 
@@ -19,11 +20,11 @@ export class ViserGraph {
     this.setGraph();
     this.setNode();
     this.setEdge();
-    this.setEvent();
-
     this.setData();
-
     this.setZoom();
+    this.graph.render();
+
+    this.setEvent();
   }
 
   public setGraph() {
@@ -31,7 +32,7 @@ export class ViserGraph {
       console.error('please set container');
       return;
     }
-    let graphConfig = {};
+    let graphConfig: any = {};
     if (this.config.graph) {
       graphConfig = {
         ...graphConfig,
@@ -49,7 +50,7 @@ export class ViserGraph {
 
     switch (this.config.graph.type) {
       case 'tree':
-        this.graph = new G6.Tree(graphConfig);
+        this.graph = new G6.TreeGraph(graphConfig);
         break;
       case 'graph':
         this.graph = new G6.Graph(graphConfig);
@@ -65,7 +66,7 @@ export class ViserGraph {
       console.error('please set data');
       return ;
     }
-
+    console.log('setData', this.config.data);
     this.graph.data(this.config.data);
   }
 
@@ -74,7 +75,8 @@ export class ViserGraph {
       return;
     }
     delete this.config.node.componentId;
-    if (_.get(this.config.node.formatter)) {
+    if (_.get(this.config, 'node.formatter')) {
+      console.log('nodeformatter', this.config.node.formatter);
       this.graph.node(this.config.node.formatter);
     }
   }
@@ -84,8 +86,9 @@ export class ViserGraph {
       return;
     }
     delete this.config.edge.componentId;
-    if (_.get(this.config.edge.formatter)) {
-      this.graph.node(this.config.edge.formatter);
+    if (_.get(this.config, 'edge.formatter')) {
+      console.log('edgeformatter', this.config.edge.formatter);
+      this.graph.edge(this.config.edge.formatter);
     }
   }
 
@@ -97,10 +100,15 @@ export class ViserGraph {
   }
 
   public setEvent() {
-    Object.keys(this.config.events || []).forEach((k) => {
+    this.bindEvent(_.get(this.config, 'node.events', {}), 'node');
+    this.bindEvent(_.get(this.config, 'edge.events', {}), 'edge');
+  }
+
+  protected bindEvent(events: any, type: string) {
+    Object.keys(events || []).forEach((k) => {
       const eventName = k.replace('on', '').toLocaleLowerCase();
-      this.graph.on(eventName, (ev: any) => {
-        this.config.events[k](ev, this.graph);
+      this.graph.on(`${type}:${eventName}`, (ev: any) => {
+        events[k](ev, this.graph);
       });
     });
   }

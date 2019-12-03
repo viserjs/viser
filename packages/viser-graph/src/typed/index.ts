@@ -1,5 +1,4 @@
 import IEdge from './IEdge';
-import IEvent from './IEvent';
 import IGraph from './IGraph';
 import INode from './INode';
 import ITooltip from './ITooltip';
@@ -17,13 +16,17 @@ interface IEdgeData {
   [key: string]: any;
 }
 
-interface IData {
+interface IGraphData {
   nodes: INodeData[];
   edges?: IEdgeData[];
 }
 
+interface ITreeData {
+  [key: string]: any;
+}
+
 interface IConfig {
-  data: IData;
+  data: IGraphData | ITreeData;
   graph: IGraph;
   node?: INode;
   edge?: IEdge;

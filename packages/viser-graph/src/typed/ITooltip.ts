@@ -1,7 +1,7 @@
 
 import { IOffset } from './common';
 
-export interface ITooltip {
+export default interface ITooltip {
   show?: boolean;
   offset?: IOffset;
 }

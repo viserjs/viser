@@ -6,11 +6,17 @@ interface IItemStateStyles {
   [key: string]: CSS.Properties;
 }
 
+interface IItemStyle extends CSS.Properties {
+  endArrow?: boolean;
+  lineWidth?: number;
+  stroke?: string;
+}
+
 interface IDefaultItem {
   shape?: string;
   size?: number[];
   color?: string;
-  style?: CSS.Properties;
+  style?: IItemStyle;
   labelCfg?: any;
   linkPoints?: any;
   icon?: any;
@@ -35,11 +41,12 @@ interface ILayout {
   nodeSep?: number;
   rankSep?: number;
   radial?: boolean;
+  defalutPosition?: string[];
   getHeight?: () => number;
   getWidth?: () => number;
   getVGap?: () => number;
   getHGap?: () => number;
-  getId?: () => number;
+  getId?: (d: any) => string | number;
 }
 
 export default interface IGraph {
@@ -61,6 +68,9 @@ export default interface IGraph {
   groupType?: string;
   groupStyle?: CSS.Properties;
   layout?: ILayout;
+  // 使边连入节点的中心
+  linkCenter?: boolean;
+  renderer?: 'svg' | 'canvas';
 
   fixedRoot?: boolean;
   pixelRatio?: number;
