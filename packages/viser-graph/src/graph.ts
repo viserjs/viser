@@ -1,6 +1,6 @@
 import * as G6 from '@antv/g6';
 import * as _ from 'lodash';
-import { IConfig } from './typed';
+import { IConfig, IGraph } from './typed';
 
 export class ViserGraph {
   public config: any;
@@ -32,13 +32,10 @@ export class ViserGraph {
       console.error('please set container');
       return;
     }
-    let graphConfig: any = {};
-    if (this.config.graph) {
-      graphConfig = {
-        ...graphConfig,
-        ...this.config.graph,
-      };
-    }
+    let graphConfig: IGraph = {
+      container: this.config.graph.container,
+      ...this.config.graph,
+    };
 
     if (this.config.zoom) {
       graphConfig = {
@@ -50,13 +47,13 @@ export class ViserGraph {
 
     switch (this.config.graph.type) {
       case 'tree':
-        this.graph = new G6.TreeGraph(graphConfig);
+        this.graph = new G6.TreeGraph(graphConfig as G6.TreeGraphOptions);
         break;
       case 'graph':
-        this.graph = new G6.Graph(graphConfig);
+        this.graph = new G6.Graph(graphConfig as G6.GraphOptions);
         break;
       default:
-        this.graph = new G6.Graph(graphConfig);
+        this.graph = new G6.Graph(graphConfig as G6.TreeGraphOptions);
     }
 
   }
@@ -66,7 +63,6 @@ export class ViserGraph {
       console.error('please set data');
       return ;
     }
-    console.log('setData', this.config.data);
     this.graph.data(this.config.data);
   }
 
@@ -76,7 +72,6 @@ export class ViserGraph {
     }
     delete this.config.node.componentId;
     if (_.get(this.config, 'node.formatter')) {
-      console.log('nodeformatter', this.config.node.formatter);
       this.graph.node(this.config.node.formatter);
     }
   }
@@ -87,7 +82,6 @@ export class ViserGraph {
     }
     delete this.config.edge.componentId;
     if (_.get(this.config, 'edge.formatter')) {
-      console.log('edgeformatter', this.config.edge.formatter);
       this.graph.edge(this.config.edge.formatter);
     }
   }
@@ -100,6 +94,7 @@ export class ViserGraph {
   }
 
   public setEvent() {
+    this.bindEvent(_.get(this.config, 'graph.events', {}), '');
     this.bindEvent(_.get(this.config, 'node.events', {}), 'node');
     this.bindEvent(_.get(this.config, 'edge.events', {}), 'edge');
   }
@@ -107,7 +102,7 @@ export class ViserGraph {
   protected bindEvent(events: any, type: string) {
     Object.keys(events || []).forEach((k) => {
       const eventName = k.replace('on', '').toLocaleLowerCase();
-      this.graph.on(`${type}:${eventName}`, (ev: any) => {
+      this.graph.on(type === '' ? eventName : `${type}:${eventName}`, (ev: any) => {
         events[k](ev, this.graph);
       });
     });
