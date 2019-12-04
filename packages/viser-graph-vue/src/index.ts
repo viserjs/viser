@@ -6,9 +6,7 @@ import {
   registerLayout,
   registerNode,
 
-  Util,
-  version,
-  ViserGraph } from '../../viser-graph/src/index';
+  utils, ViserGraph } from '../../viser-graph/src/index';
 import {cleanUndefined, isAllUndefined, normalizeProps, oneObjectMoreArray} from './utils';
 
 import { eventProps, graphProps, props } from './typed';
@@ -123,7 +121,5 @@ export {
   registerEdge,
   registerLayout,
   registerNode,
-
-  Util,
-  version,
+  utils,
 };
