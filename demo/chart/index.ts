@@ -19,4 +19,8 @@ export default [
     type: 'slider',
     case: ['json', 'react', 'vue', 'angular'],
   },
+  {
+    type: 'general-graph',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
 ];
