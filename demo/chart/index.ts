@@ -19,4 +19,14 @@ export default [
     type: 'slider',
     case: ['json', 'react', 'vue', 'angular'],
   },
+  // tree graph
+  {
+    type: 'CompactBox',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  // tree graph
+  {
+    type: 'Dendrogram',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
 ];
