@@ -46,6 +46,7 @@ export default class Graph extends React.Component<any, any> {
 
   constructor(props: IGraph) {
     super(props);
+    console.log('react props', props);
     this.config.data = props.data;
   }
 
@@ -59,6 +60,7 @@ export default class Graph extends React.Component<any, any> {
     const chartRetain = [
       'height', 'width', 'animate',
       'fitView', 'fitViewPadding', 'type', 'layout', 'plugins',
+      'modes',
     ];
     this.config.graph = retain(props, chartRetain);
 
