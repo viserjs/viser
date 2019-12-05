@@ -37,6 +37,7 @@ interface ILayout {
   getVGap?: () => number;
   getHGap?: () => number;
   getId?: (d: any) => string | number;
+  getSide?: () => string;
 }
 /** 仅定义更限制的类型，未定义的遵循 G6 的定义 */
 export default interface IGraph extends G6.TreeGraphOptions, G6.GraphOptions {
