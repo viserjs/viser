@@ -69,4 +69,14 @@ export default [
     type: 'Indented-2',
     case: ['json', 'react', 'vue', 'angular'],
   },
+  // tree graph
+  {
+    type: 'RadialTree-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  // tree graph
+  {
+    type: 'RadialTree-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
 ];
