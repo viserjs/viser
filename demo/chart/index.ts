@@ -35,5 +35,13 @@ export default [
     type: 'circular-layout-1',
     case: ['json', 'react', 'vue', 'angular'],
   },
+  {
+    type: 'dagre-layout-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'dagre-layout-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
   
 ];
