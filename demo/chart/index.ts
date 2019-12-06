@@ -23,4 +23,17 @@ export default [
     type: 'general-graph',
     case: ['json', 'react', 'vue', 'angular'],
   },
+  {
+    type: 'grid-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'grid-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'circular-layout-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  
 ];
