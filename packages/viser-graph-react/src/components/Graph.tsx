@@ -1,6 +1,7 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { ViserGraph } from '../../../viser-graph/src/index';
+import { keys } from 'ts-transformer-keys';
+import { IGraph as IViserGrap, ViserGraph } from '../../../viser-graph/src/index';
 
 import IGraph from '../typed/IGraph';
 
@@ -46,7 +47,6 @@ export default class Graph extends React.Component<any, any> {
 
   constructor(props: IGraph) {
     super(props);
-    console.log('react props', props);
     this.config.data = props.data;
   }
 
@@ -58,24 +58,13 @@ export default class Graph extends React.Component<any, any> {
 
   public combineChartConfig(props: any) {
     const chartRetain = [
-      'height', 'width', 'animate',
-      'fitView', 'fitViewPadding', 'type', 'layout', 'plugins',
-      'modes',
+      'height', 'width', 'fitView', 'fitViewPadding',
+      'type', 'layout', 'plugins', 'animate', 'animateCfg',
+      'modes', 'minZoom', 'maxZoom', 'groupType', 'groupStyle',
+      'nodeStateStyles', 'edgeStateStyles', 'defaultNode', 'defaultEdge', 'events',
     ];
+
     this.config.graph = retain(props, chartRetain);
-
-    const eventRetain = [
-      'onMouseDown', 'onMouseMove', 'onMouseUp',
-      'onClick', 'onDbClick',
-      'onTouchStart', 'onTouchMove', 'onTouchEnd',
-      'onPlotEnter', 'onPlotMove', 'onPlotLeave',
-      'onPlotClick', 'onPlotDbClick',
-      'onAfterchange',
-      'onDragstart', 'onDrag', 'onDragend',
-      'onCanvas:mouseleave', 'onNode:mouseenter', 'onNode:mouseleave',
-    ];
-
-    this.config.events = retain(props, eventRetain);
 
     this.config.data = props.data;
   }
@@ -88,6 +77,7 @@ export default class Graph extends React.Component<any, any> {
       'zoom',
       'node',
       'edge',
+      'tooltip',
     ];
     // tslint:disable-next-line:prefer-conditional-expression
     if (((regSeries.indexOf(realName) < 0) && isOwnEmpty(props))) {
@@ -115,6 +105,7 @@ export default class Graph extends React.Component<any, any> {
 
     this.config.graph.container = this.container;
     this.chart = new ViserGraph(this.config);
+    console.log('createChartInstance', this.config);
     this.chart.render();
   }
 
