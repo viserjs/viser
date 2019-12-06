@@ -24,16 +24,6 @@ interface IDefaultItem {
   nodeStateStyles?: IItemStateStyles;
 }
 
-interface IAnimate {
-  onFrame?: any;
-  duration?: number;
-  easing?: string;
-}
-
-interface IMode {
-  default?: any;
-}
-
 interface ILayout {
   type: string;
   direction?: string;
@@ -47,35 +37,21 @@ interface ILayout {
   getVGap?: () => number;
   getHGap?: () => number;
   getId?: (d: any) => string | number;
+  getSide?: () => string;
 }
-
-export default interface IGraph {
-  container: any;
+/** 仅定义更限制的类型，未定义的遵循 G6 的定义 */
+export default interface IGraph extends G6.TreeGraphOptions, G6.GraphOptions {
+  container: string | HTMLElement;
   type?: 'tree' | 'graph';
-  width?: number | string;
-  height?: number | string;
-  fitView?: boolean;
-  fitViewPadding?: boolean | number | number[];
   nodeStateStyles?: IItemStateStyles;
   edgeStateStyles?: IItemStateStyles;
   defaultNode?: IDefaultItem;
   defaultEdge?: IDefaultItem;
   plugins?: any[];
-  animate?: boolean;
-  animateCfg?: IAnimate;
-  minZoom?: number;
-  maxZoom?: number;
-  groupType?: string;
-  groupStyle?: CSS.Properties;
   layout?: ILayout;
-  // 使边连入节点的中心
-  linkCenter?: boolean;
-  renderer?: 'svg' | 'canvas';
 
   fixedRoot?: boolean;
-  pixelRatio?: number;
 
-  modes?: IMode;
   moveTo?: number[];
   focusItem?: any;
   hideItem?: any;
