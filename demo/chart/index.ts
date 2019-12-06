@@ -19,4 +19,64 @@ export default [
     type: 'slider',
     case: ['json', 'react', 'vue', 'angular'],
   },
+  // tree graph
+  {
+    type: 'CompactBox-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  // tree graph
+  {
+    type: 'CompactBox-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  // tree graph
+  {
+    type: 'Dendrogram-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  // tree graph
+  {
+    type: 'Dendrogram-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  // tree graph
+  {
+    type: 'Mindmap-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  // tree graph
+  {
+    type: 'Mindmap-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  // tree graph
+  {
+    type: 'Mindmap-3',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  // tree graph
+  {
+    type: 'Mindmap-4',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  // tree graph
+  {
+    type: 'Indented-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  // tree graph
+  {
+    type: 'Indented-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  // tree graph
+  {
+    type: 'RadialTree-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  // tree graph
+  {
+    type: 'RadialTree-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
 ];
