@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Graph, Node, Edge, registerLayout } from '../../../packages/viser-graph-react/src/index';
+import { ViserGraph } from '../../../packages/viser-graph/src/index';
+
 const data = {
   nodes: [{
     id: '0',
@@ -286,58 +286,41 @@ const data = {
     target: '33'
   }]
 };
-const graph = {
-data,
-  container: 'mount',
-  type: 'graph',
-  width: 500,
-  height: 500,
-  pixelRatio: 2,
-  renderer: 'svg',
-  fitView: false,
-  animate: true,
-  modes: {
-    default: [ 'zoom-canvas', 'drag-canvas', 'drag-node' ]
+new ViserGraph({
+  data,
+  graph: {
+    container: 'mount',
+    type: 'graph',
+    width: 500,
+    height: 500,
+    pixelRatio: 2,
+    renderer: 'svg',
+    fitView: false,
+    animate: true,
+    modes: {
+      default: [ 'zoom-canvas', 'drag-canvas', 'drag-node' ]
+    },
+    layout: {
+      type: 'grid',
+    },
   },
-  layout: {
-    type: 'grid',
+  node: {
+    formatter: () => {
+      return {
+        size: 20,
+        style: {
+          fill: '#C6E5FF',
+          stroke: '#5B8FF9'
+        }
+      }
+    },
   },
-  defaultNode: {
-    size: 20,
+  edge: {
+    formatter: () => {
+      return {
+        size: 1,
+        color: '#e2e2e2'
+      }
+    },
   },
-  defaultEdge: {
-    size: 1,
-    color: '#e2e2e2'
-  },
-};
-
-const colors = [ '#BDD2FD', '#BDEFDB', '#C2C8D5', '#FBE5A2', '#F6C3B7', '#B6E3F5', '#D3C6EA', '#FFD8B8', '#AAD8D8', '#FFD6E7' ];
-const strokes = [ '#5B8FF9', '#5AD8A6', '#5D7092', '#F6BD16', '#E8684A', '#6DC8EC', '#9270CA', '#FF9D4D', '#269A99', '#FF99C3' ];
-const node = {
-  formatter: node => {
-    return {
-      size: 20,
-      cluster: node.id,
-      style: {
-        fill: colors[node.id % colors.length],
-        stroke: strokes[node.id % strokes.length]
-      },
-    }
-  }
-}
-
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <Graph {...graph}>
-          <Node {...node}/>
-        </Graph>
-      </div>
-    );
-  }
-}
+}).render();
