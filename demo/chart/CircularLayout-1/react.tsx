@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Graph, Node, Edge, registerLayout } from '../../../packages/viser-graph-react/src/index';
+import { Graph } from '../../../packages/viser-graph-react/src/index';
+
+
 const data = {
   nodes: [{
     id: '0',
@@ -286,45 +288,42 @@ const data = {
     target: '33'
   }]
 };
+
 const graph = {
-data,
+  data,
   container: 'mount',
   type: 'graph',
   width: 500,
   height: 500,
-  pixelRatio: 2,
-  renderer: 'svg',
+  pixelRatio: 1.0,
+  renderer: 'canvas',
   fitView: false,
-  animate: true,
   modes: {
-    default: [ 'zoom-canvas', 'drag-canvas', 'drag-node' ]
+    default: [ 'drag-canvas', 'drag-node' ]
   },
   layout: {
-    type: 'grid',
+    type: 'circular',
   },
+  animate: true,
   defaultNode: {
     size: 20,
+    style: {
+      lineWidth: 2,
+      fill: '#C6E5FF',
+      stroke: '#5B8FF9'
+    }
   },
   defaultEdge: {
     size: 1,
-    color: '#e2e2e2'
+    color: '#e2e2e2',
+    style: {
+      endArrow: {
+        path: 'M 4,0 L -4,-4 L -4,4 Z',
+        d: 4
+      }
+    }
   },
 };
-
-const colors = [ '#BDD2FD', '#BDEFDB', '#C2C8D5', '#FBE5A2', '#F6C3B7', '#B6E3F5', '#D3C6EA', '#FFD8B8', '#AAD8D8', '#FFD6E7' ];
-const strokes = [ '#5B8FF9', '#5AD8A6', '#5D7092', '#F6BD16', '#E8684A', '#6DC8EC', '#9270CA', '#FF9D4D', '#269A99', '#FF99C3' ];
-const node = {
-  formatter: node => {
-    return {
-      size: 20,
-      cluster: node.id,
-      style: {
-        fill: colors[node.id % colors.length],
-        stroke: strokes[node.id % strokes.length]
-      },
-    }
-  }
-}
 
 export default class App extends React.Component {
   constructor(props) {
@@ -334,9 +333,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <Graph {...graph}>
-          <Node {...node}/>
-        </Graph>
+        <Graph {...graph}/>
       </div>
     );
   }

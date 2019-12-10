@@ -1,22 +1,23 @@
 import * as React from 'react';
-import { Graph, Node, Edge, } from '../../../packages/viser-graph-react/src/index';
-import { data } from './data'
+import { Graph, Node } from '../../../packages/viser-graph-react/src/index';
+import { oriData } from './data'
 
-// 弹性缓冲效果未实现
-
+const data = {
+  nodes: oriData.nodes,
+  edges: oriData.edges.map(function(edge, i) {
+    return {...edge, id:'edge' + i };
+  })
+}
 const graph = {
   data,
   container: 'mount',
   type: 'graph',
   width: 500,
   height: 500,
-
- // pixelRatio: 1,
-
   renderer: 'svg',
-  fitView: true,
+  fitView: false,
   layout: {
-   type: 'force',
+    type: 'force',
   },
   defaultNode: {
     size: 15,
@@ -32,38 +33,34 @@ const graph = {
   },
 
   modes: {
-    default: ['drag-canvas','drag-node'] // 展示区域暂时有问题 增加canvas拖拽
-  },
-  onDragstart : (e) => {
-    refreshDragedNodePosition(e);
-  },
-  onDrag : (e) => {
-    refreshDragedNodePosition(e);
-  },
-  onDragend: (e) => {
-    refreshDragedNodePosition(e);
+    default: ['drag-node'] 
   },
 };
 
 const node = {
-  formatter: node => {
+  formatter: () => {
     return {
       size: 15,
+      color: '#5B8FF9',
       style: {
-        fill: '#C6E5FF',
-        stroke: '#5B8FF9'
-      },
-    }
-  }
-}
-
-const edge = {
-  formatter: () => {
-
-    return {
-      color: '#eee',
+        lineWidth: 1,
+        fill: '#C6E5FF'
+      }
     }
   },
+  events: {
+    onDragstart: (e, graph) => {
+      graph.layout()
+      refreshDragedNodePosition(e);
+    },
+    onDrag: (e) => {
+      refreshDragedNodePosition(e);
+    },
+    onDragend: (e) => {
+      e.item.get('model').fx = null;
+      e.item.get('model').fy = null;
+    },
+  }
 }
 
 const refreshDragedNodePosition = (e) => {
@@ -82,7 +79,6 @@ export default class App extends React.Component {
       <div>
         <Graph {...graph}>
           <Node {...node}/>
-          <Edge {...edge}/>
         </Graph>
       </div>
     );

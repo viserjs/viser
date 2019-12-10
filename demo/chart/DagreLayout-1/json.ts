@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { Graph, Node, Edge, } from '../../../packages/viser-graph-react/src/index';
+import { ViserGraph, GlobalG6 as G6 } from '../../../packages/viser-graph/src/index';
 
 const data = {
   nodes: [{
@@ -172,117 +171,101 @@ const data = {
   }]
 };
 
-
-const graph = {
-  data,
-  container: 'mount',
-  width: 500,
-  height: 500,
-  layout: {
-    type: 'dagre',
-    nodesepFunc: d => {
-      if (d.id === '3') {
-        return 500;
+G6.registerNode('sql', {
+  drawShape(cfg, group) {
+    const rect = group.addShape('rect', {
+      attrs: {
+        x: -75,
+        y: -25,
+        width: 150,
+        height: 50,
+        radius: 10,
+        stroke: '#5B8FF9',
+        fill: '#C6E5FF',
+        lineWidth: 3
       }
-      return 50;
-    },
-    ranksep: 70
-  },
-  pixelRatio: 2,
-  defaultNode: {
-    shape: 'sql'
-  },
-  defaultEdge: {
-    shape: 'polyline',
-    style: {
-      radius: 20,
-      offset: 45,
-      endArrow: true,
-      lineWidth: 2,
-      stroke: '#C2C8D5'
-    }
-  },
-  modes: {
-    default: [ 'drag-canvas', 'zoom-canvas', 'click-select', {
-      type: 'tooltip',
-      formatText(model) {
-        const cfg = model.conf;
-        const text = [];
-        cfg.forEach(row => {
-          text.push(row.label + ':' + row.value + '<br>');
-        });
-        return text.join('\n');
-      },
-      shouldUpdate: e => {
-        // 如果移动到节点文本上显示，不是文本上不显示
-        if (e.target.type !== 'text') {
-          return false;
+    });
+    if (cfg.name) {
+      group.addShape('text', {
+        attrs: {
+          text: cfg.name,
+          x: 0,
+          y: 0,
+          fill: '#00287E',
+          fontSize: 14,
+          textAlign: 'center',
+          textBaseline: 'middle',
+          fontWeight: 'bold'
         }
-        return true;
-      }
-    }]
-  },
-  fitView: true,
-  onDragstart : (e) => {
-    refreshDragedNodePosition(e);
-  },
-  onDrag : (e) => {
-    refreshDragedNodePosition(e);
-  },
-  onDragend: (e) => {
-    refreshDragedNodePosition(e);
-  },
+      });
+    }
+    return rect;
+  }
+},
+'single-shape');
+G6.Global.nodeStateStyle.selected = {
+  stroke: '#d9d9d9',
+  fill: '#5394ef'
 };
 
-const node = {
-  formatter: node => {
-    return {
-      // size: 15,
-      // style: {
-      //   fill: '#C6E5FF',
-      //   stroke: '#5B8FF9'
-      // },
-      // shape: 'square',
-      label: node.name
-    }
-  }
-}
-
-const edge = {
-  formatter: () => {
-
-    return { 
-       shape: 'polyline',
-    style: {
-      radius: 20,
-      offset: 45,
-      endArrow: true,
-      lineWidth: 2,
-      stroke: '#C2C8D5'
-    }
-    }
+new ViserGraph({
+  data,
+  graph: {
+    container: 'mount',
+    width: 500,
+    height: 500,
+    pixelRatio: 2,
+    renderer: 'svg',
+    fitView: true,
+    modes: {
+      default: [ 'drag-canvas', 'zoom-canvas', 'click-select', {
+        type: 'tooltip',
+        formatText(model) {
+          const cfg = model.conf;
+          const text = [];
+          cfg.forEach(row => {
+            text.push(row.label + ':' + row.value + '<br>');
+          });
+          return text.join('\n');
+        },
+        shouldUpdate: e => {
+          if (e.target.type !== 'text') {
+            return false;
+          }
+          return true;
+        }
+      }]
+    },
+    layout: {
+      type: 'dagre',
+      nodesepFunc: d => {
+        if (d.id === '3') {
+          return 500;
+        }
+        return 50;
+      },
+      ranksep: 70
+    },
   },
-}
-
-const refreshDragedNodePosition = (e) => {
-  const model = e.item.get('model');
-  model.fx = e.x;
-  model.fy = e.y;
-}
-
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <Graph {...graph}>
-          <Node {...node}/>
-          <Edge {...edge}/> 
-        </Graph>
-      </div>
-    );
-  }
-}
+  node: {
+    formatter: node => {
+      return {
+        shape: 'sql'
+      }
+    },
+  },
+  edge: {
+    formatter: () => {
+      return {
+        shape: 'polyline',
+        style: {
+          radius: 20,
+          offset: 45,
+          endArrow: true,
+          lineWidth: 2,
+          stroke: '#C2C8D5'
+        }
+      }
+    },
+  },
+}).render();

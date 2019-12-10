@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Graph, Node, Edge, registerLayout } from '../../../packages/viser-graph-react/src/index';
+import { Graph } from '../../../packages/viser-graph-react/src/index';
 const data = {
   nodes: [{
     id: '0',
@@ -288,24 +288,21 @@ const data = {
 };
 
 const graph = {
-data,
+  data,
   container: 'mount',
   type: 'graph',
   width: 500,
   height: 500,
   pixelRatio: 2,
   renderer: 'svg',
-  fitView: true,
+  fitView: false,
+  animate: true,
   modes: {
     default: [ 'zoom-canvas', 'drag-canvas', 'drag-node' ]
   },
   layout: {
     type: 'grid',
-    begin: [ -200, -200 ],
-    width: 500 - 20,
-    height: 500 - 20
   },
-  animate: true,
   defaultNode: {
     size: 20,
     style: {
@@ -317,43 +314,7 @@ data,
     size: 1,
     color: '#e2e2e2'
   },
-  onDragstart : (e) => {
-    refreshDragedNodePosition(e);
-  },
-  onDrag : (e) => {
-    refreshDragedNodePosition(e);
-  },
-  onDragend: (e) => {
-    refreshDragedNodePosition(e);
-  },
 };
-
-const node = {
-  formatter: node => {
-    return {
-      size: 15,
-      style: {
-        fill: '#C6E5FF',
-        stroke: '#5B8FF9'
-      },
-    }
-  }
-}
-
-const edge = {
-  formatter: () => {
-
-    return {
-      color: '#eee',
-    }
-  },
-}
-
-const refreshDragedNodePosition = (e) => {
-  const model = e.item.get('model');
-  model.fx = e.x;
-  model.fy = e.y;
-}
 
 export default class App extends React.Component {
   constructor(props) {
@@ -363,10 +324,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <Graph {...graph}>
-          <Node {...node}/>
-          <Edge {...edge}/>
-        </Graph>
+        <Graph {...graph}/>
       </div>
     );
   }

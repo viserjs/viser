@@ -1,6 +1,4 @@
-import * as React from 'react';
-import { Graph, Node, Edge, } from '../../../packages/viser-graph-react/src/index';
-
+import { ViserGraph } from '../../../packages/viser-graph/src/index';
 
 const data = {
   nodes: [{
@@ -288,95 +286,48 @@ const data = {
     target: '33'
   }]
 };
-
-const graph = {
+new ViserGraph({
   data,
-  container: 'mount',
-  type: 'graph',
-  width: 500,
-  height: 500,
-   pixelRatio: 1.0,
-  renderer: 'canvas',
-  fitView: 'false',
-  modes: {
-    default: [ 'drag-canvas', 'drag-node' ]
+  graph: {
+    container: 'mount',
+    type: 'graph',
+    width: 500,
+    height: 500,
+    pixelRatio: 1.0,
+    renderer: 'canvas',
+    fitView: false,
+    animate: true,
+    modes: {
+      default: [ 'drag-canvas', 'drag-node' ]
+    },
+    layout: {
+      type: 'circular',
+    },
   },
-  layout: {
-     type: 'circular',
-    begin: [ -200, -200 ],
-    width: 480,
-    height: 480
-  },
-  animate: true,
-  defaultNode: {
-    size: 20,
-    style: {
-      lineWidth: 2,
-      fill: '#C6E5FF',
-      stroke: '#5B8FF9'
-    }
-  },
-  defaultEdge: {
-    size: 1,
-    color: '#e2e2e2',
-    style: {
-      endArrow: {
-        path: 'M 4,0 L -4,-4 L -4,4 Z',
-        d: 4
+  node: {
+    formatter: () => {
+      return {
+        size: 20,
+        style: {
+          lineWidth: 2,
+          fill: '#C6E5FF',
+          stroke: '#5B8FF9'
+        }
       }
-    }
+    },
   },
-  onDragstart : (e) => {
-    refreshDragedNodePosition(e);
+  edge: {
+    formatter: () => {
+      return {
+        size: 1,
+        color: '#e2e2e2',
+        style: {
+          endArrow: {
+            path: 'M 4,0 L -4,-4 L -4,4 Z',
+            d: 4
+          }
+        }
+      }
+    },
   },
-  onDrag : (e) => {
-    refreshDragedNodePosition(e);
-  },
-  onDragend: (e) => {
-    refreshDragedNodePosition(e);
-  },
-};
-
-const node = {
-  formatter: node => {
-    return {
-      size: 15,
-      style: {
-        fill: '#C6E5FF',
-        stroke: '#5B8FF9'
-      },
-    }
-  }
-}
-
-const edge = {
-  formatter: () => {
-
-    return { 
-      color: '#eee',
-    }
-  },
-}
-
-const refreshDragedNodePosition = (e) => {
-  const model = e.item.get('model');
-  model.fx = e.x;
-  model.fy = e.y;
-}
-
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <Graph {...graph}>
-          <Node {...node}/>
-          <Edge {...edge}/>
-        </Graph>
-      </div>
-    );
-  }
-}
+}).render();
