@@ -6,9 +6,9 @@ import { Graph } from './Graph';
   template: `<div #graphDom></div>`,
 })
 class Node extends Graph {
-  @Input() public shape?: string;
-  @Input() public size?: number;
-  @Input() public label?: any;
+  @Input() public formatter?: (node: any) => any;
+
+  @Input() public events?: any;
 }
 
 export { Node };

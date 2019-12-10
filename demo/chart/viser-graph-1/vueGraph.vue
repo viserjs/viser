@@ -1,5 +1,15 @@
-import * as React from 'react';
-import { Graph, GlobalG6 as G6 } from '../../../packages/viser-graph-react/src/index';
+<template>
+  <div>
+    <v-graph :data="data" :width="graph.width" :height="graph.width"
+      :layout="graph.layout" :modes="graph.modes"
+      :defaultNode="graph.defaultNode" :defaultEdge="graph.defaultEdge"
+    >
+    </v-graph>
+  </div>
+</template>
+
+<script>
+import { GlobalG6 as G6 } from '../../../packages/viser-graph-vue/src/index';
 const colorMap = {
   A: '#72CC4A',
   B: '#1A91FF',
@@ -244,7 +254,6 @@ G6.registerEdge('polyline', {
 
 const graph = {
   container: 'mount',
-  data,
   width: 800,
   height: 400,
   layout: {
@@ -274,34 +283,15 @@ const graph = {
   }
 };
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
+export default {
+  data() {
+    return {
+      data,
+      graph,
+    };
+  },
+  methods: {
 
   }
-
-  render() {
-    return (
-      <div>
-        <Graph {...graph} ref={(instance: any) => {
-          console.log('instance', instance);
-          const graphInstance = instance.chart.graph;
-          const edges = graphInstance.getEdges();
-          edges.forEach(function(edge) {
-            const line = edge.getKeyShape();
-            const stroke = line.attr('stroke');
-            const targetNode = edge.getTarget();
-            targetNode.update({
-              style: {
-                stroke
-              }
-            });
-          });
-          graphInstance.paint();
-        }}>
-
-        </Graph>
-      </div>
-    );
-  }
-}
+};
+</script>

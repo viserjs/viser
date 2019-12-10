@@ -13,7 +13,7 @@ export default [
   },
   {
     type: 'viser-graph-1',
-    case: ['json', 'react', 'vue', 'angular'],
+    case: ['json', 'react', 'vueGraph', 'angular'],
   },
   {
     type: 'slider',
