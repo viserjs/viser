@@ -120,4 +120,29 @@ export default [
     type: 'CustomTreeItems-2',
     case: ['json', 'react', 'vue', 'angular'],
   },
+  // shape
+  {
+    type: 'Built-in Nodes-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Built-in Nodes-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Built-in Nodes-3',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Built-in Nodes-4',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Built-in Nodes-5',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Built-in Nodes-6',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
 ];

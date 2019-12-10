@@ -168,7 +168,6 @@ new ViserGraph({
   data,
   graph: {
     container: 'mount',
-    type: 'tree',
     width: 500,
     height: 500,
     pixelRatio: 2,
