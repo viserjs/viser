@@ -7,6 +7,12 @@ import { Graph } from './Graph';
 })
 class Edge extends Graph {
   @Input() public shape?: string;
+  @Input() public color?: string;
+  @Input() public label?: string;
+
+  @Input() public formatter?: any;
+
+  @Input() public events?: any;
 }
 
 export { Edge };
