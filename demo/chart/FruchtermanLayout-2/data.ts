@@ -1,108 +1,140 @@
-import * as React from 'react';
-import { Graph, Node, Edge, registerLayout } from '../../../packages/viser-graph-react/src/index';
-const data = {
+export const oriData = {
   nodes: [{
     id: '0',
-    label: '0'
+    label: '0',
+    cluster: 'a'
   }, {
     id: '1',
-    label: '1'
+    label: '1',
+    cluster: 'a'
   }, {
     id: '2',
-    label: '2'
+    label: '2',
+    cluster: 'a'
   }, {
     id: '3',
-    label: '3'
+    label: '3',
+    cluster: 'a'
   }, {
     id: '4',
-    label: '4'
+    label: '4',
+    cluster: 'a'
   }, {
     id: '5',
-    label: '5'
+    label: '5',
+    cluster: 'a'
   }, {
     id: '6',
-    label: '6'
+    label: '6',
+    cluster: 'a'
   }, {
     id: '7',
-    label: '7'
+    label: '7',
+    cluster: 'a'
   }, {
     id: '8',
-    label: '8'
+    label: '8',
+    cluster: 'a'
   }, {
     id: '9',
-    label: '9'
+    label: '9',
+    cluster: 'a'
   }, {
     id: '10',
-    label: '10'
+    label: '10',
+    cluster: 'a'
   }, {
     id: '11',
-    label: '11'
+    label: '11',
+    cluster: 'a'
   }, {
     id: '12',
-    label: '12'
+    label: '12',
+    cluster: 'a'
   }, {
     id: '13',
-    label: '13'
+    label: '13',
+    cluster: 'b'
   }, {
     id: '14',
-    label: '14'
+    label: '14',
+    cluster: 'b'
   }, {
     id: '15',
-    label: '15'
+    label: '15',
+    cluster: 'b'
   }, {
     id: '16',
-    label: '16'
+    label: '16',
+    cluster: 'b'
   }, {
     id: '17',
-    label: '17'
+    label: '17',
+    cluster: 'b'
   }, {
     id: '18',
-    label: '18'
+    label: '18',
+    cluster: 'c'
   }, {
     id: '19',
-    label: '19'
+    label: '19',
+    cluster: 'c'
   }, {
     id: '20',
-    label: '20'
+    label: '20',
+    cluster: 'c'
   }, {
     id: '21',
-    label: '21'
+    label: '21',
+    cluster: 'c'
   }, {
     id: '22',
-    label: '22'
+    label: '22',
+    cluster: 'c'
   }, {
     id: '23',
-    label: '23'
+    label: '23',
+    cluster: 'c'
   }, {
     id: '24',
-    label: '24'
+    label: '24',
+    cluster: 'c'
   }, {
     id: '25',
-    label: '25'
+    label: '25',
+    cluster: 'c'
   }, {
     id: '26',
-    label: '26'
+    label: '26',
+    cluster: 'c'
   }, {
     id: '27',
-    label: '27'
+    label: '27',
+    cluster: 'c'
   }, {
     id: '28',
-    label: '28'
+    label: '28',
+    cluster: 'c'
   }, {
     id: '29',
-    label: '29'
+    label: '29',
+    cluster: 'c'
   }, {
     id: '30',
-    label: '30'
+    label: '30',
+    cluster: 'c'
   }, {
     id: '31',
-    label: '31'
+    label: '31',
+    cluster: 'd'
   }, {
     id: '32',
-    label: '32'
+    label: '32',
+    cluster: 'd'
   }, {
     id: '33',
-    label: '33'
+    label: '33',
+    cluster: 'd'
   }],
   edges: [{
     source: '0',
@@ -286,58 +318,3 @@ const data = {
     target: '33'
   }]
 };
-const graph = {
-  data,
-  container: 'mount',
-  type: 'graph',
-  width: 500,
-  height: 500,
-  pixelRatio: 2,
-  renderer: 'svg',
-  fitView: false,
-  animate: true,
-  modes: {
-    default: [ 'zoom-canvas', 'drag-canvas', 'drag-node' ]
-  },
-  layout: {
-    type: 'grid',
-  },
-  defaultNode: {
-    size: 20,
-  },
-  defaultEdge: {
-    size: 1,
-    color: '#e2e2e2'
-  },
-};
-
-const colors = [ '#BDD2FD', '#BDEFDB', '#C2C8D5', '#FBE5A2', '#F6C3B7', '#B6E3F5', '#D3C6EA', '#FFD8B8', '#AAD8D8', '#FFD6E7' ];
-const strokes = [ '#5B8FF9', '#5AD8A6', '#5D7092', '#F6BD16', '#E8684A', '#6DC8EC', '#9270CA', '#FF9D4D', '#269A99', '#FF99C3' ];
-const node = {
-  formatter: node => {
-    return {
-      size: 20,
-      cluster: node.id,
-      style: {
-        fill: colors[node.id % colors.length],
-        stroke: strokes[node.id % strokes.length]
-      },
-    }
-  }
-}
-
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <Graph {...graph}>
-          <Node {...node}/>
-        </Graph>
-      </div>
-    );
-  }
-}
