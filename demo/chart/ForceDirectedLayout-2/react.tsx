@@ -3,7 +3,9 @@ import { Graph, Node } from '../../../packages/viser-graph-react/src/index';
 import { oriData } from './data'
 
 const data = {
-  nodes: oriData.nodes,
+  nodes: oriData.nodes.map(function(node, i) {
+    return {...node, size: Math.random() * 30 + 5 };
+  }),
   edges: oriData.edges.map(function(edge, i) {
     return {...edge, id:'edge' + i };
   })
@@ -18,12 +20,12 @@ const graph = {
   fitView: false,
   layout: {
     type: 'force',
+    preventOverlap: true
   },
   defaultNode: {
-    size: 15,
     color: '#5B8FF9',
     style: {
-      lineWidth: 1,
+      lineWidth: 2,
       fill: '#C6E5FF'
     }
   },
@@ -34,6 +36,11 @@ const graph = {
 };
 
 const node = {
+  formatter: node => {
+    return {
+      size: node.size,
+    }
+  },
   events: {
     onDragstart: (e, graph) => {
       graph.layout()

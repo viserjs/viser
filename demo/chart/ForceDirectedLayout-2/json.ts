@@ -8,7 +8,9 @@ const refreshDragedNodePosition = (e) => {
 }
 
 const data = {
-  nodes: oriData.nodes,
+  nodes: oriData.nodes.map(function(node, i) {
+    return {...node, size: Math.random() * 30 + 5 };
+  }),
   edges: oriData.edges.map(function(edge, i) {
     return {...edge, id:'edge' + i };
   })
@@ -24,15 +26,16 @@ new ViserGraph({
     fitView: false,
     layout: {
       type: 'force',
+      preventOverlap: true
     },
   },
   node: {
-    formatter: () => {
+    formatter: node => {
       return {
-        size: 15,
+        size: node.size,
         color: '#5B8FF9',
         style: {
-          lineWidth: 1,
+          lineWidth: 2,
           fill: '#C6E5FF'
         }
       }
