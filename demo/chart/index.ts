@@ -110,15 +110,47 @@ export default [
     case: ['json', 'react', 'vue', 'angular'],
   },
   {
-    type: 'CircularLayout-1',
-    case: ['json', 'react', 'vue', 'angular'],
-  },
-  {
     type: 'DagreLayout-1',
     case: ['json', 'react', 'vue', 'angular'],
   },
   {
     type: 'DagreLayout-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'RadialLayout-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'RadialLayout-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'RadialLayout-3',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'CircularLayout-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'CircularLayout-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'CircularLayout-3',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'CircularLayout-4',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'ConcentricLayout-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'MDSLayout-1',
     case: ['json', 'react', 'vue', 'angular'],
   },
   // shape
