@@ -186,4 +186,44 @@ export default [
     type: 'Built-in Nodes-8',
     case: ['json', 'react', 'vue', 'angular'],
   },
+  {
+    type: 'Built-in Edges-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Built-in Edges-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Built-in Edges-3',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Built-in Edges-4',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Built-in Edges-5',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Built-in Edges-6',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Built-in Edges-7',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Custom Node-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Custom Node-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Custom Node-3',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
 ];
