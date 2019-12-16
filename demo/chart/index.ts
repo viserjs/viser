@@ -226,4 +226,32 @@ export default [
     type: 'Custom Node-3',
     case: ['json', 'react', 'vue', 'angular'],
   },
+  {
+    type: 'Custom Node-4',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Custom Node-5',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Custom Node-6',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Custom Node-7',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Custom Edge-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Custom Edge-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Custom Edge-3',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
 ];
