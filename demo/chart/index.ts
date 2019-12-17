@@ -254,4 +254,29 @@ export default [
     type: 'Custom Edge-3',
     case: ['json', 'react', 'vue', 'angular'],
   },
+  {
+    type: 'Long Label-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Long Label-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  // Animation
+  {
+    type: 'Node Animation-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Edge Animation-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Edge Animation-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Edge Animation-3',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
 ];
