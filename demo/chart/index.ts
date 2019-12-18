@@ -279,4 +279,33 @@ export default [
     type: 'Edge Animation-3',
     case: ['json', 'react', 'vue', 'angular'],
   },
+  // Interaction
+  {
+    type: 'Highlight Nodes-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Onload Multiple Data-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Onload Multiple Data-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Label and Background Updating-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Label and Background Updating-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Node Group-1',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
+  {
+    type: 'Node Group-2',
+    case: ['json', 'react', 'vue', 'angular'],
+  },
 ];
