@@ -63,6 +63,7 @@ interface ILayout {
   rankdir?: 'LR' | string;
   align?: 'DL' | string;
   maxLevelDiff?: number;
+  sortBy?: 'degree' | string;
   linkDistance?: number | ILayoutFunc;
   nodeStrength?: ILayoutFunc;
   edgeStrength?: ILayoutFunc | number;
