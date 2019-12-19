@@ -3,18 +3,22 @@ import IEvent from './IEvent';
 
 // hover selected actived running
 interface IItemStateStyles {
-  [key: string]: CSS.Properties;
+  [key: string]: IItemStyle;
 }
 
 interface IItemStyle extends CSS.Properties {
   endArrow?: boolean;
   lineWidth?: number;
   stroke?: string;
+  fillOpacity?: number;
+  radius?: number;
+  fill?: string;
+  lineAppendWidth?: number;
 }
 
 interface IDefaultItem {
   shape?: string;
-  size?: number[];
+  size?: number | number[];
   color?: string;
   style?: IItemStyle;
   labelCfg?: any;
@@ -22,8 +26,15 @@ interface IDefaultItem {
   icon?: any;
   modes?: any;
   nodeStateStyles?: IItemStateStyles;
+  direction?: string;
+  clipCfg?: any;  // ???
+  lineAppendWidth?: number;
+  preRect?: any;
+  logoIcon?: any;
+  stateIcon?: any;
 }
 
+type ILayoutFunc = (node: any) => number;
 interface ILayout {
   type: string;
   direction?: string;
@@ -31,13 +42,31 @@ interface ILayout {
   nodeSep?: number;
   rankSep?: number;
   radial?: boolean;
+  ranksep?: number;
   defalutPosition?: string[];
+  preventOverlap?: boolean;
+  unitRadius?: number;
+  indent?: number;
+  gravity?: number;
+  speed?: number;
+  nodeSize?: number;
+  divisions?: number;
+  radius?: number;
+  startAngle?: number;
+  endAngle?: number;
+  startRadius?: number;
+  endRadius?: number;
+  ordering?: 'degree' | string;
+  linkDistance?: ILayoutFunc;
+  nodeStrength?: ILayoutFunc;
+  edgeStrength?: ILayoutFunc | number;
   getHeight?: () => number;
   getWidth?: () => number;
   getVGap?: () => number;
   getHGap?: () => number;
   getId?: (d: any) => string | number;
-  getSide?: () => string;
+  getSide?: (d: any) => string;
+  nodesepFunc?: ILayoutFunc;
 }
 /** 仅定义更限制的类型，未定义的遵循 G6 的定义 */
 export default interface IGraph extends G6.TreeGraphOptions, G6.GraphOptions {

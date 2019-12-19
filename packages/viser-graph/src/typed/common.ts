@@ -11,6 +11,7 @@ interface INodeConfig {
   style?: CSS.Properties;
   label?: string;
   labelCfg?: any;
+  shape?: string;
 }
 
 export {
