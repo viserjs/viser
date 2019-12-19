@@ -31,7 +31,8 @@ new ViserGraph({
       type: 'fruchterman',
       gravity: 10,
       speed: 5,
-      clustering: true    },
+      clustering: true
+    },
     modes: {
       default: [ 'drag-canvas', 'drag-node' ]
     },

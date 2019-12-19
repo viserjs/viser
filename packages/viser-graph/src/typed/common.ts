@@ -6,7 +6,7 @@ interface IOffset {
 }
 
 interface INodeConfig {
-  size?: number;
+  size?: number | number[];
   anchorPoints?: any[];
   style?: CSS.Properties;
   label?: string;

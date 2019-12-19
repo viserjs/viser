@@ -57,7 +57,13 @@ interface ILayout {
   startRadius?: number;
   endRadius?: number;
   ordering?: 'degree' | string;
-  linkDistance?: ILayoutFunc;
+  strictRadial?: boolean;
+  maxPreventOverlapIteration?: number;
+  clustering?: boolean;
+  rankdir?: 'LR' | string;
+  align?: 'DL' | string;
+  maxLevelDiff?: number;
+  linkDistance?: number | ILayoutFunc;
   nodeStrength?: ILayoutFunc;
   edgeStrength?: ILayoutFunc | number;
   getHeight?: () => number;
@@ -67,6 +73,7 @@ interface ILayout {
   getId?: (d: any) => string | number;
   getSide?: (d: any) => string;
   nodesepFunc?: ILayoutFunc;
+  ranksepFunc?: ILayoutFunc;
 }
 /** 仅定义更限制的类型，未定义的遵循 G6 的定义 */
 export default interface IGraph extends G6.TreeGraphOptions, G6.GraphOptions {
