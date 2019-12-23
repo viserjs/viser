@@ -214,98 +214,98 @@ export default [
     type: 'Built-in Edges-7',
     case: ['json', 'react', 'vueGraph', 'angular'],
   },
-  {
-    type: 'Custom Node-1',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Custom Node-2',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Custom Node-3',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Custom Node-4',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Custom Node-5',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Custom Node-6',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Custom Node-7',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Custom Edge-1',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Custom Edge-2',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Custom Edge-3',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Long Label-1',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Long Label-2',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
+  // {
+  //   type: 'Custom Node-1',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Custom Node-2',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Custom Node-3',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Custom Node-4',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Custom Node-5',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Custom Node-6',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Custom Node-7',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Custom Edge-1',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Custom Edge-2',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Custom Edge-3',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Long Label-1',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Long Label-2',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
   // Animation
-  {
-    type: 'Node Animation-1',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Edge Animation-1',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Edge Animation-2',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Edge Animation-3',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
+  // {
+  //   type: 'Node Animation-1',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Edge Animation-1',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Edge Animation-2',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Edge Animation-3',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
   // Interaction
-  {
-    type: 'Highlight Nodes-1',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Onload Multiple Data-1',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Onload Multiple Data-2',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Label and Background Updating-1',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Label and Background Updating-2',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Node Group-1',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
-  {
-    type: 'Node Group-2',
-    case: ['json', 'react', 'vueGraph', 'angular'],
-  },
+  // {
+  //   type: 'Highlight Nodes-1',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Onload Multiple Data-1',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Onload Multiple Data-2',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Label and Background Updating-1',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Label and Background Updating-2',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Node Group-1',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
+  // {
+  //   type: 'Node Group-2',
+  //   case: ['json', 'react', 'vueGraph', 'angular'],
+  // },
 ];
