@@ -37,6 +37,7 @@ interface IAxisLabel {
   autoRotate?: boolean;
   rotate?: number | string;
   textStyle?: IStyle.ITextStyle;
+  htmlTemplate?: (text: any, item: any, index: any) => string;
 }
 
 export interface IAxis {
@@ -54,6 +55,7 @@ export interface IAxis {
   subTickCount?: number;
   subTickLine?: IStyle.ILineStyle;
   autoPaint?: boolean;
+  useHtml?: boolean;
   onTitleMouseDown?: eventFunc;
   onTitleMouseMove?: eventFunc;
   onTitleMouseLeave?: eventFunc;

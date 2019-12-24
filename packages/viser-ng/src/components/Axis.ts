@@ -38,6 +38,7 @@ interface IAxisLabel {
   autoRotate?: boolean;
   rotate?: number | 'normal' | 'parallel';
   textStyle?: IStyle.ITextStyle;
+  htmlTemplate?: (text: any, item: any, index: any) => string;
 }
 
 @Component({
@@ -60,6 +61,7 @@ class Axis extends Chart {
   @Input() public subTickCount?: number;
   @Input() public subTickLine?: IStyle.ILineStyle;
   @Input() public autoPaint?: boolean;
+  @Input() public useHtml?: boolean;
   @Input() public onTitleMouseDown?: eventFunc;
   @Input() public onTitleMouseMove?: eventFunc;
   @Input() public onTitleMouseLeave?: eventFunc;
