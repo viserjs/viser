@@ -301,7 +301,7 @@ export default [
     case: ['json', 'react', 'vueGraph', 'angular'],
   },
   {
-    type: 'Node Group-1', 
+    type: 'Node Group-1',
     case: ['json', 'react', 'vueGraph', 'angular'],
   },
   {
