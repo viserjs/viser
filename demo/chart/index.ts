@@ -153,7 +153,7 @@ export default [
     type: 'MDSLayout-1',
     case: ['json', 'react', 'vueGraph', 'angular'],
   },
- // shape
+  // shape
   {
     type: 'Built-in Nodes-1',
     case: ['json', 'react', 'vueGraph', 'angular'],
@@ -279,7 +279,7 @@ export default [
     type: 'Edge Animation-3',
     case: ['json', 'react', 'vueGraph', 'angular'],
   },
- // Interaction
+  // Interaction
   {
     type: 'Highlight Nodes-1',
     case: ['json', 'react', 'vueGraph', 'angular'],
