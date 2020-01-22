@@ -1,12 +1,11 @@
-import Vue, { ComponentOptions } from 'vue';
 import {
   GlobalG6,
   registerBehavior,
   registerEdge,
   registerLayout,
   registerNode,
-
-  utils, ViserGraph } from '../../viser-graph/src/index';
+  utils, ViserGraph } from 'viser-graph';
+import Vue, { ComponentOptions } from 'vue';
 import {cleanUndefined, isAllUndefined, normalizeProps, oneObjectMoreArray} from './utils';
 
 import { eventProps, graphProps, props } from './typed';

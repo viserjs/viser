@@ -23,6 +23,7 @@ export class Graph implements AfterViewInit, OnChanges {
   @Input() public plugins?: any[];
   @Input() public layout?: any;
   @Input() public modes?: any;
+  @Input() public groupType?: string;
 
   @Input() public fixedRoot?: boolean;
 

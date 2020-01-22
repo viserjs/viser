@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { GlobalG6, registerBehavior, registerEdge,
-  registerLayout, registerNode, utils, ViserGraph } from '../../viser-graph/src/index';
+  registerLayout, registerNode, utils, ViserGraph } from 'viser-graph';
 import { Edge, Graph, Node, Zoom } from './components/index';
 
 @NgModule({

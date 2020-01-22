@@ -1,7 +1,6 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { keys } from 'ts-transformer-keys';
-import { IGraph as IViserGrap, ViserGraph } from '../../../viser-graph/src/index';
+import { IGraph as IViserGrap, ViserGraph } from 'viser-graph';
 
 import IGraph from '../typed/IGraph';
 
