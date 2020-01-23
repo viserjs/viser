@@ -96,7 +96,16 @@ export default class App extends React.Component {
               // formatter: (val: any, item: any, i: number) => {
               //   return val;
               // }
+              htmlTemplate: (text, item, index) => {
+                return '<div style="background:red">123</div>'
+              }
             }}
+            // useHtml
+            // label={{
+              // htmlTemplate: (text, item, index) => {
+              //   return '<div style="background:red">123</div>'
+              // }
+            // }}
           />
           <Legend />
           <View data={this.state.data} scale={scale} filter={filter}>
