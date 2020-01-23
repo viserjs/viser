@@ -88,11 +88,11 @@ export default interface IGraph extends G6.TreeGraphOptions, G6.GraphOptions {
   layout?: ILayout;
 
   fixedRoot?: boolean;
-
-  moveTo?: number[];
-  focusItem?: any;
-  hideItem?: any;
-  showItem?: any;
+  // TODO 待实现 api
+  // moveTo?: number[];
+  // focusItem?: any;
+  // hideItem?: any;
+  // showItem?: any;
 
   events?: IEvent;
 }
