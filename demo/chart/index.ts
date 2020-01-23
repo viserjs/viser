@@ -12,11 +12,11 @@ export default [
     case: ['json', 'react', 'vue', 'angular'],
   },
   {
-    type: 'viser-graph-2',
-    case: ['json', 'react', 'vue', 'angular'],
+    type: 'viser-graph-1',
+    case: ['json', 'react', 'vueGraph', 'angular'],
   },
   {
     type: 'slider',
     case: ['json', 'react', 'vue', 'angular'],
-  },
+  }
 ];

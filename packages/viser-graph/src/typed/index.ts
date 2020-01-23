@@ -1,16 +1,38 @@
 import IEdge from './IEdge';
-import IEvent from './IEvent';
 import IGraph from './IGraph';
 import INode from './INode';
+import ITooltip from './ITooltip';
 import IZoom from './IZoom';
 
+interface INodeData {
+  id: string;
+  [key: string]: any;
+}
+
+interface IEdgeData {
+  source: string;
+  target: string;
+  value?: number;
+  [key: string]: any;
+}
+
+interface IGraphData {
+  nodes: INodeData[];
+  edges?: IEdgeData[];
+}
+
+interface ITreeData {
+  [key: string]: any;
+}
+
 interface IConfig {
-  data: any;
+  data: IGraphData | ITreeData;
   graph: IGraph;
   node?: INode;
   edge?: IEdge;
   zoom?: IZoom;
-  events?: IEvent;
+  plugin?: any;
+  tooltip?: any;
 }
 
 export {
@@ -19,4 +41,5 @@ export {
   INode,
   IEdge,
   IZoom,
+  ITooltip,
 };

@@ -7,7 +7,7 @@ import list from './chart/index';
 import Vue from 'vue';
 import ViserVue from '../packages/viser-vue/src';
 import ViserCellVue from '../packages/viser-cell-vue/src';
-import ViserGraphVue from '../packages/viser-graph-vue/src';
+import ViserGraphVue from '../packages/viser-graph-vue/src/index';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';

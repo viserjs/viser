@@ -1,12 +1,12 @@
 import * as G6 from '@antv/g6';
-// tslint:disable-next-line: no-submodule-imports
-import '@antv/g6/build/plugins';
-import { IConfig } from './typed';
+import * as _ from 'lodash';
+import { IConfig, IGraph } from './typed';
 
 export class ViserGraph {
   public config: any;
   public graph: any;
   constructor(config: IConfig) {
+    console.log('config', config);
     this.config = config;
   }
 
@@ -20,11 +20,11 @@ export class ViserGraph {
     this.setGraph();
     this.setNode();
     this.setEdge();
-    this.setEvent();
-
     this.setData();
-
     this.setZoom();
+    this.graph.render();
+
+    this.setEvent();
   }
 
   public setGraph() {
@@ -32,13 +32,10 @@ export class ViserGraph {
       console.error('please set container');
       return;
     }
-    let graphConfig = {};
-    if (this.config.graph) {
-      graphConfig = {
-        ...graphConfig,
-        ...this.config.graph,
-      };
-    }
+    let graphConfig: IGraph = {
+      container: this.config.graph.container,
+      ...this.config.graph,
+    };
 
     if (this.config.zoom) {
       graphConfig = {
@@ -50,13 +47,13 @@ export class ViserGraph {
 
     switch (this.config.graph.type) {
       case 'tree':
-        this.graph = new G6.Tree(graphConfig);
+        this.graph = new G6.TreeGraph(graphConfig as G6.TreeGraphOptions);
         break;
       case 'graph':
-        this.graph = new G6.Graph(graphConfig);
+        this.graph = new G6.Graph(graphConfig as G6.GraphOptions);
         break;
       default:
-        this.graph = new G6.Graph(graphConfig);
+        this.graph = new G6.Graph(graphConfig as G6.TreeGraphOptions);
     }
 
   }
@@ -66,8 +63,7 @@ export class ViserGraph {
       console.error('please set data');
       return ;
     }
-
-    this.graph.read(this.config.data);
+    this.graph.data(this.config.data);
   }
 
   public setNode() {
@@ -75,7 +71,9 @@ export class ViserGraph {
       return;
     }
     delete this.config.node.componentId;
-    this.graph.node(this.config.node);
+    if (_.get(this.config, 'node.formatter')) {
+      this.graph.node(this.config.node.formatter);
+    }
   }
 
   public setEdge() {
@@ -83,7 +81,9 @@ export class ViserGraph {
       return;
     }
     delete this.config.edge.componentId;
-    this.graph.edge(this.config.edge);
+    if (_.get(this.config, 'edge.formatter')) {
+      this.graph.edge(this.config.edge.formatter);
+    }
   }
 
   public setZoom() {
@@ -94,19 +94,17 @@ export class ViserGraph {
   }
 
   public setEvent() {
-    Object.keys(this.config.events || []).forEach((k) => {
+    this.bindEvent(_.get(this.config, 'graph.events', {}), '');
+    this.bindEvent(_.get(this.config, 'node.events', {}), 'node');
+    this.bindEvent(_.get(this.config, 'edge.events', {}), 'edge');
+  }
+
+  protected bindEvent(events: any, type: string) {
+    Object.keys(events || []).forEach((k) => {
       const eventName = k.replace('on', '').toLocaleLowerCase();
-      this.graph.on(eventName, (ev: any) => {
-        this.config.events[k](ev, this.graph);
+      this.graph.on(type === '' ? eventName : `${type}:${eventName}`, (ev: any) => {
+        events[k](ev, this.graph);
       });
     });
   }
 }
-
-export const registerNode = G6.registerNode;
-export const registerEdge = G6.registerEdge;
-export const registerGuide = G6.registerGuide;
-export const Layouts = G6.Layouts;
-export const Util = G6.Util;
-export const Plugins = G6.Plugins;
-export const GlobalG6 = G6;

@@ -14,28 +14,25 @@ export class Graph implements AfterViewInit, OnChanges {
   @Input() public data?: any;
   @Input() public height?: number;
   @Input() public width?: number;
-  @Input() public animate?: boolean | object;
-  @Input() public fitView?: boolean;
-  @Input() public fitViewPadding?: any;
-  @Input() public type?: any;
+  @Input() public container?: string | HTMLElement;
+  @Input() public type?: 'tree' | 'graph';
+  @Input() public nodeStateStyles?: any;
+  @Input() public edgeStateStyles?: any;
+  @Input() public defaultNode?: any;
+  @Input() public defaultEdge?: any;
+  @Input() public plugins?: any[];
   @Input() public layout?: any;
-  @Input() public onMouseDown?: any;
-  @Input() public onMouseMove?: any;
-  @Input() public onMouseUp?: any;
-  @Input() public onClick?: any;
-  @Input() public onDbClick?: any;
-  @Input() public onTouchStart?: any;
-  @Input() public onTouchMove?: any;
-  @Input() public onTouchEnd?: any;
-  @Input() public onPlotEnter?: any;
-  @Input() public onPlotMove?: any;
-  @Input() public onPlotLeave?: any;
-  @Input() public onPlotClick?: any;
-  @Input() public onPlotDbClick?: any;
-  @Input() public onAfterchange?: any;
-  @Input() public onDragstart?: any;
-  @Input() public onDrag?: any;
-  @Input() public onDragend?: any;
+  @Input() public modes?: any;
+  @Input() public groupType?: string;
+
+  @Input() public fixedRoot?: boolean;
+
+  @Input() public moveTo?: number[];
+  @Input() public focusItem?: any;
+  @Input() public hideItem?: any;
+  @Input() public showItem?: any;
+
+  @Input() public events?: any;
 
   @ViewChild('GraphDom', { static: true }) public graphDiv!: ElementRef<HTMLDivElement>;
   private componentId = generateRandomNum();
@@ -77,22 +74,12 @@ export class Graph implements AfterViewInit, OnChanges {
 
   private combineGraphConfig(props: any, config: any) {
     const GraphRetain = [
-      'height', 'width', 'fitView', 'fitViewPadding',
-      'animate', 'type', 'data', 'layout',
+      'data', 'type', 'nodeStateStyles', 'edgeStateStyles',
+      'defaultNode', 'defaultEdge', 'plugins', 'layout',
+      'fixedRoot', 'moveTo', 'focusItem', 'hideItem', 'showItem',
+      'events', 'modes', 'width', 'height',
     ];
     config.graph = retain(props, GraphRetain);
-
-    const eventRetain = [
-      'onMouseDown', 'onMouseMove', 'onMouseUp',
-      'onClick', 'onDbClick',
-      'onTouchStart', 'onTouchMove', 'onTouchEnd',
-      'onPlotEnter', 'onPlotMove', 'onPlotLeave',
-      'onPlotClick', 'onPlotDbClick',
-      'onAfterchange',
-      'onDragstart', 'onDrag', 'onDragend',
-    ];
-
-    config.events = retain(props, eventRetain);
 
     config.data = props.data;
   }

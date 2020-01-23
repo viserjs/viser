@@ -1,4 +1,11 @@
+import IEvent from './IEvent';
+
 export default interface IEdge {
   shape?: string;
-  style?: any;
+  color?: string;
+  label?: string;
+
+  formatter?: any;
+
+  events?: IEvent;
 }

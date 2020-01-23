@@ -1,21 +1,23 @@
 const graphProps = [
-  'id', 'container', 'height', 'width', 'animate', 'fitView', 'fitViewPadding',
-  'type', 'data', 'layout',
-];
-const zoomProps = ['min', 'max', 'current'];
-const nodePros = ['shape', 'size', 'label'];
-const edgeProps = ['shape'];
-const eventProps = [
-  'onMouseDown', 'onMouseMove', 'onMouseUp',
-  'onClick', 'onDbClick',
-  'onTouchStart', 'onTouchMove', 'onTouchEnd',
-  'onPlotEnter', 'onPlotMove', 'onPlotLeave',
-  'onPlotClick', 'onPlotDbClick',
-  'onAfterchange',
-  'onDragstart', 'onDrag', 'onDragend',
+  'data', 'type', 'nodeStateStyles', 'edgeStateStyles',
+  'defaultNode', 'defaultEdge', 'plugins', 'layout',
+  'fixedRoot', 'moveTo', 'focusItem', 'hideItem', 'showItem',
+  'events', 'modes', 'width', 'height',
 ];
 
-const props: any = graphProps.concat(zoomProps).concat(eventProps).concat(nodePros).concat(edgeProps);
+const zoomProps = ['min', 'max', 'current'];
+const nodePros = ['formatter'];
+const edgeProps = ['shape', 'color', 'label', 'formatter', 'events'];
+
+const eventProps = [
+  'onMouseDown', 'onMouseMove', 'onMouseUp', 'onMouseenter', 'onMouseleave',
+  'onClick', 'onDbClick',
+  'onDragstart', 'onDrag', 'onDragend', 'onDragleave', 'onDragenter',
+  'onContextmenu', 'onBeforepaint', 'onBeforelayout', 'onAfterlayout',
+];
+
+const props: any = graphProps.concat(zoomProps).concat(eventProps)
+  .concat(nodePros).concat(edgeProps);
 
 const unique = (array: any) => {
   const res = [] as any;

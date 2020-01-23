@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { Layouts, registerEdge, registerGuide, registerNode, Util } from 'viser-graph';
+import { GlobalG6, registerBehavior, registerEdge,
+  registerLayout, registerNode, utils, ViserGraph } from 'viser-graph';
 import { Edge, Graph, Node, Zoom } from './components/index';
 
 @NgModule({
@@ -23,5 +24,12 @@ export class ViserGraphModule {
 }
 
 export {
-  registerNode, registerEdge, registerGuide, Layouts, Util,
+  GlobalG6,
+  registerBehavior,
+  registerEdge,
+  registerLayout,
+  registerNode,
+
+  utils,
+  ViserGraph,
 };

@@ -23,9 +23,12 @@ module.exports = {
       'viser-cell-vue': path.resolve(__dirname, '../packages/viser-cell-vue/src/index'),
       'viser-cell': path.resolve(__dirname, '../packages/viser-cell/src/index'),
       'viser-graph': path.resolve(__dirname, '../packages/viser-graph/src/index'),
+      'viser-graph-ng': path.resolve(__dirname, '../packages/viser-graph-ng/src/index'),
       'vue$': 'vue/dist/vue.esm.js'
     },
-    modules: [path.resolve(__dirname, '../packages/viser-ng/node_modules'), 'node_modules']
+    modules: [
+      path.resolve(__dirname, '../packages/viser-ng/node_modules'), 'node_modules'
+    ]
   },
   module: {
     rules: [

@@ -1,6 +1,6 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { IEdge, INode, IZoom } from 'viser-graph';
+import { IEdge, INode, ITooltip, IZoom } from 'viser-graph';
 
 class Props {}
 
@@ -38,3 +38,5 @@ export class Zoom extends SubComponent<IZoom> { public displayName = 'Zoom'; }
 export class Node extends SubComponent<INode> { public displayName = 'Node'; }
 // tslint:disable-next-line:max-classes-per-file
 export class Edge extends SubComponent<IEdge> { public displayName = 'Edge'; }
+// tslint:disable-next-line:max-classes-per-file
+export class Tooltip extends SubComponent<ITooltip> { public displayName = 'Tooltip'; }

@@ -1,6 +1,6 @@
 {
   "name": "viser-graph",
-  "version": "0.1.11",
+  "version": "1.0.0",
   "description": "viser is a toolkit fit for data vis engineer.",
   "license": "MIT",
   "authors": "DT-FE",
@@ -23,8 +23,11 @@
     "analyse": "cross-env NODE_ENV=analyse webpack --progress --config webpack.config.js"
   },
   "dependencies": {
-    "@antv/g6": "^2.0.0",
-    "@types/node": "*"
+    "@antv/g6": "^3.0.0",
+    "@types/lodash": "^4.14.149",
+    "@types/node": "*",
+    "csstype": "^2.6.7",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",

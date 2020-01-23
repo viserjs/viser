@@ -30,6 +30,7 @@
   "dependencies": {
     "@types/node": "*",
     "@types/prop-types": "*",
+    "babel-loader": "^8.0.6",
     "prop-types": "^15.6.0",
     "viser": "^2.0.0"
   },

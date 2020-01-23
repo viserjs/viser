@@ -7,10 +7,13 @@
   },
   "dependencies": {
     "@angular/compiler": "^8.0.0",
+    "@angular/core": "^8.2.14",
     "@angular/platform-browser": "^8.0.0",
     "@angular/platform-browser-dynamic": "^8.0.0",
     "@antv/data-set": "^0.10.2",
+    "@antv/g6": "^3.2.3",
     "d3": "^4.0.0",
+    "dagre": "^0.8.4",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "reflect-metadata": "^0.1.13",
@@ -19,6 +22,8 @@
     "zone.js": "^0.10.2"
   },
   "devDependencies": {
+    "@types/react": "*",
+    "@types/react-dom": "*",
     "@types/node": "*",
     "colors": "^1.4.0",
     "cross-env": "^6.0.3",
