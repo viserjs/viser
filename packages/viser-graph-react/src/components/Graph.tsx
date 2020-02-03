@@ -1,6 +1,6 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
-import { IGraph as IViserGrap, ViserGraph } from 'viser-graph';
+import { ViserGraph } from 'viser-graph';
 
 import IGraph from '../typed/IGraph';
 
