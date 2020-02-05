@@ -1,4 +1,4 @@
-import * as G6 from '@antv/g6';
+import G6 from '@antv/g6';
 import * as _ from 'lodash';
 import { IConfig, IGraph } from './typed';
 
@@ -6,7 +6,6 @@ export class ViserGraph {
   public config: any;
   public graph: any;
   constructor(config: IConfig) {
-    console.log('config', config);
     this.config = config;
   }
 
@@ -40,20 +39,20 @@ export class ViserGraph {
     if (this.config.zoom) {
       graphConfig = {
         ...graphConfig,
-        minZoom: this.config.zoom.min,
-        maxZoom: this.config.zoom.max,
+        minZoom: _.get(this.config, 'zoom.min', 1),
+        maxZoom: _.get(this.config, 'zoom.max', 2),
       };
     }
 
     switch (this.config.graph.type) {
       case 'tree':
-        this.graph = new G6.TreeGraph(graphConfig as G6.TreeGraphOptions);
+        this.graph = new G6.TreeGraph(graphConfig as any);
         break;
       case 'graph':
-        this.graph = new G6.Graph(graphConfig as G6.GraphOptions);
+        this.graph = new G6.Graph(graphConfig as any);
         break;
       default:
-        this.graph = new G6.Graph(graphConfig as G6.TreeGraphOptions);
+        this.graph = new G6.Graph(graphConfig as any);
     }
 
   }

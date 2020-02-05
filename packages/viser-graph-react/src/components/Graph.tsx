@@ -104,7 +104,6 @@ export default class Graph extends React.Component<any, any> {
 
     this.config.graph.container = this.container;
     this.chart = new ViserGraph(this.config);
-    console.log('createChartInstance', this.config);
     this.chart.render();
   }
 

@@ -26,11 +26,7 @@ export class Graph implements AfterViewInit, OnChanges {
   @Input() public groupType?: string;
 
   @Input() public fixedRoot?: boolean;
-
-  @Input() public moveTo?: number[];
-  @Input() public focusItem?: any;
-  @Input() public hideItem?: any;
-  @Input() public showItem?: any;
+  @Input() public pixelRatio?: number;
 
   @Input() public events?: any;
 
