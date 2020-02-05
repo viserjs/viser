@@ -84,6 +84,9 @@ function setRectCoord(chart: any, coord: any) {
     case 'RB':
       chart.coord('rect').transpose().reflect();
       break;
+    case 'RBX':
+      chart.coord('rect').transpose().reflect('x');
+      break;
     case 'RT':
       chart.coord('rect').transpose().reflect().scale(-1, 1);
       break;
