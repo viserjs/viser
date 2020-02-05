@@ -2,7 +2,7 @@ const graphProps = [
   'data', 'type', 'nodeStateStyles', 'edgeStateStyles',
   'defaultNode', 'defaultEdge', 'plugins', 'layout',
   'fixedRoot', 'moveTo', 'focusItem', 'hideItem', 'showItem',
-  'events', 'modes', 'width', 'height',
+  'events', 'modes', 'width', 'height', 'pixelRatio', 'fitView',
 ];
 
 const zoomProps = ['min', 'max', 'current'];

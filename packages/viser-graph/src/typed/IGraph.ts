@@ -1,3 +1,4 @@
+import { GraphOptions } from '@antv/g6/lib/interface/graph.d';
 import * as CSS from 'csstype';
 import IEvent from './IEvent';
 
@@ -14,24 +15,6 @@ interface IItemStyle extends CSS.Properties {
   radius?: number;
   fill?: string;
   lineAppendWidth?: number;
-}
-
-interface IDefaultItem {
-  shape?: string;
-  size?: number | number[];
-  color?: string;
-  style?: IItemStyle;
-  labelCfg?: any;
-  linkPoints?: any;
-  icon?: any;
-  modes?: any;
-  nodeStateStyles?: IItemStateStyles;
-  direction?: string;
-  clipCfg?: any;  // ???
-  lineAppendWidth?: number;
-  preRect?: any;
-  logoIcon?: any;
-  stateIcon?: any;
 }
 
 type ILayoutFunc = (node: any) => number;
@@ -77,15 +60,14 @@ interface ILayout {
   ranksepFunc?: ILayoutFunc;
 }
 /** 仅定义更限制的类型，未定义的遵循 G6 的定义 */
-export default interface IGraph extends G6.TreeGraphOptions, G6.GraphOptions {
+export default interface IGraph extends GraphOptions {
   container: string | HTMLElement;
   type?: 'tree' | 'graph';
   nodeStateStyles?: IItemStateStyles;
   edgeStateStyles?: IItemStateStyles;
-  defaultNode?: IDefaultItem;
-  defaultEdge?: IDefaultItem;
   plugins?: any[];
   layout?: ILayout;
+  pixelRatio?: number;
 
   fixedRoot?: boolean;
   // TODO 待实现 api

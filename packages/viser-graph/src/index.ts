@@ -1,4 +1,4 @@
-import * as G6 from '@antv/g6';
+import G6 from '@antv/g6';
 
 const registerNode = G6.registerNode;
 const registerEdge = G6.registerEdge;
