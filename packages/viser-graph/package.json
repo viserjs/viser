@@ -13,7 +13,7 @@
   "module": "es/index.js",
   "types": "es/index.d.ts",
   "scripts": {
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "build": "npm run build:ts && npm run build:cjs && npm run build:umd",
     "build:ts": "rimraf es && tsc",
     "build:cjs": "rimraf lib && cross-env NODE_ENV=commonjs BABEL_ENV=cjs babel ./es -d lib",
