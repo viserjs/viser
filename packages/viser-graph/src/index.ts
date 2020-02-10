@@ -1,9 +1,6 @@
 import G6 from '@antv/g6';
 
-const registerNode = G6.registerNode;
-const registerEdge = G6.registerEdge;
-const registerBehavior = G6.registerBehavior;
-const registerLayout = G6.registerLayout;
+const { registerNode, registerEdge, registerBehavior, registerLayout} = G6;
 
 /** 全局 G6 可获取所有属性 */
 const GlobalG6 = G6;
