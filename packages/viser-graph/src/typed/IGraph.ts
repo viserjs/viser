@@ -1,21 +1,5 @@
 import { GraphOptions } from '@antv/g6/lib/interface/graph.d';
-import * as CSS from 'csstype';
 import IEvent from './IEvent';
-
-// hover selected actived running
-interface IItemStateStyles {
-  [key: string]: IItemStyle;
-}
-
-interface IItemStyle extends CSS.Properties {
-  endArrow?: boolean;
-  lineWidth?: number;
-  stroke?: string;
-  fillOpacity?: number;
-  radius?: number;
-  fill?: string;
-  lineAppendWidth?: number;
-}
 
 type ILayoutFunc = (node: any) => number;
 interface ILayout {
@@ -63,8 +47,6 @@ interface ILayout {
 export default interface IGraph extends GraphOptions {
   container: string | HTMLElement;
   type?: 'tree' | 'graph';
-  nodeStateStyles?: IItemStateStyles;
-  edgeStateStyles?: IItemStateStyles;
   plugins?: any[];
   layout?: ILayout;
   pixelRatio?: number;
