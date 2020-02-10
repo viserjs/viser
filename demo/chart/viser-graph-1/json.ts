@@ -36,7 +36,7 @@ new ViserGraph({
         stroke: '#5B8FF9'
       }
     } as any,
-  },
+  } as any,
   edge: {
     formatter: () => {
       return {
