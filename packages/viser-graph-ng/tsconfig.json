@@ -3,6 +3,8 @@
     "module": "es2015",
     "moduleResolution": "node",
     "outDir": "es",
+    "target": "es5",
+    "importHelpers": true,
     "emitDecoratorMetadata": true,
     "declaration": true,
     "noImplicitAny": false,
@@ -14,6 +16,8 @@
     "skipLibCheck": true,
     "allowJs": false,
     "sourceMap": true,
+    "baseUrl": ".",
+    "rootDir": "src",
     "lib": [
       "dom",
       "es2017"
@@ -22,8 +26,13 @@
   "angularCompilerOptions": {
     "genDir": "es",
     "skipTemplateCodegen": true,
-    "debug": false
+    "debug": false,
+    "enableIvy": false
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -171,7 +171,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
         [key: string]: any,
       } = {};
       for (const key in allProps) {
-        if (strippingProperties.indexOf(key) === -1) {
+        if (strippingProperties.indexOf(key) === -1 && !key.startsWith('__')) {
           properties[key] = allProps[key];
         }
       }
@@ -188,7 +188,7 @@ export class LiteChart implements AfterViewInit, OnChanges {
 
     if (config.chart) {
       for (const key in config.chart) {
-        if (chartProperties.indexOf(key) > -1) {
+        if (chartProperties.indexOf(key) > -1 && !key.startsWith('__')) {
           chart[key] = config.chart[key];
         }
       }

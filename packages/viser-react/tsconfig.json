@@ -3,6 +3,8 @@
     "module": "es2015",
     "moduleResolution": "node",
     "outDir": "es",
+    "target": "es5",
+    "importHelpers": true,
     "jsx": "react",
     "strict": true,
     "noUnusedLocals": true,

@@ -86,7 +86,7 @@ export class Graph implements AfterViewInit, OnChanges {
       'opacity', 'startAngle', 'endAngle'];
 
     Object.keys(props).forEach((propKey) => {
-      if (numberKeys.indexOf(propKey) > -1) {
+      if (numberKeys.indexOf(propKey) > -1 && !propKey.startsWith('__')) {
         if (typeof props[propKey] === 'string') {
           let value = parseFloat(props[propKey]);
           value = isNaN(value) ? props[propKey] : value;
@@ -127,7 +127,7 @@ export class Graph implements AfterViewInit, OnChanges {
         [key: string]: string,
       } = {};
       for (const key in allProps) {
-        if (strippingProperties.indexOf(key) === -1) {
+        if (strippingProperties.indexOf(key) === -1 && !key.startsWith('__')) {
           properties[key] = allProps[key];
         }
       }
