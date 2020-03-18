@@ -29,8 +29,8 @@ export interface ILineGuide {
   type?: 'line';
   top?: boolean;
   zIndex?: number;
-  start?: object | Array<number | string> | func;
-  end?: object | Array<number | string> | func;
+  start?: object | (number | string)[] | func;
+  end?: object | (number | string)[] | func;
   lineStyle?: IStyle.ILineStyle;
   text?: ILineText;
 }
@@ -39,7 +39,7 @@ export interface ITextGuide {
   type?: 'text';
   top?: boolean;
   zIndex?: number;
-  position?: object | Array<number | string> | func;
+  position?: object | (number | string)[] | func;
   content?: string;
   style?: IStyle.ITextStyle;
   offsetX?: number;
@@ -50,8 +50,8 @@ export interface IImageGuide {
   type?: 'image';
   top?: boolean;
   zIndex?: number;
-  start?: object | Array<number | string> | func;
-  end?: object | Array<number | string> | func;
+  start?: object | (number | string)[] | func;
+  end?: object | (number | string)[] | func;
   src?: string;
   width?: number;
   height?: number;
@@ -69,14 +69,14 @@ interface IRegionStyle {
 export interface IRegionGuide {
   type?: 'region';
   top?: boolean;
-  start?: object | Array<number | string> | func;
-  end?: object | Array<number | string> | func;
+  start?: object | (number | string)[] | func;
+  end?: object | (number | string)[] | func;
   style?: IRegionStyle;
 }
 
 export interface IHtmlGuide {
   type?: 'html';
-  position?: object | Array<number | string> | func;
+  position?: object | (number | string)[] | func;
   alignX?: string;
   alignY?: string;
   offsetX?: number;
@@ -87,15 +87,15 @@ export interface IHtmlGuide {
 export interface IArcGuide {
   type?: 'arc';
   top?: boolean;
-  start?: object | Array<number | string> | func;
-  end?: object | Array<number | string> | func;
+  start?: object | (number | string)[] | func;
+  end?: object | (number | string)[] | func;
   style?: object;
 }
 export interface IDataRegionGuide {
   type?: 'dataRegion';
   top?: boolean;
-  start?: object | Array<number | string> | func;
-  end?: object | Array<number | string> | func;
+  start?: object | (number | string)[] | func;
+  end?: object | (number | string)[] | func;
   content?: string;
   style?: object;
   display?: object;
@@ -106,7 +106,7 @@ export interface IDataRegionGuide {
 export interface IDataMarkerGuide {
   type?: 'dataMarker';
   top?: boolean;
-  position?: object | Array<number | string> | func;
+  position?: object | (number | string)[] | func;
   content?: string;
   style?: object;
   display?: object;
@@ -117,8 +117,8 @@ export interface IDataMarkerGuide {
 export interface IRegionFilter {
   type?: 'regionFilter';
   top?: boolean;
-  start?: object | Array<number | string> | func;
-  end?: object | Array<number | string> | func;
+  start?: object | (number | string)[] | func;
+  end?: object | (number | string)[] | func;
   color?: string;
   apply?: string[];
 }

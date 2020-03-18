@@ -2,11 +2,12 @@ const path = require('path');
 const webpack = require('webpack');
 const vueLoaderConfig = require('./vue-loader.config')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const { AngularCompilerPlugin } = require('@ngtools/webpack')
 
 module.exports = {
   mode: 'development',
   context: __dirname,
-  devtool: '#inline-source-map',
+  devtool: 'inline-source-map',
   entry: ['./index.tsx'],
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -38,11 +39,17 @@ module.exports = {
         options: vueLoaderConfig
       },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
-      { test: /\.tsx?$/, loader: 'ts-loader' }
+      { test: /\.tsx?$/, loader: '@ngtools/webpack' }
     ]
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new AngularCompilerPlugin({
+      tsConfigPath: "./tsconfig.json",
+      compilerOptions: {
+        enableIvy: true,
+      }
+    })
   ]
 };

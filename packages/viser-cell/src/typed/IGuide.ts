@@ -6,15 +6,15 @@ type func = () => void;
 export interface ILineGuide {
   type?: 'line';
   top?: boolean;
-  start?: object | Array<number | string> | func;
-  end?: object | Array<number | string> | func;
+  start?: object | (number | string)[] | func;
+  end?: object | (number | string)[] | func;
   style?: IStyle.ILineStyle;
 }
 
 export interface ITextGuide {
   type?: 'text';
   top?: boolean;
-  position?: object | Array<number | string> | func;
+  position?: object | (number | string)[] | func;
   content?: string;
   style?: IStyle.ITextStyle;
   offsetX?: number;
@@ -24,7 +24,7 @@ export interface ITextGuide {
 export interface ITagGuide {
   type?: 'tag';
   top?: boolean;
-  position?: object | Array<number | string> | func;
+  position?: object | (number | string)[] | func;
   content?: string;
   direct?: string;
   side?: number;
@@ -45,14 +45,14 @@ interface IRegionStyle {
 
 export interface IRectGuide {
   type?: 'rect';
-  start?: object | Array<number | string> | func;
-  end?: object | Array<number | string> | func;
+  start?: object | (number | string)[] | func;
+  end?: object | (number | string)[] | func;
   style?: IRegionStyle;
 }
 
 export interface IHtmlGuide {
   type?: 'html';
-  position?: object | Array<number | string> | func;
+  position?: object | (number | string)[] | func;
   alignX?: string;
   alignY?: string;
   offsetX?: number;
@@ -63,8 +63,8 @@ export interface IHtmlGuide {
 export interface IArcGuide {
   type?: 'arc';
   top?: boolean;
-  start?: object | Array<number | string> | func;
-  end?: object | Array<number | string> | func;
+  start?: object | (number | string)[] | func;
+  end?: object | (number | string)[] | func;
   style?: object;
 }
 

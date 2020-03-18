@@ -1,10 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, forwardRef } from '@angular/core';
 import { IFilter, IScale } from 'viser';
-import { Chart } from '../Chart';
+import { Chart, EMBEDDED_VIEW_TOKEN } from '../Chart';
 
 @Component({
   selector: 'v-view',
   template: `<div #chartDom></div>`,
+  providers: [
+    {
+      provide: EMBEDDED_VIEW_TOKEN,
+      useExisting: forwardRef(() => View)
+    }
+  ]
 })
 class View extends Chart {
   @Input() public data?: any;
@@ -23,6 +29,12 @@ class View extends Chart {
 @Component({
   selector: 'v-facet-view',
   template: `<div #chartDom></div>`,
+  providers: [
+    {
+      provide: EMBEDDED_VIEW_TOKEN,
+      useExisting: forwardRef(() => FacetView)
+    }
+  ]
 })
 class FacetView extends Chart {
   @Input() public dataPre?: {

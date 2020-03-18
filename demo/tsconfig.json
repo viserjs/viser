@@ -12,15 +12,21 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "alwaysStrict": true,
+    "skipLibCheck": true,
     "lib": [
       "es2015",
       "es2017",
       "dom"
     ]
   },
-  "include": [
-    "./index.tsx"
+  "exclude": [
+    "node_modules",
+    "build"
   ],
-  "exclude": ["node_modules", "build"]
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
 }

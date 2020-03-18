@@ -1,7 +1,8 @@
 {
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "demo"
   ],
   "description": "viser is a toolkit fit for data vis engineer.",
   "bugs": {
@@ -10,13 +11,15 @@
   "homepage": "https://github.com/viserjs/viser#readme",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "publish": "./scripts/publish.sh"
+    "publish": "./scripts/publish.sh",
+    "postinstall": "ngcc -s ./node_modules && ngcc -s packages/viser-graph-ng/node_modules && ngcc -s packages/viser-ng/node_modules"
   },
   "devDependencies": {
-    "lerna": "^3.4.0",
-    "lerna-changelog": "^0.8.0",
-    "lint-staged": "^7.3.0",
-    "prettier": "1.6.1"
+    "lerna": "^3.20.2",
+    "lerna-changelog": "^1.0.0",
+    "lint-staged": "^10.0.7",
+    "npm-check-updates": "^4.0.1",
+    "prettier": "1.19.1"
   },
   "lint-staged": {
     "*.ts": [
@@ -35,5 +38,10 @@
     "url": "git@github.com:viserjs/viser.git"
   },
   "author": "DT-FE",
-  "license": "MIT"
+  "license": "MIT",
+  "resolutions": {
+    "@babel/core": "^7.8.4",
+    "@babel/generator": "^7.8.4",
+    "@babel/preset-env": "^7.8.4"
+  }
 }

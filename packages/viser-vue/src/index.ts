@@ -70,6 +70,7 @@ const camelCase: any = (() => {
   };
 })();
 
+// tslint:disable-next-line: no-object-literal-type-assertion
 const baseChartComponent = {
   data() {
     return {
@@ -337,12 +338,12 @@ const installMaps: any = {
 };
 
 export default {
-  install: (Vue: any, options: string[] | undefined) => {
+  install: (vue: any, options: string[] | undefined) => {
     if (!options) {
       options = Object.keys(installMaps);
     }
     options.forEach((key: string) => {
-      Vue.component(key, {
+      vue.component(key, {
         ...installMaps[key],
         name: key,
       });

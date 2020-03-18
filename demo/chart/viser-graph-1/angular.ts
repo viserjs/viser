@@ -55,7 +55,6 @@ const graph = {
   <div>
     <v-graph [width]="graph.width" [height]="graph.height" [modes]="graph.modes"
       [defaultNode]="graph.defaultNode" [defaultEdge]="graph.defaultEdge"
-      [layout]="graph.layout"
       [data]="graph.data">
     </v-graph>
   </div>

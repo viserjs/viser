@@ -42,7 +42,7 @@ export class PluginComponent implements AfterViewInit, OnChanges {
         [key: string]: string,
       } = {};
       for (const key in allProps) {
-        if (strippingProperties.indexOf(key) === -1) {
+        if (strippingProperties.indexOf(key) === -1 && !key.startsWith('__')) {
           properties[key] = allProps[key];
         }
       }
