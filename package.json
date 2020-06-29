@@ -15,11 +15,11 @@
     "postinstall": "ngcc -s ./node_modules && ngcc -s packages/viser-graph-ng/node_modules && ngcc -s packages/viser-ng/node_modules"
   },
   "devDependencies": {
-    "lerna": "^3.20.2",
-    "lerna-changelog": "^1.0.0",
-    "lint-staged": "^10.0.7",
-    "npm-check-updates": "^4.0.1",
-    "prettier": "1.19.1"
+    "lerna": "^3.22.1",
+    "lerna-changelog": "^1.0.1",
+    "lint-staged": "^10.2.11",
+    "npm-check-updates": "^7.0.1",
+    "prettier": "2.0.5"
   },
   "lint-staged": {
     "*.ts": [
@@ -40,8 +40,8 @@
   "author": "DT-FE",
   "license": "MIT",
   "resolutions": {
-    "@babel/core": "^7.8.4",
-    "@babel/generator": "^7.8.4",
-    "@babel/preset-env": "^7.8.4"
+    "@babel/core": "^7.10.3",
+    "@babel/generator": "^7.10.3",
+    "@babel/preset-env": "^7.10.3"
   }
 }
