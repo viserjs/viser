@@ -1,9 +1,10 @@
 // tslint:disable-next-line: no-submodule-imports
-import { GraphOptions } from '@antv/g6/lib/interface/graph.d';
+import { GraphOptions } from '@antv/g6/lib/types';
 import IEvent from './IEvent';
 
 type ILayoutFunc = (node: any) => number;
 interface ILayout {
+  [key: string]: unknown;
   type: string;
   direction?: string;
   // H / V / LR / RL / TB / BT
