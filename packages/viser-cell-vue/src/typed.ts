@@ -23,7 +23,7 @@ const props: any = [
 ];
 
 function unique(array: any) {
-  const res = [];
+  let res = [];
   for (let i = 0, len = array.length; i < len; i++) {
     const current = array[i];
     if (res.indexOf(current) === -1) {

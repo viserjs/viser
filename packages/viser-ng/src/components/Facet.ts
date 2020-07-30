@@ -40,4 +40,3 @@ class Facet extends Chart {
 }
 
 export { Facet };
-
