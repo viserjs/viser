@@ -1,4 +1,3 @@
-// tslint:disable-next-line: no-submodule-imports
 import { GraphOptions } from '@antv/g6/lib/interface/graph.d';
 import IEvent from './IEvent';
 

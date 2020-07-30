@@ -2,8 +2,6 @@
   "compilerOptions": {
     "module": "es2015",
     "outDir": "es",
-    "target": "es5",
-    "importHelpers": true,
     "strict": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,

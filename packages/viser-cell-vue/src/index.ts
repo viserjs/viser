@@ -69,7 +69,6 @@ declare module 'vue/types/options' {
   }
 }
 
-// tslint:disable-next-line: no-object-literal-type-assertion
 const baseChartComponent = {
   data() {
     return {
